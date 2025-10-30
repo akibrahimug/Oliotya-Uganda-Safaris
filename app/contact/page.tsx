@@ -5,6 +5,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -25,6 +26,7 @@ import {
   Plane,
   Shield,
   CreditCard,
+  CheckCircle2,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -36,17 +38,64 @@ export default function ContactPage() {
     message: "",
   })
 
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
+    // Clear error for this field when user starts typing
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: "" }))
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required"
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    if (!formData.subject.trim()) {
+      newErrors.subject = "Subject is required"
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required"
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
+
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
     console.log("Form submitted:", formData)
-    alert("Thank you for your message! We'll get back to you soon.")
-    // Reset form
+    setSubmitSuccess(true)
     setFormData({ name: "", email: "", subject: "", message: "" })
+    setIsSubmitting(false)
+
+    // Hide success message after 5 seconds
+    setTimeout(() => setSubmitSuccess(false), 5000)
   }
 
   return (
@@ -78,6 +127,15 @@ export default function ContactPage() {
                   Fill out the form below and our team will get back to you within 24 hours.
                 </p>
 
+                {submitSuccess && (
+                  <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 flex items-center gap-3 mb-6">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <p className="text-sm font-medium">
+                      Thank you for your message! We'll get back to you soon.
+                    </p>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -89,8 +147,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={(e) => handleInputChange("name", e.target.value)}
                         placeholder="John Doe"
-                        required
+                        aria-invalid={!!errors.name}
+                        size="lg"
                       />
+                      {errors.name && (
+                        <p className="text-sm text-destructive">{errors.name}</p>
+                      )}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">
@@ -102,8 +164,15 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={(e) => handleInputChange("email", e.target.value)}
                         placeholder="john@example.com"
-                        required
+                        aria-invalid={!!errors.email}
+                        size="lg"
                       />
+                      {errors.email && (
+                        <p className="text-sm text-destructive">{errors.email}</p>
+                      )}
+                      <p className="text-xs text-muted-foreground">
+                        We'll never share your email with anyone else
+                      </p>
                     </div>
                   </div>
 
@@ -116,27 +185,48 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={(e) => handleInputChange("subject", e.target.value)}
                       placeholder="What is your inquiry about?"
-                      required
+                      aria-invalid={!!errors.subject}
+                      size="lg"
                     />
+                    {errors.subject && (
+                      <p className="text-sm text-destructive">{errors.subject}</p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="message">
                       Message <span className="text-destructive">*</span>
                     </Label>
-                    <textarea
+                    <Textarea
                       id="message"
                       value={formData.message}
                       onChange={(e) => handleInputChange("message", e.target.value)}
                       placeholder="Tell us more about your trip plans or questions..."
-                      className="w-full min-h-40 px-3 py-2 rounded-md border border-input bg-background text-foreground resize-none"
-                      required
+                      className="min-h-40 resize-none"
+                      aria-invalid={!!errors.message}
                     />
+                    {errors.message && (
+                      <p className="text-sm text-destructive">{errors.message}</p>
+                    )}
+                    <p className="text-xs text-muted-foreground">
+                      {formData.message.length} characters
+                    </p>
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full gap-2">
-                    <Send className="h-5 w-5" />
-                    Send Message
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full gap-2"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>Sending...</>
+                    ) : (
+                      <>
+                        <Send className="h-5 w-5" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>

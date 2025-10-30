@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { ScrollIndicator } from "@/components/scroll-indicator"
 import Link from "next/link"
 import { allDestinations } from "@/lib/destinations-data"
 import type { SearchFilters } from "@/app/page"
@@ -38,8 +39,6 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
     setCurrentIndex(0)
   }, [filters])
 
-  const current = filteredDestinations[currentIndex]
-
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
@@ -61,7 +60,7 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
               return (
                 <div
                   key={dest.id}
-                  className={`flex-shrink-0 w-full transition-all duration-500 ${
+                  className={`shrink-0 w-full transition-all duration-500 ${
                     isVisible ? "opacity-100" : "opacity-0"
                   }`}
                   style={{
@@ -96,17 +95,12 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
             })}
           </div>
 
-          <div className="flex justify-center gap-2 mt-8">
-            {filteredDestinations.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`h-2 rounded-full transition-all ${
-                  index === currentIndex ? "w-8 bg-primary" : "w-2 bg-muted-foreground/30"
-                }`}
-                aria-label={`Go to destination ${index + 1}`}
-              />
-            ))}
+          <div className="mt-8">
+            <ScrollIndicator
+              total={filteredDestinations.length}
+              current={currentIndex}
+              onDotClick={setCurrentIndex}
+            />
           </div>
         </div>
       </div>

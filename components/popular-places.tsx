@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Star, ChevronRight, MapPin, Clock, Users } from "lucide-react";
+import { TripCard } from "@/components/trip-card";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
 import { allDestinations } from "@/lib/destinations-data";
@@ -112,95 +111,41 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
                 scrollSnapType: "x mandatory",
               }}
             >
-              {filteredPlaces.map((place, index) => (
-                <Card
-                  key={place.id}
-                  className="shrink-0 w-[360px] group transition-all duration-500 animate-fade-in-up border-0 bg-background overflow-hidden"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                    scrollSnapAlign: "center",
-                    boxShadow: "0 -10px 25px -5px rgba(0, 0, 0, 0.1), 0 -4px 6px -2px rgba(0, 0, 0, 0.05), 0 4px 10px -2px rgba(0, 0, 0, 0.08)",
-                  }}
-                >
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden">
-                      <div className="absolute top-0 left-0 right-0 z-10 p-4 flex items-start justify-between">
-                        <Badge className="bg-primary text-primary-foreground shadow-lg backdrop-blur-sm">
-                          {place.category}
-                        </Badge>
-                        <Badge className="bg-background/90 text-foreground shadow-lg backdrop-blur-sm">
-                          <Star className="h-3 w-3 mr-1 fill-primary text-primary" />
-                          {place.rating}
-                        </Badge>
-                      </div>
-                      <img
-                        src={place.image || "/placeholder.svg"}
-                        alt={place.name}
-                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-linear-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-                    <div className="p-6 space-y-4">
-                      <div>
-                        <h3 className="font-inter text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                          {place.name}
-                        </h3>
-                        <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4 text-primary" />
-                            <span>{place.country}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-primary" />
-                            <span>{place.duration}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Users className="h-4 w-4 text-primary" />
-                            <span>Max {place.groupSize} people</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="pt-4 border-t border-border flex items-center justify-between">
-                        <div>
-                          <p className="text-xs text-muted-foreground mb-1">
-                            From
-                          </p>
-                          <span className="text-2xl font-bold text-primary">
-                            ${place.price.toFixed(2)}
-                          </span>
-                          <span className="text-sm text-muted-foreground">
-                            {" "}
-                            /person
-                          </span>
-                        </div>
-                        <Link
-                          href={
-                            filters
-                              ? `/trip/${place.id}?travelers=${filters.travelers}${
-                                  filters.dateRange?.from
-                                    ? `&dateFrom=${filters.dateRange.from.toISOString()}`
-                                    : ""
-                                }${
-                                  filters.dateRange?.to
-                                    ? `&dateTo=${filters.dateRange.to.toISOString()}`
-                                    : ""
-                                }`
-                              : `/trip/${place.id}`
-                          }
-                        >
-                          <Button
-                            size="lg"
-                            className="group/btn shadow-lg hover:shadow-xl"
-                          >
-                            Explore
-                            <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              {filteredPlaces.map((place, index) => {
+                const searchParams = filters
+                  ? `?travelers=${filters.travelers}${
+                      filters.dateRange?.from
+                        ? `&dateFrom=${filters.dateRange.from.toISOString()}`
+                        : ""
+                    }${
+                      filters.dateRange?.to
+                        ? `&dateTo=${filters.dateRange.to.toISOString()}`
+                        : ""
+                    }`
+                  : "";
+
+                return (
+                  <div
+                    key={place.id}
+                    className="shrink-0 w-[360px]"
+                    style={{ scrollSnapAlign: "center" }}
+                  >
+                    <TripCard
+                      id={place.id}
+                      name={place.name}
+                      country={place.country}
+                      category={place.category}
+                      price={place.price}
+                      rating={place.rating}
+                      duration={place.duration}
+                      groupSize={place.groupSize}
+                      image={place.image}
+                      animationDelay={index * 100}
+                      searchParams={searchParams}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
             {/* Scroll Progress Indicator */}

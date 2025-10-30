@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { User } from "lucide-react";
+import { User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 // import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"; // Commented out until Clerk is set up
 import { useState, useEffect } from "react";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,123 +18,261 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when screen size changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [mobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className={`flex items-center justify-between h-20 transition-all duration-300 ${
-          scrolled ? "" : "border-b-2 border-background/20"
-        }`}>
-          <Link href="/" className="flex items-center gap-2 group">
-            <img
-              src="/fox_logo.jpg"
-              alt="Fox Adventures Logo"
-              className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
-            />
-            <span
-              className={`font-serif text-2xl font-bold transition-colors ${
-                scrolled ? "text-foreground" : "text-background"
-              }`}
-            >
-              Fox Adventures Africa
-            </span>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-8">
-            <Link
-              href="/about"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled ? "text-foreground" : "text-background"
-              }`}
-            >
-              About
-            </Link>
-            <Link
-              href="/destinations"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled ? "text-foreground" : "text-background"
-              }`}
-            >
-              Destinations
-            </Link>
-            <Link
-              href="/"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled ? "text-foreground" : "text-background"
-              }`}
-            >
-              Tours
-            </Link>
-            <Link
-              href="/"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled ? "text-foreground" : "text-background"
-              }`}
-            >
-              Blog
-            </Link>
-            <Link
-              href="/contact"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled ? "text-foreground" : "text-background"
-              }`}
-            >
-              Contact
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            {/* Temporary user icon - will be replaced with Clerk auth when set up */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className={
-                scrolled
-                  ? "text-foreground"
-                  : "text-background hover:text-primary"
-              }
-            >
-              <User className="h-5 w-5" />
-            </Button>
-
-            {/* CLERK AUTHENTICATION - Uncomment when Clerk is set up */}
-            {/* <SignedIn>
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-9 h-9",
-                  },
-                }}
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-background/95 backdrop-blur-md shadow-md"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className={`flex items-center justify-between h-20 transition-all duration-300 ${
+            scrolled ? "" : "border-b-2 border-background/20"
+          }`}>
+            <Link href="/" className="flex items-center gap-2 group">
+              <img
+                src="/fox_logo.jpg"
+                alt="Fox Adventures Logo"
+                className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
               />
-            </SignedIn>
+              <span
+                className={`font-serif text-2xl font-bold transition-colors ${
+                  scrolled ? "text-foreground" : "text-background"
+                }`}
+              >
+                Fox Adventures Africa
+              </span>
+            </Link>
 
-            <SignedOut>
-              <Link href="/sign-in">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={scrolled ? "text-foreground" : "text-background"}
-                >
-                  Sign In
-                </Button>
+            <nav className="hidden md:flex items-center gap-8">
+              <Link
+                href="/about"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  scrolled ? "text-foreground" : "text-background"
+                }`}
+              >
+                About
               </Link>
-              <Link href="/sign-up">
-                <Button
-                  size="sm"
-                  className="bg-primary text-primary-foreground"
-                >
-                  Sign Up
-                </Button>
+              <Link
+                href="/destinations"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  scrolled ? "text-foreground" : "text-background"
+                }`}
+              >
+                Destinations
               </Link>
-            </SignedOut> */}
+              <Link
+                href="/"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  scrolled ? "text-foreground" : "text-background"
+                }`}
+              >
+                Tours
+              </Link>
+              <Link
+                href="/"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  scrolled ? "text-foreground" : "text-background"
+                }`}
+              >
+                Blog
+              </Link>
+              <Link
+                href="/contact"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  scrolled ? "text-foreground" : "text-background"
+                }`}
+              >
+                Contact
+              </Link>
+            </nav>
+
+            <div className="flex items-center gap-4">
+              {/* Temporary user icon - will be replaced with Clerk auth when set up */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`hidden md:flex ${
+                  scrolled
+                    ? "text-foreground"
+                    : "text-background hover:text-primary"
+                }`}
+              >
+                <User className="h-5 w-5" />
+              </Button>
+
+              {/* Mobile menu button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`md:hidden ${
+                  scrolled
+                    ? "text-foreground hover:text-foreground/70"
+                    : "text-background hover:text-background/70"
+                }`}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </Button>
+
+              {/* CLERK AUTHENTICATION - Uncomment when Clerk is set up */}
+              {/* <SignedIn>
+                <UserButton
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-9 h-9",
+                    },
+                  }}
+                />
+              </SignedIn>
+
+              <SignedOut>
+                <Link href="/sign-in">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={scrolled ? "text-foreground" : "text-background"}
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/sign-up">
+                  <Button
+                    size="sm"
+                    className="bg-primary text-primary-foreground"
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              </SignedOut> */}
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Mobile Menu Overlay - Moved outside header */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 md:hidden z-60"
+          style={{
+            backgroundColor: '#1a1a1a',
+          }}
+        >
+          <div className="container mx-auto px-4 h-full">
+            {/* Mobile menu header */}
+            <div className="flex items-center justify-between h-20 border-b border-background/20">
+              <Link
+                href="/"
+                className="flex items-center gap-2 group"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <img
+                  src="/fox_logo.jpg"
+                  alt="Fox Adventures Logo"
+                  className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
+                />
+                <span className="font-serif text-xl font-bold text-background">
+                  Fox Adventures Africa
+                </span>
+              </Link>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-background hover:text-background/70"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
+
+            {/* Mobile menu navigation */}
+            <nav className="flex flex-col gap-2 py-8">
+              <Link
+                href="/"
+                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="/destinations"
+                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Destinations
+              </Link>
+              <Link
+                href="/"
+                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Tours
+              </Link>
+              <Link
+                href="/"
+                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link
+                href="/contact"
+                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+
+              {/* Mobile menu user section */}
+              <div className="mt-8 pt-8 border-t border-background/20">
+                <Button
+                  variant="outline"
+                  className="w-full bg-transparent border-background text-background hover:bg-background hover:text-foreground gap-2"
+                >
+                  <User className="h-5 w-5" />
+                  Account
+                </Button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

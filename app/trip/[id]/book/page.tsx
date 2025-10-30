@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -273,6 +274,7 @@ export default function BookingPage() {
                             }
                             placeholder="John"
                             required
+                            size="lg"
                           />
                         </div>
                         <div className="space-y-2">
@@ -288,6 +290,7 @@ export default function BookingPage() {
                             }
                             placeholder="Doe"
                             required
+                            size="lg"
                           />
                         </div>
                       </div>
@@ -306,7 +309,11 @@ export default function BookingPage() {
                           }
                           placeholder="john.doe@example.com"
                           required
+                          size="lg"
                         />
+                        <p className="text-xs text-muted-foreground">
+                          We'll send your booking confirmation here
+                        </p>
                       </div>
 
                       <div className="space-y-2">
@@ -323,7 +330,12 @@ export default function BookingPage() {
                           }
                           placeholder="+1 (555) 123-4567"
                           required
+                          size="lg"
+                          inputMode="tel"
                         />
+                        <p className="text-xs text-muted-foreground">
+                          We may contact you for trip updates
+                        </p>
                       </div>
 
                       <div className="space-y-2">
@@ -344,6 +356,8 @@ export default function BookingPage() {
                             )
                           }
                           required
+                          size="lg"
+                          inputMode="numeric"
                         />
                         <p className="text-sm text-muted-foreground">
                           Maximum {trip.groupSize} travelers per group
@@ -354,15 +368,18 @@ export default function BookingPage() {
                         <Label htmlFor="specialRequests">
                           Special Requests (Optional)
                         </Label>
-                        <textarea
+                        <Textarea
                           id="specialRequests"
                           value={personalInfo.specialRequests}
                           onChange={(e) =>
                             handleInputChange("specialRequests", e.target.value)
                           }
                           placeholder="Any dietary restrictions, accessibility needs, or special requests..."
-                          className="w-full min-h-24 px-3 py-2 rounded-md border border-input bg-background text-foreground resize-none"
+                          className="min-h-24 resize-none"
                         />
+                        <p className="text-xs text-muted-foreground">
+                          Let us know about any special requirements to make your trip more comfortable
+                        </p>
                       </div>
                     </div>
                   </CardContent>

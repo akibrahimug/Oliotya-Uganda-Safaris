@@ -53,7 +53,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               placeholder="Where to?"
-              className="h-12 text-base font-semibold"
+              size="lg"
             />
           </div>
 
@@ -114,7 +114,9 @@ export function SearchForm({ onSearch }: SearchFormProps) {
                 onChange={(e) =>
                   setTravelers(Number.parseInt(e.target.value) || 1)
                 }
-                className="h-12 text-base font-semibold flex-1"
+                size="lg"
+                inputMode="numeric"
+                className="flex-1"
               />
               <Button
                 onClick={handleSearch}

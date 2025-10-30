@@ -1,0 +1,99 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Star, ChevronRight, MapPin, Clock, Users } from "lucide-react";
+import Link from "next/link";
+
+interface TripCardProps {
+  id: number;
+  name: string;
+  country: string;
+  category: string;
+  price: number;
+  rating: number;
+  duration: string;
+  groupSize: number;
+  image: string;
+  animationDelay?: number;
+  searchParams?: string;
+}
+
+export function TripCard({
+  id,
+  name,
+  country,
+  category,
+  price,
+  rating,
+  duration,
+  groupSize,
+  image,
+  animationDelay = 0,
+  searchParams = "",
+}: TripCardProps) {
+  return (
+    <Card
+      className="shrink-0 w-full group transition-all duration-500 animate-fade-in-up border-0 bg-background overflow-hidden"
+      style={{
+        animationDelay: `${animationDelay}ms`,
+        boxShadow:
+          "0 -10px 25px -5px rgba(0, 0, 0, 0.1), 0 -4px 6px -2px rgba(0, 0, 0, 0.05), 0 4px 10px -2px rgba(0, 0, 0, 0.08)",
+      }}
+    >
+      <CardContent className="p-0">
+        <div className="relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 z-10 p-4 flex items-start justify-between">
+            <Badge className="bg-primary text-primary-foreground shadow-lg backdrop-blur-sm">
+              {category}
+            </Badge>
+            <Badge className="bg-background/90 text-foreground shadow-lg backdrop-blur-sm">
+              <Star className="h-3 w-3 mr-1 fill-primary text-primary" />
+              {rating}
+            </Badge>
+          </div>
+          <img
+            src={image || "/placeholder.svg"}
+            alt={name}
+            className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </div>
+        <div className="p-6 space-y-4">
+          <div>
+            <h3 className="font-inter text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+              {name}
+            </h3>
+            <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-primary" />
+                <span>{country}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-primary" />
+                <span>{duration}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users className="h-4 w-4 text-primary" />
+                <span>Max {groupSize} people</span>
+              </div>
+            </div>
+          </div>
+          <div className="pt-4 border-t border-border flex items-center justify-between">
+            <div>
+              <p className="text-xs text-muted-foreground mb-1">From</p>
+              <div className="text-2xl font-bold text-primary">
+                ${price.toFixed(2)}
+              </div>
+            </div>
+            <Link href={`/trip/${id}${searchParams}`}>
+              <Button size="lg" className="group/btn shadow-lg hover:shadow-xl">
+                Explore
+                <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
