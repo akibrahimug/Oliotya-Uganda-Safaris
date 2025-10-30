@@ -70,18 +70,18 @@ export function HeroCarousel() {
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/50 to-transparent z-10" />
           <img src={slide.image || "/placeholder.svg"} alt={slide.subtitle} className="w-full h-full object-cover" />
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="container mx-auto px-4 lg:px-8">
               <div className="max-w-2xl animate-fade-in-up space-y-2 md:space-y-3 lg:space-y-4">
-                <p className="text-white/90 text-xs md:text-sm lg:text-base animate-fade-in-up animation-delay-200">
+                <p className="text-background/90 text-xs md:text-sm lg:text-base animate-fade-in-up animation-delay-200">
                   {slide.title}
                 </p>
-                <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white animate-fade-in-up animation-delay-400 leading-tight">
+                <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-background animate-fade-in-up animation-delay-400 leading-tight">
                   {slide.subtitle}
                 </h1>
-                <p className="text-white/90 text-xs md:text-sm lg:text-base max-w-xl leading-relaxed animate-fade-in-up animation-delay-600">
+                <p className="text-background/90 text-xs md:text-sm lg:text-base max-w-xl leading-relaxed animate-fade-in-up animation-delay-600">
                   {slide.description}
                 </p>
               </div>
@@ -92,10 +92,10 @@ export function HeroCarousel() {
 
       <div className="absolute bottom-28 sm:bottom-32 md:bottom-36 lg:bottom-40 left-4 lg:left-8 z-30">
         <div className="flex items-baseline gap-0.5 md:gap-1">
-          <span className="text-white font-bold text-2xl md:text-3xl lg:text-4xl font-mono">
+          <span className="text-background font-bold text-2xl md:text-3xl lg:text-4xl font-inter tabular-nums">
             {String(currentSlide + 1).padStart(2, "0")}
           </span>
-          <span className="text-white/60 text-sm md:text-base lg:text-lg font-mono">
+          <span className="text-background/60 text-sm md:text-base lg:text-lg font-inter tabular-nums">
             /{String(slides.length).padStart(2, "0")}
           </span>
         </div>
@@ -108,7 +108,7 @@ export function HeroCarousel() {
             key={index}
             onClick={() => goToSlide(index)}
             className={`h-1.5 md:h-2 rounded-full transition-all ${
-              index === currentSlide ? "w-6 md:w-8 bg-white" : "w-1.5 md:w-2 bg-white/50"
+              index === currentSlide ? "w-6 md:w-8 bg-primary" : "w-1.5 md:w-2 bg-muted"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -118,8 +118,8 @@ export function HeroCarousel() {
       {/* Scroll Down Indicator */}
       <div className="absolute right-6 md:right-8 bottom-1/4 z-30 hidden lg:block">
         <div className="flex flex-col items-center gap-2 animate-bounce">
-          <span className="text-white text-xs tracking-widest [writing-mode:vertical-lr]">Scroll down</span>
-          <div className="w-px h-12 md:h-16 bg-white/50" />
+          <span className="text-background text-xs tracking-widest [writing-mode:vertical-lr]">Scroll down</span>
+          <div className="w-px h-12 md:h-16 bg-muted" />
         </div>
       </div>
     </div>

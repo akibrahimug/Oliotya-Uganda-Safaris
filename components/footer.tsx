@@ -1,5 +1,12 @@
-import Link from "next/link"
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react"
+import Link from "next/link";
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
 
 export function Footer() {
   return (
@@ -8,13 +15,18 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">F</span>
-              </div>
-              <span className="font-serif text-2xl font-bold">Fox Adventures</span>
+              <img
+                src="/fox_logo.jpg"
+                alt="Fox Adventures Logo"
+                className="w-10 h-10 rounded-full object-cover"
+              />
+              <span className="font-serif text-2xl font-bold">
+                Fox Adventures
+              </span>
             </div>
             <p className="text-secondary-foreground/80 mb-4">
-              Discover the Pearl of Africa with unforgettable safari experiences.
+              Discover the Pearl of Africa with unforgettable safari
+              experiences.
             </p>
             <div className="flex gap-4">
               <Link href="#" className="hover:text-primary transition-colors">
@@ -33,7 +45,10 @@ export function Footer() {
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   About Us
                 </Link>
               </li>
@@ -46,12 +61,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   Tours
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   Blog
                 </Link>
               </li>
@@ -62,22 +83,34 @@ export function Footer() {
             <h3 className="font-semibold text-lg mb-4">Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   FAQs
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-secondary-foreground/80 hover:text-primary transition-colors"
+                >
                   Terms & Conditions
                 </Link>
               </li>
@@ -108,5 +141,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

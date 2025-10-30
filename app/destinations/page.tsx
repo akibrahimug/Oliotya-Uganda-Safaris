@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { Suspense } from "react"
-import { useSearchParams } from "next/navigation"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Star, MapPin, Calendar, Users, Heart } from "lucide-react"
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Star, MapPin, Calendar, Users, Heart } from "lucide-react";
 
 const destinations = [
   {
@@ -33,7 +33,8 @@ const destinations = [
     rating: 4.9,
     reviews: 189,
     image: "/placeholder.svg?height=400&width=600",
-    description: "Uganda's largest national park featuring the world's most powerful waterfall and abundant wildlife.",
+    description:
+      "Uganda's largest national park featuring the world's most powerful waterfall and abundant wildlife.",
     duration: "2-4 days",
     groupSize: "4-12 people",
   },
@@ -46,7 +47,8 @@ const destinations = [
     rating: 4.8,
     reviews: 156,
     image: "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
-    description: "Famous for tree-climbing lions and diverse ecosystems from savannah to wetlands.",
+    description:
+      "Famous for tree-climbing lions and diverse ecosystems from savannah to wetlands.",
     duration: "2-3 days",
     groupSize: "4-10 people",
   },
@@ -59,7 +61,8 @@ const destinations = [
     rating: 4.9,
     reviews: 201,
     image: "/kibale-forest-chimpanzee-tracking-uganda.jpg",
-    description: "The primate capital of the world with 13 species including habituated chimpanzees.",
+    description:
+      "The primate capital of the world with 13 species including habituated chimpanzees.",
     duration: "2-3 days",
     groupSize: "2-6 people",
   },
@@ -72,7 +75,8 @@ const destinations = [
     rating: 4.7,
     reviews: 98,
     image: "/placeholder.svg?height=400&width=600",
-    description: "Compact savannah park with zebras, impalas, and over 350 bird species.",
+    description:
+      "Compact savannah park with zebras, impalas, and over 350 bird species.",
     duration: "1-2 days",
     groupSize: "2-8 people",
   },
@@ -85,7 +89,8 @@ const destinations = [
     rating: 4.8,
     reviews: 167,
     image: "/jinja-source-of-nile-white-water-rafting.jpg",
-    description: "Adventure capital with world-class white water rafting, bungee jumping, and kayaking.",
+    description:
+      "Adventure capital with world-class white water rafting, bungee jumping, and kayaking.",
     duration: "1-3 days",
     groupSize: "4-15 people",
   },
@@ -98,7 +103,8 @@ const destinations = [
     rating: 4.9,
     reviews: 87,
     image: "/placeholder.svg?height=400&width=600",
-    description: "The legendary Mountains of the Moon with snow-capped peaks and glaciers near the equator.",
+    description:
+      "The legendary Mountains of the Moon with snow-capped peaks and glaciers near the equator.",
     duration: "7-10 days",
     groupSize: "2-6 people",
   },
@@ -111,7 +117,8 @@ const destinations = [
     rating: 4.7,
     reviews: 143,
     image: "/placeholder.svg?height=400&width=600",
-    description: "Three stunning waterfalls on Mount Elgon's foothills with coffee tours and hiking.",
+    description:
+      "Three stunning waterfalls on Mount Elgon's foothills with coffee tours and hiking.",
     duration: "1-2 days",
     groupSize: "2-10 people",
   },
@@ -124,16 +131,17 @@ const destinations = [
     rating: 4.6,
     reviews: 112,
     image: "/placeholder.svg?height=400&width=600",
-    description: "Explore Uganda's vibrant capital with historical sites, markets, and cultural landmarks.",
+    description:
+      "Explore Uganda's vibrant capital with historical sites, markets, and cultural landmarks.",
     duration: "1 day",
     groupSize: "4-20 people",
   },
-]
+];
 
 function DestinationsContent() {
-  const searchParams = useSearchParams()
-  const destination = searchParams.get("destination")
-  const travelers = searchParams.get("travelers")
+  const searchParams = useSearchParams();
+  const destination = searchParams.get("destination");
+  const travelers = searchParams.get("travelers");
 
   return (
     <>
@@ -196,7 +204,9 @@ function DestinationsContent() {
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-2">
                       <MapPin className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">{dest.location}</span>
+                      <span className="text-sm text-muted-foreground">
+                        {dest.location}
+                      </span>
                     </div>
 
                     <h3 className="font-serif text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
@@ -208,10 +218,14 @@ function DestinationsContent() {
                         <Star className="h-4 w-4 fill-accent text-accent" />
                         <span className="font-semibold">{dest.rating}</span>
                       </div>
-                      <span className="text-sm text-muted-foreground">({dest.reviews} reviews)</span>
+                      <span className="text-sm text-muted-foreground">
+                        ({dest.reviews} reviews)
+                      </span>
                     </div>
 
-                    <p className="text-muted-foreground mb-4 line-clamp-2">{dest.description}</p>
+                    <p className="text-muted-foreground mb-4 line-clamp-2">
+                      {dest.description}
+                    </p>
 
                     <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
@@ -226,12 +240,18 @@ function DestinationsContent() {
 
                     <div className="flex items-center justify-between pt-4 border-t">
                       <div>
-                        <span className="text-sm text-muted-foreground">From</span>
-                        <div className="text-2xl font-bold text-primary">${dest.price.toFixed(2)}</div>
+                        <span className="text-sm text-muted-foreground">
+                          From
+                        </span>
+                        <div className="text-2xl font-bold text-primary">
+                          ${dest.price.toFixed(2)}
+                        </div>
                       </div>
                       <Button className="group/btn">
                         Book Now
-                        <span className="ml-2 transition-transform group-hover/btn:translate-x-1">→</span>
+                        <span className="ml-2 transition-transform group-hover/btn:translate-x-1">
+                          →
+                        </span>
                       </Button>
                     </div>
                   </div>
@@ -242,7 +262,7 @@ function DestinationsContent() {
         </div>
       </section>
     </>
-  )
+  );
 }
 
 export default function DestinationsPage() {
@@ -260,5 +280,5 @@ export default function DestinationsPage() {
       </Suspense>
       <Footer />
     </main>
-  )
+  );
 }

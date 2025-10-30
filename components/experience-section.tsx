@@ -9,8 +9,10 @@ export function ExperienceSection() {
               Unique <span className="text-primary">Experiences</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-12 max-w-xl">
-              Committed to be home country's traditional values and the highest possible standard and service. We focus
-              on our customers needs and truly believe that if we get essential clients' holidays WINS made.
+              Committed to be home country's traditional values and the highest
+              possible standard and service. We focus on our customers needs and
+              truly believe that if we get essential clients' holidays WINS
+              made.
             </p>
 
             <div className="grid grid-cols-2 gap-8">
@@ -43,5 +45,5 @@ export function ExperienceSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

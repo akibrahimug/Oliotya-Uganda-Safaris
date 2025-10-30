@@ -1,16 +1,16 @@
 export interface Destination {
-  id: number
-  name: string
-  category: string
-  price: number
-  rating: number
-  image: string
-  country: string
-  description: string
-  duration: string
-  groupSize: number
-  minTravelers?: number
-  maxTravelers?: number
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  rating: number;
+  image: string;
+  country: string;
+  description: string;
+  duration: string;
+  groupSize: number;
+  minTravelers?: number;
+  maxTravelers?: number;
 }
 
 export const allDestinations: Destination[] = [
@@ -149,4 +149,4 @@ export const allDestinations: Destination[] = [
     minTravelers: 2,
     maxTravelers: 8,
   },
-]
+];
