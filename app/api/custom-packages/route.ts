@@ -2,8 +2,12 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { customPackageSchema } from "@/lib/validations";
-import { handleAPIError, createSuccessResponse, APIError } from "@/lib/api-errors";
-import { rateLimit } from "@/lib/rate-limit";
+import {
+  handleAPIError,
+  createSuccessResponse,
+  APIError,
+} from "@/lib/api-errors";
+// import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
   try {
@@ -14,14 +18,16 @@ export async function POST(req: Request) {
     }
 
     // Rate limiting
-    const rateLimitResult = await rateLimit(userId);
-    if (!rateLimitResult.success) {
-      throw new APIError(
-        429,
-        `Rate limit exceeded. Try again in ${Math.ceil(rateLimitResult.reset / 1000)} seconds`,
-        "RATE_LIMIT_EXCEEDED"
-      );
-    }
+    // const rateLimitResult = await rateLimit(userId);
+    // if (!rateLimitResult.success) {
+    //   throw new APIError(
+    //     429,
+    //     `Rate limit exceeded. Try again in ${Math.ceil(
+    //       rateLimitResult.reset / 1000
+    //     )} seconds`,
+    //     "RATE_LIMIT_EXCEEDED"
+    //   );
+    // }
 
     // Parse and validate request body
     const body = await req.json();
@@ -42,7 +48,9 @@ export async function POST(req: Request) {
         destinations: validatedData.destinations,
         duration,
         numberOfPeople: validatedData.numberOfPeople,
-        travelDate: validatedData.travelDate ? new Date(validatedData.travelDate) : null,
+        travelDate: validatedData.travelDate
+          ? new Date(validatedData.travelDate)
+          : null,
         budget: validatedData.budget || null,
         specialRequests: validatedData.specialRequests || null,
         status: "PENDING",

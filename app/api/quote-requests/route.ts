@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { quoteRequestSchema, sanitizeInput } from "@/lib/validations";
-import { handleAPIError, createSuccessResponse, APIError } from "@/lib/api-errors";
-import { rateLimit } from "@/lib/rate-limit";
+import {
+  handleAPIError,
+  createSuccessResponse,
+  APIError,
+} from "@/lib/api-errors";
+// import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
   try {
@@ -10,15 +14,15 @@ export async function POST(req: Request) {
     const forwarded = req.headers.get("x-forwarded-for");
     const ip = forwarded ? forwarded.split(",")[0] : "anonymous";
 
-    // Rate limiting
-    const rateLimitResult = await rateLimit(ip);
-    if (!rateLimitResult.success) {
-      throw new APIError(
-        429,
-        `Rate limit exceeded. Try again in ${Math.ceil(rateLimitResult.reset / 1000)} seconds`,
-        "RATE_LIMIT_EXCEEDED"
-      );
-    }
+    // // Rate limiting
+    // const rateLimitResult = await rateLimit(ip);
+    // if (!rateLimitResult.success) {
+    //   throw new APIError(
+    //     429,
+    //     `Rate limit exceeded. Try again in ${Math.ceil(rateLimitResult.reset / 1000)} seconds`,
+    //     "RATE_LIMIT_EXCEEDED"
+    //   );
+    // }
 
     // Parse and validate request body
     const body = await req.json();
@@ -35,7 +39,9 @@ export async function POST(req: Request) {
       data: {
         name: sanitizedName,
         email: validatedData.email,
-        subject: `Quote Request: ${sanitizeInput(validatedData.packageName)} - ${validatedData.numberOfPeople} travelers`,
+        subject: `Quote Request: ${sanitizeInput(
+          validatedData.packageName
+        )} - ${validatedData.numberOfPeople} travelers`,
         message: sanitizedMessage,
         status: "NEW",
       },
@@ -47,7 +53,8 @@ export async function POST(req: Request) {
     return createSuccessResponse(
       {
         inquiryId: inquiry.id,
-        message: "Quote request submitted successfully. We'll contact you within 24 hours.",
+        message:
+          "Quote request submitted successfully. We'll contact you within 24 hours.",
       },
       201
     );

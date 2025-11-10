@@ -1,4 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+
+// Ensure Node runtime, not edge
+export const runtime = "nodejs";
+
+// Avoid static optimization
+export const dynamic = "force-dynamic";
+
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { uploadToR2 } from "@/lib/r2";
@@ -129,9 +136,7 @@ export async function POST(request: NextRequest) {
     const metadata = await image.metadata();
 
     // Convert to WebP for optimization
-    const optimizedBuffer = await image
-      .webp({ quality: 85 })
-      .toBuffer();
+    const optimizedBuffer = await image.webp({ quality: 85 }).toBuffer();
 
     // Generate filename
     const timestamp = Date.now();

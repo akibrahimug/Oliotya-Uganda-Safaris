@@ -13,6 +13,9 @@
     "migrate:images": "ts-node scripts/upload-images-to-r2.ts",
     "seed:hero": "node scripts/seed-hero-slides.mjs"
   },
+  "engines": {
+    "node": ">=20 <21"
+  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.922.0",
     "@clerk/nextjs": "^6.34.1",
@@ -74,7 +77,7 @@
     "react-hook-form": "^7.66.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.4",
-    "sharp": "^0.34.4",
+    "sharp": "^0.33.4",
     "sonner": "^1.7.4",
     "svix": "^1.81.0",
     "tailwind-merge": "^2.5.5",
