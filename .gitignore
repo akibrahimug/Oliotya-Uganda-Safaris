@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/.claude/
 
 # next.js
 /.next/
@@ -29,4 +30,3 @@ next-env.d.ts
 
 # clerk configuration (can include secrets)
 /.clerk/
-.claude
