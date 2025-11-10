@@ -110,11 +110,11 @@ export function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <img
                 src="/fox_logo.jpg"
-                alt="Fox Adventures Logo"
+                alt="Nambi Uganda Safaris Logo"
                 className="w-12 h-12 rounded-full object-cover"
               />
               <span className="font-inter text-xl font-bold">
-                Fox Adventures
+                Nambi Uganda Safaris
               </span>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -261,7 +261,7 @@ export function Footer() {
                   </div>
                   <div>
                     <p className="font-semibold text-foreground mb-1">Email</p>
-                    <p className="text-sm">info@foxadventures.com</p>
+                    <p className="text-sm">info@nambiugandasafaris.com</p>
                   </div>
                 </div>
               </li>
@@ -273,7 +273,7 @@ export function Footer() {
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              &copy; 2025 Fox Adventures. All rights reserved.
+              &copy; 2025 Nambi Uganda Safaris. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground">
               <Link href="/" className="hover:text-primary transition-colors">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ScrollIndicator } from "@/components/scroll-indicator"
@@ -13,13 +13,16 @@ interface ExploreDestinationsProps {
 }
 
 export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [filteredDestinations, setFilteredDestinations] = useState(allDestinations.slice(5, 8))
+  const [currentIndex, setCurrentIndex] = useState(0) // Start at first card
+  const [filteredDestinations, setFilteredDestinations] = useState(allDestinations)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
     if (!filters) {
-      setFilteredDestinations(allDestinations.slice(5, 8))
-      setCurrentIndex(0)
+      setFilteredDestinations(allDestinations)
+      setCurrentIndex(0) // Reset to first card
+      setIsInitialized(false)
       return
     }
 
@@ -35,9 +38,52 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
       return matchesDestination && matchesTravelers
     })
 
-    setFilteredDestinations(filtered.length > 0 ? filtered : allDestinations.slice(5, 8))
-    setCurrentIndex(0)
+    setFilteredDestinations(filtered.length > 0 ? filtered : allDestinations)
+    setCurrentIndex(Math.floor((filtered.length > 0 ? filtered : allDestinations).length / 2))
+    setIsInitialized(false)
   }, [filters])
+
+  // Initialize scroll to middle card on mount
+  useEffect(() => {
+    if (!isInitialized && filteredDestinations.length > 0) {
+      const container = containerRef.current
+      if (!container) return
+
+      // Wait for the DOM to settle
+      setTimeout(() => {
+        const middleIndex = Math.floor(filteredDestinations.length / 2)
+        const cardWidth = container.offsetWidth + 24 // full width + gap
+        container.scrollLeft = cardWidth * middleIndex
+        setIsInitialized(true)
+      }, 100)
+    }
+  }, [filteredDestinations, isInitialized])
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft
+      const cardWidth = container.offsetWidth + 24 // full width + gap
+      const newIndex = Math.round(scrollLeft / cardWidth)
+      setCurrentIndex(newIndex)
+    }
+
+    container.addEventListener("scroll", handleScroll)
+    return () => container.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToIndex = (index: number) => {
+    const container = containerRef.current
+    if (!container) return
+
+    const cardWidth = container.offsetWidth + 24
+    container.scrollTo({
+      left: cardWidth * index,
+      behavior: "smooth",
+    })
+  }
 
   return (
     <section className="py-20 bg-muted/30">
@@ -52,54 +98,69 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          <div className="flex gap-6 overflow-hidden">
-            {filteredDestinations.map((dest, index) => {
-              const offset = index - currentIndex
-              const isVisible = Math.abs(offset) <= 1
+          {/* Left fade overlay */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+            style={{
+              background: "linear-gradient(to right, hsl(var(--muted) / 0.3) 0%, transparent 100%)",
+            }}
+          />
 
-              return (
-                <div
-                  key={dest.id}
-                  className={`shrink-0 w-full transition-all duration-500 ${
-                    isVisible ? "opacity-100" : "opacity-0"
-                  }`}
-                  style={{
-                    transform: `translateX(${offset * 100}%)`,
-                  }}
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-                    <Badge className="absolute top-6 left-6 z-10 bg-primary text-primary-foreground shadow-lg backdrop-blur-sm">
-                      {dest.category}
-                    </Badge>
-                    <img
-                      src={dest.image || "/placeholder.svg"}
-                      alt={dest.name}
-                      className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/40 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 text-background">
-                      <p className="text-sm mb-2 opacity-90">{dest.country}</p>
-                      <h3 className="font-serif text-4xl font-bold mb-4">{dest.name}</h3>
-                      <p className="text-background/90 mb-6 leading-relaxed max-w-2xl">{dest.description}</p>
-                      <div>
-                        <Link href={`/destination/${dest.id}`}>
-                          <Button size="lg" className="bg-background text-foreground hover:bg-background/90">
-                            Learn More
-                          </Button>
-                        </Link>
-                      </div>
+          {/* Right fade overlay */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+            style={{
+              background: "linear-gradient(to left, hsl(var(--muted) / 0.3) 0%, transparent 100%)",
+            }}
+          />
+
+          <div
+            ref={containerRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              paddingLeft: "calc((100% - 100%) / 2 + 15%)",
+              paddingRight: "calc((100% - 100%) / 2 + 15%)",
+            }}
+          >
+            {filteredDestinations.map((dest, index) => (
+              <div
+                key={dest.id}
+                className="shrink-0 w-full snap-center"
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer">
+                  <Badge className="absolute top-6 left-6 z-10 bg-primary text-primary-foreground shadow-lg backdrop-blur-sm">
+                    {dest.category}
+                  </Badge>
+                  <img
+                    src={dest.image || "/placeholder.svg"}
+                    alt={dest.name}
+                    className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-background">
+                    <p className="text-sm mb-2 opacity-90">{dest.country}</p>
+                    <h3 className="font-serif text-4xl font-bold mb-4">{dest.name}</h3>
+                    <p className="text-background/90 mb-6 leading-relaxed max-w-2xl">{dest.shortDesc}</p>
+                    <div>
+                      <Link href={`/destination/${dest.id}`}>
+                        <Button size="lg" className="bg-background text-foreground hover:bg-background/90">
+                          Learn More
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
 
           <div className="mt-8">
             <ScrollIndicator
               total={filteredDestinations.length}
               current={currentIndex}
-              onDotClick={setCurrentIndex}
+              onDotClick={scrollToIndex}
             />
           </div>
         </div>

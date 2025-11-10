@@ -2,7 +2,7 @@
 
 ## Overview
 
-Your Fox Adventures application now has Clerk authentication integrated! This provides secure sign-in/sign-up with Google, email, and social media options.
+Your Nambi Uganda Safaris application now has Clerk authentication integrated! This provides secure sign-in/sign-up with Google, email, and social media options.
 
 ## Installation Status
 

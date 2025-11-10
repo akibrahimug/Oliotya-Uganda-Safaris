@@ -1,0 +1,393 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./app/generated/prisma-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Destination {
+  id           Int                  @id @default(autoincrement())
+  name         String
+  category     String
+  country      String               @default("Uganda")
+  price        Decimal              @db.Decimal(10, 2)
+  rating       Int                  @default(5)
+  duration     String
+  groupSize    Int
+  minTravelers Int?
+  maxTravelers Int?
+  description  String
+  image        String
+  images       String[]             @default([])
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  bookings     Booking[]
+  favorites    UserFavorite[]
+
+  @@index([category])
+  @@index([country])
+  @@map("destinations")
+}
+
+model Booking {
+  id                 Int           @id @default(autoincrement())
+  confirmationNumber String        @unique @default(cuid())
+  userId             String?
+  firstName          String
+  lastName           String
+  email              String
+  phone              String
+  destinationId      Int
+  numberOfTravelers  Int
+  specialRequests    String?
+  travelDateFrom     DateTime
+  travelDateTo       DateTime
+  pricePerPerson     Decimal       @db.Decimal(10, 2)
+  totalPrice         Decimal       @db.Decimal(10, 2)
+  status             BookingStatus @default(PENDING)
+  paymentStatus      PaymentStatus @default(PENDING)
+  paymentIntentId    String?       @unique
+  stripeCustomerId   String?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  destination        Destination   @relation(fields: [destinationId], references: [id])
+
+  @@index([email])
+  @@index([userId])
+  @@index([destinationId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("bookings")
+}
+
+model ContactInquiry {
+  id            Int           @id @default(autoincrement())
+  name          String
+  email         String
+  subject       String
+  message       String
+  status        InquiryStatus @default(NEW)
+  responseNotes String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("contact_inquiries")
+}
+
+model NewsletterSubscription {
+  id             Int                @id @default(autoincrement())
+  email          String             @unique
+  status         SubscriptionStatus @default(ACTIVE)
+  subscribedAt   DateTime           @default(now())
+  unsubscribedAt DateTime?
+
+  @@index([email])
+  @@index([status])
+  @@map("newsletter_subscriptions")
+}
+
+model User {
+  id              String           @id
+  email           String           @unique
+  firstName       String?
+  lastName        String?
+  phone           String?
+  profileImageUrl String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  favorites       UserFavorite[]
+  customPackages  CustomPackage[]
+  packageBundles  PackageBundle[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model UserFavorite {
+  id            Int         @id @default(autoincrement())
+  userId        String
+  destinationId Int
+  createdAt     DateTime    @default(now())
+  destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, destinationId])
+  @@index([userId])
+  @@index([destinationId])
+  @@map("user_favorites")
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIAL
+  PAID
+  REFUNDED
+}
+
+enum InquiryStatus {
+  NEW
+  RESPONDED
+  RESOLVED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  UNSUBSCRIBED
+}
+
+enum DifficultyLevel {
+  EASY
+  MODERATE
+  CHALLENGING
+}
+
+model Package {
+  id            Int             @id @default(autoincrement())
+  name          String
+  slug          String          @unique
+  category      String
+  duration      String
+  price         Decimal         @db.Decimal(10, 2)
+  description   String          @db.Text
+  shortDesc     String?         @db.Text // Short description for cards
+  image         String
+  images        String[]        @default([])
+  highlights    String[]        @default([])
+  itinerary     Json            // Array of {day, title, description}
+  included      String[]        @default([])
+  excluded      String[]        @default([])
+  minTravelers  Int
+  maxTravelers  Int
+  difficulty    DifficultyLevel @default(MODERATE)
+  featured      Boolean         @default(false)
+  popular       Boolean         @default(false) // For popular packages section
+  active        Boolean         @default(true)
+  displayOrder  Int             @default(0) // For manual ordering
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  bundleItems   PackageBundleItem[]
+
+  @@index([slug])
+  @@index([category])
+  @@index([featured])
+  @@index([popular])
+  @@index([active])
+  @@index([displayOrder])
+  @@map("packages")
+}
+
+model CustomPackage {
+  id              Int                   @id @default(autoincrement())
+  userId          String
+  name            String
+  destinations    Json                  // Array of destination IDs and details
+  duration        String?
+  numberOfPeople  Int
+  travelDate      DateTime?
+  specialRequests String?               @db.Text
+  budget          Decimal?              @db.Decimal(10, 2)
+  status          CustomPackageStatus   @default(PENDING)
+  quotedPrice     Decimal?              @db.Decimal(10, 2)
+  quoteNotes      String?               @db.Text
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  user            User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("custom_packages")
+}
+
+model PackageBundle {
+  id              Int                   @id @default(autoincrement())
+  userId          String
+  name            String?
+  numberOfPeople  Int
+  travelDate      DateTime?
+  specialRequests String?               @db.Text
+  status          CustomPackageStatus   @default(PENDING)
+  quotedPrice     Decimal?              @db.Decimal(10, 2)
+  quoteNotes      String?               @db.Text
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  user            User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  packages        PackageBundleItem[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("package_bundles")
+}
+
+model PackageBundleItem {
+  id        Int           @id @default(autoincrement())
+  bundleId  Int
+  packageId Int
+  notes     String?
+  bundle    PackageBundle @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  package   Package       @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  @@unique([bundleId, packageId])
+  @@index([bundleId])
+  @@index([packageId])
+  @@map("package_bundle_items")
+}
+
+enum CustomPackageStatus {
+  PENDING
+  QUOTED
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+// ============================================
+// CMS MODELS
+// ============================================
+
+model CMSImage {
+  id          String   @id @default(cuid())
+  filename    String
+  url         String   // R2 URL
+  altText     String?
+  category    String?  // hero, destination, package, team, etc.
+  width       Int
+  height      Int
+  fileSize    Int      // in bytes
+  format      String   // webp, jpg, png
+  usedIn      Json?    // Track where image is used: {pages: [], components: []}
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([createdAt])
+  @@map("cms_images")
+}
+
+model HeroSlide {
+  id           String   @id @default(cuid())
+  title        String   // "Discover the Magic of"
+  subtitle     String   // "Uganda"
+  description  String   @db.Text
+  image        String   // Image URL
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+  @@index([active])
+  @@map("hero_slides")
+}
+
+model CMSDestination {
+  id            String   @id @default(cuid())
+  name          String
+  slug          String   @unique
+  category      String   // National Park, City, Adventure, Cultural
+  region        String   // Western Uganda, Central Uganda, etc.
+  country       String   @default("Uganda")
+  description   String   @db.Text
+  shortDesc     String?  @db.Text // For cards
+  heroImage     String
+  gallery       Json     // Array of image URLs
+  history       String?  @db.Text
+  geography     String?  @db.Text
+  climate       String?  @db.Text
+  wildlife      String?  @db.Text
+  keyWildlife   Json?    // Array of species: ["Mountain Gorillas", "Chimpanzees"]
+  flora         Json?    // Array of plants
+  cultural      Json?    // Array of cultural experiences
+  bestTime      String?  @db.Text
+  featured      Boolean  @default(false)
+  active        Boolean  @default(true)
+  displayOrder  Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([region])
+  @@index([featured])
+  @@index([active])
+  @@map("cms_destinations")
+}
+
+model SiteSettings {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json     // Flexible JSON value
+  category  String?  // company, contact, social, navigation
+  updatedAt DateTime @updatedAt
+  updatedBy String?  // User ID who made the change
+
+  @@index([key])
+  @@index([category])
+  @@map("site_settings")
+}
+
+model TeamMember {
+  id           String   @id @default(cuid())
+  name         String
+  role         String   // "Founder & CEO", "Head of Operations"
+  bio          String   @db.Text
+  image        String   // Team member photo URL
+  years        String   // "15+ Years"
+  specialties  Json     // Array of specialties
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+  @@index([active])
+  @@map("team_members")
+}
+
+model FAQ {
+  id           String   @id @default(cuid())
+  question     String
+  answer       String   @db.Text
+  category     String?  // visa, booking, travel, etc.
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([category])
+  @@index([displayOrder])
+  @@index([active])
+  @@map("faqs")
+}
+
+model CMSAuditLog {
+  id          String   @id @default(cuid())
+  userId      String   // Clerk user ID
+  userName    String?  // Cached user name
+  action      String   // CREATE, UPDATE, DELETE
+  entityType  String   // Package, Destination, Image, etc.
+  entityId    String
+  changes     Json?    // What changed
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([entityType])
+  @@index([createdAt])
+  @@map("cms_audit_logs")
+}

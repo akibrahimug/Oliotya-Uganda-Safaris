@@ -72,30 +72,53 @@ export default function TripDetailPage() {
           alt={trip.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-8 container mx-auto">
+        <div className="absolute bottom-0 left-0 right-0 p-8 container mx-auto bg-gradient-to-t from-background/90 via-background/70 to-transparent">
           <Badge className="bg-primary text-primary-foreground mb-4">
             {trip.category}
           </Badge>
-          <h1 className="font-inter text-5xl md:text-6xl font-bold text-background mb-4">
+          <h1 className="font-inter text-5xl md:text-6xl font-bold text-foreground mb-4">
             {trip.name}
           </h1>
-          <div className="flex items-center gap-6 text-background/90">
+          <div className="flex items-center gap-6 text-foreground/90">
             <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 fill-current" />
+              <Star className="h-5 w-5 fill-current text-primary" />
               <span className="font-semibold">{trip.rating}.0</span>
             </div>
             <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
+              <MapPin className="h-5 w-5 text-primary" />
               <span>{trip.country}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="h-5 w-5" />
+              <Clock className="h-5 w-5 text-primary" />
               <span>{trip.duration}</span>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Image Gallery */}
+      {trip.images && trip.images.length > 0 && (
+        <section className="py-8 bg-muted/30">
+          <div className="container mx-auto px-4 lg:px-8">
+            <h2 className="font-inter text-2xl font-bold mb-6">Gallery</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {trip.images.map((image, index) => (
+                <div
+                  key={index}
+                  className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer"
+                >
+                  <img
+                    src={image}
+                    alt={`${trip.name} - Image ${index + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Main Content */}
       <section className="py-16 container mx-auto px-4 lg:px-8">

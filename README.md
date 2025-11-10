@@ -1,1 +1,1 @@
-# fox-adventures
+# nambi-uganda-safaris

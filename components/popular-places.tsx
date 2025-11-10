@@ -2,11 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { TripCard } from "@/components/trip-card";
+import { PackageCard } from "@/components/package-card";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
-import { allDestinations } from "@/lib/destinations-data";
+import { allPackages } from "@/lib/packages-data";
 import type { SearchFilters } from "@/app/page";
 
 interface PopularPlacesProps {
@@ -15,27 +15,28 @@ interface PopularPlacesProps {
 
 export function PopularPlaces({ filters }: PopularPlacesProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [filteredPlaces, setFilteredPlaces] = useState(allDestinations);
+  const popularPackages = useRef(allPackages.filter((pkg) => pkg.popular === true));
+  const [filteredPlaces, setFilteredPlaces] = useState(popularPackages.current);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!filters) {
-      setFilteredPlaces(allDestinations);
+      setFilteredPlaces(popularPackages.current);
       return;
     }
 
-    const filtered = allDestinations.filter((place) => {
-      // Filter by destination name (case-insensitive partial match)
+    const filtered = popularPackages.current.filter((pkg) => {
+      // Filter by package name or category (case-insensitive partial match)
       const matchesDestination =
-        place.name.toLowerCase().includes(filters.destination.toLowerCase()) ||
-        place.category
+        pkg.name.toLowerCase().includes(filters.destination.toLowerCase()) ||
+        pkg.category
           .toLowerCase()
           .includes(filters.destination.toLowerCase());
 
       // Filter by number of travelers
       const matchesTravelers =
-        (!place.minTravelers || filters.travelers >= place.minTravelers) &&
-        (!place.maxTravelers || filters.travelers <= place.maxTravelers);
+        filters.travelers >= pkg.minTravelers &&
+        filters.travelers <= pkg.maxTravelers;
 
       return matchesDestination && matchesTravelers;
     });
@@ -111,37 +112,24 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
                 scrollSnapType: "x mandatory",
               }}
             >
-              {filteredPlaces.map((place, index) => {
-                const searchParams = filters
-                  ? `?travelers=${filters.travelers}${
-                      filters.dateRange?.from
-                        ? `&dateFrom=${filters.dateRange.from.toISOString()}`
-                        : ""
-                    }${
-                      filters.dateRange?.to
-                        ? `&dateTo=${filters.dateRange.to.toISOString()}`
-                        : ""
-                    }`
-                  : "";
-
+              {filteredPlaces.map((pkg, index) => {
                 return (
                   <div
-                    key={place.id}
-                    className="shrink-0 w-[360px]"
+                    key={pkg.id}
+                    className="shrink-0 w-[360px] h-[580px]"
                     style={{ scrollSnapAlign: "center" }}
                   >
-                    <TripCard
-                      id={place.id}
-                      name={place.name}
-                      country={place.country}
-                      category={place.category}
-                      price={place.price}
-                      rating={place.rating}
-                      duration={place.duration}
-                      groupSize={place.groupSize}
-                      image={place.image}
+                    <PackageCard
+                      id={pkg.id}
+                      slug={pkg.slug}
+                      name={pkg.name}
+                      category={pkg.category}
+                      price={pkg.price}
+                      duration={pkg.duration}
+                      maxTravelers={pkg.maxTravelers}
+                      image={pkg.image}
+                      difficulty={pkg.difficulty}
                       animationDelay={index * 100}
-                      searchParams={searchParams}
                     />
                   </div>
                 );
@@ -177,9 +165,9 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
                 <p className="text-muted-foreground mb-6">
                   Explore our complete collection of safari experiences, cultural tours, and wildlife adventures across Uganda
                 </p>
-                <Link href="/destinations">
+                <Link href="/packages">
                   <Button size="lg" className="text-base px-8 shadow-lg hover:shadow-xl group">
-                    View All Trips
+                    View All Packages
                     <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>

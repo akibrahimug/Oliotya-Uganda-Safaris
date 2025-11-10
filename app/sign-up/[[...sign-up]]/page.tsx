@@ -1,4 +1,4 @@
-// import { SignUp } from "@clerk/nextjs"
+import { SignUp } from "@clerk/nextjs";
 
 export default function SignUpPage() {
   return (
@@ -6,20 +6,20 @@ export default function SignUpPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="font-inter text-3xl font-bold mb-2">
-            Join Fox Adventures
+            Join Nambi Uganda Safaris
           </h1>
           <p className="text-muted-foreground">
             Create an account to start booking amazing trips
           </p>
         </div>
-        {/* <SignUp
+        <SignUp
           appearance={{
             elements: {
               rootBox: "mx-auto",
               card: "shadow-xl",
             },
           }}
-        /> */}
+        />
       </div>
     </div>
   );

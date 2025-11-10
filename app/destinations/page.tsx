@@ -1,108 +1,100 @@
-"use client";
-
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { TripCard } from "@/components/trip-card";
+import { PageHero } from "@/components/page-hero";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { allDestinations } from "@/lib/destinations-data";
+import Link from "next/link";
+import { allDestinationsOnly } from "@/lib/destinations-only-data";
+import { MapPin } from "lucide-react";
 
-function DestinationsContent() {
-  const searchParams = useSearchParams();
-  const destination = searchParams.get("destination");
-  const travelers = searchParams.get("travelers");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  // Get unique categories from all destinations
-  const categories = Array.from(
-    new Set(allDestinations.map((dest) => dest.category))
-  );
-
-  // Filter destinations based on selected category
-  const filteredDestinations = selectedCategory
-    ? allDestinations.filter((dest) => dest.category === selectedCategory)
-    : allDestinations;
-
-  return (
-    <>
-      <div className="relative h-96 bg-linear-to-r from-secondary to-secondary/80">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=400&width=1920')] bg-cover bg-center opacity-20" />
-        <div className="relative container mx-auto px-4 lg:px-8 h-full flex flex-col justify-center">
-          <h1 className="font-inter text-5xl md:text-6xl font-bold text-secondary-foreground mb-4 animate-fade-in-up">
-            Explore Uganda
-          </h1>
-          <p className="text-secondary-foreground/90 text-xl max-w-2xl animate-fade-in-up animation-delay-200">
-            Discover the Pearl of Africa's most breathtaking destinations
-          </p>
-          {destination && (
-            <div className="mt-6 animate-fade-in-up animation-delay-400">
-              <Badge className="bg-primary text-primary-foreground text-base px-4 py-2">
-                Searching: {destination} • {travelers} travelers
-              </Badge>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-wrap gap-4 mb-12">
-            <Button
-              variant={selectedCategory === null ? "default" : "outline"}
-              onClick={() => setSelectedCategory(null)}
-            >
-              All Destinations
-            </Button>
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredDestinations.map((dest, index) => (
-              <TripCard
-                key={dest.id}
-                id={dest.id}
-                name={dest.name}
-                country={dest.country}
-                category={dest.category}
-                price={dest.price}
-                rating={dest.rating}
-                duration={dest.duration}
-                groupSize={dest.groupSize}
-                image={dest.image}
-                animationDelay={index * 50}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+const heroSlides = [
+  {
+    image: "/uganda-queen-elizabeth-national-park-safari.jpg",
+    title: "Discover the Pearl of Africa",
+    subtitle: "Explore Destinations",
+    description:
+      "Discover Uganda's most breathtaking locations and unique experiences across diverse landscapes and ecosystems.",
+  },
+];
 
 export default function DestinationsPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <Suspense
-        fallback={
-          <div className="h-96 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+
+      <main className="flex-1">
+        <PageHero slides={heroSlides} showCounter={false} showDots={false} autoPlay={false} />
+
+        {/* Destinations Grid */}
+        <section className="container mx-auto px-4 lg:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allDestinationsOnly.map((dest, index) => (
+              <Link
+                key={dest.id}
+                href={`/destination/${dest.id}`}
+                className="group animate-fade-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
+                  <Badge className="absolute top-4 left-4 z-10 bg-primary text-primary-foreground shadow-lg backdrop-blur-sm">
+                    {dest.category}
+                  </Badge>
+
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={dest.image}
+                      alt={dest.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent" />
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-background">
+                    <div className="flex items-center gap-2 mb-2 opacity-90">
+                      <MapPin className="h-4 w-4" />
+                      <p className="text-sm">{dest.region}</p>
+                    </div>
+                    <h3 className="font-serif text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      {dest.name}
+                    </h3>
+                    <p className="text-background/90 mb-4 line-clamp-2 text-sm leading-relaxed">
+                      {dest.description}
+                    </p>
+                    <Button
+                      size="sm"
+                      className="bg-background text-foreground hover:bg-background/90"
+                    >
+                      Explore
+                    </Button>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-        }
-      >
-        <DestinationsContent />
-      </Suspense>
+        </section>
+
+        {/* CTA Section */}
+        <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
+          <div className="container mx-auto px-4 lg:px-8 text-center">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
+              Ready to Start Your Adventure?
+            </h2>
+            <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+              Browse our curated safari packages and find the perfect journey for you
+            </p>
+            <Link href="/packages">
+              <Button
+                size="lg"
+                className="shadow-lg hover:shadow-xl transition-all hover:scale-105"
+              >
+                View Safari Packages
+              </Button>
+            </Link>
+          </div>
+        </section>
+      </main>
+
       <Footer />
-    </main>
+    </div>
   );
 }

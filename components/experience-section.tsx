@@ -17,11 +17,11 @@ export function ExperienceSection() {
 
             <div className="grid grid-cols-2 gap-8">
               <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">30+</div>
+                <div className="text-5xl font-bold text-accent mb-2">10+</div>
                 <div className="text-muted-foreground">Destinations</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">15+</div>
+                <div className="text-5xl font-bold text-accent mb-2">8+</div>
                 <div className="text-muted-foreground">Years Experience</div>
               </div>
             </div>
@@ -30,7 +30,7 @@ export function ExperienceSection() {
           <div className="relative animate-fade-in-right">
             <div className="relative">
               <img
-                src="/placeholder.svg?height=600&width=600"
+                src="/international.JPG?height=600&width=600"
                 alt="Uganda Globe"
                 className="w-full h-auto animate-float"
               />

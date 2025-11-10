@@ -8,36 +8,16 @@ export function TourGuideSection() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative animate-fade-in-left">
             <div className="relative">
               <img
-                src="/uganda-map-with-national-parks-markers.jpg"
+                src="/uganda-map-with-national-parks-markers.svg"
                 alt="Uganda Map"
-                className="w-full h-auto rounded-2xl shadow-lg"
+                className="w-full "
               />
-              <div className="absolute top-1/4 left-1/4 animate-pulse">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl" />
-                  <img
-                    src="/bwindi-impenetrable-forest-gorillas.jpg"
-                    alt="Bwindi"
-                    className="relative w-24 h-24 rounded-lg shadow-xl border-4 border-background"
-                  />
-                </div>
-              </div>
-              <div className="absolute top-1/3 right-1/4 animate-pulse animation-delay-200">
-                <img
-                  src="/murchison-falls-uganda.jpg"
-                  alt="Murchison Falls"
-                  className="w-24 h-24 rounded-lg shadow-xl border-4 border-background"
-                />
-              </div>
-              <div className="absolute bottom-1/3 left-1/3 bg-secondary text-secondary-foreground px-4 py-2 rounded-full shadow-lg font-semibold">
-                Bwindi Forest
-              </div>
             </div>
           </div>
 
@@ -49,34 +29,40 @@ export function TourGuideSection() {
             </h2>
             <div className="w-20 h-1 bg-accent mb-6" />
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              Fox Adventures Africa is a safari company that offers customized
+              Nambi Uganda Safaris is a safari company that offers customized
               tours to experience the extra ordinary landscape and wildlife of
-              Africa. The company's tours include cultural experiences, wildlife
+              Uganda. The company's tours include cultural experiences, wildlife
               tours, hiking tours, and special occasion tours.
               {isExpanded && (
                 <>
-                  {" "}They take care of everything, from the pick-up and drop-off at the airport to
-                  booking hotels. Fox Adventures Africa is committed to providing
-                  the best experience possible, and their team pays close attention
-                  to every detail to ensure that each safari is unique and tailored
-                  to the customer's needs. With a dedicated tour guide assigned to
-                  each customer, Fox Adventures Africa aims to provide an
-                  unforgettable African safari experience. At Fox Adventures Africa,
-                  we pride ourselves on promoting responsible and sustainable
-                  tourism. We believe in preserving the natural environment and
-                  local communities while providing unforgettable experiences for
-                  our customers. We work closely with local communities and
-                  conservation organizations to create safari experiences that
-                  benefit both the environment and the people living in the area.
-                  Our goal is to leave a positive impact on the communities we visit
-                  while providing our customers with an authentic African safari
-                  experience. By traveling with us, you can be confident that you
-                  are contributing to the preservation of Africa's natural and
+                  {" "}
+                  They take care of everything, from the pick-up and drop-off at
+                  the airport to booking hotels. Nambi Uganda Safaris is
+                  committed to providing the best experience possible, and their
+                  team pays close attention to every detail to ensure that each
+                  safari is unique and tailored to the customer's needs. With a
+                  dedicated tour guide assigned to each customer, Nambi Uganda
+                  Safaris aims to provide an unforgettable Ugandan safari
+                  experience. At Nambi Uganda Safaris, we pride ourselves on
+                  promoting responsible and sustainable tourism. We believe in
+                  preserving the natural environment and local communities while
+                  providing unforgettable experiences for our customers. We work
+                  closely with local communities and conservation organizations
+                  to create safari experiences that benefit both the environment
+                  and the people living in the area. Our goal is to leave a
+                  positive impact on the communities we visit while providing
+                  our customers with an authentic Ugandan safari experience. By
+                  traveling with us, you can be confident that you are
+                  contributing to the preservation of Uganda's natural and
                   cultural heritage.
                 </>
               )}
             </p>
-            <Button size="lg" className="group" onClick={() => setIsExpanded(!isExpanded)}>
+            <Button
+              size="lg"
+              className="group"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
               {isExpanded ? "Read Less" : "Read More"}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>

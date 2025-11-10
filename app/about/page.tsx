@@ -2,34 +2,27 @@
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import { Award, Users, Globe, Heart, Target, Shield } from "lucide-react";
 import Link from "next/link";
+
+const heroSlides = [
+  {
+    image: "/uganda-safari-landscape-team-adventure.jpg",
+    title: "Your trusted partner in",
+    subtitle: "About Nambi Uganda Safaris",
+    description:
+      "Discovering the Pearl of Africa - crafting unforgettable experiences through passionate, personalized service.",
+  },
+];
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/uganda-safari-landscape-team-adventure.jpg"
-            alt="Fox Adventures Team"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/60" />
-        </div>
-        <div className="relative z-10 text-center text-white px-4 animate-fade-in">
-          <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 text-balance">
-            About Fox Adventures
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto text-balance">
-            Your trusted partner in discovering the Pearl of Africa
-          </p>
-        </div>
-      </section>
+      <PageHero slides={heroSlides} showCounter={false} showDots={false} autoPlay={false} />
 
       {/* Our Story Section */}
       <section className="py-20 bg-background">
@@ -42,10 +35,10 @@ export default function AboutPage() {
                 <span className="text-primary">African Adventures</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                We are Fox Adventures Africa, a safari company founded out of a
+                We are Nambi Uganda Safaris, a safari company founded out of a
                 passion for the people, extraordinary landscape, and wildlife of
-                Africa. Our company arranges a variety of tours and we can, of
-                course, customize the experience to fit the customers’
+                Uganda. Our company arranges a variety of tours and we can, of
+                course, customize the experience to fit the customers'
                 interests.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
@@ -83,7 +76,7 @@ export default function AboutPage() {
                 <span className="text-primary">Akaana Foundation</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                At Fox Adventures, we believe in making a positive impact beyond tourism.
+                At Nambi Uganda Safaris, we believe in making a positive impact beyond tourism.
                 We're proud partners of Akaana Foundation Africa, a nonprofit organization
                 dedicated to supporting street children in Kampala.
               </p>
@@ -181,7 +174,7 @@ export default function AboutPage() {
           <div className="text-center mb-16 animate-fade-in">
             <p className="text-primary font-semibold mb-4">OUR TEAM</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6 text-balance">
-              Meet the Fox Adventures Family
+              Meet the Nambi Uganda Safaris Family
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Our passionate team of travel experts and local guides are
@@ -195,7 +188,7 @@ export default function AboutPage() {
                 name: "David Okello",
                 role: "Founder & CEO",
                 image: "/african-male-tour-guide-professional.jpg",
-                bio: "With over 15 years of experience in tourism, David founded Fox Adventures to share his passion for Uganda's wildlife and culture.",
+                bio: "With over 15 years of experience in tourism, David founded Nambi Uganda Safaris to share his passion for Uganda's wildlife and culture.",
                 specialties: ["Safari Planning", "Wildlife Conservation", "Business Strategy"],
                 years: "15+ Years",
               },

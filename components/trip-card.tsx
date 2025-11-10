@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, ChevronRight, MapPin, Clock, Users } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { getImageSrc, getBlurDataURL } from "@/lib/image-utils";
 
 interface TripCardProps {
   id: number;
@@ -51,11 +53,18 @@ export function TripCard({
               {rating}
             </Badge>
           </div>
-          <img
-            src={image || "/placeholder.svg"}
-            alt={name}
-            className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-          />
+          <div className="relative w-full h-64 overflow-hidden">
+            <Image
+              src={getImageSrc(image)}
+              alt={name}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 360px"
+              quality={85}
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              placeholder="blur"
+              blurDataURL={getBlurDataURL()}
+            />
+          </div>
           <div className="absolute inset-0 bg-linear-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </div>
         <div className="p-6 space-y-4">
@@ -81,8 +90,11 @@ export function TripCard({
           <div className="pt-4 border-t border-border flex items-center justify-between">
             <div>
               <p className="text-xs text-muted-foreground mb-1">From</p>
-              <div className="text-2xl font-bold text-primary">
-                ${price.toFixed(2)}
+              <div className="flex items-baseline gap-1">
+                <span className="text-2xl font-bold text-primary">
+                  ${price.toFixed(2)}
+                </span>
+                <span className="text-xs text-muted-foreground">/person</span>
               </div>
             </div>
             <Link href={`/trip/${id}${searchParams}`}>

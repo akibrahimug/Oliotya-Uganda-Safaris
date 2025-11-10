@@ -1,4 +1,4 @@
-// import { SignIn } from "@clerk/nextjs"
+import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
@@ -7,17 +7,17 @@ export default function SignInPage() {
         <div className="text-center mb-8">
           <h1 className="font-inter text-3xl font-bold mb-2">Welcome Back</h1>
           <p className="text-muted-foreground">
-            Sign in to your Fox Adventures account
+            Sign in to your Nambi Uganda Safaris account
           </p>
         </div>
-        {/* <SignIn
+        <SignIn
           appearance={{
             elements: {
               rootBox: "mx-auto",
               card: "shadow-xl",
             },
           }}
-        /> */}
+        />
       </div>
     </div>
   );

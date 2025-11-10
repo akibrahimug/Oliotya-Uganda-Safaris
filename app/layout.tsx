@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-// import { ClerkProvider } from "@clerk/nextjs" // Commented out until Clerk is set up
+import { ClerkProvider } from "@clerk/nextjs"
 import "./globals.css"
 
 // Inter - A crisp, modern font optimized for screen readability
@@ -24,9 +24,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Fox Adventures - Discover Uganda",
+  title: "Nambi Uganda Safaris - Discover Uganda",
   description:
-    "Experience the Pearl of Africa with Fox Adventures. Explore Uganda's wildlife, mountains, and natural wonders.",
+    "Experience the Pearl of Africa with Nambi Uganda Safaris. Explore Uganda's wildlife, mountains, and natural wonders.",
   generator: "v0.app",
   icons: {
     icon: "/fox_logo.jpg",
@@ -39,23 +39,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-inter antialiased">
-        {children}
-        <Analytics />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={inter.variable} suppressHydrationWarning>
+        <body className="font-inter antialiased" suppressHydrationWarning>
+          {children}
+          <Analytics />
+        </body>
+      </html>
+    </ClerkProvider>
   )
-
-  // To enable Clerk authentication, uncomment the code below and wrap the HTML:
-  // return (
-  //   <ClerkProvider>
-  //     <html lang="en" className={inter.variable}>
-  //       <body className="font-inter antialiased">
-  //         {children}
-  //         <Analytics />
-  //       </body>
-  //     </html>
-  //   </ClerkProvider>
-  // )
 }

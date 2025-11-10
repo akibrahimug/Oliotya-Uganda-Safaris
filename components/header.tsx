@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { User, Menu, X } from "lucide-react";
+import { Menu, X, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"; // Commented out until Clerk is set up
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 
 export function Header() {
@@ -51,13 +51,15 @@ export function Header() {
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8">
-          <div className={`flex items-center justify-between h-20 transition-all duration-300 ${
-            scrolled ? "" : "border-b-2 border-background/20"
-          }`}>
+          <div
+            className={`flex items-center justify-between h-20 transition-all duration-300 ${
+              scrolled ? "" : "border-b-2 border-background/20"
+            }`}
+          >
             <Link href="/" className="flex items-center gap-2 group">
               <img
                 src="/fox_logo.jpg"
-                alt="Fox Adventures Logo"
+                alt="Nambi Uganda Safaris Logo"
                 className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
               />
               <span
@@ -65,7 +67,7 @@ export function Header() {
                   scrolled ? "text-foreground" : "text-background"
                 }`}
               >
-                Fox Adventures Africa
+                Nambi Uganda Safaris
               </span>
             </Link>
 
@@ -79,28 +81,21 @@ export function Header() {
                 About
               </Link>
               <Link
+                href="/packages"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  scrolled ? "text-foreground" : "text-background"
+                }`}
+              >
+                Safari Packages
+              </Link>
+
+              <Link
                 href="/destinations"
                 className={`text-sm font-medium transition-colors hover:text-primary ${
                   scrolled ? "text-foreground" : "text-background"
                 }`}
               >
                 Destinations
-              </Link>
-              <Link
-                href="/"
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  scrolled ? "text-foreground" : "text-background"
-                }`}
-              >
-                Tours
-              </Link>
-              <Link
-                href="/"
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  scrolled ? "text-foreground" : "text-background"
-                }`}
-              >
-                Blog
               </Link>
               <Link
                 href="/contact"
@@ -113,18 +108,31 @@ export function Header() {
             </nav>
 
             <div className="flex items-center gap-4">
-              {/* Temporary user icon - will be replaced with Clerk auth when set up */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`hidden md:flex ${
-                  scrolled
-                    ? "text-foreground"
-                    : "text-background hover:text-primary"
-                }`}
-              >
-                <User className="h-5 w-5" />
-              </Button>
+              {/* Clerk Authentication */}
+              <div className="hidden md:flex items-center gap-4">
+                <SignedIn>
+                  <UserButton
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-10 h-10",
+                      },
+                    }}
+                  />
+                </SignedIn>
+
+                <SignedOut>
+                  <Link href="/sign-in">
+                    <UserCircle
+                      className={`cursor-pointer transition-opacity hover:opacity-80 ${
+                        scrolled ? "text-foreground" : "text-background"
+                      }`}
+                      width={27}
+                      height={27}
+                      strokeWidth={2}
+                    />
+                  </Link>
+                </SignedOut>
+              </div>
 
               {/* Mobile menu button */}
               <Button
@@ -143,37 +151,6 @@ export function Header() {
                   <Menu className="h-6 w-6" />
                 )}
               </Button>
-
-              {/* CLERK AUTHENTICATION - Uncomment when Clerk is set up */}
-              {/* <SignedIn>
-                <UserButton
-                  appearance={{
-                    elements: {
-                      avatarBox: "w-9 h-9",
-                    },
-                  }}
-                />
-              </SignedIn>
-
-              <SignedOut>
-                <Link href="/sign-in">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className={scrolled ? "text-foreground" : "text-background"}
-                  >
-                    Sign In
-                  </Button>
-                </Link>
-                <Link href="/sign-up">
-                  <Button
-                    size="sm"
-                    className="bg-primary text-primary-foreground"
-                  >
-                    Sign Up
-                  </Button>
-                </Link>
-              </SignedOut> */}
             </div>
           </div>
         </div>
@@ -184,7 +161,7 @@ export function Header() {
         <div
           className="fixed inset-0 md:hidden z-60"
           style={{
-            backgroundColor: '#1a1a1a',
+            backgroundColor: "#1a1a1a",
           }}
         >
           <div className="container mx-auto px-4 h-full">
@@ -197,11 +174,11 @@ export function Header() {
               >
                 <img
                   src="/fox_logo.jpg"
-                  alt="Fox Adventures Logo"
+                  alt="Nambi Uganda Safaris Logo"
                   className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
                 />
                 <span className="font-serif text-xl font-bold text-background">
-                  Fox Adventures Africa
+                  Nambi Uganda Safaris
                 </span>
               </Link>
               <Button
@@ -231,25 +208,18 @@ export function Header() {
                 About
               </Link>
               <Link
+                href="/packages"
+                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Safari Packages
+              </Link>
+              <Link
                 href="/destinations"
                 className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Destinations
-              </Link>
-              <Link
-                href="/"
-                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Tours
-              </Link>
-              <Link
-                href="/"
-                className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
               </Link>
               <Link
                 href="/contact"
@@ -260,14 +230,34 @@ export function Header() {
               </Link>
 
               {/* Mobile menu user section */}
-              <div className="mt-8 pt-8 border-t border-background/20">
-                <Button
-                  variant="outline"
-                  className="w-full bg-transparent border-background text-background hover:bg-background hover:text-foreground gap-2"
-                >
-                  <User className="h-5 w-5" />
-                  Account
-                </Button>
+              <div className="mt-8 pt-8 border-t border-background/20 flex flex-col gap-4">
+                <SignedIn>
+                  <div className="flex items-center gap-3 px-4">
+                    <UserButton
+                      appearance={{
+                        elements: {
+                          avatarBox: "w-10 h-10",
+                        },
+                      }}
+                    />
+                    <span className="text-background text-sm">My Account</span>
+                  </div>
+                </SignedIn>
+
+                <SignedOut>
+                  <Link
+                    href="/sign-in"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Button
+                      variant="outline"
+                      className="w-full bg-transparent border-background text-background hover:bg-background hover:text-foreground"
+                    >
+                      <UserCircle className="h-5 w-5 mr-2" />
+                      Account
+                    </Button>
+                  </Link>
+                </SignedOut>
               </div>
             </nav>
           </div>

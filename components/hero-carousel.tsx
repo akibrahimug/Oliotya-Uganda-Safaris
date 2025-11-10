@@ -1,64 +1,73 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
+import { getImageSrc, getBlurDataURL } from "@/lib/image-utils"
 
-const slides = [
-  {
-    id: 1,
-    image: "/uganda-mountain-gorillas-bwindi-forest.jpg",
-    title: "Discover the Magic of",
-    subtitle: "Uganda",
-    description:
-      "Home to the endangered mountain gorillas, Uganda offers unforgettable wildlife encounters in pristine rainforests.",
-  },
-  {
-    id: 2,
-    image: "/uganda-queen-elizabeth-national-park-safari.jpg",
-    title: "Experience Wildlife",
-    subtitle: "Safari Adventures",
-    description:
-      "Witness the Big Five and diverse ecosystems across Uganda's stunning national parks and game reserves.",
-  },
-  {
-    id: 3,
-    image: "/uganda-murchison-falls-waterfall.jpg",
-    title: "Explore Natural Wonders",
-    subtitle: "Murchison Falls",
-    description: "Marvel at the world's most powerful waterfall where the Nile explodes through a narrow gorge.",
-  },
-  {
-    id: 4,
-    image: "/uganda-lake-victoria-sunset.jpg",
-    title: "Relax by the Waters",
-    subtitle: "Lake Victoria",
-    description: "Discover Africa's largest lake with pristine beaches, fishing villages, and stunning sunsets.",
-  },
-  {
-    id: 5,
-    image: "/uganda-rwenzori-mountains-snow.jpg",
-    title: "Conquer the Peaks",
-    subtitle: "Rwenzori Mountains",
-    description: "Trek the legendary Mountains of the Moon with snow-capped peaks near the equator.",
-  },
-]
+interface HeroSlide {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  image: string
+  displayOrder: number
+}
 
 export function HeroCarousel() {
+  const [slides, setSlides] = useState<HeroSlide[]>([])
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [loading, setLoading] = useState(true)
 
+  // Fetch slides from API
   useEffect(() => {
-    if (!isAutoPlaying) return
+    async function fetchSlides() {
+      try {
+        const response = await fetch("/api/hero-slides")
+        if (!response.ok) throw new Error("Failed to fetch slides")
+        const data = await response.json()
+        setSlides(data)
+      } catch (error) {
+        console.error("Error fetching hero slides:", error)
+        // Fallback to empty array if fetch fails
+        setSlides([])
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchSlides()
+  }, [])
+
+  // Auto-play carousel
+  useEffect(() => {
+    if (!isAutoPlaying || slides.length === 0) return
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 8000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying])
+  }, [isAutoPlaying, slides.length])
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index)
     setIsAutoPlaying(false)
+  }
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="relative h-[45vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] w-full overflow-hidden bg-muted animate-pulse" />
+    )
+  }
+
+  // Show empty state if no slides
+  if (slides.length === 0) {
+    return (
+      <div className="relative h-[45vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] w-full overflow-hidden bg-muted flex items-center justify-center">
+        <p className="text-muted-foreground">No hero slides available</p>
+      </div>
+    )
   }
 
   return (
@@ -71,14 +80,24 @@ export function HeroCarousel() {
           }`}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/50 to-transparent z-10" />
-          <img src={slide.image || "/placeholder.svg"} alt={slide.subtitle} className="w-full h-full object-cover" />
+          <Image
+            src={getImageSrc(slide.image)}
+            alt={slide.subtitle}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            quality={90}
+            className="object-cover"
+            placeholder="blur"
+            blurDataURL={getBlurDataURL()}
+          />
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="container mx-auto px-4 lg:px-8">
               <div className="max-w-2xl animate-fade-in-up space-y-2 md:space-y-3 lg:space-y-4">
                 <p className="text-background/90 text-xs md:text-sm lg:text-base animate-fade-in-up animation-delay-200">
                   {slide.title}
                 </p>
-                <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-background animate-fade-in-up animation-delay-400 leading-tight">
+                <h1 className="font-serif text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-background animate-fade-in-up animation-delay-400 leading-tight">
                   {slide.subtitle}
                 </h1>
                 <p className="text-background/90 text-xs md:text-sm lg:text-base max-w-xl leading-relaxed animate-fade-in-up animation-delay-600">
@@ -90,7 +109,7 @@ export function HeroCarousel() {
         </div>
       ))}
 
-      <div className="absolute bottom-28 sm:bottom-32 md:bottom-36 lg:bottom-40 left-4 lg:left-8 z-30">
+      <div className="absolute bottom-28 sm:bottom-32 md:bottom-36 lg:bottom-40 left-4 lg:left-8 z-30 hidden md:block">
         <div className="flex items-baseline gap-0.5 md:gap-1">
           <span className="text-background font-bold text-2xl md:text-3xl lg:text-4xl font-inter tabular-nums">
             {String(currentSlide + 1).padStart(2, "0")}
