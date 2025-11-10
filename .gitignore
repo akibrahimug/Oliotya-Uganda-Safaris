@@ -3,7 +3,8 @@
 # dependencies
 /node_modules
 /.claude/
-
+.claude
+.swc
 # next.js
 /.next/
 /out/
