@@ -14,13 +14,13 @@ interface ExploreDestinationsProps {
 
 export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
   const [currentIndex, setCurrentIndex] = useState(0) // Start at first card
-  const [filteredDestinations, setFilteredDestinations] = useState(allDestinations)
+  const [filteredDestinations, setFilteredDestinations] = useState(allDestinations.slice(0, 3))
   const containerRef = useRef<HTMLDivElement>(null)
   const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
     if (!filters) {
-      setFilteredDestinations(allDestinations)
+      setFilteredDestinations(allDestinations.slice(0, 3))
       setCurrentIndex(0) // Reset to first card
       setIsInitialized(false)
       return
@@ -38,8 +38,9 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
       return matchesDestination && matchesTravelers
     })
 
-    setFilteredDestinations(filtered.length > 0 ? filtered : allDestinations)
-    setCurrentIndex(Math.floor((filtered.length > 0 ? filtered : allDestinations).length / 2))
+    const limitedFiltered = (filtered.length > 0 ? filtered : allDestinations).slice(0, 3)
+    setFilteredDestinations(limitedFiltered)
+    setCurrentIndex(Math.floor(limitedFiltered.length / 2))
     setIsInitialized(false)
   }, [filters])
 

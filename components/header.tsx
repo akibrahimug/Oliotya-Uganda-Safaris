@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, UserCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 
 export function Header() {
@@ -108,32 +107,6 @@ export function Header() {
             </nav>
 
             <div className="flex items-center gap-4">
-              {/* Clerk Authentication */}
-              <div className="hidden md:flex items-center gap-4">
-                <SignedIn>
-                  <UserButton
-                    appearance={{
-                      elements: {
-                        avatarBox: "w-10 h-10",
-                      },
-                    }}
-                  />
-                </SignedIn>
-
-                <SignedOut>
-                  <Link href="/sign-in">
-                    <UserCircle
-                      className={`cursor-pointer transition-opacity hover:opacity-80 ${
-                        scrolled ? "text-foreground" : "text-background"
-                      }`}
-                      width={27}
-                      height={27}
-                      strokeWidth={2}
-                    />
-                  </Link>
-                </SignedOut>
-              </div>
-
               {/* Mobile menu button */}
               <Button
                 variant="ghost"
@@ -228,37 +201,6 @@ export function Header() {
               >
                 Contact
               </Link>
-
-              {/* Mobile menu user section */}
-              <div className="mt-8 pt-8 border-t border-background/20 flex flex-col gap-4">
-                <SignedIn>
-                  <div className="flex items-center gap-3 px-4">
-                    <UserButton
-                      appearance={{
-                        elements: {
-                          avatarBox: "w-10 h-10",
-                        },
-                      }}
-                    />
-                    <span className="text-background text-sm">My Account</span>
-                  </div>
-                </SignedIn>
-
-                <SignedOut>
-                  <Link
-                    href="/sign-in"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Button
-                      variant="outline"
-                      className="w-full bg-transparent border-background text-background hover:bg-background hover:text-foreground"
-                    >
-                      <UserCircle className="h-5 w-5 mr-2" />
-                      Account
-                    </Button>
-                  </Link>
-                </SignedOut>
-              </div>
             </nav>
           </div>
         </div>

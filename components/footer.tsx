@@ -166,7 +166,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/destinations"
+                  href="/packages"
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
                 >
                   <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -191,7 +191,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/contact"
+                  href="/destinations"
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
                 >
                   <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -209,7 +209,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/about"
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
                 >
                   <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -218,7 +218,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/about"
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group"
                 >
                   <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -238,7 +238,7 @@ export function Footer() {
                     <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground mb-1">Location</p>
+                    <p className="font-semibold text-foreground mb-1">Office</p>
                     <p className="text-sm">Kampala, Uganda</p>
                   </div>
                 </div>
@@ -250,7 +250,12 @@ export function Footer() {
                   </div>
                   <div>
                     <p className="font-semibold text-foreground mb-1">Phone</p>
-                    <p className="text-sm">+256 700 000 000</p>
+                    <a
+                      href="tel:+256788048210"
+                      className="text-sm hover:text-primary transition-colors"
+                    >
+                      +256 788048210
+                    </a>
                   </div>
                 </div>
               </li>
@@ -261,7 +266,12 @@ export function Footer() {
                   </div>
                   <div>
                     <p className="font-semibold text-foreground mb-1">Email</p>
-                    <p className="text-sm">info@nambiugandasafaris.com</p>
+                    <a
+                      href="mailto:info@nambiuganda.com"
+                      className="text-sm hover:text-primary transition-colors"
+                    >
+                      info@nambiuganda.com
+                    </a>
                   </div>
                 </div>
               </li>
@@ -276,13 +286,13 @@ export function Footer() {
               &copy; 2025 Nambi Uganda Safaris. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground">
-              <Link href="/" className="hover:text-primary transition-colors">
+              <Link href="/about" className="hover:text-primary transition-colors">
                 Privacy
               </Link>
-              <Link href="/" className="hover:text-primary transition-colors">
+              <Link href="/about" className="hover:text-primary transition-colors">
                 Terms
               </Link>
-              <Link href="/" className="hover:text-primary transition-colors">
+              <Link href="/destinations" className="hover:text-primary transition-colors">
                 Sitemap
               </Link>
             </div>
