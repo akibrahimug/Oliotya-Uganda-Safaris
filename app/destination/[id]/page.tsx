@@ -55,7 +55,7 @@ export default function DestinationPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
-          src={destination.image || "/placeholder.svg"}
+          src={destination.image}
           alt={destination.name}
           className="w-full h-full object-cover"
         />

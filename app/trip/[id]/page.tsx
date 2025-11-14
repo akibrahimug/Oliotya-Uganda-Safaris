@@ -68,7 +68,7 @@ export default function TripDetailPage() {
       {/* Hero Section */}
       <section className="relative h-[60vh] overflow-hidden">
         <img
-          src={trip.image || "/placeholder.svg"}
+          src={trip.image}
           alt={trip.name}
           className="w-full h-full object-cover"
         />
@@ -385,7 +385,7 @@ export default function TripDetailPage() {
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img
-                        src={dest.image || "/placeholder.svg"}
+                        src={dest.image}
                         alt={dest.name}
                         className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                       />

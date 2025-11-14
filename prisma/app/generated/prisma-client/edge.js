@@ -433,7 +433,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/akibrahim/Downloads/fox-adventures/prisma/app/generated/prisma-client",
+      "value": "/Users/akibrahim/dev/Programming/clients/fox-adventures/prisma/app/generated/prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -447,7 +447,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/akibrahim/Downloads/fox-adventures/prisma/schema.prisma",
+    "sourceFilePath": "/Users/akibrahim/dev/Programming/clients/fox-adventures/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

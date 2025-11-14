@@ -126,7 +126,7 @@ export default function BookingPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] overflow-hidden">
         <img
-          src={trip.image || "/placeholder.svg"}
+          src={trip.image}
           alt={trip.name}
           className="w-full h-full object-cover"
         />

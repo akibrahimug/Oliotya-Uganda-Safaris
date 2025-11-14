@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
     if (!SUPPORTED_IMAGE_FORMATS.includes(file.type)) {
       return NextResponse.json(
         {
-          error: `Unsupported file type. Supported formats: JPEG, PNG, WebP, AVIF`,
+          error: `Unsupported file type. Supported formats: JPEG, PNG, WebP, AVIF, GIF, BMP, TIFF, SVG`,
         },
         { status: 400 }
       );
@@ -131,40 +131,112 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // Process image with sharp
-    const image = sharp(buffer);
-    const metadata = await image.metadata();
+    let finalBuffer: Buffer;
+    let finalFormat: string;
+    let finalFileName: string;
+    let finalContentType: string;
+    let width: number = 0;
+    let height: number = 0;
 
-    // Convert to WebP for optimization
-    const optimizedBuffer = await image.webp({ quality: 85 }).toBuffer();
+    // Check if file is SVG - don't process, just upload as-is
+    if (file.type === "image/svg+xml") {
+      finalBuffer = buffer;
+      finalFormat = "svg";
+      const timestamp = Date.now();
+      const sanitizedName = file.name
+        .replace(/\.[^/.]+$/, "") // Remove extension
+        .replace(/[^a-z0-9]/gi, "-") // Replace special chars
+        .toLowerCase();
+      finalFileName = `${sanitizedName}-${timestamp}.svg`;
+      finalContentType = "image/svg+xml";
 
-    // Generate filename
-    const timestamp = Date.now();
-    const sanitizedName = file.name
-      .replace(/\.[^/.]+$/, "") // Remove extension
-      .replace(/[^a-z0-9]/gi, "-") // Replace special chars
-      .toLowerCase();
-    const fileName = `${sanitizedName}-${timestamp}.webp`;
+      // SVG dimensions are often not relevant, set to 0
+      width = 0;
+      height = 0;
+
+      console.log(`SVG uploaded: ${file.name}`);
+      console.log(`  Size: ${(buffer.length / 1024).toFixed(1)} KB`);
+    } else {
+      // Process raster images with sharp
+      const image = sharp(buffer);
+      const metadata = await image.metadata();
+
+      // Intelligent image optimization
+      let processedImage = image;
+
+      // Resize if image is too large (max 3840px width for 4K displays)
+      const maxWidth = 3840;
+      const maxHeight = 3840;
+
+      if (metadata.width && metadata.width > maxWidth) {
+        processedImage = processedImage.resize(maxWidth, null, {
+          withoutEnlargement: true,
+          fit: 'inside',
+        });
+      } else if (metadata.height && metadata.height > maxHeight) {
+        processedImage = processedImage.resize(null, maxHeight, {
+          withoutEnlargement: true,
+          fit: 'inside',
+        });
+      }
+
+      // Convert to WebP with optimized quality settings
+      // effort 6 provides best compression (0-6, where 6 is slowest but best)
+      const optimizedBuffer = await processedImage
+        .webp({
+          quality: 85,           // Good quality with better compression (80-90 recommended)
+          effort: 6,             // Maximum compression effort
+          smartSubsample: true   // Better color quality
+        })
+        .toBuffer();
+
+      // Get updated metadata after processing
+      const processedMetadata = await sharp(optimizedBuffer).metadata();
+
+      // Generate filename
+      const timestamp = Date.now();
+      const sanitizedName = file.name
+        .replace(/\.[^/.]+$/, "") // Remove extension
+        .replace(/[^a-z0-9]/gi, "-") // Replace special chars
+        .toLowerCase();
+
+      finalBuffer = optimizedBuffer;
+      finalFormat = "webp";
+      finalFileName = `${sanitizedName}-${timestamp}.webp`;
+      finalContentType = "image/webp";
+      width = processedMetadata.width || metadata.width || 0;
+      height = processedMetadata.height || metadata.height || 0;
+
+      // Calculate compression ratio
+      const originalSize = buffer.length;
+      const optimizedSize = optimizedBuffer.length;
+      const compressionRatio = ((1 - optimizedSize / originalSize) * 100).toFixed(1);
+
+      console.log(`Image optimized: ${file.name}`);
+      console.log(`  Original: ${(originalSize / 1024).toFixed(1)} KB`);
+      console.log(`  Optimized: ${(optimizedSize / 1024).toFixed(1)} KB`);
+      console.log(`  Saved: ${compressionRatio}%`);
+    }
 
     // Upload to R2
     const imageUrl = await uploadToR2({
-      file: optimizedBuffer,
-      fileName,
-      contentType: "image/webp",
+      file: finalBuffer,
+      fileName: finalFileName,
+      contentType: finalContentType,
       folder: "cms-images",
     });
 
     // Save to database
     const cmsImage = await prisma.cMSImage.create({
       data: {
-        filename: fileName,
+        filename: finalFileName,
         url: imageUrl,
         altText: altText || null,
         category: category || null,
-        width: metadata.width || 0,
-        height: metadata.height || 0,
-        fileSize: optimizedBuffer.length,
-        format: "webp",
+        width,
+        height,
+        fileSize: finalBuffer.length,
+        format: finalFormat,
       },
     });
 

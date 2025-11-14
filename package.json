@@ -10,7 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "migrate:images": "ts-node scripts/upload-images-to-r2.ts",
+    "migrate:images": "ts-node --project tsconfig.script.json scripts/upload-images-to-r2.ts",
+    "sync:r2-to-cms": "ts-node --project tsconfig.script.json scripts/sync-r2-to-cms.ts",
     "seed:hero": "node scripts/seed-hero-slides.mjs"
   },
   "engines": {

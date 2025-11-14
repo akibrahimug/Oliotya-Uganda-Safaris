@@ -3,13 +3,18 @@ import { PrismaClient } from "../prisma/app/generated/prisma-client/index.js";
 
 const prisma = new PrismaClient();
 
+// R2 Image URLs
+const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+const getImageUrl = (filename) => `${R2_BASE}/${IMAGE_PATH}/${filename}`;
+
 const existingSlides = [
   {
     title: "Discover the Magic of",
     subtitle: "Uganda",
     description:
       "Home to the endangered mountain gorillas, Uganda offers unforgettable wildlife encounters in pristine rainforests.",
-    image: "/uganda-mountain-gorillas-bwindi-forest.jpg",
+    image: getImageUrl("uganda-mountain-gorillas-bwindi-forest.webp"),
     displayOrder: 0,
     active: true,
   },
@@ -18,7 +23,7 @@ const existingSlides = [
     subtitle: "Safari Adventures",
     description:
       "Witness the Big Five and diverse ecosystems across Uganda's stunning national parks and game reserves.",
-    image: "/uganda-queen-elizabeth-national-park-safari.jpg",
+    image: getImageUrl("uganda-queen-elizabeth-national-park-safari.webp"),
     displayOrder: 1,
     active: true,
   },
@@ -27,7 +32,7 @@ const existingSlides = [
     subtitle: "Murchison Falls",
     description:
       "Marvel at the world's most powerful waterfall where the Nile explodes through a narrow gorge.",
-    image: "/uganda-murchison-falls-waterfall.jpg",
+    image: getImageUrl("uganda-murchison-falls-waterfall.webp"),
     displayOrder: 2,
     active: true,
   },
@@ -36,7 +41,7 @@ const existingSlides = [
     subtitle: "Lake Victoria",
     description:
       "Discover Africa's largest lake with pristine beaches, fishing villages, and stunning sunsets.",
-    image: "/uganda-lake-victoria-sunset.jpg",
+    image: getImageUrl("uganda-lake-victoria-sunset.webp"),
     displayOrder: 3,
     active: true,
   },
@@ -45,7 +50,7 @@ const existingSlides = [
     subtitle: "Rwenzori Mountains",
     description:
       "Trek the legendary Mountains of the Moon with snow-capped peaks near the equator.",
-    image: "/uganda-rwenzori-mountains-snow.jpg",
+    image: getImageUrl("uganda-rwenzori-mountains-snow.webp"),
     displayOrder: 4,
     active: true,
   },

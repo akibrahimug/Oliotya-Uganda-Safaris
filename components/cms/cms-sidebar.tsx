@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -15,7 +16,11 @@ import {
   Home,
   Info,
   Mail,
+  Menu,
+  X,
+  ArrowLeft,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navigation = [
   {
@@ -78,24 +83,20 @@ const navigation = [
 
 export function CMSSidebar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  return (
-    <div className="w-64 bg-card border-r border-border flex flex-col">
+  const SidebarContent = () => (
+    <>
       {/* Logo */}
-      <div className="p-6 border-b border-border">
-        <Link href="/cms" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">NUS</span>
-          </div>
-          <div>
-            <h1 className="font-bold text-lg">Nambi Uganda Safaris</h1>
-            <p className="text-xs text-muted-foreground">CMS</p>
-          </div>
+      <div className="p-4 lg:p-6 border-b border-border">
+        <Link href="/cms">
+          <h1 className="font-bold text-base lg:text-lg">Nambi Uganda Safaris</h1>
+          <p className="text-xs text-muted-foreground">CMS</p>
         </Link>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+      <nav className="flex-1 overflow-y-auto p-3 lg:p-4 space-y-1">
         {navigation.map((item) => (
           <div key={item.name}>
             {item.children ? (
@@ -109,6 +110,7 @@ export function CMSSidebar() {
                     <Link
                       key={child.href}
                       href={child.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className={cn(
                         "flex items-center gap-2 px-3 py-2 text-sm rounded-md transition-colors",
                         pathname === child.href
@@ -125,6 +127,7 @@ export function CMSSidebar() {
             ) : (
               <Link
                 href={item.href!}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
                   "flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   pathname === item.href
@@ -144,12 +147,61 @@ export function CMSSidebar() {
       <div className="p-4 border-t border-border">
         <Link
           href="/"
-          className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
         >
-          <Home className="h-4 w-4" />
-          <span>Back to Website</span>
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Landing Page</span>
         </Link>
       </div>
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-card border-b border-border">
+        <div className="flex items-center justify-between p-4">
+          <Link href="/cms">
+            <h1 className="font-bold text-base">Nambi Uganda Safaris</h1>
+            <p className="text-xs text-muted-foreground">CMS</p>
+          </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-card border-r border-border">
+        <SidebarContent />
+      </aside>
+
+      {/* Mobile Sidebar */}
+      <aside
+        className={cn(
+          "lg:hidden fixed top-16 left-0 bottom-0 w-64 bg-card border-r border-border z-40 flex flex-col transition-transform duration-300",
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        <SidebarContent />
+      </aside>
+    </>
   );
 }

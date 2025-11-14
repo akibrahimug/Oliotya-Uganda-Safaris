@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { getImageSrc } from "@/lib/image-utils";
 
 export function TourGuideSection() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -14,7 +15,7 @@ export function TourGuideSection() {
           <div className="relative animate-fade-in-left">
             <div className="relative">
               <img
-                src="/uganda-map-with-national-parks-markers.svg"
+                src={getImageSrc("/uganda-map-with-national-parks-markers.svg")}
                 alt="Uganda Map"
                 className="w-full "
               />

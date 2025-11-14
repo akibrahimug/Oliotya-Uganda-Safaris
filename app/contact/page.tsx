@@ -31,9 +31,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+
 const heroSlides = [
   {
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: `${R2_BASE}/${IMAGE_PATH}/uganda-safari-landscape-team-adventure.webp`,
     title: "We're here to help",
     subtitle: "Get In Touch",
     description:

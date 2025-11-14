@@ -2,21 +2,45 @@
  * Image utility functions for handling both local and R2 images
  */
 
-const R2_PUBLIC_URL = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "";
+const IMAGE_PREFIX = "nambi-uganda-safaris/images";
 
 /**
  * Get the optimized image source
- * Checks if R2 is configured and returns R2 URL, otherwise falls back to local
+ * Handles both R2 URLs (already complete) and local paths that need conversion
  */
-export function getImageSrc(localPath: string): string {
-  // If R2 is configured, construct R2 URL
-  if (R2_PUBLIC_URL) {
-    const fileName = localPath.replace(/^\//, "");
-    return `${R2_PUBLIC_URL}/images/${fileName}`;
+export function getImageSrc(imagePath: string): string {
+  // Read R2_PUBLIC_URL dynamically to support test environment changes
+  const R2_PUBLIC_URL = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "";
+
+  // If already a full URL (from database/R2), return as-is
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+
+  // If R2 is configured and path is local, construct R2 URL
+  if (R2_PUBLIC_URL && imagePath.startsWith('/')) {
+    // Remove leading slash
+    let fileName = imagePath.replace(/^\//, "");
+
+    // Keep SVG as-is, convert other images to webp
+    if (fileName.endsWith('.svg')) {
+      // SVG files stay as SVG
+      return `${R2_PUBLIC_URL}/${IMAGE_PREFIX}/${fileName}`;
+    } else if (!fileName.endsWith('.webp')) {
+      // Convert non-webp raster images to webp
+      fileName = fileName.replace(/\.(jpg|jpeg|png|gif|bmp|tiff)$/i, ".webp");
+    }
+
+    return `${R2_PUBLIC_URL}/${IMAGE_PREFIX}/${fileName}`;
+  }
+
+  // If it's already a filename (no leading slash), might be from getImageUrl()
+  if (R2_PUBLIC_URL && !imagePath.startsWith('/')) {
+    return imagePath; // Already processed
   }
 
   // Fallback to local image
-  return localPath;
+  return imagePath;
 }
 
 /**

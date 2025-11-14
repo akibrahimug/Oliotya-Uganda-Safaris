@@ -38,6 +38,7 @@ export const imageUpdateSchema = z.object({
 
 /**
  * Supported image formats
+ * Sharp can handle all these formats and convert them to WebP
  */
 export const SUPPORTED_IMAGE_FORMATS = [
   "image/jpeg",
@@ -45,6 +46,10 @@ export const SUPPORTED_IMAGE_FORMATS = [
   "image/png",
   "image/webp",
   "image/avif",
+  "image/gif",
+  "image/bmp",
+  "image/tiff",
+  "image/svg+xml",
 ];
 
 /**

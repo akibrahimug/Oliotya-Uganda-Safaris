@@ -1,3 +1,7 @@
+const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+const getImageUrl = (filename: string) => `${R2_BASE}/${IMAGE_PATH}/${filename}`;
+
 // This matches the Prisma Package model schema
 export interface PackageItinerary {
   day: number;
@@ -39,7 +43,7 @@ export const allPackages: Package[] = [
     category: "Grand Tour",
     duration: "14 Days",
     price: 5074,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -191,7 +195,7 @@ export const allPackages: Package[] = [
     category: "Wildlife Safari",
     duration: "5 Days",
     price: 1200,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -271,7 +275,7 @@ export const allPackages: Package[] = [
     category: "Luxury Safari",
     duration: "6 Days",
     price: 2300,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -359,7 +363,7 @@ export const allPackages: Package[] = [
     category: "Ultimate Adventure",
     duration: "22 Days",
     price: 7200,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -554,7 +558,7 @@ export const allPackages: Package[] = [
     category: "Adventure & Water Sports",
     duration: "6 Days",
     price: 1650,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -641,7 +645,7 @@ export const allPackages: Package[] = [
     category: "Wildlife & Primate Safari",
     duration: "12 Days",
     price: 3950,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -766,7 +770,7 @@ export const allPackages: Package[] = [
     category: "Hiking & Mountains",
     duration: "10 Days",
     price: 1950,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -872,7 +876,7 @@ export const allPackages: Package[] = [
     category: "Wildlife Safari",
     duration: "3 Days",
     price: 500,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -938,7 +942,7 @@ export const allPackages: Package[] = [
     category: "Primate & Wildlife Safari",
     duration: "5 Days",
     price: 1300,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -1016,7 +1020,7 @@ export const allPackages: Package[] = [
     category: "Luxury Safari",
     duration: "6 Days",
     price: 2160,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -1101,7 +1105,7 @@ export const allPackages: Package[] = [
     category: "Cultural & Adventure Safari",
     duration: "12 Days",
     price: 3350,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",

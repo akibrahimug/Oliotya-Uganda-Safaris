@@ -135,15 +135,15 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
                     {dest.category}
                   </Badge>
                   <img
-                    src={dest.image || "/placeholder.svg"}
+                    src={dest.image}
                     alt={dest.name}
                     className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-background">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 text-background">
                     <p className="text-sm mb-2 opacity-90">{dest.country}</p>
-                    <h3 className="font-serif text-4xl font-bold mb-4">{dest.name}</h3>
-                    <p className="text-background/90 mb-6 leading-relaxed max-w-2xl">{dest.shortDesc}</p>
+                    <h3 className="font-serif text-2xl md:text-4xl font-bold mb-3 md:mb-4">{dest.name}</h3>
+                    <p className="text-background/90 mb-4 md:mb-6 leading-relaxed max-w-2xl hidden md:block">{dest.shortDesc}</p>
                     <div>
                       <Link href={`/destination/${dest.id}`}>
                         <Button size="lg" className="bg-background text-foreground hover:bg-background/90">

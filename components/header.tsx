@@ -57,7 +57,7 @@ export function Header() {
           >
             <Link href="/" className="flex items-center gap-2 group">
               <img
-                src="/fox_logo.jpg"
+                src={process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp"}
                 alt="Nambi Uganda Safaris Logo"
                 className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
               />
@@ -146,7 +146,7 @@ export function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <img
-                  src="/fox_logo.jpg"
+                  src={process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp"}
                   alt="Nambi Uganda Safaris Logo"
                   className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
                 />

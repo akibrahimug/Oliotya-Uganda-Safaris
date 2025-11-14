@@ -7,9 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Award, Users, Globe, Heart, Target, Shield } from "lucide-react";
 import Link from "next/link";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+
 const heroSlides = [
   {
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: `${R2_BASE}/${IMAGE_PATH}/uganda-safari-landscape-team-adventure.webp`,
     title: "Your trusted partner in",
     subtitle: "About Nambi Uganda Safaris",
     description:
@@ -57,7 +60,7 @@ export default function AboutPage() {
             </div>
             <div className="relative animate-fade-in-right">
               <img
-                src="/uganda-gorilla-trekking-adventure.jpg"
+                src={`${R2_BASE}/${IMAGE_PATH}/uganda-gorilla-trekking-adventure.webp`}
                 alt="Uganda Adventure"
                 className="w-full h-auto rounded-lg shadow-2xl"
               />
@@ -187,7 +190,7 @@ export default function AboutPage() {
               {
                 name: "David Okello",
                 role: "Founder & CEO",
-                image: "/african-male-tour-guide-professional.jpg",
+                image: `${R2_BASE}/${IMAGE_PATH}/african-male-tour-guide-professional.webp`,
                 bio: "With over 15 years of experience in tourism, David founded Nambi Uganda Safaris to share his passion for Uganda's wildlife and culture.",
                 specialties: ["Safari Planning", "Wildlife Conservation", "Business Strategy"],
                 years: "15+ Years",
@@ -195,7 +198,7 @@ export default function AboutPage() {
               {
                 name: "Sarah Namukasa",
                 role: "Head of Operations",
-                image: "/african-female-tour-manager-professional.jpg",
+                image: `${R2_BASE}/${IMAGE_PATH}/african-female-tour-manager-professional.webp`,
                 bio: "Sarah ensures every detail of your journey is perfect, from booking to the final farewell. Her attention to detail is unmatched.",
                 specialties: ["Logistics Management", "Customer Service", "Team Coordination"],
                 years: "10+ Years",
@@ -203,7 +206,7 @@ export default function AboutPage() {
               {
                 name: "James Mugisha",
                 role: "Lead Safari Guide",
-                image: "/african-male-safari-guide-professional.jpg",
+                image: `${R2_BASE}/${IMAGE_PATH}/african-male-safari-guide-professional.webp`,
                 bio: "A certified safari guide with deep knowledge of Uganda's ecosystems, James brings every adventure to life with his expertise and enthusiasm.",
                 specialties: ["Wildlife Tracking", "Bird Watching", "Cultural Tours"],
                 years: "12+ Years",
@@ -216,7 +219,7 @@ export default function AboutPage() {
               >
                 <div className="relative overflow-hidden rounded-2xl mb-4 cursor-pointer">
                   <img
-                    src={member.image || "/placeholder.svg"}
+                    src={member.image}
                     alt={member.name}
                     className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
                   />

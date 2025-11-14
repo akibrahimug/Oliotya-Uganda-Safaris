@@ -11,11 +11,15 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "images.nambiugandasafaris.com", // Your custom domain if configured
+        hostname: "images.nambiugandasafaris.com", // Custom domain
       },
       {
         protocol: "https",
-        hostname: "images.foxadventures.com", // Legacy domain (temporary)
+        hostname: "pub-831b020047ea41fca8b3ec274b97d789.r2.dev", // Current R2 public URL
+      },
+      {
+        protocol: "https",
+        hostname: "**.r2.dev", // For any R2 Dev Domain
       },
     ],
     formats: ["image/webp", "image/avif"],
@@ -29,6 +33,6 @@ const nextConfig = {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

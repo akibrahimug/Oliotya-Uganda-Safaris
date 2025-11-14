@@ -29,7 +29,8 @@ export async function uploadToR2({
   contentType,
   folder = "images",
 }: UploadImageOptions): Promise<string> {
-  const key = folder ? `${folder}/${fileName}` : fileName;
+  // Use the bucket name as prefix to match the migration script structure
+  const key = folder ? `${BUCKET_NAME}/${folder}/${fileName}` : `${BUCKET_NAME}/${fileName}`;
 
   const command = new PutObjectCommand({
     Bucket: BUCKET_NAME,

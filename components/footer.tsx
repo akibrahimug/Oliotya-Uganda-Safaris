@@ -11,6 +11,7 @@ import {
   MapPin,
   Send,
   CheckCircle2,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -109,7 +110,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img
-                src="/fox_logo.jpg"
+                src={process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp"}
                 alt="Nambi Uganda Safaris Logo"
                 className="w-12 h-12 rounded-full object-cover"
               />
@@ -285,7 +286,7 @@ export function Footer() {
             <p className="text-muted-foreground text-sm text-center md:text-left">
               &copy; 2025 Nambi Uganda Safaris. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm text-muted-foreground">
+            <div className="flex gap-6 text-sm text-muted-foreground items-center">
               <Link href="/about" className="hover:text-primary transition-colors">
                 Privacy
               </Link>
@@ -294,6 +295,13 @@ export function Footer() {
               </Link>
               <Link href="/destinations" className="hover:text-primary transition-colors">
                 Sitemap
+              </Link>
+              <Link
+                href="/cms"
+                className="flex items-center gap-1.5 hover:text-primary transition-colors"
+              >
+                <Shield className="h-3.5 w-3.5" />
+                Admin
               </Link>
             </div>
           </div>

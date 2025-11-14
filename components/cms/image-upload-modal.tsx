@@ -65,6 +65,10 @@ export function ImageUploadModal({
       "image/png": [".png"],
       "image/webp": [".webp"],
       "image/avif": [".avif"],
+      "image/gif": [".gif"],
+      "image/bmp": [".bmp"],
+      "image/tiff": [".tiff", ".tif"],
+      "image/svg+xml": [".svg"],
     },
     maxSize: 10 * 1024 * 1024, // 10MB
   });
@@ -151,7 +155,7 @@ export function ImageUploadModal({
         <DialogHeader>
           <DialogTitle>Upload Images</DialogTitle>
           <DialogDescription>
-            Upload images to your gallery. Maximum file size: 10MB
+            Upload images to your gallery. All formats will be automatically converted to WebP. Maximum file size: 10MB
           </DialogDescription>
         </DialogHeader>
 
@@ -176,7 +180,10 @@ export function ImageUploadModal({
                     Drag & drop images here, or click to select files
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    Supports: JPEG, PNG, WebP, AVIF (max 10MB)
+                    Supports: JPEG, PNG, WebP, AVIF, GIF, BMP, TIFF, SVG (max 10MB)
+                  </p>
+                  <p className="text-xs text-primary mt-1">
+                    ✨ All images will be automatically optimized and converted to WebP
                   </p>
                 </>
               )}

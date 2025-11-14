@@ -13,39 +13,47 @@ export default async function CMSLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const user = await currentUser();
+  try {
+    const user = await currentUser();
 
-  // Require authentication
-  if (!user) {
-    redirect("/sign-in?redirect_url=/cms");
-  }
+    // Require authentication
+    if (!user) {
+      redirect("/sign-in?redirect_url=/cms");
+    }
 
-  // Check if user is admin (via publicMetadata or organization role)
-  const isAdmin =
-    user.publicMetadata?.role === "admin" ||
-    user.organizationMemberships?.some(
-      (org) =>
-        org.role === "org:admin" ||
-        org.permissions?.includes("org:sys_memberships:manage")
-    );
+    // Check if user is admin (via publicMetadata or organization role)
+    const isAdminViaMetadata = user.publicMetadata?.role === "admin";
+    const isAdminViaOrg =
+      Array.isArray(user.organizationMemberships) &&
+      user.organizationMemberships.some(
+        (org) =>
+          org.role === "org:admin" ||
+          (Array.isArray(org.permissions) && org.permissions.includes("org:sys_memberships:manage"))
+      );
 
-  // Redirect non-admin users
-  if (!isAdmin) {
-    redirect("/?error=unauthorized");
+    const isAdmin = isAdminViaMetadata || isAdminViaOrg;
+
+    // Redirect non-admin users
+    if (!isAdmin) {
+      redirect("/?error=unauthorized");
+    }
+  } catch (error) {
+    console.error("CMS Layout Error:", error);
+    redirect("/?error=cms_error");
   }
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-background">
       {/* Sidebar */}
       <CMSSidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden lg:mt-0 mt-16">
         {/* Header */}
         <CMSHeader />
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );

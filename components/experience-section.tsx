@@ -1,3 +1,5 @@
+import { getImageSrc } from "@/lib/image-utils";
+
 export function ExperienceSection() {
   return (
     <section className="py-20 bg-background relative overflow-hidden">
@@ -30,7 +32,7 @@ export function ExperienceSection() {
           <div className="relative animate-fade-in-right">
             <div className="relative">
               <img
-                src="/international.JPG?height=600&width=600"
+                src={getImageSrc("/international.jpg")}
                 alt="Uganda Globe"
                 className="w-full h-auto animate-float"
               />

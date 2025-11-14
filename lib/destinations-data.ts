@@ -1,3 +1,7 @@
+const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+const getImageUrl = (filename: string) => `${R2_BASE}/${IMAGE_PATH}/${filename}`;
+
 export interface Destination {
   id: number;
   name: string;
@@ -23,7 +27,7 @@ export const allDestinations: Destination[] = [
     category: "National Park",
     price: 450.84,
     rating: 5,
-    image: "/lake-mburo-national-park-uganda-zebras-savannah.jpg",
+    image: getImageUrl("lake-mburo-national-park-uganda-zebras-savannah.webp"),
     country: "Uganda",
     shortDesc:
       "A charming savannah park in Western Uganda, home to 350 bird species and diverse wildlife including zebras, impalas, and the magnificent Ankole cattle.",
@@ -40,7 +44,7 @@ export const allDestinations: Destination[] = [
     category: "Mountain Trekking",
     price: 850.0,
     rating: 5,
-    image: "/sipi-falls-uganda-waterfalls-mount-elgon.jpg",
+    image: getImageUrl("sipi-falls-uganda-waterfalls-mount-elgon.webp"),
     country: "Uganda",
     shortDesc:
       "Home to the world's largest volcanic base and spectacular Sipi Falls. Trek to the 4,321m Wagagai Peak and explore caves where elephants mine salt.",
@@ -57,7 +61,7 @@ export const allDestinations: Destination[] = [
     category: "Mountain Trekking",
     price: 1650.0,
     rating: 5,
-    image: "/rwenzori-mountains-uganda-snow-peaks.jpg",
+    image: getImageUrl("rwenzori-mountains-uganda-snow-peaks.webp"),
     country: "Uganda",
     shortDesc:
       "The legendary Mountains of the Moon with Africa's third-highest peak. Trek through fairy-tale landscapes of giant lobelias and snow-capped peaks.",
@@ -74,7 +78,7 @@ export const allDestinations: Destination[] = [
     category: "Wildlife Safari",
     price: 680.0,
     rating: 5,
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     country: "Uganda",
     shortDesc:
       "East Africa's only lowland tropical rainforest with Central African species. Visit Sempaya Hot Springs and meet the Batwa pygmy community.",
@@ -91,7 +95,7 @@ export const allDestinations: Destination[] = [
     category: "Primate Tracking",
     price: 890.0,
     rating: 5,
-    image: "/kibale-forest-chimpanzee-tracking-uganda.jpg",
+    image: getImageUrl("kibale-forest-chimpanzee-tracking-uganda.webp"),
     country: "Uganda",
     shortDesc: "The primate capital of the world with over 1,500 chimpanzees. Over 90% chimp tracking success rate in beautiful tropical forest.",
     description: "Kibale National Park, located in western Uganda, boasts of being one of the most beautiful and diverse tropical forests in the country. Covering an area of 795 km², the park is home to 13 primate species including over 1,500 chimpanzees. The park is renowned as the 'primate capital of the world' with over 90% chimpanzee sighting success rates. Accommodation options include: Kibale Forest Camp, Primate Lodge, Isunga Lodge, and Turaco Lodge.",
@@ -106,7 +110,7 @@ export const allDestinations: Destination[] = [
     category: "Wildlife Safari",
     price: 1450.0,
     rating: 5,
-    image: "/kidepo-valley-national-park-wildlife.jpg",
+    image: getImageUrl("kidepo-valley-national-park-wildlife.webp"),
     country: "Uganda",
     shortDesc: "Uganda's most isolated and magnificent wilderness. 77 mammal species and 476 bird species in spectacular semi-arid savanna.",
     description: "Located 700km from Kampala, Kidepo Valley lies in the rugged, semi-arid valleys between Uganda's borders with Sudan and Kenya. Gazetted as a national park in 1962, it ranks among Africa's finest wildernesses with over 77 mammal species and 475 bird species. Accommodation options include: Apoka Safari Lodge and Nga'Moru Wilderness Camp.",
@@ -121,7 +125,7 @@ export const allDestinations: Destination[] = [
     category: "Wildlife Safari",
     price: 1203.0,
     rating: 5,
-    image: "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
+    image: getImageUrl("queen-elizabeth-national-park-tree-climbing-lions.webp"),
     country: "Uganda",
     shortDesc: "Uganda's most popular park. Tree-climbing lions, Kazinga Channel boat safaris, and over 600 bird species.",
     description: "Undoubtedly Uganda's most popular tourist destination, Queen Elizabeth National Park boasts diverse ecosystems including sprawling savanna, forests, lakes, and wetlands. Home to 95 mammal species and over 600 bird species. Famous for tree-climbing lions in Ishasha and the Kazinga Channel.",
@@ -136,7 +140,7 @@ export const allDestinations: Destination[] = [
     category: "Gorilla Trekking",
     price: 1850.0,
     rating: 5,
-    image: "/uganda-gorilla-trekking-adventure.jpg",
+    image: getImageUrl("uganda-gorilla-trekking-adventure.webp"),
     country: "Uganda",
     shortDesc: "High-altitude park with mountain gorillas, golden monkeys, and three volcanic peaks. Part of Virunga Conservation Area.",
     description: "Mgahinga Gorilla National Park sits between 2,227m and 4,127m above sea level. It protects mountain gorillas and endangered golden monkeys across three extinct volcanoes: Muhabura, Gahinga, and Sabyinyo. Experience Batwa Pygmy culture.",
@@ -151,7 +155,7 @@ export const allDestinations: Destination[] = [
     category: "Gorilla Trekking",
     price: 3950,
     rating: 5,
-    image: "/bwindi-impenetrable-forest-mountain-gorillas.jpg",
+    image: getImageUrl("bwindi-impenetrable-forest-mountain-gorillas.webp"),
     images: [
       "/bwindi-impenetrable-forest-mountain-gorillas.jpg",
       "/uganda-mountain-gorillas-bwindi-forest.jpg",
@@ -174,7 +178,7 @@ export const allDestinations: Destination[] = [
     category: "Wildlife Safari",
     price: 897.31,
     rating: 5,
-    image: "/murchison-falls-national-park-uganda-waterfall.jpg",
+    image: getImageUrl("murchison-falls-national-park-uganda-waterfall.webp"),
     country: "Uganda",
     shortDesc: "Uganda's largest and oldest park. Spectacular waterfall where the Nile explodes through an 8-meter gorge.",
     description: "Situated at the northern end of the Albertine Rift Valley, Murchison Falls National Park is Uganda's largest park covering 3,893 km². The Victoria Nile cascades 45 meters through a narrow gorge, creating Africa's most powerful waterfall. Home to 144 mammal species and 556 bird species. Accommodation options include: Bakers Lodge, Chobe Safari Lodge, Paraa Safari Lodge.",
@@ -193,7 +197,7 @@ export const placeholderDestinations: Destination[] = [
     category: "Gorilla Trekking",
     price: 3950,
     rating: 5,
-    image: "/bwindi-impenetrable-forest-mountain-gorillas.jpg",
+    image: getImageUrl("bwindi-impenetrable-forest-mountain-gorillas.webp"),
     images: [
       "/bwindi-impenetrable-forest-mountain-gorillas.jpg",
       "/uganda-mountain-gorillas-bwindi-forest.jpg",
@@ -218,7 +222,7 @@ export const placeholderDestinations: Destination[] = [
     category: "National Park",
     price: 897.31,
     rating: 5,
-    image: "/murchison-falls-national-park-uganda-waterfall.jpg",
+    image: getImageUrl("murchison-falls-national-park-uganda-waterfall.webp"),
     country: "Uganda",
     shortDesc:
       "Uganda's largest national park, where the Nile explodes through a narrow gorge creating the world's most powerful waterfall. Home to lions, elephants, and hippos.",
@@ -235,7 +239,7 @@ export const placeholderDestinations: Destination[] = [
     category: "Cultural Center",
     price: 450.0,
     rating: 4,
-    image: "/kampala-city-uganda-skyline-sunset.jpg",
+    image: getImageUrl("kampala-city-uganda-skyline-sunset.webp"),
     country: "Uganda",
     shortDesc:
       "Uganda's vibrant capital city, offering rich cultural experiences, historical sites, bustling markets, and a thriving arts scene on the shores of Lake Victoria.",
@@ -252,7 +256,7 @@ export const placeholderDestinations: Destination[] = [
     category: "Wildlife Safari",
     price: 1203.0,
     rating: 5,
-    image: "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
+    image: getImageUrl("queen-elizabeth-national-park-tree-climbing-lions.webp"),
     country: "Uganda",
     shortDesc:
       "Famous for its tree-climbing lions and diverse ecosystems, this park offers boat safaris on the Kazinga Channel with abundant hippos, crocodiles, and birdlife.",
@@ -269,7 +273,7 @@ export const placeholderDestinations: Destination[] = [
     category: "Adventure Sports",
     price: 675.5,
     rating: 5,
-    image: "/jinja-source-of-nile-white-water-rafting.jpg",
+    image: getImageUrl("jinja-source-of-nile-white-water-rafting.webp"),
     country: "Uganda",
     shortDesc:
       "The adventure capital of East Africa at the source of the Nile, offering world-class white water rafting, bungee jumping, kayaking, and stunning river views.",
@@ -286,7 +290,7 @@ export const placeholderDestinations: Destination[] = [
     category: "Gorilla Trekking",
     price: 890.0,
     rating: 5,
-    image: "/kibale-forest-chimpanzee-tracking-uganda.jpg",
+    image: getImageUrl("kibale-forest-chimpanzee-tracking-uganda.webp"),
     country: "Uganda",
     shortDesc:
       "Known as the primate capital of the world, Kibale Forest is home to 13 primate species including habituated chimpanzees for unforgettable tracking experiences.",
@@ -303,7 +307,7 @@ export const placeholderDestinations: Destination[] = [
     category: "Adventure Sports",
     price: 320.5,
     rating: 4,
-    image: "/sipi-falls-uganda-waterfalls-mount-elgon.jpg",
+    image: getImageUrl("sipi-falls-uganda-waterfalls-mount-elgon.webp"),
     country: "Uganda",
     shortDesc:
       "A series of three stunning waterfalls on the foothills of Mount Elgon, offering breathtaking views, coffee tours, and adventurous hiking trails.",
@@ -320,7 +324,7 @@ export const placeholderDestinations: Destination[] = [
     category: "Wildlife Safari",
     price: 1650.0,
     rating: 5,
-    image: "/rwenzori-mountains-uganda-snow-peaks.jpg",
+    image: getImageUrl("rwenzori-mountains-uganda-snow-peaks.webp"),
     country: "Uganda",
     shortDesc:
       "The legendary Mountains of the Moon, offering challenging treks through unique afro-alpine vegetation to snow-capped peaks and glaciers at the equator.",

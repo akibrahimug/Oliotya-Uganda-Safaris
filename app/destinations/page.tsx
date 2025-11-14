@@ -7,9 +7,12 @@ import Link from "next/link";
 import { allDestinationsOnly } from "@/lib/destinations-only-data";
 import { MapPin } from "lucide-react";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+
 const heroSlides = [
   {
-    image: "/uganda-queen-elizabeth-national-park-safari.jpg",
+    image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
     title: "Discover the Pearl of Africa",
     subtitle: "Explore Destinations",
     description:

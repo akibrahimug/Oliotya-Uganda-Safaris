@@ -1,3 +1,7 @@
+const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+const getImageUrl = (filename: string) => `${R2_BASE}/${IMAGE_PATH}/${filename}`;
+
 export interface DestinationOnly {
   id: number;
   name: string;
@@ -44,7 +48,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 6,
     name: "Lake Mburo National Park",
     category: "National Park",
-    image: "/lake-mburo-national-park-uganda-zebras-savannah.jpg",
+    image: getImageUrl("lake-mburo-national-park-uganda-zebras-savannah.webp"),
     images: [
       "/lake-mburo-national-park-uganda-zebras-savannah.jpg",
     ],
@@ -119,7 +123,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 10,
     name: "Mount Elgon National Park",
     category: "National Park",
-    image: "/sipi-falls-uganda-waterfalls-mount-elgon.jpg",
+    image: getImageUrl("sipi-falls-uganda-waterfalls-mount-elgon.webp"),
     images: [
       "/sipi-falls-uganda-waterfalls-mount-elgon.jpg",
       "/sipi-falls-uganda-waterfalls.jpg",
@@ -196,7 +200,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 9,
     name: "Rwenzori Mountains National Park",
     category: "National Park",
-    image: "/rwenzori-mountains-uganda-snow-peaks.jpg",
+    image: getImageUrl("rwenzori-mountains-uganda-snow-peaks.webp"),
     images: [
       "/rwenzori-mountains-uganda-snow-peaks.jpg",
       "/uganda-rwenzori-mountains-snow.jpg",
@@ -283,7 +287,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 11,
     name: "Semuliki National Park",
     category: "National Park",
-    image: "/uganda-safari-landscape-team-adventure.jpg",
+    image: getImageUrl("uganda-safari-landscape-team-adventure.webp"),
     images: [
       "/uganda-safari-landscape-team-adventure.jpg",
     ],
@@ -372,7 +376,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 7,
     name: "Kibale National Park",
     category: "National Park",
-    image: "/kibale-forest-chimpanzee-tracking-uganda.jpg",
+    image: getImageUrl("kibale-forest-chimpanzee-tracking-uganda.webp"),
     images: ["/kibale-forest-chimpanzee-tracking-uganda.jpg", "/kibale-forest-national-park-chimpanzees.jpg"],
     country: "Uganda",
     region: "Western Uganda",
@@ -387,7 +391,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 12,
     name: "Kidepo Valley National Park",
     category: "National Park",
-    image: "/kidepo-valley-national-park-wildlife.jpg",
+    image: getImageUrl("kidepo-valley-national-park-wildlife.webp"),
     images: ["/kidepo-valley-national-park-wildlife.jpg"],
     country: "Uganda",
     region: "Northeastern Uganda (Karamoja)",
@@ -402,7 +406,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 4,
     name: "Queen Elizabeth National Park",
     category: "National Park",
-    image: "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
+    image: getImageUrl("queen-elizabeth-national-park-tree-climbing-lions.webp"),
     images: ["/queen-elizabeth-national-park-tree-climbing-lions.jpg", "/uganda-queen-elizabeth-national-park-safari.jpg"],
     country: "Uganda",
     region: "Western Uganda",
@@ -417,7 +421,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 13,
     name: "Mgahinga Gorilla National Park",
     category: "National Park",
-    image: "/uganda-gorilla-trekking-adventure.jpg",
+    image: getImageUrl("uganda-gorilla-trekking-adventure.webp"),
     images: ["/uganda-gorilla-trekking-adventure.jpg"],
     country: "Uganda",
     region: "Southwestern Uganda",
@@ -432,7 +436,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 1,
     name: "Bwindi Impenetrable National Park",
     category: "National Park",
-    image: "/bwindi-impenetrable-forest-mountain-gorillas.jpg",
+    image: getImageUrl("bwindi-impenetrable-forest-mountain-gorillas.webp"),
     images: ["/bwindi-impenetrable-forest-mountain-gorillas.jpg", "/uganda-mountain-gorillas-bwindi-forest.jpg"],
     country: "Uganda",
     region: "Southwestern Uganda",
@@ -447,7 +451,7 @@ export const allDestinationsOnly: DestinationOnly[] = [
     id: 2,
     name: "Murchison Falls National Park",
     category: "National Park",
-    image: "/murchison-falls-national-park-uganda-waterfall.jpg",
+    image: getImageUrl("murchison-falls-national-park-uganda-waterfall.webp"),
     images: ["/murchison-falls-national-park-uganda-waterfall.jpg", "/uganda-murchison-falls-waterfall.jpg"],
     country: "Uganda",
     region: "Northwestern Uganda",
@@ -466,7 +470,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 1,
     name: "Bwindi Impenetrable Forest",
     category: "National Park",
-    image: "/bwindi-impenetrable-forest-mountain-gorillas.jpg",
+    image: getImageUrl("bwindi-impenetrable-forest-mountain-gorillas.webp"),
     images: [
       "/bwindi-impenetrable-forest-mountain-gorillas.jpg",
       "/uganda-mountain-gorillas-bwindi-forest.jpg",
@@ -483,7 +487,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 2,
     name: "Murchison Falls National Park",
     category: "National Park",
-    image: "/murchison-falls-national-park-uganda-waterfall.jpg",
+    image: getImageUrl("murchison-falls-national-park-uganda-waterfall.webp"),
     images: [
       "/murchison-falls-national-park-uganda-waterfall.jpg",
       "/uganda-murchison-falls-waterfall.jpg",
@@ -499,7 +503,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 3,
     name: "Kampala",
     category: "City",
-    image: "/kampala-uganda-city-skyline.jpg",
+    image: getImageUrl("kampala-uganda-city-skyline.webp"),
     images: [
       "/kampala-uganda-city-skyline.jpg",
       "/kampala-city-uganda-skyline-sunset.jpg",
@@ -513,7 +517,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 4,
     name: "Queen Elizabeth National Park",
     category: "National Park",
-    image: "/uganda-queen-elizabeth-national-park-safari.jpg",
+    image: getImageUrl("uganda-queen-elizabeth-national-park-safari.webp"),
     images: [
       "/uganda-queen-elizabeth-national-park-safari.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -529,7 +533,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 5,
     name: "Lake Victoria",
     category: "Lake",
-    image: "/uganda-lake-victoria-sunset.jpg",
+    image: getImageUrl("uganda-lake-victoria-sunset.webp"),
     images: [
       "/uganda-lake-victoria-sunset.jpg",
       "/jinja-source-of-nile-white-water-rafting.jpg",
@@ -544,7 +548,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 6,
     name: "Rwenzori Mountains",
     category: "Mountain Range",
-    image: "/uganda-rwenzori-mountains-snow.jpg",
+    image: getImageUrl("uganda-rwenzori-mountains-snow.webp"),
     images: [
       "/uganda-rwenzori-mountains-snow.jpg",
       "/rwenzori-mountains-uganda-snow-peaks.jpg",
@@ -560,7 +564,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 7,
     name: "Kibale National Park",
     category: "National Park",
-    image: "/kibale-forest-national-park-chimpanzees.jpg",
+    image: getImageUrl("kibale-forest-national-park-chimpanzees.webp"),
     images: [
       "/kibale-forest-national-park-chimpanzees.jpg",
       "/kibale-forest-chimpanzee-tracking-uganda.jpg",
@@ -575,7 +579,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 8,
     name: "Jinja",
     category: "Town",
-    image: "/jinja-uganda-nile-river-rapids.jpg",
+    image: getImageUrl("jinja-uganda-nile-river-rapids.webp"),
     images: [
       "/jinja-uganda-nile-river-rapids.jpg",
       "/jinja-source-of-nile-white-water-rafting.jpg",
@@ -590,7 +594,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 9,
     name: "Kidepo Valley National Park",
     category: "National Park",
-    image: "/kidepo-valley-national-park-wildlife.jpg",
+    image: getImageUrl("kidepo-valley-national-park-wildlife.webp"),
     images: [
       "/kidepo-valley-national-park-wildlife.jpg",
       "/queen-elizabeth-national-park-tree-climbing-lions.jpg",
@@ -605,7 +609,7 @@ export const placeholderDestinationsOnly: DestinationOnly[] = [
     id: 10,
     name: "Sipi Falls",
     category: "Waterfall",
-    image: "/sipi-falls-uganda-waterfalls.jpg",
+    image: getImageUrl("sipi-falls-uganda-waterfalls.webp"),
     images: [
       "/sipi-falls-uganda-waterfalls.jpg",
       "/sipi-falls-uganda-waterfalls-mount-elgon.jpg",
