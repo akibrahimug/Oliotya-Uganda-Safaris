@@ -363,6 +363,49 @@ exports.Prisma.CMSAuditLogScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ExperienceSectionScalarFieldEnum = {
+  id: 'id',
+  heading: 'heading',
+  title: 'title',
+  description: 'description',
+  image: 'image',
+  stat1Value: 'stat1Value',
+  stat1Label: 'stat1Label',
+  stat2Value: 'stat2Value',
+  stat2Label: 'stat2Label',
+  badgeText: 'badgeText',
+  backgroundText: 'backgroundText',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TourGuideSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  description: 'description',
+  mapImage: 'mapImage',
+  buttonText: 'buttonText',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VideoSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  videoUrl: 'videoUrl',
+  thumbnailUrl: 'thumbnailUrl',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -431,6 +474,11 @@ exports.CustomPackageStatus = exports.$Enums.CustomPackageStatus = {
   CANCELLED: 'CANCELLED'
 };
 
+exports.ContentStatus = exports.$Enums.ContentStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED'
+};
+
 exports.Prisma.ModelName = {
   Destination: 'Destination',
   Booking: 'Booking',
@@ -448,7 +496,10 @@ exports.Prisma.ModelName = {
   SiteSettings: 'SiteSettings',
   TeamMember: 'TeamMember',
   FAQ: 'FAQ',
-  CMSAuditLog: 'CMSAuditLog'
+  CMSAuditLog: 'CMSAuditLog',
+  ExperienceSection: 'ExperienceSection',
+  TourGuideSection: 'TourGuideSection',
+  VideoSection: 'VideoSection'
 };
 
 /**

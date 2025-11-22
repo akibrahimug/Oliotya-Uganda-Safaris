@@ -47,18 +47,18 @@ export function HeroSlideCard({
   return (
     <Card ref={setNodeRef} style={style} className="overflow-hidden">
       <CardContent className="p-0">
-        <div className="flex items-center gap-4 p-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4">
           {/* Drag Handle */}
           <div
             {...attributes}
             {...listeners}
-            className="cursor-grab active:cursor-grabbing"
+            className="cursor-grab active:cursor-grabbing self-start sm:self-center"
           >
-            <GripVertical className="h-6 w-6 text-muted-foreground hover:text-foreground transition-colors" />
+            <GripVertical className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground hover:text-foreground transition-colors" />
           </div>
 
           {/* Image Preview */}
-          <div className="relative w-32 h-20 bg-muted rounded-lg overflow-hidden flex-shrink-0">
+          <div className="relative w-full sm:w-32 h-24 sm:h-20 bg-muted rounded-lg overflow-hidden flex-shrink-0">
             <Image
               src={slide.image}
               alt={slide.subtitle}
@@ -68,29 +68,29 @@ export function HeroSlideCard({
           </div>
 
           {/* Content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-4 mb-2">
+          <div className="flex-1 min-w-0 w-full">
+            <div className="flex items-start justify-between gap-2 sm:gap-4 mb-2">
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-semibold text-lg truncate">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <h3 className="font-semibold text-base sm:text-lg truncate">
                     {slide.subtitle}
                   </h3>
                   {slide.active ? (
-                    <Badge variant="default" className="gap-1 flex-shrink-0">
+                    <Badge variant="default" className="gap-1 flex-shrink-0 text-xs">
                       <Eye className="h-3 w-3" />
-                      Active
+                      <span className="hidden sm:inline">Active</span>
                     </Badge>
                   ) : (
-                    <Badge variant="secondary" className="gap-1 flex-shrink-0">
+                    <Badge variant="secondary" className="gap-1 flex-shrink-0 text-xs">
                       <EyeOff className="h-3 w-3" />
-                      Hidden
+                      <span className="hidden sm:inline">Hidden</span>
                     </Badge>
                   )}
                 </div>
-                <p className="text-sm text-muted-foreground truncate mb-1">
+                <p className="text-xs sm:text-sm text-muted-foreground truncate mb-1">
                   {slide.title}
                 </p>
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 hidden sm:block">
                   {slide.description}
                 </p>
               </div>
@@ -98,22 +98,24 @@ export function HeroSlideCard({
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto">
             <Button
               variant="outline"
               size="sm"
               onClick={() => onEdit(slide)}
-              className="gap-2"
+              className="gap-2 flex-1 sm:flex-initial"
             >
               <Edit className="h-4 w-4" />
-              Edit
+              <span className="sm:inline">Edit</span>
             </Button>
             <Button
               variant="destructive"
               size="sm"
               onClick={() => onDelete(slide.id)}
+              className="flex-1 sm:flex-initial"
             >
               <Trash2 className="h-4 w-4" />
+              <span className="sm:hidden">Delete</span>
             </Button>
           </div>
         </div>

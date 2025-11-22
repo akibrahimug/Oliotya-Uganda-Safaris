@@ -1,67 +1,105 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Plus, GripVertical } from "lucide-react";
-import { HeroSlideCard } from "@/components/cms/hero-slide-card";
-import { HeroSlideModal } from "@/components/cms/hero-slide-modal";
+import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import { Rocket, AlertCircle, Loader2 } from "lucide-react";
+import { EditableWrapper } from "@/components/cms/editable-wrapper";
+import { HeroCarousel } from "@/components/hero-carousel";
+import { SearchForm } from "@/components/search-form";
+import { ExperienceSection } from "@/components/experience-section";
+import { TourGuideSection } from "@/components/tour-guide-section";
+import { VideoSection } from "@/components/video-section";
+import { PopularPlaces } from "@/components/popular-places";
+import { ExploreDestinations } from "@/components/explore-destinations";
+import { HeroSlidesManagerModal } from "@/components/cms/hero-slides-manager-modal";
+import { ExperienceSectionModal } from "@/components/cms/experience-section-modal";
+import { TourGuideSectionModal } from "@/components/cms/tour-guide-section-modal";
+import { VideoSectionModal } from "@/components/cms/video-section-modal";
 
-interface HeroSlide {
+interface ExperienceSectionData {
+  id: string;
+  heading: string;
+  title: string;
+  description: string;
+  image: string;
+  stat1Value: string;
+  stat1Label: string;
+  stat2Value: string;
+  stat2Label: string;
+  badgeText: string;
+  backgroundText: string;
+  status: string;
+}
+
+interface TourGuideSectionData {
   id: string;
   title: string;
   subtitle: string;
   description: string;
-  image: string;
-  displayOrder: number;
-  active: boolean;
+  mapImage: string;
+  buttonText: string;
+  status: string;
 }
 
-export default function HomePageEditor() {
-  const [slides, setSlides] = useState<HeroSlide[]>([]);
+interface VideoSectionData {
+  id: string;
+  title: string;
+  description: string;
+  videoUrl: string;
+  thumbnailUrl: string | null;
+  status: string;
+}
+
+export default function CMSHomePageInline() {
   const [loading, setLoading] = useState(true);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editingSlide, setEditingSlide] = useState<HeroSlide | null>(null);
+  const [publishing, setPublishing] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
 
-  // DnD Kit sensors
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
+  // Section data
+  const [experienceSection, setExperienceSection] = useState<ExperienceSectionData | null>(null);
+  const [tourGuideSection, setTourGuideSection] = useState<TourGuideSectionData | null>(null);
+  const [videoSection, setVideoSection] = useState<VideoSectionData | null>(null);
 
-  // Fetch slides
-  const fetchSlides = async () => {
+  // Modal states
+  const [heroModalOpen, setHeroModalOpen] = useState(false);
+  const [experienceModalOpen, setExperienceModalOpen] = useState(false);
+  const [tourGuideModalOpen, setTourGuideModalOpen] = useState(false);
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+
+  // Fetch all sections
+  const fetchSections = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/cms/hero-slides");
-      if (!response.ok) throw new Error("Failed to fetch slides");
 
-      const data = await response.json();
-      setSlides(data.slides);
+      const [expRes, tourRes, vidRes] = await Promise.all([
+        fetch("/api/cms/experience-section?mode=cms"),
+        fetch("/api/cms/tour-guide-section?mode=cms"),
+        fetch("/api/cms/video-section?mode=cms"),
+      ]);
+
+      if (expRes.ok) {
+        const expData = await expRes.json();
+        setExperienceSection(expData.section);
+      }
+
+      if (tourRes.ok) {
+        const tourData = await tourRes.json();
+        setTourGuideSection(tourData.section);
+      }
+
+      if (vidRes.ok) {
+        const vidData = await vidRes.json();
+        setVideoSection(vidData.section);
+      }
     } catch (error) {
-      console.error("Error fetching slides:", error);
+      console.error("Error fetching sections:", error);
       toast({
         title: "Error",
-        description: "Failed to load hero slides",
+        description: "Failed to load page content",
         variant: "destructive",
       });
     } finally {
@@ -70,179 +108,211 @@ export default function HomePageEditor() {
   };
 
   useEffect(() => {
-    fetchSlides();
+    fetchSections();
   }, []);
 
-  // Handle drag end
-  const handleDragEnd = async (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (over && active.id !== over.id) {
-      const oldIndex = slides.findIndex((s) => s.id === active.id);
-      const newIndex = slides.findIndex((s) => s.id === over.id);
-
-      const newSlides = arrayMove(slides, oldIndex, newIndex);
-      setSlides(newSlides);
-
-      // Update display orders
-      const updates = newSlides.map((slide, index) => ({
-        id: slide.id,
-        displayOrder: index,
-      }));
-
-      try {
-        const response = await fetch("/api/cms/hero-slides/reorder", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ slides: updates }),
-        });
-
-        if (!response.ok) throw new Error("Failed to reorder slides");
-
-        toast({
-          title: "Success",
-          description: "Slides reordered successfully",
-        });
-      } catch (error) {
-        console.error("Error reordering slides:", error);
-        toast({
-          title: "Error",
-          description: "Failed to reorder slides",
-          variant: "destructive",
-        });
-        // Revert on error
-        fetchSlides();
-      }
-    }
-  };
-
-  // Handle delete
-  const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this slide?")) return;
-
+  const handleSaveExperience = async (data: ExperienceSectionData, publish: boolean) => {
     try {
-      const response = await fetch(`/api/cms/hero-slides/${id}`, {
-        method: "DELETE",
+      const response = await fetch("/api/cms/experience-section", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, publish }),
       });
 
-      if (!response.ok) throw new Error("Failed to delete slide");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to save");
+      }
+
+      const result = await response.json();
 
       toast({
         title: "Success",
-        description: "Slide deleted successfully",
+        description: publish
+          ? "Experience section published successfully. Vercel build triggered."
+          : "Experience section saved as draft",
       });
 
-      fetchSlides();
+      // Update local state instead of refetching
+      setExperienceSection(result.section);
     } catch (error) {
-      console.error("Error deleting slide:", error);
+      console.error("Error saving:", error);
       toast({
         title: "Error",
-        description: "Failed to delete slide",
+        description: error instanceof Error ? error.message : "Failed to save",
         variant: "destructive",
       });
+      throw error;
     }
   };
 
-  // Handle edit
-  const handleEdit = (slide: HeroSlide) => {
-    setEditingSlide(slide);
-    setModalOpen(true);
+  const handleSaveTourGuide = async (data: TourGuideSectionData, publish: boolean) => {
+    try {
+      const response = await fetch("/api/cms/tour-guide-section", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, publish }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to save");
+      }
+
+      const result = await response.json();
+
+      toast({
+        title: "Success",
+        description: publish
+          ? "Tour Guide section published successfully. Vercel build triggered."
+          : "Tour Guide section saved as draft",
+      });
+
+      // Update local state instead of refetching
+      setTourGuideSection(result.section);
+    } catch (error) {
+      console.error("Error saving:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to save",
+        variant: "destructive",
+      });
+      throw error;
+    }
   };
 
-  // Handle modal close
-  const handleModalClose = () => {
-    setModalOpen(false);
-    setEditingSlide(null);
+  const handleSaveVideo = async (data: VideoSectionData, publish: boolean) => {
+    try {
+      const response = await fetch("/api/cms/video-section", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, publish }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to save");
+      }
+
+      const result = await response.json();
+
+      toast({
+        title: "Success",
+        description: publish
+          ? "Video section published successfully. Vercel build triggered."
+          : "Video section saved as draft",
+      });
+
+      // Update local state instead of refetching
+      setVideoSection(result.section);
+    } catch (error) {
+      console.error("Error saving:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to save",
+        variant: "destructive",
+      });
+      throw error;
+    }
   };
 
-  // Handle modal success
-  const handleModalSuccess = () => {
-    fetchSlides();
-    handleModalClose();
-  };
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Home Page - Hero Carousel</h1>
-          <p className="text-muted-foreground">
-            Manage the hero slides on your homepage
-          </p>
+      {/* CMS Header */}
+      <div className="sticky top-0 z-50 bg-background border-b shadow-sm">
+        <div className="flex items-center justify-between p-4">
+          <div>
+            <h1 className="text-2xl font-bold">Home Page Editor</h1>
+            <p className="text-sm text-muted-foreground">
+              Click any section to edit. Use "Save & Publish" in the modal to make changes live.
+            </p>
+          </div>
         </div>
-        <Button onClick={() => setModalOpen(true)} className="gap-2">
-          <Plus className="h-4 w-4" />
-          Add Slide
-        </Button>
       </div>
 
-      {/* Info Card */}
-      <Card className="p-4 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-900">
-        <p className="text-sm text-blue-900 dark:text-blue-100">
-          <strong>Tip:</strong> Drag and drop slides to reorder them. The first
-          slide will be shown first on your homepage.
-        </p>
-      </Card>
+      {/* Landing Page Preview with Inline Editing */}
+      <div className="bg-muted/30 p-4 rounded-lg">
+        <div className="bg-background rounded-lg shadow-sm overflow-hidden">
+          {/* Hero Section - Editable */}
+          <EditableWrapper onEdit={() => setHeroModalOpen(true)} label="Hero Carousel">
+            <HeroCarousel />
+          </EditableWrapper>
 
-      {/* Slides List */}
-      {loading ? (
-        <div className="space-y-4">
-          {[...Array(3)].map((_, i) => (
-            <Card key={i} className="p-6">
-              <div className="animate-pulse space-y-4">
-                <div className="h-4 bg-muted rounded w-1/3" />
-                <div className="h-3 bg-muted rounded w-1/2" />
-                <div className="h-3 bg-muted rounded w-2/3" />
-              </div>
-            </Card>
-          ))}
-        </div>
-      ) : slides.length === 0 ? (
-        <Card className="p-12">
-          <div className="text-center">
-            <GripVertical className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <h3 className="font-semibold text-lg mb-2">No hero slides yet</h3>
-            <p className="text-muted-foreground mb-4">
-              Create your first hero slide to get started
-            </p>
-            <Button onClick={() => setModalOpen(true)} className="gap-2">
-              <Plus className="h-4 w-4" />
-              Add Your First Slide
-            </Button>
-          </div>
-        </Card>
-      ) : (
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
-        >
-          <SortableContext
-            items={slides.map((s) => s.id)}
-            strategy={verticalListSortingStrategy}
-          >
-            <div className="space-y-4">
-              {slides.map((slide) => (
-                <HeroSlideCard
-                  key={slide.id}
-                  slide={slide}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                />
-              ))}
+          {/* Search Form - Not editable (functional component) */}
+          <div className="relative">
+            <SearchForm onSearch={() => {}} />
+            <div className="absolute inset-0 bg-muted/50 flex items-center justify-center pointer-events-none">
+              <Badge variant="secondary">Search Form (Functional - Not Editable)</Badge>
             </div>
-          </SortableContext>
-        </DndContext>
+          </div>
+
+          {/* Tour Guide Section - Editable */}
+          <EditableWrapper onEdit={() => setTourGuideModalOpen(true)} label="Tour Guide">
+            <TourGuideSection />
+          </EditableWrapper>
+
+          {/* Video Section - Editable */}
+          <EditableWrapper onEdit={() => setVideoModalOpen(true)} label="Video">
+            <VideoSection />
+          </EditableWrapper>
+
+          {/* Popular Places - Editable */}
+          <EditableWrapper onEdit={() => router.push("/cms/packages")} label="Popular Places">
+            <PopularPlaces filters={null} />
+          </EditableWrapper>
+
+          {/* Explore Destinations - Editable */}
+          <EditableWrapper onEdit={() => router.push("/cms/destinations")} label="Explore Destinations">
+            <ExploreDestinations filters={null} />
+          </EditableWrapper>
+
+          {/* Experience Section - Editable */}
+          <EditableWrapper onEdit={() => setExperienceModalOpen(true)} label="Experience">
+            <ExperienceSection />
+          </EditableWrapper>
+        </div>
+      </div>
+
+      {/* Edit Modals */}
+      <HeroSlidesManagerModal
+        open={heroModalOpen}
+        onClose={() => setHeroModalOpen(false)}
+      />
+
+      {experienceSection && (
+        <ExperienceSectionModal
+          open={experienceModalOpen}
+          onClose={() => setExperienceModalOpen(false)}
+          onSave={handleSaveExperience}
+          initialData={experienceSection}
+        />
       )}
 
-      {/* Modal */}
-      <HeroSlideModal
-        open={modalOpen}
-        onClose={handleModalClose}
-        onSuccess={handleModalSuccess}
-        slide={editingSlide}
-      />
+      {tourGuideSection && (
+        <TourGuideSectionModal
+          open={tourGuideModalOpen}
+          onClose={() => setTourGuideModalOpen(false)}
+          onSave={handleSaveTourGuide}
+          initialData={tourGuideSection}
+        />
+      )}
+
+      {videoSection && (
+        <VideoSectionModal
+          open={videoModalOpen}
+          onClose={() => setVideoModalOpen(false)}
+          onSave={handleSaveVideo}
+          initialData={videoSection}
+        />
+      )}
     </div>
   );
 }

@@ -4,8 +4,15 @@ import { UserButton } from "@clerk/nextjs";
 import { Bell, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState, useEffect } from "react";
 
 export function CMSHeader() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <header className="border-b border-border bg-card">
       <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 gap-2 sm:gap-4">
@@ -36,13 +43,15 @@ export function CMSHeader() {
             <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
           </Button>
 
-          <UserButton
-            appearance={{
-              elements: {
-                avatarBox: "w-8 h-8 sm:w-9 sm:h-9",
-              },
-            }}
-          />
+          {mounted && (
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: "w-8 h-8 sm:w-9 sm:h-9",
+                },
+              }}
+            />
+          )}
         </div>
       </div>
     </header>

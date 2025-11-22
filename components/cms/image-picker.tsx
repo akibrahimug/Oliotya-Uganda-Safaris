@@ -76,7 +76,7 @@ export function ImagePicker({ open, onClose, onSelect }: ImagePickerProps) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[80vh] flex flex-col">
+      <DialogContent className="max-w-[95vw] lg:max-w-4xl w-full max-h-[80vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Select Image</DialogTitle>
           <DialogDescription>

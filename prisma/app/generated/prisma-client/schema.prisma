@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "./app/generated/prisma-client"
+  provider      = "prisma-client-js"
+  output        = "./app/generated/prisma-client"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -390,4 +391,62 @@ model CMSAuditLog {
   @@index([entityType])
   @@index([createdAt])
   @@map("cms_audit_logs")
+}
+
+// ============================================
+// HOME PAGE CONTENT MODELS
+// ============================================
+
+model ExperienceSection {
+  id             String        @id @default(cuid())
+  heading        String // "We are collectors of"
+  title          String // "Unique Experiences"
+  description    String        @db.Text
+  image          String // Globe/International image
+  stat1Value     String // "10+"
+  stat1Label     String // "Destinations"
+  stat2Value     String // "8+"
+  stat2Label     String // "Years Experience"
+  badgeText      String // "1 International Travel"
+  backgroundText String // "UGANDA"
+  status         ContentStatus @default(DRAFT)
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@map("experience_section")
+}
+
+model TourGuideSection {
+  id          String        @id @default(cuid())
+  title       String // "Escape the"
+  subtitle    String // "Ordinary" (highlighted part)
+  description String        @db.Text
+  mapImage    String // Uganda map SVG
+  buttonText  String // "Read More"
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("tour_guide_section")
+}
+
+model VideoSection {
+  id           String        @id @default(cuid())
+  title        String // "Our Latest Expedition"
+  description  String        @db.Text
+  videoUrl     String // YouTube URL or video file URL
+  thumbnailUrl String? // Optional custom thumbnail
+  status       ContentStatus @default(DRAFT)
+  publishedAt  DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@map("video_section")
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
 }

@@ -1,30 +1,62 @@
 import { getImageSrc } from "@/lib/image-utils";
 
-export function ExperienceSection() {
+interface ExperienceSectionProps {
+  data?: {
+    heading: string;
+    title: string;
+    description: string;
+    image: string;
+    stat1Value: string;
+    stat1Label: string;
+    stat2Value: string;
+    stat2Label: string;
+    badgeText: string;
+    backgroundText: string;
+  };
+}
+
+export function ExperienceSection({ data: propData }: ExperienceSectionProps) {
+  // Fallback to defaults if no data provided
+  const data = propData || {
+    heading: "We are collectors of",
+    title: "Unique Experiences",
+    description: "Committed to be home country's traditional values and the highest possible standard and service. We focus on our customers needs and truly believe that if we get essential clients' holidays WINS made.",
+    image: "/international.jpg",
+    stat1Value: "10+",
+    stat1Label: "Destinations",
+    stat2Value: "8+",
+    stat2Label: "Years Experience",
+    badgeText: "1 International Travel",
+    backgroundText: "UGANDA",
+  };
+
   return (
     <section className="py-20 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in-left">
-            <p className="text-muted-foreground mb-4">We are collectors of</p>
+            <p className="text-muted-foreground mb-4">{data.heading}</p>
             <h2 className="font-serif text-5xl md:text-6xl font-bold mb-8 text-balance">
-              Unique <span className="text-primary">Experiences</span>
+              {data.title.split(" ").map((word, i) =>
+                i === data.title.split(" ").length - 1 ? (
+                  <span key={i} className="text-primary">{word}</span>
+                ) : (
+                  <span key={i}>{word} </span>
+                )
+              )}
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-12 max-w-xl">
-              Committed to be home country's traditional values and the highest
-              possible standard and service. We focus on our customers needs and
-              truly believe that if we get essential clients' holidays WINS
-              made.
+              {data.description}
             </p>
 
             <div className="grid grid-cols-2 gap-8">
               <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">10+</div>
-                <div className="text-muted-foreground">Destinations</div>
+                <div className="text-5xl font-bold text-accent mb-2">{data.stat1Value}</div>
+                <div className="text-muted-foreground">{data.stat1Label}</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">8+</div>
-                <div className="text-muted-foreground">Years Experience</div>
+                <div className="text-5xl font-bold text-accent mb-2">{data.stat2Value}</div>
+                <div className="text-muted-foreground">{data.stat2Label}</div>
               </div>
             </div>
           </div>
@@ -32,16 +64,16 @@ export function ExperienceSection() {
           <div className="relative animate-fade-in-right">
             <div className="relative">
               <img
-                src={getImageSrc("/international.jpg")}
+                src={getImageSrc(data.image)}
                 alt="Uganda Globe"
                 className="w-full h-auto animate-float"
               />
               <div className="absolute -right-8 bottom-1/4 bg-primary text-primary-foreground px-6 py-3 rounded-full shadow-xl font-semibold animate-pulse">
-                1 International Travel
+                {data.badgeText}
               </div>
             </div>
             <div className="absolute -right-4 top-0 text-9xl font-bold text-muted/10 [writing-mode:vertical-lr] pointer-events-none">
-              UGANDA
+              {data.backgroundText}
             </div>
           </div>
         </div>

@@ -98,6 +98,21 @@ export type FAQ = $Result.DefaultSelection<Prisma.$FAQPayload>
  * 
  */
 export type CMSAuditLog = $Result.DefaultSelection<Prisma.$CMSAuditLogPayload>
+/**
+ * Model ExperienceSection
+ * 
+ */
+export type ExperienceSection = $Result.DefaultSelection<Prisma.$ExperienceSectionPayload>
+/**
+ * Model TourGuideSection
+ * 
+ */
+export type TourGuideSection = $Result.DefaultSelection<Prisma.$TourGuideSectionPayload>
+/**
+ * Model VideoSection
+ * 
+ */
+export type VideoSection = $Result.DefaultSelection<Prisma.$VideoSectionPayload>
 
 /**
  * Enums
@@ -159,6 +174,14 @@ export const CustomPackageStatus: {
 
 export type CustomPackageStatus = (typeof CustomPackageStatus)[keyof typeof CustomPackageStatus]
 
+
+export const ContentStatus: {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED'
+};
+
+export type ContentStatus = (typeof ContentStatus)[keyof typeof ContentStatus]
+
 }
 
 export type BookingStatus = $Enums.BookingStatus
@@ -184,6 +207,10 @@ export const DifficultyLevel: typeof $Enums.DifficultyLevel
 export type CustomPackageStatus = $Enums.CustomPackageStatus
 
 export const CustomPackageStatus: typeof $Enums.CustomPackageStatus
+
+export type ContentStatus = $Enums.ContentStatus
+
+export const ContentStatus: typeof $Enums.ContentStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -472,6 +499,36 @@ export class PrismaClient<
     * ```
     */
   get cMSAuditLog(): Prisma.CMSAuditLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.experienceSection`: Exposes CRUD operations for the **ExperienceSection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ExperienceSections
+    * const experienceSections = await prisma.experienceSection.findMany()
+    * ```
+    */
+  get experienceSection(): Prisma.ExperienceSectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tourGuideSection`: Exposes CRUD operations for the **TourGuideSection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TourGuideSections
+    * const tourGuideSections = await prisma.tourGuideSection.findMany()
+    * ```
+    */
+  get tourGuideSection(): Prisma.TourGuideSectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.videoSection`: Exposes CRUD operations for the **VideoSection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VideoSections
+    * const videoSections = await prisma.videoSection.findMany()
+    * ```
+    */
+  get videoSection(): Prisma.VideoSectionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -929,7 +986,10 @@ export namespace Prisma {
     SiteSettings: 'SiteSettings',
     TeamMember: 'TeamMember',
     FAQ: 'FAQ',
-    CMSAuditLog: 'CMSAuditLog'
+    CMSAuditLog: 'CMSAuditLog',
+    ExperienceSection: 'ExperienceSection',
+    TourGuideSection: 'TourGuideSection',
+    VideoSection: 'VideoSection'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -948,7 +1008,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "fAQ" | "cMSAuditLog"
+      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2210,6 +2270,228 @@ export namespace Prisma {
           }
         }
       }
+      ExperienceSection: {
+        payload: Prisma.$ExperienceSectionPayload<ExtArgs>
+        fields: Prisma.ExperienceSectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExperienceSectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExperienceSectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>
+          }
+          findFirst: {
+            args: Prisma.ExperienceSectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExperienceSectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>
+          }
+          findMany: {
+            args: Prisma.ExperienceSectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>[]
+          }
+          create: {
+            args: Prisma.ExperienceSectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>
+          }
+          createMany: {
+            args: Prisma.ExperienceSectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExperienceSectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>[]
+          }
+          delete: {
+            args: Prisma.ExperienceSectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>
+          }
+          update: {
+            args: Prisma.ExperienceSectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExperienceSectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExperienceSectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ExperienceSectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.ExperienceSectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperienceSectionPayload>
+          }
+          aggregate: {
+            args: Prisma.ExperienceSectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExperienceSection>
+          }
+          groupBy: {
+            args: Prisma.ExperienceSectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExperienceSectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExperienceSectionCountArgs<ExtArgs>
+            result: $Utils.Optional<ExperienceSectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      TourGuideSection: {
+        payload: Prisma.$TourGuideSectionPayload<ExtArgs>
+        fields: Prisma.TourGuideSectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TourGuideSectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TourGuideSectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>
+          }
+          findFirst: {
+            args: Prisma.TourGuideSectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TourGuideSectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>
+          }
+          findMany: {
+            args: Prisma.TourGuideSectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>[]
+          }
+          create: {
+            args: Prisma.TourGuideSectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>
+          }
+          createMany: {
+            args: Prisma.TourGuideSectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TourGuideSectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>[]
+          }
+          delete: {
+            args: Prisma.TourGuideSectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>
+          }
+          update: {
+            args: Prisma.TourGuideSectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.TourGuideSectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TourGuideSectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TourGuideSectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.TourGuideSectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TourGuideSectionPayload>
+          }
+          aggregate: {
+            args: Prisma.TourGuideSectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTourGuideSection>
+          }
+          groupBy: {
+            args: Prisma.TourGuideSectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TourGuideSectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TourGuideSectionCountArgs<ExtArgs>
+            result: $Utils.Optional<TourGuideSectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      VideoSection: {
+        payload: Prisma.$VideoSectionPayload<ExtArgs>
+        fields: Prisma.VideoSectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VideoSectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VideoSectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>
+          }
+          findFirst: {
+            args: Prisma.VideoSectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VideoSectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>
+          }
+          findMany: {
+            args: Prisma.VideoSectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>[]
+          }
+          create: {
+            args: Prisma.VideoSectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>
+          }
+          createMany: {
+            args: Prisma.VideoSectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VideoSectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>[]
+          }
+          delete: {
+            args: Prisma.VideoSectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>
+          }
+          update: {
+            args: Prisma.VideoSectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.VideoSectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VideoSectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VideoSectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.VideoSectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoSectionPayload>
+          }
+          aggregate: {
+            args: Prisma.VideoSectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVideoSection>
+          }
+          groupBy: {
+            args: Prisma.VideoSectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VideoSectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VideoSectionCountArgs<ExtArgs>
+            result: $Utils.Optional<VideoSectionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2323,6 +2605,9 @@ export namespace Prisma {
     teamMember?: TeamMemberOmit
     fAQ?: FAQOmit
     cMSAuditLog?: CMSAuditLogOmit
+    experienceSection?: ExperienceSectionOmit
+    tourGuideSection?: TourGuideSectionOmit
+    videoSection?: VideoSectionOmit
   }
 
   /* Types for Logging */
@@ -22038,6 +22323,3238 @@ export namespace Prisma {
 
 
   /**
+   * Model ExperienceSection
+   */
+
+  export type AggregateExperienceSection = {
+    _count: ExperienceSectionCountAggregateOutputType | null
+    _min: ExperienceSectionMinAggregateOutputType | null
+    _max: ExperienceSectionMaxAggregateOutputType | null
+  }
+
+  export type ExperienceSectionMinAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    description: string | null
+    image: string | null
+    stat1Value: string | null
+    stat1Label: string | null
+    stat2Value: string | null
+    stat2Label: string | null
+    badgeText: string | null
+    backgroundText: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ExperienceSectionMaxAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    description: string | null
+    image: string | null
+    stat1Value: string | null
+    stat1Label: string | null
+    stat2Value: string | null
+    stat2Label: string | null
+    badgeText: string | null
+    backgroundText: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ExperienceSectionCountAggregateOutputType = {
+    id: number
+    heading: number
+    title: number
+    description: number
+    image: number
+    stat1Value: number
+    stat1Label: number
+    stat2Value: number
+    stat2Label: number
+    badgeText: number
+    backgroundText: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ExperienceSectionMinAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    description?: true
+    image?: true
+    stat1Value?: true
+    stat1Label?: true
+    stat2Value?: true
+    stat2Label?: true
+    badgeText?: true
+    backgroundText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ExperienceSectionMaxAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    description?: true
+    image?: true
+    stat1Value?: true
+    stat1Label?: true
+    stat2Value?: true
+    stat2Label?: true
+    badgeText?: true
+    backgroundText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ExperienceSectionCountAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    description?: true
+    image?: true
+    stat1Value?: true
+    stat1Label?: true
+    stat2Value?: true
+    stat2Label?: true
+    badgeText?: true
+    backgroundText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ExperienceSectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExperienceSection to aggregate.
+     */
+    where?: ExperienceSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExperienceSections to fetch.
+     */
+    orderBy?: ExperienceSectionOrderByWithRelationInput | ExperienceSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExperienceSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExperienceSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExperienceSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ExperienceSections
+    **/
+    _count?: true | ExperienceSectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExperienceSectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExperienceSectionMaxAggregateInputType
+  }
+
+  export type GetExperienceSectionAggregateType<T extends ExperienceSectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateExperienceSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExperienceSection[P]>
+      : GetScalarType<T[P], AggregateExperienceSection[P]>
+  }
+
+
+
+
+  export type ExperienceSectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExperienceSectionWhereInput
+    orderBy?: ExperienceSectionOrderByWithAggregationInput | ExperienceSectionOrderByWithAggregationInput[]
+    by: ExperienceSectionScalarFieldEnum[] | ExperienceSectionScalarFieldEnum
+    having?: ExperienceSectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExperienceSectionCountAggregateInputType | true
+    _min?: ExperienceSectionMinAggregateInputType
+    _max?: ExperienceSectionMaxAggregateInputType
+  }
+
+  export type ExperienceSectionGroupByOutputType = {
+    id: string
+    heading: string
+    title: string
+    description: string
+    image: string
+    stat1Value: string
+    stat1Label: string
+    stat2Value: string
+    stat2Label: string
+    badgeText: string
+    backgroundText: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ExperienceSectionCountAggregateOutputType | null
+    _min: ExperienceSectionMinAggregateOutputType | null
+    _max: ExperienceSectionMaxAggregateOutputType | null
+  }
+
+  type GetExperienceSectionGroupByPayload<T extends ExperienceSectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExperienceSectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExperienceSectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExperienceSectionGroupByOutputType[P]>
+            : GetScalarType<T[P], ExperienceSectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExperienceSectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    stat1Value?: boolean
+    stat1Label?: boolean
+    stat2Value?: boolean
+    stat2Label?: boolean
+    badgeText?: boolean
+    backgroundText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["experienceSection"]>
+
+  export type ExperienceSectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    stat1Value?: boolean
+    stat1Label?: boolean
+    stat2Value?: boolean
+    stat2Label?: boolean
+    badgeText?: boolean
+    backgroundText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["experienceSection"]>
+
+  export type ExperienceSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    stat1Value?: boolean
+    stat1Label?: boolean
+    stat2Value?: boolean
+    stat2Label?: boolean
+    badgeText?: boolean
+    backgroundText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["experienceSection"]>
+
+  export type ExperienceSectionSelectScalar = {
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    image?: boolean
+    stat1Value?: boolean
+    stat1Label?: boolean
+    stat2Value?: boolean
+    stat2Label?: boolean
+    badgeText?: boolean
+    backgroundText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ExperienceSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heading" | "title" | "description" | "image" | "stat1Value" | "stat1Label" | "stat2Value" | "stat2Label" | "badgeText" | "backgroundText" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["experienceSection"]>
+
+  export type $ExperienceSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExperienceSection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      heading: string
+      title: string
+      description: string
+      image: string
+      stat1Value: string
+      stat1Label: string
+      stat2Value: string
+      stat2Label: string
+      badgeText: string
+      backgroundText: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["experienceSection"]>
+    composites: {}
+  }
+
+  type ExperienceSectionGetPayload<S extends boolean | null | undefined | ExperienceSectionDefaultArgs> = $Result.GetResult<Prisma.$ExperienceSectionPayload, S>
+
+  type ExperienceSectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ExperienceSectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ExperienceSectionCountAggregateInputType | true
+    }
+
+  export interface ExperienceSectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExperienceSection'], meta: { name: 'ExperienceSection' } }
+    /**
+     * Find zero or one ExperienceSection that matches the filter.
+     * @param {ExperienceSectionFindUniqueArgs} args - Arguments to find a ExperienceSection
+     * @example
+     * // Get one ExperienceSection
+     * const experienceSection = await prisma.experienceSection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExperienceSectionFindUniqueArgs>(args: SelectSubset<T, ExperienceSectionFindUniqueArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ExperienceSection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ExperienceSectionFindUniqueOrThrowArgs} args - Arguments to find a ExperienceSection
+     * @example
+     * // Get one ExperienceSection
+     * const experienceSection = await prisma.experienceSection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExperienceSectionFindUniqueOrThrowArgs>(args: SelectSubset<T, ExperienceSectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ExperienceSection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceSectionFindFirstArgs} args - Arguments to find a ExperienceSection
+     * @example
+     * // Get one ExperienceSection
+     * const experienceSection = await prisma.experienceSection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExperienceSectionFindFirstArgs>(args?: SelectSubset<T, ExperienceSectionFindFirstArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ExperienceSection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceSectionFindFirstOrThrowArgs} args - Arguments to find a ExperienceSection
+     * @example
+     * // Get one ExperienceSection
+     * const experienceSection = await prisma.experienceSection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExperienceSectionFindFirstOrThrowArgs>(args?: SelectSubset<T, ExperienceSectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ExperienceSections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceSectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ExperienceSections
+     * const experienceSections = await prisma.experienceSection.findMany()
+     * 
+     * // Get first 10 ExperienceSections
+     * const experienceSections = await prisma.experienceSection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const experienceSectionWithIdOnly = await prisma.experienceSection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExperienceSectionFindManyArgs>(args?: SelectSubset<T, ExperienceSectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ExperienceSection.
+     * @param {ExperienceSectionCreateArgs} args - Arguments to create a ExperienceSection.
+     * @example
+     * // Create one ExperienceSection
+     * const ExperienceSection = await prisma.experienceSection.create({
+     *   data: {
+     *     // ... data to create a ExperienceSection
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExperienceSectionCreateArgs>(args: SelectSubset<T, ExperienceSectionCreateArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ExperienceSections.
+     * @param {ExperienceSectionCreateManyArgs} args - Arguments to create many ExperienceSections.
+     * @example
+     * // Create many ExperienceSections
+     * const experienceSection = await prisma.experienceSection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExperienceSectionCreateManyArgs>(args?: SelectSubset<T, ExperienceSectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ExperienceSections and returns the data saved in the database.
+     * @param {ExperienceSectionCreateManyAndReturnArgs} args - Arguments to create many ExperienceSections.
+     * @example
+     * // Create many ExperienceSections
+     * const experienceSection = await prisma.experienceSection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ExperienceSections and only return the `id`
+     * const experienceSectionWithIdOnly = await prisma.experienceSection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExperienceSectionCreateManyAndReturnArgs>(args?: SelectSubset<T, ExperienceSectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ExperienceSection.
+     * @param {ExperienceSectionDeleteArgs} args - Arguments to delete one ExperienceSection.
+     * @example
+     * // Delete one ExperienceSection
+     * const ExperienceSection = await prisma.experienceSection.delete({
+     *   where: {
+     *     // ... filter to delete one ExperienceSection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExperienceSectionDeleteArgs>(args: SelectSubset<T, ExperienceSectionDeleteArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ExperienceSection.
+     * @param {ExperienceSectionUpdateArgs} args - Arguments to update one ExperienceSection.
+     * @example
+     * // Update one ExperienceSection
+     * const experienceSection = await prisma.experienceSection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExperienceSectionUpdateArgs>(args: SelectSubset<T, ExperienceSectionUpdateArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ExperienceSections.
+     * @param {ExperienceSectionDeleteManyArgs} args - Arguments to filter ExperienceSections to delete.
+     * @example
+     * // Delete a few ExperienceSections
+     * const { count } = await prisma.experienceSection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExperienceSectionDeleteManyArgs>(args?: SelectSubset<T, ExperienceSectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExperienceSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceSectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ExperienceSections
+     * const experienceSection = await prisma.experienceSection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExperienceSectionUpdateManyArgs>(args: SelectSubset<T, ExperienceSectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExperienceSections and returns the data updated in the database.
+     * @param {ExperienceSectionUpdateManyAndReturnArgs} args - Arguments to update many ExperienceSections.
+     * @example
+     * // Update many ExperienceSections
+     * const experienceSection = await prisma.experienceSection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ExperienceSections and only return the `id`
+     * const experienceSectionWithIdOnly = await prisma.experienceSection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ExperienceSectionUpdateManyAndReturnArgs>(args: SelectSubset<T, ExperienceSectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ExperienceSection.
+     * @param {ExperienceSectionUpsertArgs} args - Arguments to update or create a ExperienceSection.
+     * @example
+     * // Update or create a ExperienceSection
+     * const experienceSection = await prisma.experienceSection.upsert({
+     *   create: {
+     *     // ... data to create a ExperienceSection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ExperienceSection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExperienceSectionUpsertArgs>(args: SelectSubset<T, ExperienceSectionUpsertArgs<ExtArgs>>): Prisma__ExperienceSectionClient<$Result.GetResult<Prisma.$ExperienceSectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ExperienceSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceSectionCountArgs} args - Arguments to filter ExperienceSections to count.
+     * @example
+     * // Count the number of ExperienceSections
+     * const count = await prisma.experienceSection.count({
+     *   where: {
+     *     // ... the filter for the ExperienceSections we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExperienceSectionCountArgs>(
+      args?: Subset<T, ExperienceSectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExperienceSectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ExperienceSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceSectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExperienceSectionAggregateArgs>(args: Subset<T, ExperienceSectionAggregateArgs>): Prisma.PrismaPromise<GetExperienceSectionAggregateType<T>>
+
+    /**
+     * Group by ExperienceSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceSectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExperienceSectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExperienceSectionGroupByArgs['orderBy'] }
+        : { orderBy?: ExperienceSectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExperienceSectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExperienceSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ExperienceSection model
+   */
+  readonly fields: ExperienceSectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ExperienceSection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExperienceSectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ExperienceSection model
+   */
+  interface ExperienceSectionFieldRefs {
+    readonly id: FieldRef<"ExperienceSection", 'String'>
+    readonly heading: FieldRef<"ExperienceSection", 'String'>
+    readonly title: FieldRef<"ExperienceSection", 'String'>
+    readonly description: FieldRef<"ExperienceSection", 'String'>
+    readonly image: FieldRef<"ExperienceSection", 'String'>
+    readonly stat1Value: FieldRef<"ExperienceSection", 'String'>
+    readonly stat1Label: FieldRef<"ExperienceSection", 'String'>
+    readonly stat2Value: FieldRef<"ExperienceSection", 'String'>
+    readonly stat2Label: FieldRef<"ExperienceSection", 'String'>
+    readonly badgeText: FieldRef<"ExperienceSection", 'String'>
+    readonly backgroundText: FieldRef<"ExperienceSection", 'String'>
+    readonly status: FieldRef<"ExperienceSection", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"ExperienceSection", 'DateTime'>
+    readonly createdAt: FieldRef<"ExperienceSection", 'DateTime'>
+    readonly updatedAt: FieldRef<"ExperienceSection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ExperienceSection findUnique
+   */
+  export type ExperienceSectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which ExperienceSection to fetch.
+     */
+    where: ExperienceSectionWhereUniqueInput
+  }
+
+  /**
+   * ExperienceSection findUniqueOrThrow
+   */
+  export type ExperienceSectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which ExperienceSection to fetch.
+     */
+    where: ExperienceSectionWhereUniqueInput
+  }
+
+  /**
+   * ExperienceSection findFirst
+   */
+  export type ExperienceSectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which ExperienceSection to fetch.
+     */
+    where?: ExperienceSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExperienceSections to fetch.
+     */
+    orderBy?: ExperienceSectionOrderByWithRelationInput | ExperienceSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExperienceSections.
+     */
+    cursor?: ExperienceSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExperienceSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExperienceSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExperienceSections.
+     */
+    distinct?: ExperienceSectionScalarFieldEnum | ExperienceSectionScalarFieldEnum[]
+  }
+
+  /**
+   * ExperienceSection findFirstOrThrow
+   */
+  export type ExperienceSectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which ExperienceSection to fetch.
+     */
+    where?: ExperienceSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExperienceSections to fetch.
+     */
+    orderBy?: ExperienceSectionOrderByWithRelationInput | ExperienceSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExperienceSections.
+     */
+    cursor?: ExperienceSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExperienceSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExperienceSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExperienceSections.
+     */
+    distinct?: ExperienceSectionScalarFieldEnum | ExperienceSectionScalarFieldEnum[]
+  }
+
+  /**
+   * ExperienceSection findMany
+   */
+  export type ExperienceSectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which ExperienceSections to fetch.
+     */
+    where?: ExperienceSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExperienceSections to fetch.
+     */
+    orderBy?: ExperienceSectionOrderByWithRelationInput | ExperienceSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ExperienceSections.
+     */
+    cursor?: ExperienceSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExperienceSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExperienceSections.
+     */
+    skip?: number
+    distinct?: ExperienceSectionScalarFieldEnum | ExperienceSectionScalarFieldEnum[]
+  }
+
+  /**
+   * ExperienceSection create
+   */
+  export type ExperienceSectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ExperienceSection.
+     */
+    data: XOR<ExperienceSectionCreateInput, ExperienceSectionUncheckedCreateInput>
+  }
+
+  /**
+   * ExperienceSection createMany
+   */
+  export type ExperienceSectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ExperienceSections.
+     */
+    data: ExperienceSectionCreateManyInput | ExperienceSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ExperienceSection createManyAndReturn
+   */
+  export type ExperienceSectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many ExperienceSections.
+     */
+    data: ExperienceSectionCreateManyInput | ExperienceSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ExperienceSection update
+   */
+  export type ExperienceSectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ExperienceSection.
+     */
+    data: XOR<ExperienceSectionUpdateInput, ExperienceSectionUncheckedUpdateInput>
+    /**
+     * Choose, which ExperienceSection to update.
+     */
+    where: ExperienceSectionWhereUniqueInput
+  }
+
+  /**
+   * ExperienceSection updateMany
+   */
+  export type ExperienceSectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ExperienceSections.
+     */
+    data: XOR<ExperienceSectionUpdateManyMutationInput, ExperienceSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which ExperienceSections to update
+     */
+    where?: ExperienceSectionWhereInput
+    /**
+     * Limit how many ExperienceSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ExperienceSection updateManyAndReturn
+   */
+  export type ExperienceSectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * The data used to update ExperienceSections.
+     */
+    data: XOR<ExperienceSectionUpdateManyMutationInput, ExperienceSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which ExperienceSections to update
+     */
+    where?: ExperienceSectionWhereInput
+    /**
+     * Limit how many ExperienceSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ExperienceSection upsert
+   */
+  export type ExperienceSectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ExperienceSection to update in case it exists.
+     */
+    where: ExperienceSectionWhereUniqueInput
+    /**
+     * In case the ExperienceSection found by the `where` argument doesn't exist, create a new ExperienceSection with this data.
+     */
+    create: XOR<ExperienceSectionCreateInput, ExperienceSectionUncheckedCreateInput>
+    /**
+     * In case the ExperienceSection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExperienceSectionUpdateInput, ExperienceSectionUncheckedUpdateInput>
+  }
+
+  /**
+   * ExperienceSection delete
+   */
+  export type ExperienceSectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+    /**
+     * Filter which ExperienceSection to delete.
+     */
+    where: ExperienceSectionWhereUniqueInput
+  }
+
+  /**
+   * ExperienceSection deleteMany
+   */
+  export type ExperienceSectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExperienceSections to delete
+     */
+    where?: ExperienceSectionWhereInput
+    /**
+     * Limit how many ExperienceSections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ExperienceSection without action
+   */
+  export type ExperienceSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExperienceSection
+     */
+    select?: ExperienceSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ExperienceSection
+     */
+    omit?: ExperienceSectionOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TourGuideSection
+   */
+
+  export type AggregateTourGuideSection = {
+    _count: TourGuideSectionCountAggregateOutputType | null
+    _min: TourGuideSectionMinAggregateOutputType | null
+    _max: TourGuideSectionMaxAggregateOutputType | null
+  }
+
+  export type TourGuideSectionMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    mapImage: string | null
+    buttonText: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TourGuideSectionMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    mapImage: string | null
+    buttonText: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TourGuideSectionCountAggregateOutputType = {
+    id: number
+    title: number
+    subtitle: number
+    description: number
+    mapImage: number
+    buttonText: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TourGuideSectionMinAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    mapImage?: true
+    buttonText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TourGuideSectionMaxAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    mapImage?: true
+    buttonText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TourGuideSectionCountAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    mapImage?: true
+    buttonText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TourGuideSectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TourGuideSection to aggregate.
+     */
+    where?: TourGuideSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TourGuideSections to fetch.
+     */
+    orderBy?: TourGuideSectionOrderByWithRelationInput | TourGuideSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TourGuideSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TourGuideSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TourGuideSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TourGuideSections
+    **/
+    _count?: true | TourGuideSectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TourGuideSectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TourGuideSectionMaxAggregateInputType
+  }
+
+  export type GetTourGuideSectionAggregateType<T extends TourGuideSectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTourGuideSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTourGuideSection[P]>
+      : GetScalarType<T[P], AggregateTourGuideSection[P]>
+  }
+
+
+
+
+  export type TourGuideSectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TourGuideSectionWhereInput
+    orderBy?: TourGuideSectionOrderByWithAggregationInput | TourGuideSectionOrderByWithAggregationInput[]
+    by: TourGuideSectionScalarFieldEnum[] | TourGuideSectionScalarFieldEnum
+    having?: TourGuideSectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TourGuideSectionCountAggregateInputType | true
+    _min?: TourGuideSectionMinAggregateInputType
+    _max?: TourGuideSectionMaxAggregateInputType
+  }
+
+  export type TourGuideSectionGroupByOutputType = {
+    id: string
+    title: string
+    subtitle: string
+    description: string
+    mapImage: string
+    buttonText: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TourGuideSectionCountAggregateOutputType | null
+    _min: TourGuideSectionMinAggregateOutputType | null
+    _max: TourGuideSectionMaxAggregateOutputType | null
+  }
+
+  type GetTourGuideSectionGroupByPayload<T extends TourGuideSectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TourGuideSectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TourGuideSectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TourGuideSectionGroupByOutputType[P]>
+            : GetScalarType<T[P], TourGuideSectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TourGuideSectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    mapImage?: boolean
+    buttonText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tourGuideSection"]>
+
+  export type TourGuideSectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    mapImage?: boolean
+    buttonText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tourGuideSection"]>
+
+  export type TourGuideSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    mapImage?: boolean
+    buttonText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["tourGuideSection"]>
+
+  export type TourGuideSectionSelectScalar = {
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    mapImage?: boolean
+    buttonText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TourGuideSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subtitle" | "description" | "mapImage" | "buttonText" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["tourGuideSection"]>
+
+  export type $TourGuideSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TourGuideSection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      subtitle: string
+      description: string
+      mapImage: string
+      buttonText: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["tourGuideSection"]>
+    composites: {}
+  }
+
+  type TourGuideSectionGetPayload<S extends boolean | null | undefined | TourGuideSectionDefaultArgs> = $Result.GetResult<Prisma.$TourGuideSectionPayload, S>
+
+  type TourGuideSectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TourGuideSectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TourGuideSectionCountAggregateInputType | true
+    }
+
+  export interface TourGuideSectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TourGuideSection'], meta: { name: 'TourGuideSection' } }
+    /**
+     * Find zero or one TourGuideSection that matches the filter.
+     * @param {TourGuideSectionFindUniqueArgs} args - Arguments to find a TourGuideSection
+     * @example
+     * // Get one TourGuideSection
+     * const tourGuideSection = await prisma.tourGuideSection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TourGuideSectionFindUniqueArgs>(args: SelectSubset<T, TourGuideSectionFindUniqueArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TourGuideSection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TourGuideSectionFindUniqueOrThrowArgs} args - Arguments to find a TourGuideSection
+     * @example
+     * // Get one TourGuideSection
+     * const tourGuideSection = await prisma.tourGuideSection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TourGuideSectionFindUniqueOrThrowArgs>(args: SelectSubset<T, TourGuideSectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TourGuideSection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TourGuideSectionFindFirstArgs} args - Arguments to find a TourGuideSection
+     * @example
+     * // Get one TourGuideSection
+     * const tourGuideSection = await prisma.tourGuideSection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TourGuideSectionFindFirstArgs>(args?: SelectSubset<T, TourGuideSectionFindFirstArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TourGuideSection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TourGuideSectionFindFirstOrThrowArgs} args - Arguments to find a TourGuideSection
+     * @example
+     * // Get one TourGuideSection
+     * const tourGuideSection = await prisma.tourGuideSection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TourGuideSectionFindFirstOrThrowArgs>(args?: SelectSubset<T, TourGuideSectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TourGuideSections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TourGuideSectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TourGuideSections
+     * const tourGuideSections = await prisma.tourGuideSection.findMany()
+     * 
+     * // Get first 10 TourGuideSections
+     * const tourGuideSections = await prisma.tourGuideSection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tourGuideSectionWithIdOnly = await prisma.tourGuideSection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TourGuideSectionFindManyArgs>(args?: SelectSubset<T, TourGuideSectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TourGuideSection.
+     * @param {TourGuideSectionCreateArgs} args - Arguments to create a TourGuideSection.
+     * @example
+     * // Create one TourGuideSection
+     * const TourGuideSection = await prisma.tourGuideSection.create({
+     *   data: {
+     *     // ... data to create a TourGuideSection
+     *   }
+     * })
+     * 
+     */
+    create<T extends TourGuideSectionCreateArgs>(args: SelectSubset<T, TourGuideSectionCreateArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TourGuideSections.
+     * @param {TourGuideSectionCreateManyArgs} args - Arguments to create many TourGuideSections.
+     * @example
+     * // Create many TourGuideSections
+     * const tourGuideSection = await prisma.tourGuideSection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TourGuideSectionCreateManyArgs>(args?: SelectSubset<T, TourGuideSectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TourGuideSections and returns the data saved in the database.
+     * @param {TourGuideSectionCreateManyAndReturnArgs} args - Arguments to create many TourGuideSections.
+     * @example
+     * // Create many TourGuideSections
+     * const tourGuideSection = await prisma.tourGuideSection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TourGuideSections and only return the `id`
+     * const tourGuideSectionWithIdOnly = await prisma.tourGuideSection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TourGuideSectionCreateManyAndReturnArgs>(args?: SelectSubset<T, TourGuideSectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TourGuideSection.
+     * @param {TourGuideSectionDeleteArgs} args - Arguments to delete one TourGuideSection.
+     * @example
+     * // Delete one TourGuideSection
+     * const TourGuideSection = await prisma.tourGuideSection.delete({
+     *   where: {
+     *     // ... filter to delete one TourGuideSection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TourGuideSectionDeleteArgs>(args: SelectSubset<T, TourGuideSectionDeleteArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TourGuideSection.
+     * @param {TourGuideSectionUpdateArgs} args - Arguments to update one TourGuideSection.
+     * @example
+     * // Update one TourGuideSection
+     * const tourGuideSection = await prisma.tourGuideSection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TourGuideSectionUpdateArgs>(args: SelectSubset<T, TourGuideSectionUpdateArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TourGuideSections.
+     * @param {TourGuideSectionDeleteManyArgs} args - Arguments to filter TourGuideSections to delete.
+     * @example
+     * // Delete a few TourGuideSections
+     * const { count } = await prisma.tourGuideSection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TourGuideSectionDeleteManyArgs>(args?: SelectSubset<T, TourGuideSectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TourGuideSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TourGuideSectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TourGuideSections
+     * const tourGuideSection = await prisma.tourGuideSection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TourGuideSectionUpdateManyArgs>(args: SelectSubset<T, TourGuideSectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TourGuideSections and returns the data updated in the database.
+     * @param {TourGuideSectionUpdateManyAndReturnArgs} args - Arguments to update many TourGuideSections.
+     * @example
+     * // Update many TourGuideSections
+     * const tourGuideSection = await prisma.tourGuideSection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TourGuideSections and only return the `id`
+     * const tourGuideSectionWithIdOnly = await prisma.tourGuideSection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TourGuideSectionUpdateManyAndReturnArgs>(args: SelectSubset<T, TourGuideSectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TourGuideSection.
+     * @param {TourGuideSectionUpsertArgs} args - Arguments to update or create a TourGuideSection.
+     * @example
+     * // Update or create a TourGuideSection
+     * const tourGuideSection = await prisma.tourGuideSection.upsert({
+     *   create: {
+     *     // ... data to create a TourGuideSection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TourGuideSection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TourGuideSectionUpsertArgs>(args: SelectSubset<T, TourGuideSectionUpsertArgs<ExtArgs>>): Prisma__TourGuideSectionClient<$Result.GetResult<Prisma.$TourGuideSectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TourGuideSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TourGuideSectionCountArgs} args - Arguments to filter TourGuideSections to count.
+     * @example
+     * // Count the number of TourGuideSections
+     * const count = await prisma.tourGuideSection.count({
+     *   where: {
+     *     // ... the filter for the TourGuideSections we want to count
+     *   }
+     * })
+    **/
+    count<T extends TourGuideSectionCountArgs>(
+      args?: Subset<T, TourGuideSectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TourGuideSectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TourGuideSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TourGuideSectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TourGuideSectionAggregateArgs>(args: Subset<T, TourGuideSectionAggregateArgs>): Prisma.PrismaPromise<GetTourGuideSectionAggregateType<T>>
+
+    /**
+     * Group by TourGuideSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TourGuideSectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TourGuideSectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TourGuideSectionGroupByArgs['orderBy'] }
+        : { orderBy?: TourGuideSectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TourGuideSectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTourGuideSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TourGuideSection model
+   */
+  readonly fields: TourGuideSectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TourGuideSection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TourGuideSectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TourGuideSection model
+   */
+  interface TourGuideSectionFieldRefs {
+    readonly id: FieldRef<"TourGuideSection", 'String'>
+    readonly title: FieldRef<"TourGuideSection", 'String'>
+    readonly subtitle: FieldRef<"TourGuideSection", 'String'>
+    readonly description: FieldRef<"TourGuideSection", 'String'>
+    readonly mapImage: FieldRef<"TourGuideSection", 'String'>
+    readonly buttonText: FieldRef<"TourGuideSection", 'String'>
+    readonly status: FieldRef<"TourGuideSection", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"TourGuideSection", 'DateTime'>
+    readonly createdAt: FieldRef<"TourGuideSection", 'DateTime'>
+    readonly updatedAt: FieldRef<"TourGuideSection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TourGuideSection findUnique
+   */
+  export type TourGuideSectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TourGuideSection to fetch.
+     */
+    where: TourGuideSectionWhereUniqueInput
+  }
+
+  /**
+   * TourGuideSection findUniqueOrThrow
+   */
+  export type TourGuideSectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TourGuideSection to fetch.
+     */
+    where: TourGuideSectionWhereUniqueInput
+  }
+
+  /**
+   * TourGuideSection findFirst
+   */
+  export type TourGuideSectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TourGuideSection to fetch.
+     */
+    where?: TourGuideSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TourGuideSections to fetch.
+     */
+    orderBy?: TourGuideSectionOrderByWithRelationInput | TourGuideSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TourGuideSections.
+     */
+    cursor?: TourGuideSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TourGuideSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TourGuideSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TourGuideSections.
+     */
+    distinct?: TourGuideSectionScalarFieldEnum | TourGuideSectionScalarFieldEnum[]
+  }
+
+  /**
+   * TourGuideSection findFirstOrThrow
+   */
+  export type TourGuideSectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TourGuideSection to fetch.
+     */
+    where?: TourGuideSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TourGuideSections to fetch.
+     */
+    orderBy?: TourGuideSectionOrderByWithRelationInput | TourGuideSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TourGuideSections.
+     */
+    cursor?: TourGuideSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TourGuideSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TourGuideSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TourGuideSections.
+     */
+    distinct?: TourGuideSectionScalarFieldEnum | TourGuideSectionScalarFieldEnum[]
+  }
+
+  /**
+   * TourGuideSection findMany
+   */
+  export type TourGuideSectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TourGuideSections to fetch.
+     */
+    where?: TourGuideSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TourGuideSections to fetch.
+     */
+    orderBy?: TourGuideSectionOrderByWithRelationInput | TourGuideSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TourGuideSections.
+     */
+    cursor?: TourGuideSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TourGuideSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TourGuideSections.
+     */
+    skip?: number
+    distinct?: TourGuideSectionScalarFieldEnum | TourGuideSectionScalarFieldEnum[]
+  }
+
+  /**
+   * TourGuideSection create
+   */
+  export type TourGuideSectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TourGuideSection.
+     */
+    data: XOR<TourGuideSectionCreateInput, TourGuideSectionUncheckedCreateInput>
+  }
+
+  /**
+   * TourGuideSection createMany
+   */
+  export type TourGuideSectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TourGuideSections.
+     */
+    data: TourGuideSectionCreateManyInput | TourGuideSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TourGuideSection createManyAndReturn
+   */
+  export type TourGuideSectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many TourGuideSections.
+     */
+    data: TourGuideSectionCreateManyInput | TourGuideSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TourGuideSection update
+   */
+  export type TourGuideSectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TourGuideSection.
+     */
+    data: XOR<TourGuideSectionUpdateInput, TourGuideSectionUncheckedUpdateInput>
+    /**
+     * Choose, which TourGuideSection to update.
+     */
+    where: TourGuideSectionWhereUniqueInput
+  }
+
+  /**
+   * TourGuideSection updateMany
+   */
+  export type TourGuideSectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TourGuideSections.
+     */
+    data: XOR<TourGuideSectionUpdateManyMutationInput, TourGuideSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which TourGuideSections to update
+     */
+    where?: TourGuideSectionWhereInput
+    /**
+     * Limit how many TourGuideSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TourGuideSection updateManyAndReturn
+   */
+  export type TourGuideSectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * The data used to update TourGuideSections.
+     */
+    data: XOR<TourGuideSectionUpdateManyMutationInput, TourGuideSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which TourGuideSections to update
+     */
+    where?: TourGuideSectionWhereInput
+    /**
+     * Limit how many TourGuideSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TourGuideSection upsert
+   */
+  export type TourGuideSectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TourGuideSection to update in case it exists.
+     */
+    where: TourGuideSectionWhereUniqueInput
+    /**
+     * In case the TourGuideSection found by the `where` argument doesn't exist, create a new TourGuideSection with this data.
+     */
+    create: XOR<TourGuideSectionCreateInput, TourGuideSectionUncheckedCreateInput>
+    /**
+     * In case the TourGuideSection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TourGuideSectionUpdateInput, TourGuideSectionUncheckedUpdateInput>
+  }
+
+  /**
+   * TourGuideSection delete
+   */
+  export type TourGuideSectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+    /**
+     * Filter which TourGuideSection to delete.
+     */
+    where: TourGuideSectionWhereUniqueInput
+  }
+
+  /**
+   * TourGuideSection deleteMany
+   */
+  export type TourGuideSectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TourGuideSections to delete
+     */
+    where?: TourGuideSectionWhereInput
+    /**
+     * Limit how many TourGuideSections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TourGuideSection without action
+   */
+  export type TourGuideSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TourGuideSection
+     */
+    select?: TourGuideSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TourGuideSection
+     */
+    omit?: TourGuideSectionOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model VideoSection
+   */
+
+  export type AggregateVideoSection = {
+    _count: VideoSectionCountAggregateOutputType | null
+    _min: VideoSectionMinAggregateOutputType | null
+    _max: VideoSectionMaxAggregateOutputType | null
+  }
+
+  export type VideoSectionMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    videoUrl: string | null
+    thumbnailUrl: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type VideoSectionMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    videoUrl: string | null
+    thumbnailUrl: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type VideoSectionCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    videoUrl: number
+    thumbnailUrl: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type VideoSectionMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    videoUrl?: true
+    thumbnailUrl?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type VideoSectionMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    videoUrl?: true
+    thumbnailUrl?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type VideoSectionCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    videoUrl?: true
+    thumbnailUrl?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type VideoSectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VideoSection to aggregate.
+     */
+    where?: VideoSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoSections to fetch.
+     */
+    orderBy?: VideoSectionOrderByWithRelationInput | VideoSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VideoSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VideoSections
+    **/
+    _count?: true | VideoSectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VideoSectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VideoSectionMaxAggregateInputType
+  }
+
+  export type GetVideoSectionAggregateType<T extends VideoSectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateVideoSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVideoSection[P]>
+      : GetScalarType<T[P], AggregateVideoSection[P]>
+  }
+
+
+
+
+  export type VideoSectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VideoSectionWhereInput
+    orderBy?: VideoSectionOrderByWithAggregationInput | VideoSectionOrderByWithAggregationInput[]
+    by: VideoSectionScalarFieldEnum[] | VideoSectionScalarFieldEnum
+    having?: VideoSectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VideoSectionCountAggregateInputType | true
+    _min?: VideoSectionMinAggregateInputType
+    _max?: VideoSectionMaxAggregateInputType
+  }
+
+  export type VideoSectionGroupByOutputType = {
+    id: string
+    title: string
+    description: string
+    videoUrl: string
+    thumbnailUrl: string | null
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: VideoSectionCountAggregateOutputType | null
+    _min: VideoSectionMinAggregateOutputType | null
+    _max: VideoSectionMaxAggregateOutputType | null
+  }
+
+  type GetVideoSectionGroupByPayload<T extends VideoSectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VideoSectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VideoSectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VideoSectionGroupByOutputType[P]>
+            : GetScalarType<T[P], VideoSectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VideoSectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    videoUrl?: boolean
+    thumbnailUrl?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["videoSection"]>
+
+  export type VideoSectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    videoUrl?: boolean
+    thumbnailUrl?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["videoSection"]>
+
+  export type VideoSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    videoUrl?: boolean
+    thumbnailUrl?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["videoSection"]>
+
+  export type VideoSectionSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    videoUrl?: boolean
+    thumbnailUrl?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type VideoSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "videoUrl" | "thumbnailUrl" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["videoSection"]>
+
+  export type $VideoSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VideoSection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string
+      videoUrl: string
+      thumbnailUrl: string | null
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["videoSection"]>
+    composites: {}
+  }
+
+  type VideoSectionGetPayload<S extends boolean | null | undefined | VideoSectionDefaultArgs> = $Result.GetResult<Prisma.$VideoSectionPayload, S>
+
+  type VideoSectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VideoSectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VideoSectionCountAggregateInputType | true
+    }
+
+  export interface VideoSectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VideoSection'], meta: { name: 'VideoSection' } }
+    /**
+     * Find zero or one VideoSection that matches the filter.
+     * @param {VideoSectionFindUniqueArgs} args - Arguments to find a VideoSection
+     * @example
+     * // Get one VideoSection
+     * const videoSection = await prisma.videoSection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VideoSectionFindUniqueArgs>(args: SelectSubset<T, VideoSectionFindUniqueArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VideoSection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VideoSectionFindUniqueOrThrowArgs} args - Arguments to find a VideoSection
+     * @example
+     * // Get one VideoSection
+     * const videoSection = await prisma.videoSection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VideoSectionFindUniqueOrThrowArgs>(args: SelectSubset<T, VideoSectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VideoSection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoSectionFindFirstArgs} args - Arguments to find a VideoSection
+     * @example
+     * // Get one VideoSection
+     * const videoSection = await prisma.videoSection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VideoSectionFindFirstArgs>(args?: SelectSubset<T, VideoSectionFindFirstArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VideoSection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoSectionFindFirstOrThrowArgs} args - Arguments to find a VideoSection
+     * @example
+     * // Get one VideoSection
+     * const videoSection = await prisma.videoSection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VideoSectionFindFirstOrThrowArgs>(args?: SelectSubset<T, VideoSectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VideoSections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoSectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VideoSections
+     * const videoSections = await prisma.videoSection.findMany()
+     * 
+     * // Get first 10 VideoSections
+     * const videoSections = await prisma.videoSection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const videoSectionWithIdOnly = await prisma.videoSection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VideoSectionFindManyArgs>(args?: SelectSubset<T, VideoSectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VideoSection.
+     * @param {VideoSectionCreateArgs} args - Arguments to create a VideoSection.
+     * @example
+     * // Create one VideoSection
+     * const VideoSection = await prisma.videoSection.create({
+     *   data: {
+     *     // ... data to create a VideoSection
+     *   }
+     * })
+     * 
+     */
+    create<T extends VideoSectionCreateArgs>(args: SelectSubset<T, VideoSectionCreateArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VideoSections.
+     * @param {VideoSectionCreateManyArgs} args - Arguments to create many VideoSections.
+     * @example
+     * // Create many VideoSections
+     * const videoSection = await prisma.videoSection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VideoSectionCreateManyArgs>(args?: SelectSubset<T, VideoSectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VideoSections and returns the data saved in the database.
+     * @param {VideoSectionCreateManyAndReturnArgs} args - Arguments to create many VideoSections.
+     * @example
+     * // Create many VideoSections
+     * const videoSection = await prisma.videoSection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VideoSections and only return the `id`
+     * const videoSectionWithIdOnly = await prisma.videoSection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VideoSectionCreateManyAndReturnArgs>(args?: SelectSubset<T, VideoSectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VideoSection.
+     * @param {VideoSectionDeleteArgs} args - Arguments to delete one VideoSection.
+     * @example
+     * // Delete one VideoSection
+     * const VideoSection = await prisma.videoSection.delete({
+     *   where: {
+     *     // ... filter to delete one VideoSection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VideoSectionDeleteArgs>(args: SelectSubset<T, VideoSectionDeleteArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VideoSection.
+     * @param {VideoSectionUpdateArgs} args - Arguments to update one VideoSection.
+     * @example
+     * // Update one VideoSection
+     * const videoSection = await prisma.videoSection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VideoSectionUpdateArgs>(args: SelectSubset<T, VideoSectionUpdateArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VideoSections.
+     * @param {VideoSectionDeleteManyArgs} args - Arguments to filter VideoSections to delete.
+     * @example
+     * // Delete a few VideoSections
+     * const { count } = await prisma.videoSection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VideoSectionDeleteManyArgs>(args?: SelectSubset<T, VideoSectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VideoSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoSectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VideoSections
+     * const videoSection = await prisma.videoSection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VideoSectionUpdateManyArgs>(args: SelectSubset<T, VideoSectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VideoSections and returns the data updated in the database.
+     * @param {VideoSectionUpdateManyAndReturnArgs} args - Arguments to update many VideoSections.
+     * @example
+     * // Update many VideoSections
+     * const videoSection = await prisma.videoSection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VideoSections and only return the `id`
+     * const videoSectionWithIdOnly = await prisma.videoSection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VideoSectionUpdateManyAndReturnArgs>(args: SelectSubset<T, VideoSectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VideoSection.
+     * @param {VideoSectionUpsertArgs} args - Arguments to update or create a VideoSection.
+     * @example
+     * // Update or create a VideoSection
+     * const videoSection = await prisma.videoSection.upsert({
+     *   create: {
+     *     // ... data to create a VideoSection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VideoSection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VideoSectionUpsertArgs>(args: SelectSubset<T, VideoSectionUpsertArgs<ExtArgs>>): Prisma__VideoSectionClient<$Result.GetResult<Prisma.$VideoSectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VideoSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoSectionCountArgs} args - Arguments to filter VideoSections to count.
+     * @example
+     * // Count the number of VideoSections
+     * const count = await prisma.videoSection.count({
+     *   where: {
+     *     // ... the filter for the VideoSections we want to count
+     *   }
+     * })
+    **/
+    count<T extends VideoSectionCountArgs>(
+      args?: Subset<T, VideoSectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VideoSectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VideoSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoSectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VideoSectionAggregateArgs>(args: Subset<T, VideoSectionAggregateArgs>): Prisma.PrismaPromise<GetVideoSectionAggregateType<T>>
+
+    /**
+     * Group by VideoSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoSectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VideoSectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VideoSectionGroupByArgs['orderBy'] }
+        : { orderBy?: VideoSectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VideoSectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVideoSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VideoSection model
+   */
+  readonly fields: VideoSectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VideoSection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VideoSectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VideoSection model
+   */
+  interface VideoSectionFieldRefs {
+    readonly id: FieldRef<"VideoSection", 'String'>
+    readonly title: FieldRef<"VideoSection", 'String'>
+    readonly description: FieldRef<"VideoSection", 'String'>
+    readonly videoUrl: FieldRef<"VideoSection", 'String'>
+    readonly thumbnailUrl: FieldRef<"VideoSection", 'String'>
+    readonly status: FieldRef<"VideoSection", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"VideoSection", 'DateTime'>
+    readonly createdAt: FieldRef<"VideoSection", 'DateTime'>
+    readonly updatedAt: FieldRef<"VideoSection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VideoSection findUnique
+   */
+  export type VideoSectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoSection to fetch.
+     */
+    where: VideoSectionWhereUniqueInput
+  }
+
+  /**
+   * VideoSection findUniqueOrThrow
+   */
+  export type VideoSectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoSection to fetch.
+     */
+    where: VideoSectionWhereUniqueInput
+  }
+
+  /**
+   * VideoSection findFirst
+   */
+  export type VideoSectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoSection to fetch.
+     */
+    where?: VideoSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoSections to fetch.
+     */
+    orderBy?: VideoSectionOrderByWithRelationInput | VideoSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VideoSections.
+     */
+    cursor?: VideoSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VideoSections.
+     */
+    distinct?: VideoSectionScalarFieldEnum | VideoSectionScalarFieldEnum[]
+  }
+
+  /**
+   * VideoSection findFirstOrThrow
+   */
+  export type VideoSectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoSection to fetch.
+     */
+    where?: VideoSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoSections to fetch.
+     */
+    orderBy?: VideoSectionOrderByWithRelationInput | VideoSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VideoSections.
+     */
+    cursor?: VideoSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VideoSections.
+     */
+    distinct?: VideoSectionScalarFieldEnum | VideoSectionScalarFieldEnum[]
+  }
+
+  /**
+   * VideoSection findMany
+   */
+  export type VideoSectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoSections to fetch.
+     */
+    where?: VideoSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoSections to fetch.
+     */
+    orderBy?: VideoSectionOrderByWithRelationInput | VideoSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VideoSections.
+     */
+    cursor?: VideoSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoSections.
+     */
+    skip?: number
+    distinct?: VideoSectionScalarFieldEnum | VideoSectionScalarFieldEnum[]
+  }
+
+  /**
+   * VideoSection create
+   */
+  export type VideoSectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VideoSection.
+     */
+    data: XOR<VideoSectionCreateInput, VideoSectionUncheckedCreateInput>
+  }
+
+  /**
+   * VideoSection createMany
+   */
+  export type VideoSectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VideoSections.
+     */
+    data: VideoSectionCreateManyInput | VideoSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VideoSection createManyAndReturn
+   */
+  export type VideoSectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many VideoSections.
+     */
+    data: VideoSectionCreateManyInput | VideoSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VideoSection update
+   */
+  export type VideoSectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VideoSection.
+     */
+    data: XOR<VideoSectionUpdateInput, VideoSectionUncheckedUpdateInput>
+    /**
+     * Choose, which VideoSection to update.
+     */
+    where: VideoSectionWhereUniqueInput
+  }
+
+  /**
+   * VideoSection updateMany
+   */
+  export type VideoSectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VideoSections.
+     */
+    data: XOR<VideoSectionUpdateManyMutationInput, VideoSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which VideoSections to update
+     */
+    where?: VideoSectionWhereInput
+    /**
+     * Limit how many VideoSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VideoSection updateManyAndReturn
+   */
+  export type VideoSectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * The data used to update VideoSections.
+     */
+    data: XOR<VideoSectionUpdateManyMutationInput, VideoSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which VideoSections to update
+     */
+    where?: VideoSectionWhereInput
+    /**
+     * Limit how many VideoSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VideoSection upsert
+   */
+  export type VideoSectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VideoSection to update in case it exists.
+     */
+    where: VideoSectionWhereUniqueInput
+    /**
+     * In case the VideoSection found by the `where` argument doesn't exist, create a new VideoSection with this data.
+     */
+    create: XOR<VideoSectionCreateInput, VideoSectionUncheckedCreateInput>
+    /**
+     * In case the VideoSection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VideoSectionUpdateInput, VideoSectionUncheckedUpdateInput>
+  }
+
+  /**
+   * VideoSection delete
+   */
+  export type VideoSectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+    /**
+     * Filter which VideoSection to delete.
+     */
+    where: VideoSectionWhereUniqueInput
+  }
+
+  /**
+   * VideoSection deleteMany
+   */
+  export type VideoSectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VideoSections to delete
+     */
+    where?: VideoSectionWhereInput
+    /**
+     * Limit how many VideoSections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VideoSection without action
+   */
+  export type VideoSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoSection
+     */
+    select?: VideoSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoSection
+     */
+    omit?: VideoSectionOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -22345,6 +25862,58 @@ export namespace Prisma {
   export type CMSAuditLogScalarFieldEnum = (typeof CMSAuditLogScalarFieldEnum)[keyof typeof CMSAuditLogScalarFieldEnum]
 
 
+  export const ExperienceSectionScalarFieldEnum: {
+    id: 'id',
+    heading: 'heading',
+    title: 'title',
+    description: 'description',
+    image: 'image',
+    stat1Value: 'stat1Value',
+    stat1Label: 'stat1Label',
+    stat2Value: 'stat2Value',
+    stat2Label: 'stat2Label',
+    badgeText: 'badgeText',
+    backgroundText: 'backgroundText',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ExperienceSectionScalarFieldEnum = (typeof ExperienceSectionScalarFieldEnum)[keyof typeof ExperienceSectionScalarFieldEnum]
+
+
+  export const TourGuideSectionScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    mapImage: 'mapImage',
+    buttonText: 'buttonText',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TourGuideSectionScalarFieldEnum = (typeof TourGuideSectionScalarFieldEnum)[keyof typeof TourGuideSectionScalarFieldEnum]
+
+
+  export const VideoSectionScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    videoUrl: 'videoUrl',
+    thumbnailUrl: 'thumbnailUrl',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type VideoSectionScalarFieldEnum = (typeof VideoSectionScalarFieldEnum)[keyof typeof VideoSectionScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -22556,6 +26125,20 @@ export namespace Prisma {
    * Reference to a field of type 'CustomPackageStatus[]'
    */
   export type ListEnumCustomPackageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CustomPackageStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ContentStatus'
+   */
+  export type EnumContentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContentStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ContentStatus[]'
+   */
+  export type ListEnumContentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContentStatus[]'>
     
 
 
@@ -24065,6 +27648,257 @@ export namespace Prisma {
     ipAddress?: StringNullableWithAggregatesFilter<"CMSAuditLog"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"CMSAuditLog"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CMSAuditLog"> | Date | string
+  }
+
+  export type ExperienceSectionWhereInput = {
+    AND?: ExperienceSectionWhereInput | ExperienceSectionWhereInput[]
+    OR?: ExperienceSectionWhereInput[]
+    NOT?: ExperienceSectionWhereInput | ExperienceSectionWhereInput[]
+    id?: StringFilter<"ExperienceSection"> | string
+    heading?: StringFilter<"ExperienceSection"> | string
+    title?: StringFilter<"ExperienceSection"> | string
+    description?: StringFilter<"ExperienceSection"> | string
+    image?: StringFilter<"ExperienceSection"> | string
+    stat1Value?: StringFilter<"ExperienceSection"> | string
+    stat1Label?: StringFilter<"ExperienceSection"> | string
+    stat2Value?: StringFilter<"ExperienceSection"> | string
+    stat2Label?: StringFilter<"ExperienceSection"> | string
+    badgeText?: StringFilter<"ExperienceSection"> | string
+    backgroundText?: StringFilter<"ExperienceSection"> | string
+    status?: EnumContentStatusFilter<"ExperienceSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"ExperienceSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"ExperienceSection"> | Date | string
+    updatedAt?: DateTimeFilter<"ExperienceSection"> | Date | string
+  }
+
+  export type ExperienceSectionOrderByWithRelationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    stat1Value?: SortOrder
+    stat1Label?: SortOrder
+    stat2Value?: SortOrder
+    stat2Label?: SortOrder
+    badgeText?: SortOrder
+    backgroundText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ExperienceSectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ExperienceSectionWhereInput | ExperienceSectionWhereInput[]
+    OR?: ExperienceSectionWhereInput[]
+    NOT?: ExperienceSectionWhereInput | ExperienceSectionWhereInput[]
+    heading?: StringFilter<"ExperienceSection"> | string
+    title?: StringFilter<"ExperienceSection"> | string
+    description?: StringFilter<"ExperienceSection"> | string
+    image?: StringFilter<"ExperienceSection"> | string
+    stat1Value?: StringFilter<"ExperienceSection"> | string
+    stat1Label?: StringFilter<"ExperienceSection"> | string
+    stat2Value?: StringFilter<"ExperienceSection"> | string
+    stat2Label?: StringFilter<"ExperienceSection"> | string
+    badgeText?: StringFilter<"ExperienceSection"> | string
+    backgroundText?: StringFilter<"ExperienceSection"> | string
+    status?: EnumContentStatusFilter<"ExperienceSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"ExperienceSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"ExperienceSection"> | Date | string
+    updatedAt?: DateTimeFilter<"ExperienceSection"> | Date | string
+  }, "id">
+
+  export type ExperienceSectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    stat1Value?: SortOrder
+    stat1Label?: SortOrder
+    stat2Value?: SortOrder
+    stat2Label?: SortOrder
+    badgeText?: SortOrder
+    backgroundText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ExperienceSectionCountOrderByAggregateInput
+    _max?: ExperienceSectionMaxOrderByAggregateInput
+    _min?: ExperienceSectionMinOrderByAggregateInput
+  }
+
+  export type ExperienceSectionScalarWhereWithAggregatesInput = {
+    AND?: ExperienceSectionScalarWhereWithAggregatesInput | ExperienceSectionScalarWhereWithAggregatesInput[]
+    OR?: ExperienceSectionScalarWhereWithAggregatesInput[]
+    NOT?: ExperienceSectionScalarWhereWithAggregatesInput | ExperienceSectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    heading?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    title?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    description?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    image?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    stat1Value?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    stat1Label?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    stat2Value?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    stat2Label?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    badgeText?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    backgroundText?: StringWithAggregatesFilter<"ExperienceSection"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"ExperienceSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"ExperienceSection"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ExperienceSection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ExperienceSection"> | Date | string
+  }
+
+  export type TourGuideSectionWhereInput = {
+    AND?: TourGuideSectionWhereInput | TourGuideSectionWhereInput[]
+    OR?: TourGuideSectionWhereInput[]
+    NOT?: TourGuideSectionWhereInput | TourGuideSectionWhereInput[]
+    id?: StringFilter<"TourGuideSection"> | string
+    title?: StringFilter<"TourGuideSection"> | string
+    subtitle?: StringFilter<"TourGuideSection"> | string
+    description?: StringFilter<"TourGuideSection"> | string
+    mapImage?: StringFilter<"TourGuideSection"> | string
+    buttonText?: StringFilter<"TourGuideSection"> | string
+    status?: EnumContentStatusFilter<"TourGuideSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"TourGuideSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"TourGuideSection"> | Date | string
+    updatedAt?: DateTimeFilter<"TourGuideSection"> | Date | string
+  }
+
+  export type TourGuideSectionOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    mapImage?: SortOrder
+    buttonText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TourGuideSectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TourGuideSectionWhereInput | TourGuideSectionWhereInput[]
+    OR?: TourGuideSectionWhereInput[]
+    NOT?: TourGuideSectionWhereInput | TourGuideSectionWhereInput[]
+    title?: StringFilter<"TourGuideSection"> | string
+    subtitle?: StringFilter<"TourGuideSection"> | string
+    description?: StringFilter<"TourGuideSection"> | string
+    mapImage?: StringFilter<"TourGuideSection"> | string
+    buttonText?: StringFilter<"TourGuideSection"> | string
+    status?: EnumContentStatusFilter<"TourGuideSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"TourGuideSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"TourGuideSection"> | Date | string
+    updatedAt?: DateTimeFilter<"TourGuideSection"> | Date | string
+  }, "id">
+
+  export type TourGuideSectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    mapImage?: SortOrder
+    buttonText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TourGuideSectionCountOrderByAggregateInput
+    _max?: TourGuideSectionMaxOrderByAggregateInput
+    _min?: TourGuideSectionMinOrderByAggregateInput
+  }
+
+  export type TourGuideSectionScalarWhereWithAggregatesInput = {
+    AND?: TourGuideSectionScalarWhereWithAggregatesInput | TourGuideSectionScalarWhereWithAggregatesInput[]
+    OR?: TourGuideSectionScalarWhereWithAggregatesInput[]
+    NOT?: TourGuideSectionScalarWhereWithAggregatesInput | TourGuideSectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TourGuideSection"> | string
+    title?: StringWithAggregatesFilter<"TourGuideSection"> | string
+    subtitle?: StringWithAggregatesFilter<"TourGuideSection"> | string
+    description?: StringWithAggregatesFilter<"TourGuideSection"> | string
+    mapImage?: StringWithAggregatesFilter<"TourGuideSection"> | string
+    buttonText?: StringWithAggregatesFilter<"TourGuideSection"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"TourGuideSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"TourGuideSection"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TourGuideSection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TourGuideSection"> | Date | string
+  }
+
+  export type VideoSectionWhereInput = {
+    AND?: VideoSectionWhereInput | VideoSectionWhereInput[]
+    OR?: VideoSectionWhereInput[]
+    NOT?: VideoSectionWhereInput | VideoSectionWhereInput[]
+    id?: StringFilter<"VideoSection"> | string
+    title?: StringFilter<"VideoSection"> | string
+    description?: StringFilter<"VideoSection"> | string
+    videoUrl?: StringFilter<"VideoSection"> | string
+    thumbnailUrl?: StringNullableFilter<"VideoSection"> | string | null
+    status?: EnumContentStatusFilter<"VideoSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"VideoSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"VideoSection"> | Date | string
+    updatedAt?: DateTimeFilter<"VideoSection"> | Date | string
+  }
+
+  export type VideoSectionOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    videoUrl?: SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoSectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: VideoSectionWhereInput | VideoSectionWhereInput[]
+    OR?: VideoSectionWhereInput[]
+    NOT?: VideoSectionWhereInput | VideoSectionWhereInput[]
+    title?: StringFilter<"VideoSection"> | string
+    description?: StringFilter<"VideoSection"> | string
+    videoUrl?: StringFilter<"VideoSection"> | string
+    thumbnailUrl?: StringNullableFilter<"VideoSection"> | string | null
+    status?: EnumContentStatusFilter<"VideoSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"VideoSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"VideoSection"> | Date | string
+    updatedAt?: DateTimeFilter<"VideoSection"> | Date | string
+  }, "id">
+
+  export type VideoSectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    videoUrl?: SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: VideoSectionCountOrderByAggregateInput
+    _max?: VideoSectionMaxOrderByAggregateInput
+    _min?: VideoSectionMinOrderByAggregateInput
+  }
+
+  export type VideoSectionScalarWhereWithAggregatesInput = {
+    AND?: VideoSectionScalarWhereWithAggregatesInput | VideoSectionScalarWhereWithAggregatesInput[]
+    OR?: VideoSectionScalarWhereWithAggregatesInput[]
+    NOT?: VideoSectionScalarWhereWithAggregatesInput | VideoSectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VideoSection"> | string
+    title?: StringWithAggregatesFilter<"VideoSection"> | string
+    description?: StringWithAggregatesFilter<"VideoSection"> | string
+    videoUrl?: StringWithAggregatesFilter<"VideoSection"> | string
+    thumbnailUrl?: StringNullableWithAggregatesFilter<"VideoSection"> | string | null
+    status?: EnumContentStatusWithAggregatesFilter<"VideoSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"VideoSection"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"VideoSection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"VideoSection"> | Date | string
   }
 
   export type DestinationCreateInput = {
@@ -25762,6 +29596,307 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ExperienceSectionCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    description: string
+    image: string
+    stat1Value: string
+    stat1Label: string
+    stat2Value: string
+    stat2Label: string
+    badgeText: string
+    backgroundText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ExperienceSectionUncheckedCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    description: string
+    image: string
+    stat1Value: string
+    stat1Label: string
+    stat2Value: string
+    stat2Label: string
+    badgeText: string
+    backgroundText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ExperienceSectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    stat1Value?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Value?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    badgeText?: StringFieldUpdateOperationsInput | string
+    backgroundText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExperienceSectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    stat1Value?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Value?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    badgeText?: StringFieldUpdateOperationsInput | string
+    backgroundText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExperienceSectionCreateManyInput = {
+    id?: string
+    heading: string
+    title: string
+    description: string
+    image: string
+    stat1Value: string
+    stat1Label: string
+    stat2Value: string
+    stat2Label: string
+    badgeText: string
+    backgroundText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ExperienceSectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    stat1Value?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Value?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    badgeText?: StringFieldUpdateOperationsInput | string
+    backgroundText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExperienceSectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    stat1Value?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Value?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    badgeText?: StringFieldUpdateOperationsInput | string
+    backgroundText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TourGuideSectionCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    mapImage: string
+    buttonText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TourGuideSectionUncheckedCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    mapImage: string
+    buttonText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TourGuideSectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    mapImage?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TourGuideSectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    mapImage?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TourGuideSectionCreateManyInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    mapImage: string
+    buttonText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TourGuideSectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    mapImage?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TourGuideSectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    mapImage?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VideoSectionCreateInput = {
+    id?: string
+    title: string
+    description: string
+    videoUrl: string
+    thumbnailUrl?: string | null
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VideoSectionUncheckedCreateInput = {
+    id?: string
+    title: string
+    description: string
+    videoUrl: string
+    thumbnailUrl?: string | null
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VideoSectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VideoSectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VideoSectionCreateManyInput = {
+    id?: string
+    title: string
+    description: string
+    videoUrl: string
+    thumbnailUrl?: string | null
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VideoSectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VideoSectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -27149,6 +31284,152 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type EnumContentStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContentStatusFilter<$PrismaModel> | $Enums.ContentStatus
+  }
+
+  export type ExperienceSectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    stat1Value?: SortOrder
+    stat1Label?: SortOrder
+    stat2Value?: SortOrder
+    stat2Label?: SortOrder
+    badgeText?: SortOrder
+    backgroundText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ExperienceSectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    stat1Value?: SortOrder
+    stat1Label?: SortOrder
+    stat2Value?: SortOrder
+    stat2Label?: SortOrder
+    badgeText?: SortOrder
+    backgroundText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ExperienceSectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    stat1Value?: SortOrder
+    stat1Label?: SortOrder
+    stat2Value?: SortOrder
+    stat2Label?: SortOrder
+    badgeText?: SortOrder
+    backgroundText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumContentStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContentStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContentStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContentStatusFilter<$PrismaModel>
+    _max?: NestedEnumContentStatusFilter<$PrismaModel>
+  }
+
+  export type TourGuideSectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    mapImage?: SortOrder
+    buttonText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TourGuideSectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    mapImage?: SortOrder
+    buttonText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TourGuideSectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    mapImage?: SortOrder
+    buttonText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoSectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    videoUrl?: SortOrder
+    thumbnailUrl?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoSectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    videoUrl?: SortOrder
+    thumbnailUrl?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoSectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    videoUrl?: SortOrder
+    thumbnailUrl?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type DestinationCreateimagesInput = {
     set: string[]
   }
@@ -27662,6 +31943,10 @@ export namespace Prisma {
     update?: XOR<XOR<PackageUpdateToOneWithWhereWithoutBundleItemsInput, PackageUpdateWithoutBundleItemsInput>, PackageUncheckedUpdateWithoutBundleItemsInput>
   }
 
+  export type EnumContentStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ContentStatus
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -28063,6 +32348,23 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumContentStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContentStatusFilter<$PrismaModel> | $Enums.ContentStatus
+  }
+
+  export type NestedEnumContentStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContentStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContentStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContentStatusFilter<$PrismaModel>
+    _max?: NestedEnumContentStatusFilter<$PrismaModel>
   }
 
   export type BookingCreateWithoutDestinationInput = {
