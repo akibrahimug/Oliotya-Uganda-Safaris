@@ -450,3 +450,166 @@ enum ContentStatus {
   DRAFT
   PUBLISHED
 }
+
+// ============================================
+// ABOUT PAGE CONTENT MODELS
+// ============================================
+
+model AboutStorySection {
+  id             String        @id @default(cuid())
+  heading        String // "OUR STORY"
+  title          String // "Crafting Unforgettable"
+  titleHighlight String // "African Adventures"
+  paragraph1     String        @db.Text
+  paragraph2     String        @db.Text
+  buttonText     String // "Explore Our Tours"
+  buttonLink     String // "/destinations"
+  image          String // Story image
+  status         ContentStatus @default(DRAFT)
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@map("about_story_section")
+}
+
+model AboutCommunitySection {
+  id                  String        @id @default(cuid())
+  heading             String // "COMMUNITY IMPACT"
+  title               String // "Giving Back Through"
+  titleHighlight      String // "Akaana Foundation"
+  paragraph1          String        @db.Text
+  paragraph2          String        @db.Text
+  buttonText          String // "Learn More About Akaana"
+  buttonLink          String // External link
+  feature1Title       String
+  feature1Description String        @db.Text
+  feature2Title       String
+  feature2Description String        @db.Text
+  feature3Title       String
+  feature3Description String        @db.Text
+  status              ContentStatus @default(DRAFT)
+  publishedAt         DateTime?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  @@map("about_community_section")
+}
+
+model AboutStats {
+  id          String        @id @default(cuid())
+  stat1Number String // "8+"
+  stat1Label  String // "Years Experience"
+  stat2Number String // "10+"
+  stat2Label  String // "Destinations"
+  stat3Number String // "1200+"
+  stat3Label  String // "Happy Travelers"
+  stat4Number String // "98%"
+  stat4Label  String // "Satisfaction Rate"
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("about_stats")
+}
+
+model AboutValue {
+  id           String   @id @default(cuid())
+  title        String // "Passion for Uganda"
+  description  String   @db.Text
+  icon         String // Icon name: "Heart", "Shield", "Users", "Globe"
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+  @@index([active])
+  @@map("about_values")
+}
+
+model AboutHero {
+  id          String        @id @default(cuid())
+  image       String // Hero image URL
+  title       String // "Your trusted partner in"
+  subtitle    String // "About Nambi Uganda Safaris"
+  description String        @db.Text
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("about_hero")
+}
+
+model AboutCTA {
+  id               String        @id @default(cuid())
+  badge            String // "Join Thousands of Happy Travelers"
+  heading          String // "Ready to Start Your"
+  headingHighlight String // "Uganda Adventure"
+  description      String        @db.Text
+  button1Text      String // "Explore Our Destinations"
+  button1Link      String // "/destinations"
+  button2Text      String // "Get Custom Itinerary"
+  button2Link      String // "/contact"
+  footerText       String // "🌟 98% Customer Satisfaction..."
+  status           ContentStatus @default(DRAFT)
+  publishedAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("about_cta")
+}
+
+// ============================================
+// CONTACT PAGE CONTENT MODELS
+// ============================================
+
+model ContactHero {
+  id          String        @id @default(cuid())
+  image       String // Hero image URL
+  title       String // "We're here to help"
+  subtitle    String // "Get In Touch"
+  description String        @db.Text
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("contact_hero")
+}
+
+model ContactInfo {
+  id            String        @id @default(cuid())
+  email         String // info@nambiuganda.com
+  phone         String // +256 788048210
+  whatsapp      String // +31 682754225
+  office        String // Kampala, Uganda
+  businessHours Json // {mon-fri: "8AM-6PM EAT", sat: "9AM-2PM EAT", sun: "Closed"}
+  quickResponse String        @db.Text // Response time text
+  status        ContentStatus @default(DRAFT)
+  publishedAt   DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("contact_info")
+}
+
+model ContactResource {
+  id           String   @id @default(cuid())
+  title        String // "Uganda Travel Guide"
+  description  String   @db.Text
+  icon         String // Icon name: "Plane", "Shield", "CreditCard"
+  linkText     String // "Read Guide"
+  linkUrl      String // "/destinations" or external URL
+  isExternal   Boolean  @default(false)
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([displayOrder])
+  @@index([active])
+  @@map("contact_resources")
+}

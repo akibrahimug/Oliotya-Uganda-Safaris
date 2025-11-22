@@ -406,6 +406,139 @@ exports.Prisma.VideoSectionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AboutStorySectionScalarFieldEnum = {
+  id: 'id',
+  heading: 'heading',
+  title: 'title',
+  titleHighlight: 'titleHighlight',
+  paragraph1: 'paragraph1',
+  paragraph2: 'paragraph2',
+  buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
+  image: 'image',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutCommunitySectionScalarFieldEnum = {
+  id: 'id',
+  heading: 'heading',
+  title: 'title',
+  titleHighlight: 'titleHighlight',
+  paragraph1: 'paragraph1',
+  paragraph2: 'paragraph2',
+  buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
+  feature1Title: 'feature1Title',
+  feature1Description: 'feature1Description',
+  feature2Title: 'feature2Title',
+  feature2Description: 'feature2Description',
+  feature3Title: 'feature3Title',
+  feature3Description: 'feature3Description',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutStatsScalarFieldEnum = {
+  id: 'id',
+  stat1Number: 'stat1Number',
+  stat1Label: 'stat1Label',
+  stat2Number: 'stat2Number',
+  stat2Label: 'stat2Label',
+  stat3Number: 'stat3Number',
+  stat3Label: 'stat3Label',
+  stat4Number: 'stat4Number',
+  stat4Label: 'stat4Label',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutValueScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  icon: 'icon',
+  displayOrder: 'displayOrder',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutHeroScalarFieldEnum = {
+  id: 'id',
+  image: 'image',
+  title: 'title',
+  subtitle: 'subtitle',
+  description: 'description',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AboutCTAScalarFieldEnum = {
+  id: 'id',
+  badge: 'badge',
+  heading: 'heading',
+  headingHighlight: 'headingHighlight',
+  description: 'description',
+  button1Text: 'button1Text',
+  button1Link: 'button1Link',
+  button2Text: 'button2Text',
+  button2Link: 'button2Link',
+  footerText: 'footerText',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ContactHeroScalarFieldEnum = {
+  id: 'id',
+  image: 'image',
+  title: 'title',
+  subtitle: 'subtitle',
+  description: 'description',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ContactInfoScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  office: 'office',
+  businessHours: 'businessHours',
+  quickResponse: 'quickResponse',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ContactResourceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  icon: 'icon',
+  linkText: 'linkText',
+  linkUrl: 'linkUrl',
+  isExternal: 'isExternal',
+  displayOrder: 'displayOrder',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -499,7 +632,16 @@ exports.Prisma.ModelName = {
   CMSAuditLog: 'CMSAuditLog',
   ExperienceSection: 'ExperienceSection',
   TourGuideSection: 'TourGuideSection',
-  VideoSection: 'VideoSection'
+  VideoSection: 'VideoSection',
+  AboutStorySection: 'AboutStorySection',
+  AboutCommunitySection: 'AboutCommunitySection',
+  AboutStats: 'AboutStats',
+  AboutValue: 'AboutValue',
+  AboutHero: 'AboutHero',
+  AboutCTA: 'AboutCTA',
+  ContactHero: 'ContactHero',
+  ContactInfo: 'ContactInfo',
+  ContactResource: 'ContactResource'
 };
 
 /**

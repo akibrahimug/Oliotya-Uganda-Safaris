@@ -5,19 +5,13 @@ import { NextResponse } from "next/server";
 const isCMSRoute = createRouteMatcher(["/cms(.*)", "/api/cms(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-  try {
-    // Only protect CMS routes - require authentication
-    if (isCMSRoute(req)) {
-      // Require authentication (admin check happens in layout)
-      await auth.protect();
-    }
-    // All other routes are public - no authentication required
-  } catch (error) {
-    console.error("Middleware error:", error);
-    // If authentication fails, let Clerk handle the redirect
-    // Don't return error response, let it bubble up
-    throw error;
+  // Only protect CMS routes - require authentication
+  if (isCMSRoute(req)) {
+    // Require authentication (admin check happens in layout)
+    // Note: auth.protect() is synchronous in Clerk v5+
+    auth.protect();
   }
+  // All other routes are public - no authentication required
 });
 
 export const config = {

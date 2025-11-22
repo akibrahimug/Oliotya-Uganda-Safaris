@@ -113,6 +113,51 @@ export type TourGuideSection = $Result.DefaultSelection<Prisma.$TourGuideSection
  * 
  */
 export type VideoSection = $Result.DefaultSelection<Prisma.$VideoSectionPayload>
+/**
+ * Model AboutStorySection
+ * 
+ */
+export type AboutStorySection = $Result.DefaultSelection<Prisma.$AboutStorySectionPayload>
+/**
+ * Model AboutCommunitySection
+ * 
+ */
+export type AboutCommunitySection = $Result.DefaultSelection<Prisma.$AboutCommunitySectionPayload>
+/**
+ * Model AboutStats
+ * 
+ */
+export type AboutStats = $Result.DefaultSelection<Prisma.$AboutStatsPayload>
+/**
+ * Model AboutValue
+ * 
+ */
+export type AboutValue = $Result.DefaultSelection<Prisma.$AboutValuePayload>
+/**
+ * Model AboutHero
+ * 
+ */
+export type AboutHero = $Result.DefaultSelection<Prisma.$AboutHeroPayload>
+/**
+ * Model AboutCTA
+ * 
+ */
+export type AboutCTA = $Result.DefaultSelection<Prisma.$AboutCTAPayload>
+/**
+ * Model ContactHero
+ * 
+ */
+export type ContactHero = $Result.DefaultSelection<Prisma.$ContactHeroPayload>
+/**
+ * Model ContactInfo
+ * 
+ */
+export type ContactInfo = $Result.DefaultSelection<Prisma.$ContactInfoPayload>
+/**
+ * Model ContactResource
+ * 
+ */
+export type ContactResource = $Result.DefaultSelection<Prisma.$ContactResourcePayload>
 
 /**
  * Enums
@@ -529,6 +574,96 @@ export class PrismaClient<
     * ```
     */
   get videoSection(): Prisma.VideoSectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aboutStorySection`: Exposes CRUD operations for the **AboutStorySection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AboutStorySections
+    * const aboutStorySections = await prisma.aboutStorySection.findMany()
+    * ```
+    */
+  get aboutStorySection(): Prisma.AboutStorySectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aboutCommunitySection`: Exposes CRUD operations for the **AboutCommunitySection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AboutCommunitySections
+    * const aboutCommunitySections = await prisma.aboutCommunitySection.findMany()
+    * ```
+    */
+  get aboutCommunitySection(): Prisma.AboutCommunitySectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aboutStats`: Exposes CRUD operations for the **AboutStats** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AboutStats
+    * const aboutStats = await prisma.aboutStats.findMany()
+    * ```
+    */
+  get aboutStats(): Prisma.AboutStatsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aboutValue`: Exposes CRUD operations for the **AboutValue** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AboutValues
+    * const aboutValues = await prisma.aboutValue.findMany()
+    * ```
+    */
+  get aboutValue(): Prisma.AboutValueDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aboutHero`: Exposes CRUD operations for the **AboutHero** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AboutHeroes
+    * const aboutHeroes = await prisma.aboutHero.findMany()
+    * ```
+    */
+  get aboutHero(): Prisma.AboutHeroDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aboutCTA`: Exposes CRUD operations for the **AboutCTA** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AboutCTAS
+    * const aboutCTAS = await prisma.aboutCTA.findMany()
+    * ```
+    */
+  get aboutCTA(): Prisma.AboutCTADelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contactHero`: Exposes CRUD operations for the **ContactHero** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContactHeroes
+    * const contactHeroes = await prisma.contactHero.findMany()
+    * ```
+    */
+  get contactHero(): Prisma.ContactHeroDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contactInfo`: Exposes CRUD operations for the **ContactInfo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContactInfos
+    * const contactInfos = await prisma.contactInfo.findMany()
+    * ```
+    */
+  get contactInfo(): Prisma.ContactInfoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contactResource`: Exposes CRUD operations for the **ContactResource** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContactResources
+    * const contactResources = await prisma.contactResource.findMany()
+    * ```
+    */
+  get contactResource(): Prisma.ContactResourceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -989,7 +1124,16 @@ export namespace Prisma {
     CMSAuditLog: 'CMSAuditLog',
     ExperienceSection: 'ExperienceSection',
     TourGuideSection: 'TourGuideSection',
-    VideoSection: 'VideoSection'
+    VideoSection: 'VideoSection',
+    AboutStorySection: 'AboutStorySection',
+    AboutCommunitySection: 'AboutCommunitySection',
+    AboutStats: 'AboutStats',
+    AboutValue: 'AboutValue',
+    AboutHero: 'AboutHero',
+    AboutCTA: 'AboutCTA',
+    ContactHero: 'ContactHero',
+    ContactInfo: 'ContactInfo',
+    ContactResource: 'ContactResource'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1008,7 +1152,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection"
+      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection" | "aboutStorySection" | "aboutCommunitySection" | "aboutStats" | "aboutValue" | "aboutHero" | "aboutCTA" | "contactHero" | "contactInfo" | "contactResource"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2492,6 +2636,672 @@ export namespace Prisma {
           }
         }
       }
+      AboutStorySection: {
+        payload: Prisma.$AboutStorySectionPayload<ExtArgs>
+        fields: Prisma.AboutStorySectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AboutStorySectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AboutStorySectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>
+          }
+          findFirst: {
+            args: Prisma.AboutStorySectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AboutStorySectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>
+          }
+          findMany: {
+            args: Prisma.AboutStorySectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>[]
+          }
+          create: {
+            args: Prisma.AboutStorySectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>
+          }
+          createMany: {
+            args: Prisma.AboutStorySectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AboutStorySectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>[]
+          }
+          delete: {
+            args: Prisma.AboutStorySectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>
+          }
+          update: {
+            args: Prisma.AboutStorySectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AboutStorySectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AboutStorySectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AboutStorySectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.AboutStorySectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStorySectionPayload>
+          }
+          aggregate: {
+            args: Prisma.AboutStorySectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAboutStorySection>
+          }
+          groupBy: {
+            args: Prisma.AboutStorySectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AboutStorySectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AboutStorySectionCountArgs<ExtArgs>
+            result: $Utils.Optional<AboutStorySectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      AboutCommunitySection: {
+        payload: Prisma.$AboutCommunitySectionPayload<ExtArgs>
+        fields: Prisma.AboutCommunitySectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AboutCommunitySectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AboutCommunitySectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>
+          }
+          findFirst: {
+            args: Prisma.AboutCommunitySectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AboutCommunitySectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>
+          }
+          findMany: {
+            args: Prisma.AboutCommunitySectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>[]
+          }
+          create: {
+            args: Prisma.AboutCommunitySectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>
+          }
+          createMany: {
+            args: Prisma.AboutCommunitySectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AboutCommunitySectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>[]
+          }
+          delete: {
+            args: Prisma.AboutCommunitySectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>
+          }
+          update: {
+            args: Prisma.AboutCommunitySectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AboutCommunitySectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AboutCommunitySectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AboutCommunitySectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.AboutCommunitySectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCommunitySectionPayload>
+          }
+          aggregate: {
+            args: Prisma.AboutCommunitySectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAboutCommunitySection>
+          }
+          groupBy: {
+            args: Prisma.AboutCommunitySectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AboutCommunitySectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AboutCommunitySectionCountArgs<ExtArgs>
+            result: $Utils.Optional<AboutCommunitySectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      AboutStats: {
+        payload: Prisma.$AboutStatsPayload<ExtArgs>
+        fields: Prisma.AboutStatsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AboutStatsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AboutStatsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>
+          }
+          findFirst: {
+            args: Prisma.AboutStatsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AboutStatsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>
+          }
+          findMany: {
+            args: Prisma.AboutStatsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>[]
+          }
+          create: {
+            args: Prisma.AboutStatsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>
+          }
+          createMany: {
+            args: Prisma.AboutStatsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AboutStatsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>[]
+          }
+          delete: {
+            args: Prisma.AboutStatsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>
+          }
+          update: {
+            args: Prisma.AboutStatsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>
+          }
+          deleteMany: {
+            args: Prisma.AboutStatsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AboutStatsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AboutStatsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>[]
+          }
+          upsert: {
+            args: Prisma.AboutStatsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutStatsPayload>
+          }
+          aggregate: {
+            args: Prisma.AboutStatsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAboutStats>
+          }
+          groupBy: {
+            args: Prisma.AboutStatsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AboutStatsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AboutStatsCountArgs<ExtArgs>
+            result: $Utils.Optional<AboutStatsCountAggregateOutputType> | number
+          }
+        }
+      }
+      AboutValue: {
+        payload: Prisma.$AboutValuePayload<ExtArgs>
+        fields: Prisma.AboutValueFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AboutValueFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AboutValueFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>
+          }
+          findFirst: {
+            args: Prisma.AboutValueFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AboutValueFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>
+          }
+          findMany: {
+            args: Prisma.AboutValueFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>[]
+          }
+          create: {
+            args: Prisma.AboutValueCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>
+          }
+          createMany: {
+            args: Prisma.AboutValueCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AboutValueCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>[]
+          }
+          delete: {
+            args: Prisma.AboutValueDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>
+          }
+          update: {
+            args: Prisma.AboutValueUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>
+          }
+          deleteMany: {
+            args: Prisma.AboutValueDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AboutValueUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AboutValueUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>[]
+          }
+          upsert: {
+            args: Prisma.AboutValueUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutValuePayload>
+          }
+          aggregate: {
+            args: Prisma.AboutValueAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAboutValue>
+          }
+          groupBy: {
+            args: Prisma.AboutValueGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AboutValueGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AboutValueCountArgs<ExtArgs>
+            result: $Utils.Optional<AboutValueCountAggregateOutputType> | number
+          }
+        }
+      }
+      AboutHero: {
+        payload: Prisma.$AboutHeroPayload<ExtArgs>
+        fields: Prisma.AboutHeroFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AboutHeroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AboutHeroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>
+          }
+          findFirst: {
+            args: Prisma.AboutHeroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AboutHeroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>
+          }
+          findMany: {
+            args: Prisma.AboutHeroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>[]
+          }
+          create: {
+            args: Prisma.AboutHeroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>
+          }
+          createMany: {
+            args: Prisma.AboutHeroCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AboutHeroCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>[]
+          }
+          delete: {
+            args: Prisma.AboutHeroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>
+          }
+          update: {
+            args: Prisma.AboutHeroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>
+          }
+          deleteMany: {
+            args: Prisma.AboutHeroDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AboutHeroUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AboutHeroUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>[]
+          }
+          upsert: {
+            args: Prisma.AboutHeroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutHeroPayload>
+          }
+          aggregate: {
+            args: Prisma.AboutHeroAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAboutHero>
+          }
+          groupBy: {
+            args: Prisma.AboutHeroGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AboutHeroGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AboutHeroCountArgs<ExtArgs>
+            result: $Utils.Optional<AboutHeroCountAggregateOutputType> | number
+          }
+        }
+      }
+      AboutCTA: {
+        payload: Prisma.$AboutCTAPayload<ExtArgs>
+        fields: Prisma.AboutCTAFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AboutCTAFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AboutCTAFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>
+          }
+          findFirst: {
+            args: Prisma.AboutCTAFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AboutCTAFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>
+          }
+          findMany: {
+            args: Prisma.AboutCTAFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>[]
+          }
+          create: {
+            args: Prisma.AboutCTACreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>
+          }
+          createMany: {
+            args: Prisma.AboutCTACreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AboutCTACreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>[]
+          }
+          delete: {
+            args: Prisma.AboutCTADeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>
+          }
+          update: {
+            args: Prisma.AboutCTAUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>
+          }
+          deleteMany: {
+            args: Prisma.AboutCTADeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AboutCTAUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AboutCTAUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>[]
+          }
+          upsert: {
+            args: Prisma.AboutCTAUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AboutCTAPayload>
+          }
+          aggregate: {
+            args: Prisma.AboutCTAAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAboutCTA>
+          }
+          groupBy: {
+            args: Prisma.AboutCTAGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AboutCTAGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AboutCTACountArgs<ExtArgs>
+            result: $Utils.Optional<AboutCTACountAggregateOutputType> | number
+          }
+        }
+      }
+      ContactHero: {
+        payload: Prisma.$ContactHeroPayload<ExtArgs>
+        fields: Prisma.ContactHeroFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContactHeroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContactHeroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>
+          }
+          findFirst: {
+            args: Prisma.ContactHeroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContactHeroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>
+          }
+          findMany: {
+            args: Prisma.ContactHeroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>[]
+          }
+          create: {
+            args: Prisma.ContactHeroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>
+          }
+          createMany: {
+            args: Prisma.ContactHeroCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContactHeroCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>[]
+          }
+          delete: {
+            args: Prisma.ContactHeroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>
+          }
+          update: {
+            args: Prisma.ContactHeroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContactHeroDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContactHeroUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContactHeroUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContactHeroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactHeroPayload>
+          }
+          aggregate: {
+            args: Prisma.ContactHeroAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContactHero>
+          }
+          groupBy: {
+            args: Prisma.ContactHeroGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactHeroGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContactHeroCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactHeroCountAggregateOutputType> | number
+          }
+        }
+      }
+      ContactInfo: {
+        payload: Prisma.$ContactInfoPayload<ExtArgs>
+        fields: Prisma.ContactInfoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContactInfoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContactInfoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          findFirst: {
+            args: Prisma.ContactInfoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContactInfoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          findMany: {
+            args: Prisma.ContactInfoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>[]
+          }
+          create: {
+            args: Prisma.ContactInfoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          createMany: {
+            args: Prisma.ContactInfoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContactInfoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>[]
+          }
+          delete: {
+            args: Prisma.ContactInfoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          update: {
+            args: Prisma.ContactInfoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContactInfoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContactInfoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContactInfoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContactInfoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          aggregate: {
+            args: Prisma.ContactInfoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContactInfo>
+          }
+          groupBy: {
+            args: Prisma.ContactInfoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactInfoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContactInfoCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactInfoCountAggregateOutputType> | number
+          }
+        }
+      }
+      ContactResource: {
+        payload: Prisma.$ContactResourcePayload<ExtArgs>
+        fields: Prisma.ContactResourceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContactResourceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContactResourceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>
+          }
+          findFirst: {
+            args: Prisma.ContactResourceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContactResourceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>
+          }
+          findMany: {
+            args: Prisma.ContactResourceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>[]
+          }
+          create: {
+            args: Prisma.ContactResourceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>
+          }
+          createMany: {
+            args: Prisma.ContactResourceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContactResourceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>[]
+          }
+          delete: {
+            args: Prisma.ContactResourceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>
+          }
+          update: {
+            args: Prisma.ContactResourceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>
+          }
+          deleteMany: {
+            args: Prisma.ContactResourceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContactResourceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContactResourceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>[]
+          }
+          upsert: {
+            args: Prisma.ContactResourceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactResourcePayload>
+          }
+          aggregate: {
+            args: Prisma.ContactResourceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContactResource>
+          }
+          groupBy: {
+            args: Prisma.ContactResourceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactResourceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContactResourceCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactResourceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2608,6 +3418,15 @@ export namespace Prisma {
     experienceSection?: ExperienceSectionOmit
     tourGuideSection?: TourGuideSectionOmit
     videoSection?: VideoSectionOmit
+    aboutStorySection?: AboutStorySectionOmit
+    aboutCommunitySection?: AboutCommunitySectionOmit
+    aboutStats?: AboutStatsOmit
+    aboutValue?: AboutValueOmit
+    aboutHero?: AboutHeroOmit
+    aboutCTA?: AboutCTAOmit
+    contactHero?: ContactHeroOmit
+    contactInfo?: ContactInfoOmit
+    contactResource?: ContactResourceOmit
   }
 
   /* Types for Logging */
@@ -25555,6 +26374,9818 @@ export namespace Prisma {
 
 
   /**
+   * Model AboutStorySection
+   */
+
+  export type AggregateAboutStorySection = {
+    _count: AboutStorySectionCountAggregateOutputType | null
+    _min: AboutStorySectionMinAggregateOutputType | null
+    _max: AboutStorySectionMaxAggregateOutputType | null
+  }
+
+  export type AboutStorySectionMinAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    titleHighlight: string | null
+    paragraph1: string | null
+    paragraph2: string | null
+    buttonText: string | null
+    buttonLink: string | null
+    image: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutStorySectionMaxAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    titleHighlight: string | null
+    paragraph1: string | null
+    paragraph2: string | null
+    buttonText: string | null
+    buttonLink: string | null
+    image: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutStorySectionCountAggregateOutputType = {
+    id: number
+    heading: number
+    title: number
+    titleHighlight: number
+    paragraph1: number
+    paragraph2: number
+    buttonText: number
+    buttonLink: number
+    image: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AboutStorySectionMinAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    titleHighlight?: true
+    paragraph1?: true
+    paragraph2?: true
+    buttonText?: true
+    buttonLink?: true
+    image?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutStorySectionMaxAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    titleHighlight?: true
+    paragraph1?: true
+    paragraph2?: true
+    buttonText?: true
+    buttonLink?: true
+    image?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutStorySectionCountAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    titleHighlight?: true
+    paragraph1?: true
+    paragraph2?: true
+    buttonText?: true
+    buttonLink?: true
+    image?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AboutStorySectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutStorySection to aggregate.
+     */
+    where?: AboutStorySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStorySections to fetch.
+     */
+    orderBy?: AboutStorySectionOrderByWithRelationInput | AboutStorySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AboutStorySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStorySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStorySections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AboutStorySections
+    **/
+    _count?: true | AboutStorySectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AboutStorySectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AboutStorySectionMaxAggregateInputType
+  }
+
+  export type GetAboutStorySectionAggregateType<T extends AboutStorySectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAboutStorySection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAboutStorySection[P]>
+      : GetScalarType<T[P], AggregateAboutStorySection[P]>
+  }
+
+
+
+
+  export type AboutStorySectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AboutStorySectionWhereInput
+    orderBy?: AboutStorySectionOrderByWithAggregationInput | AboutStorySectionOrderByWithAggregationInput[]
+    by: AboutStorySectionScalarFieldEnum[] | AboutStorySectionScalarFieldEnum
+    having?: AboutStorySectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AboutStorySectionCountAggregateInputType | true
+    _min?: AboutStorySectionMinAggregateInputType
+    _max?: AboutStorySectionMaxAggregateInputType
+  }
+
+  export type AboutStorySectionGroupByOutputType = {
+    id: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    image: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AboutStorySectionCountAggregateOutputType | null
+    _min: AboutStorySectionMinAggregateOutputType | null
+    _max: AboutStorySectionMaxAggregateOutputType | null
+  }
+
+  type GetAboutStorySectionGroupByPayload<T extends AboutStorySectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AboutStorySectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AboutStorySectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AboutStorySectionGroupByOutputType[P]>
+            : GetScalarType<T[P], AboutStorySectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AboutStorySectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutStorySection"]>
+
+  export type AboutStorySectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutStorySection"]>
+
+  export type AboutStorySectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutStorySection"]>
+
+  export type AboutStorySectionSelectScalar = {
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AboutStorySectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heading" | "title" | "titleHighlight" | "paragraph1" | "paragraph2" | "buttonText" | "buttonLink" | "image" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutStorySection"]>
+
+  export type $AboutStorySectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AboutStorySection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      heading: string
+      title: string
+      titleHighlight: string
+      paragraph1: string
+      paragraph2: string
+      buttonText: string
+      buttonLink: string
+      image: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aboutStorySection"]>
+    composites: {}
+  }
+
+  type AboutStorySectionGetPayload<S extends boolean | null | undefined | AboutStorySectionDefaultArgs> = $Result.GetResult<Prisma.$AboutStorySectionPayload, S>
+
+  type AboutStorySectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AboutStorySectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AboutStorySectionCountAggregateInputType | true
+    }
+
+  export interface AboutStorySectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AboutStorySection'], meta: { name: 'AboutStorySection' } }
+    /**
+     * Find zero or one AboutStorySection that matches the filter.
+     * @param {AboutStorySectionFindUniqueArgs} args - Arguments to find a AboutStorySection
+     * @example
+     * // Get one AboutStorySection
+     * const aboutStorySection = await prisma.aboutStorySection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AboutStorySectionFindUniqueArgs>(args: SelectSubset<T, AboutStorySectionFindUniqueArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AboutStorySection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AboutStorySectionFindUniqueOrThrowArgs} args - Arguments to find a AboutStorySection
+     * @example
+     * // Get one AboutStorySection
+     * const aboutStorySection = await prisma.aboutStorySection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AboutStorySectionFindUniqueOrThrowArgs>(args: SelectSubset<T, AboutStorySectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutStorySection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStorySectionFindFirstArgs} args - Arguments to find a AboutStorySection
+     * @example
+     * // Get one AboutStorySection
+     * const aboutStorySection = await prisma.aboutStorySection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AboutStorySectionFindFirstArgs>(args?: SelectSubset<T, AboutStorySectionFindFirstArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutStorySection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStorySectionFindFirstOrThrowArgs} args - Arguments to find a AboutStorySection
+     * @example
+     * // Get one AboutStorySection
+     * const aboutStorySection = await prisma.aboutStorySection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AboutStorySectionFindFirstOrThrowArgs>(args?: SelectSubset<T, AboutStorySectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AboutStorySections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStorySectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AboutStorySections
+     * const aboutStorySections = await prisma.aboutStorySection.findMany()
+     * 
+     * // Get first 10 AboutStorySections
+     * const aboutStorySections = await prisma.aboutStorySection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aboutStorySectionWithIdOnly = await prisma.aboutStorySection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AboutStorySectionFindManyArgs>(args?: SelectSubset<T, AboutStorySectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AboutStorySection.
+     * @param {AboutStorySectionCreateArgs} args - Arguments to create a AboutStorySection.
+     * @example
+     * // Create one AboutStorySection
+     * const AboutStorySection = await prisma.aboutStorySection.create({
+     *   data: {
+     *     // ... data to create a AboutStorySection
+     *   }
+     * })
+     * 
+     */
+    create<T extends AboutStorySectionCreateArgs>(args: SelectSubset<T, AboutStorySectionCreateArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AboutStorySections.
+     * @param {AboutStorySectionCreateManyArgs} args - Arguments to create many AboutStorySections.
+     * @example
+     * // Create many AboutStorySections
+     * const aboutStorySection = await prisma.aboutStorySection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AboutStorySectionCreateManyArgs>(args?: SelectSubset<T, AboutStorySectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AboutStorySections and returns the data saved in the database.
+     * @param {AboutStorySectionCreateManyAndReturnArgs} args - Arguments to create many AboutStorySections.
+     * @example
+     * // Create many AboutStorySections
+     * const aboutStorySection = await prisma.aboutStorySection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AboutStorySections and only return the `id`
+     * const aboutStorySectionWithIdOnly = await prisma.aboutStorySection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AboutStorySectionCreateManyAndReturnArgs>(args?: SelectSubset<T, AboutStorySectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AboutStorySection.
+     * @param {AboutStorySectionDeleteArgs} args - Arguments to delete one AboutStorySection.
+     * @example
+     * // Delete one AboutStorySection
+     * const AboutStorySection = await prisma.aboutStorySection.delete({
+     *   where: {
+     *     // ... filter to delete one AboutStorySection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AboutStorySectionDeleteArgs>(args: SelectSubset<T, AboutStorySectionDeleteArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AboutStorySection.
+     * @param {AboutStorySectionUpdateArgs} args - Arguments to update one AboutStorySection.
+     * @example
+     * // Update one AboutStorySection
+     * const aboutStorySection = await prisma.aboutStorySection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AboutStorySectionUpdateArgs>(args: SelectSubset<T, AboutStorySectionUpdateArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AboutStorySections.
+     * @param {AboutStorySectionDeleteManyArgs} args - Arguments to filter AboutStorySections to delete.
+     * @example
+     * // Delete a few AboutStorySections
+     * const { count } = await prisma.aboutStorySection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AboutStorySectionDeleteManyArgs>(args?: SelectSubset<T, AboutStorySectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutStorySections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStorySectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AboutStorySections
+     * const aboutStorySection = await prisma.aboutStorySection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AboutStorySectionUpdateManyArgs>(args: SelectSubset<T, AboutStorySectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutStorySections and returns the data updated in the database.
+     * @param {AboutStorySectionUpdateManyAndReturnArgs} args - Arguments to update many AboutStorySections.
+     * @example
+     * // Update many AboutStorySections
+     * const aboutStorySection = await prisma.aboutStorySection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AboutStorySections and only return the `id`
+     * const aboutStorySectionWithIdOnly = await prisma.aboutStorySection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AboutStorySectionUpdateManyAndReturnArgs>(args: SelectSubset<T, AboutStorySectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AboutStorySection.
+     * @param {AboutStorySectionUpsertArgs} args - Arguments to update or create a AboutStorySection.
+     * @example
+     * // Update or create a AboutStorySection
+     * const aboutStorySection = await prisma.aboutStorySection.upsert({
+     *   create: {
+     *     // ... data to create a AboutStorySection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AboutStorySection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AboutStorySectionUpsertArgs>(args: SelectSubset<T, AboutStorySectionUpsertArgs<ExtArgs>>): Prisma__AboutStorySectionClient<$Result.GetResult<Prisma.$AboutStorySectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AboutStorySections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStorySectionCountArgs} args - Arguments to filter AboutStorySections to count.
+     * @example
+     * // Count the number of AboutStorySections
+     * const count = await prisma.aboutStorySection.count({
+     *   where: {
+     *     // ... the filter for the AboutStorySections we want to count
+     *   }
+     * })
+    **/
+    count<T extends AboutStorySectionCountArgs>(
+      args?: Subset<T, AboutStorySectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AboutStorySectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AboutStorySection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStorySectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AboutStorySectionAggregateArgs>(args: Subset<T, AboutStorySectionAggregateArgs>): Prisma.PrismaPromise<GetAboutStorySectionAggregateType<T>>
+
+    /**
+     * Group by AboutStorySection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStorySectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AboutStorySectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AboutStorySectionGroupByArgs['orderBy'] }
+        : { orderBy?: AboutStorySectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AboutStorySectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAboutStorySectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AboutStorySection model
+   */
+  readonly fields: AboutStorySectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AboutStorySection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AboutStorySectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AboutStorySection model
+   */
+  interface AboutStorySectionFieldRefs {
+    readonly id: FieldRef<"AboutStorySection", 'String'>
+    readonly heading: FieldRef<"AboutStorySection", 'String'>
+    readonly title: FieldRef<"AboutStorySection", 'String'>
+    readonly titleHighlight: FieldRef<"AboutStorySection", 'String'>
+    readonly paragraph1: FieldRef<"AboutStorySection", 'String'>
+    readonly paragraph2: FieldRef<"AboutStorySection", 'String'>
+    readonly buttonText: FieldRef<"AboutStorySection", 'String'>
+    readonly buttonLink: FieldRef<"AboutStorySection", 'String'>
+    readonly image: FieldRef<"AboutStorySection", 'String'>
+    readonly status: FieldRef<"AboutStorySection", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"AboutStorySection", 'DateTime'>
+    readonly createdAt: FieldRef<"AboutStorySection", 'DateTime'>
+    readonly updatedAt: FieldRef<"AboutStorySection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AboutStorySection findUnique
+   */
+  export type AboutStorySectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStorySection to fetch.
+     */
+    where: AboutStorySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutStorySection findUniqueOrThrow
+   */
+  export type AboutStorySectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStorySection to fetch.
+     */
+    where: AboutStorySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutStorySection findFirst
+   */
+  export type AboutStorySectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStorySection to fetch.
+     */
+    where?: AboutStorySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStorySections to fetch.
+     */
+    orderBy?: AboutStorySectionOrderByWithRelationInput | AboutStorySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutStorySections.
+     */
+    cursor?: AboutStorySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStorySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStorySections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutStorySections.
+     */
+    distinct?: AboutStorySectionScalarFieldEnum | AboutStorySectionScalarFieldEnum[]
+  }
+
+  /**
+   * AboutStorySection findFirstOrThrow
+   */
+  export type AboutStorySectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStorySection to fetch.
+     */
+    where?: AboutStorySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStorySections to fetch.
+     */
+    orderBy?: AboutStorySectionOrderByWithRelationInput | AboutStorySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutStorySections.
+     */
+    cursor?: AboutStorySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStorySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStorySections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutStorySections.
+     */
+    distinct?: AboutStorySectionScalarFieldEnum | AboutStorySectionScalarFieldEnum[]
+  }
+
+  /**
+   * AboutStorySection findMany
+   */
+  export type AboutStorySectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStorySections to fetch.
+     */
+    where?: AboutStorySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStorySections to fetch.
+     */
+    orderBy?: AboutStorySectionOrderByWithRelationInput | AboutStorySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AboutStorySections.
+     */
+    cursor?: AboutStorySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStorySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStorySections.
+     */
+    skip?: number
+    distinct?: AboutStorySectionScalarFieldEnum | AboutStorySectionScalarFieldEnum[]
+  }
+
+  /**
+   * AboutStorySection create
+   */
+  export type AboutStorySectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AboutStorySection.
+     */
+    data: XOR<AboutStorySectionCreateInput, AboutStorySectionUncheckedCreateInput>
+  }
+
+  /**
+   * AboutStorySection createMany
+   */
+  export type AboutStorySectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AboutStorySections.
+     */
+    data: AboutStorySectionCreateManyInput | AboutStorySectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutStorySection createManyAndReturn
+   */
+  export type AboutStorySectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many AboutStorySections.
+     */
+    data: AboutStorySectionCreateManyInput | AboutStorySectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutStorySection update
+   */
+  export type AboutStorySectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AboutStorySection.
+     */
+    data: XOR<AboutStorySectionUpdateInput, AboutStorySectionUncheckedUpdateInput>
+    /**
+     * Choose, which AboutStorySection to update.
+     */
+    where: AboutStorySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutStorySection updateMany
+   */
+  export type AboutStorySectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AboutStorySections.
+     */
+    data: XOR<AboutStorySectionUpdateManyMutationInput, AboutStorySectionUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutStorySections to update
+     */
+    where?: AboutStorySectionWhereInput
+    /**
+     * Limit how many AboutStorySections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutStorySection updateManyAndReturn
+   */
+  export type AboutStorySectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * The data used to update AboutStorySections.
+     */
+    data: XOR<AboutStorySectionUpdateManyMutationInput, AboutStorySectionUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutStorySections to update
+     */
+    where?: AboutStorySectionWhereInput
+    /**
+     * Limit how many AboutStorySections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutStorySection upsert
+   */
+  export type AboutStorySectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AboutStorySection to update in case it exists.
+     */
+    where: AboutStorySectionWhereUniqueInput
+    /**
+     * In case the AboutStorySection found by the `where` argument doesn't exist, create a new AboutStorySection with this data.
+     */
+    create: XOR<AboutStorySectionCreateInput, AboutStorySectionUncheckedCreateInput>
+    /**
+     * In case the AboutStorySection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AboutStorySectionUpdateInput, AboutStorySectionUncheckedUpdateInput>
+  }
+
+  /**
+   * AboutStorySection delete
+   */
+  export type AboutStorySectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+    /**
+     * Filter which AboutStorySection to delete.
+     */
+    where: AboutStorySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutStorySection deleteMany
+   */
+  export type AboutStorySectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutStorySections to delete
+     */
+    where?: AboutStorySectionWhereInput
+    /**
+     * Limit how many AboutStorySections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutStorySection without action
+   */
+  export type AboutStorySectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStorySection
+     */
+    select?: AboutStorySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStorySection
+     */
+    omit?: AboutStorySectionOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AboutCommunitySection
+   */
+
+  export type AggregateAboutCommunitySection = {
+    _count: AboutCommunitySectionCountAggregateOutputType | null
+    _min: AboutCommunitySectionMinAggregateOutputType | null
+    _max: AboutCommunitySectionMaxAggregateOutputType | null
+  }
+
+  export type AboutCommunitySectionMinAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    titleHighlight: string | null
+    paragraph1: string | null
+    paragraph2: string | null
+    buttonText: string | null
+    buttonLink: string | null
+    feature1Title: string | null
+    feature1Description: string | null
+    feature2Title: string | null
+    feature2Description: string | null
+    feature3Title: string | null
+    feature3Description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutCommunitySectionMaxAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    titleHighlight: string | null
+    paragraph1: string | null
+    paragraph2: string | null
+    buttonText: string | null
+    buttonLink: string | null
+    feature1Title: string | null
+    feature1Description: string | null
+    feature2Title: string | null
+    feature2Description: string | null
+    feature3Title: string | null
+    feature3Description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutCommunitySectionCountAggregateOutputType = {
+    id: number
+    heading: number
+    title: number
+    titleHighlight: number
+    paragraph1: number
+    paragraph2: number
+    buttonText: number
+    buttonLink: number
+    feature1Title: number
+    feature1Description: number
+    feature2Title: number
+    feature2Description: number
+    feature3Title: number
+    feature3Description: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AboutCommunitySectionMinAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    titleHighlight?: true
+    paragraph1?: true
+    paragraph2?: true
+    buttonText?: true
+    buttonLink?: true
+    feature1Title?: true
+    feature1Description?: true
+    feature2Title?: true
+    feature2Description?: true
+    feature3Title?: true
+    feature3Description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutCommunitySectionMaxAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    titleHighlight?: true
+    paragraph1?: true
+    paragraph2?: true
+    buttonText?: true
+    buttonLink?: true
+    feature1Title?: true
+    feature1Description?: true
+    feature2Title?: true
+    feature2Description?: true
+    feature3Title?: true
+    feature3Description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutCommunitySectionCountAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    titleHighlight?: true
+    paragraph1?: true
+    paragraph2?: true
+    buttonText?: true
+    buttonLink?: true
+    feature1Title?: true
+    feature1Description?: true
+    feature2Title?: true
+    feature2Description?: true
+    feature3Title?: true
+    feature3Description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AboutCommunitySectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutCommunitySection to aggregate.
+     */
+    where?: AboutCommunitySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCommunitySections to fetch.
+     */
+    orderBy?: AboutCommunitySectionOrderByWithRelationInput | AboutCommunitySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AboutCommunitySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCommunitySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCommunitySections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AboutCommunitySections
+    **/
+    _count?: true | AboutCommunitySectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AboutCommunitySectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AboutCommunitySectionMaxAggregateInputType
+  }
+
+  export type GetAboutCommunitySectionAggregateType<T extends AboutCommunitySectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAboutCommunitySection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAboutCommunitySection[P]>
+      : GetScalarType<T[P], AggregateAboutCommunitySection[P]>
+  }
+
+
+
+
+  export type AboutCommunitySectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AboutCommunitySectionWhereInput
+    orderBy?: AboutCommunitySectionOrderByWithAggregationInput | AboutCommunitySectionOrderByWithAggregationInput[]
+    by: AboutCommunitySectionScalarFieldEnum[] | AboutCommunitySectionScalarFieldEnum
+    having?: AboutCommunitySectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AboutCommunitySectionCountAggregateInputType | true
+    _min?: AboutCommunitySectionMinAggregateInputType
+    _max?: AboutCommunitySectionMaxAggregateInputType
+  }
+
+  export type AboutCommunitySectionGroupByOutputType = {
+    id: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    feature1Title: string
+    feature1Description: string
+    feature2Title: string
+    feature2Description: string
+    feature3Title: string
+    feature3Description: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AboutCommunitySectionCountAggregateOutputType | null
+    _min: AboutCommunitySectionMinAggregateOutputType | null
+    _max: AboutCommunitySectionMaxAggregateOutputType | null
+  }
+
+  type GetAboutCommunitySectionGroupByPayload<T extends AboutCommunitySectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AboutCommunitySectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AboutCommunitySectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AboutCommunitySectionGroupByOutputType[P]>
+            : GetScalarType<T[P], AboutCommunitySectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AboutCommunitySectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    feature1Title?: boolean
+    feature1Description?: boolean
+    feature2Title?: boolean
+    feature2Description?: boolean
+    feature3Title?: boolean
+    feature3Description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutCommunitySection"]>
+
+  export type AboutCommunitySectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    feature1Title?: boolean
+    feature1Description?: boolean
+    feature2Title?: boolean
+    feature2Description?: boolean
+    feature3Title?: boolean
+    feature3Description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutCommunitySection"]>
+
+  export type AboutCommunitySectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    feature1Title?: boolean
+    feature1Description?: boolean
+    feature2Title?: boolean
+    feature2Description?: boolean
+    feature3Title?: boolean
+    feature3Description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutCommunitySection"]>
+
+  export type AboutCommunitySectionSelectScalar = {
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    titleHighlight?: boolean
+    paragraph1?: boolean
+    paragraph2?: boolean
+    buttonText?: boolean
+    buttonLink?: boolean
+    feature1Title?: boolean
+    feature1Description?: boolean
+    feature2Title?: boolean
+    feature2Description?: boolean
+    feature3Title?: boolean
+    feature3Description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AboutCommunitySectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heading" | "title" | "titleHighlight" | "paragraph1" | "paragraph2" | "buttonText" | "buttonLink" | "feature1Title" | "feature1Description" | "feature2Title" | "feature2Description" | "feature3Title" | "feature3Description" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutCommunitySection"]>
+
+  export type $AboutCommunitySectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AboutCommunitySection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      heading: string
+      title: string
+      titleHighlight: string
+      paragraph1: string
+      paragraph2: string
+      buttonText: string
+      buttonLink: string
+      feature1Title: string
+      feature1Description: string
+      feature2Title: string
+      feature2Description: string
+      feature3Title: string
+      feature3Description: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aboutCommunitySection"]>
+    composites: {}
+  }
+
+  type AboutCommunitySectionGetPayload<S extends boolean | null | undefined | AboutCommunitySectionDefaultArgs> = $Result.GetResult<Prisma.$AboutCommunitySectionPayload, S>
+
+  type AboutCommunitySectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AboutCommunitySectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AboutCommunitySectionCountAggregateInputType | true
+    }
+
+  export interface AboutCommunitySectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AboutCommunitySection'], meta: { name: 'AboutCommunitySection' } }
+    /**
+     * Find zero or one AboutCommunitySection that matches the filter.
+     * @param {AboutCommunitySectionFindUniqueArgs} args - Arguments to find a AboutCommunitySection
+     * @example
+     * // Get one AboutCommunitySection
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AboutCommunitySectionFindUniqueArgs>(args: SelectSubset<T, AboutCommunitySectionFindUniqueArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AboutCommunitySection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AboutCommunitySectionFindUniqueOrThrowArgs} args - Arguments to find a AboutCommunitySection
+     * @example
+     * // Get one AboutCommunitySection
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AboutCommunitySectionFindUniqueOrThrowArgs>(args: SelectSubset<T, AboutCommunitySectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutCommunitySection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCommunitySectionFindFirstArgs} args - Arguments to find a AboutCommunitySection
+     * @example
+     * // Get one AboutCommunitySection
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AboutCommunitySectionFindFirstArgs>(args?: SelectSubset<T, AboutCommunitySectionFindFirstArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutCommunitySection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCommunitySectionFindFirstOrThrowArgs} args - Arguments to find a AboutCommunitySection
+     * @example
+     * // Get one AboutCommunitySection
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AboutCommunitySectionFindFirstOrThrowArgs>(args?: SelectSubset<T, AboutCommunitySectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AboutCommunitySections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCommunitySectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AboutCommunitySections
+     * const aboutCommunitySections = await prisma.aboutCommunitySection.findMany()
+     * 
+     * // Get first 10 AboutCommunitySections
+     * const aboutCommunitySections = await prisma.aboutCommunitySection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aboutCommunitySectionWithIdOnly = await prisma.aboutCommunitySection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AboutCommunitySectionFindManyArgs>(args?: SelectSubset<T, AboutCommunitySectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AboutCommunitySection.
+     * @param {AboutCommunitySectionCreateArgs} args - Arguments to create a AboutCommunitySection.
+     * @example
+     * // Create one AboutCommunitySection
+     * const AboutCommunitySection = await prisma.aboutCommunitySection.create({
+     *   data: {
+     *     // ... data to create a AboutCommunitySection
+     *   }
+     * })
+     * 
+     */
+    create<T extends AboutCommunitySectionCreateArgs>(args: SelectSubset<T, AboutCommunitySectionCreateArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AboutCommunitySections.
+     * @param {AboutCommunitySectionCreateManyArgs} args - Arguments to create many AboutCommunitySections.
+     * @example
+     * // Create many AboutCommunitySections
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AboutCommunitySectionCreateManyArgs>(args?: SelectSubset<T, AboutCommunitySectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AboutCommunitySections and returns the data saved in the database.
+     * @param {AboutCommunitySectionCreateManyAndReturnArgs} args - Arguments to create many AboutCommunitySections.
+     * @example
+     * // Create many AboutCommunitySections
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AboutCommunitySections and only return the `id`
+     * const aboutCommunitySectionWithIdOnly = await prisma.aboutCommunitySection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AboutCommunitySectionCreateManyAndReturnArgs>(args?: SelectSubset<T, AboutCommunitySectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AboutCommunitySection.
+     * @param {AboutCommunitySectionDeleteArgs} args - Arguments to delete one AboutCommunitySection.
+     * @example
+     * // Delete one AboutCommunitySection
+     * const AboutCommunitySection = await prisma.aboutCommunitySection.delete({
+     *   where: {
+     *     // ... filter to delete one AboutCommunitySection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AboutCommunitySectionDeleteArgs>(args: SelectSubset<T, AboutCommunitySectionDeleteArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AboutCommunitySection.
+     * @param {AboutCommunitySectionUpdateArgs} args - Arguments to update one AboutCommunitySection.
+     * @example
+     * // Update one AboutCommunitySection
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AboutCommunitySectionUpdateArgs>(args: SelectSubset<T, AboutCommunitySectionUpdateArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AboutCommunitySections.
+     * @param {AboutCommunitySectionDeleteManyArgs} args - Arguments to filter AboutCommunitySections to delete.
+     * @example
+     * // Delete a few AboutCommunitySections
+     * const { count } = await prisma.aboutCommunitySection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AboutCommunitySectionDeleteManyArgs>(args?: SelectSubset<T, AboutCommunitySectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutCommunitySections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCommunitySectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AboutCommunitySections
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AboutCommunitySectionUpdateManyArgs>(args: SelectSubset<T, AboutCommunitySectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutCommunitySections and returns the data updated in the database.
+     * @param {AboutCommunitySectionUpdateManyAndReturnArgs} args - Arguments to update many AboutCommunitySections.
+     * @example
+     * // Update many AboutCommunitySections
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AboutCommunitySections and only return the `id`
+     * const aboutCommunitySectionWithIdOnly = await prisma.aboutCommunitySection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AboutCommunitySectionUpdateManyAndReturnArgs>(args: SelectSubset<T, AboutCommunitySectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AboutCommunitySection.
+     * @param {AboutCommunitySectionUpsertArgs} args - Arguments to update or create a AboutCommunitySection.
+     * @example
+     * // Update or create a AboutCommunitySection
+     * const aboutCommunitySection = await prisma.aboutCommunitySection.upsert({
+     *   create: {
+     *     // ... data to create a AboutCommunitySection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AboutCommunitySection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AboutCommunitySectionUpsertArgs>(args: SelectSubset<T, AboutCommunitySectionUpsertArgs<ExtArgs>>): Prisma__AboutCommunitySectionClient<$Result.GetResult<Prisma.$AboutCommunitySectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AboutCommunitySections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCommunitySectionCountArgs} args - Arguments to filter AboutCommunitySections to count.
+     * @example
+     * // Count the number of AboutCommunitySections
+     * const count = await prisma.aboutCommunitySection.count({
+     *   where: {
+     *     // ... the filter for the AboutCommunitySections we want to count
+     *   }
+     * })
+    **/
+    count<T extends AboutCommunitySectionCountArgs>(
+      args?: Subset<T, AboutCommunitySectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AboutCommunitySectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AboutCommunitySection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCommunitySectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AboutCommunitySectionAggregateArgs>(args: Subset<T, AboutCommunitySectionAggregateArgs>): Prisma.PrismaPromise<GetAboutCommunitySectionAggregateType<T>>
+
+    /**
+     * Group by AboutCommunitySection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCommunitySectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AboutCommunitySectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AboutCommunitySectionGroupByArgs['orderBy'] }
+        : { orderBy?: AboutCommunitySectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AboutCommunitySectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAboutCommunitySectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AboutCommunitySection model
+   */
+  readonly fields: AboutCommunitySectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AboutCommunitySection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AboutCommunitySectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AboutCommunitySection model
+   */
+  interface AboutCommunitySectionFieldRefs {
+    readonly id: FieldRef<"AboutCommunitySection", 'String'>
+    readonly heading: FieldRef<"AboutCommunitySection", 'String'>
+    readonly title: FieldRef<"AboutCommunitySection", 'String'>
+    readonly titleHighlight: FieldRef<"AboutCommunitySection", 'String'>
+    readonly paragraph1: FieldRef<"AboutCommunitySection", 'String'>
+    readonly paragraph2: FieldRef<"AboutCommunitySection", 'String'>
+    readonly buttonText: FieldRef<"AboutCommunitySection", 'String'>
+    readonly buttonLink: FieldRef<"AboutCommunitySection", 'String'>
+    readonly feature1Title: FieldRef<"AboutCommunitySection", 'String'>
+    readonly feature1Description: FieldRef<"AboutCommunitySection", 'String'>
+    readonly feature2Title: FieldRef<"AboutCommunitySection", 'String'>
+    readonly feature2Description: FieldRef<"AboutCommunitySection", 'String'>
+    readonly feature3Title: FieldRef<"AboutCommunitySection", 'String'>
+    readonly feature3Description: FieldRef<"AboutCommunitySection", 'String'>
+    readonly status: FieldRef<"AboutCommunitySection", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"AboutCommunitySection", 'DateTime'>
+    readonly createdAt: FieldRef<"AboutCommunitySection", 'DateTime'>
+    readonly updatedAt: FieldRef<"AboutCommunitySection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AboutCommunitySection findUnique
+   */
+  export type AboutCommunitySectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCommunitySection to fetch.
+     */
+    where: AboutCommunitySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutCommunitySection findUniqueOrThrow
+   */
+  export type AboutCommunitySectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCommunitySection to fetch.
+     */
+    where: AboutCommunitySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutCommunitySection findFirst
+   */
+  export type AboutCommunitySectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCommunitySection to fetch.
+     */
+    where?: AboutCommunitySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCommunitySections to fetch.
+     */
+    orderBy?: AboutCommunitySectionOrderByWithRelationInput | AboutCommunitySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutCommunitySections.
+     */
+    cursor?: AboutCommunitySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCommunitySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCommunitySections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutCommunitySections.
+     */
+    distinct?: AboutCommunitySectionScalarFieldEnum | AboutCommunitySectionScalarFieldEnum[]
+  }
+
+  /**
+   * AboutCommunitySection findFirstOrThrow
+   */
+  export type AboutCommunitySectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCommunitySection to fetch.
+     */
+    where?: AboutCommunitySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCommunitySections to fetch.
+     */
+    orderBy?: AboutCommunitySectionOrderByWithRelationInput | AboutCommunitySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutCommunitySections.
+     */
+    cursor?: AboutCommunitySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCommunitySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCommunitySections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutCommunitySections.
+     */
+    distinct?: AboutCommunitySectionScalarFieldEnum | AboutCommunitySectionScalarFieldEnum[]
+  }
+
+  /**
+   * AboutCommunitySection findMany
+   */
+  export type AboutCommunitySectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCommunitySections to fetch.
+     */
+    where?: AboutCommunitySectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCommunitySections to fetch.
+     */
+    orderBy?: AboutCommunitySectionOrderByWithRelationInput | AboutCommunitySectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AboutCommunitySections.
+     */
+    cursor?: AboutCommunitySectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCommunitySections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCommunitySections.
+     */
+    skip?: number
+    distinct?: AboutCommunitySectionScalarFieldEnum | AboutCommunitySectionScalarFieldEnum[]
+  }
+
+  /**
+   * AboutCommunitySection create
+   */
+  export type AboutCommunitySectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AboutCommunitySection.
+     */
+    data: XOR<AboutCommunitySectionCreateInput, AboutCommunitySectionUncheckedCreateInput>
+  }
+
+  /**
+   * AboutCommunitySection createMany
+   */
+  export type AboutCommunitySectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AboutCommunitySections.
+     */
+    data: AboutCommunitySectionCreateManyInput | AboutCommunitySectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutCommunitySection createManyAndReturn
+   */
+  export type AboutCommunitySectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many AboutCommunitySections.
+     */
+    data: AboutCommunitySectionCreateManyInput | AboutCommunitySectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutCommunitySection update
+   */
+  export type AboutCommunitySectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AboutCommunitySection.
+     */
+    data: XOR<AboutCommunitySectionUpdateInput, AboutCommunitySectionUncheckedUpdateInput>
+    /**
+     * Choose, which AboutCommunitySection to update.
+     */
+    where: AboutCommunitySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutCommunitySection updateMany
+   */
+  export type AboutCommunitySectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AboutCommunitySections.
+     */
+    data: XOR<AboutCommunitySectionUpdateManyMutationInput, AboutCommunitySectionUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutCommunitySections to update
+     */
+    where?: AboutCommunitySectionWhereInput
+    /**
+     * Limit how many AboutCommunitySections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutCommunitySection updateManyAndReturn
+   */
+  export type AboutCommunitySectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * The data used to update AboutCommunitySections.
+     */
+    data: XOR<AboutCommunitySectionUpdateManyMutationInput, AboutCommunitySectionUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutCommunitySections to update
+     */
+    where?: AboutCommunitySectionWhereInput
+    /**
+     * Limit how many AboutCommunitySections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutCommunitySection upsert
+   */
+  export type AboutCommunitySectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AboutCommunitySection to update in case it exists.
+     */
+    where: AboutCommunitySectionWhereUniqueInput
+    /**
+     * In case the AboutCommunitySection found by the `where` argument doesn't exist, create a new AboutCommunitySection with this data.
+     */
+    create: XOR<AboutCommunitySectionCreateInput, AboutCommunitySectionUncheckedCreateInput>
+    /**
+     * In case the AboutCommunitySection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AboutCommunitySectionUpdateInput, AboutCommunitySectionUncheckedUpdateInput>
+  }
+
+  /**
+   * AboutCommunitySection delete
+   */
+  export type AboutCommunitySectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+    /**
+     * Filter which AboutCommunitySection to delete.
+     */
+    where: AboutCommunitySectionWhereUniqueInput
+  }
+
+  /**
+   * AboutCommunitySection deleteMany
+   */
+  export type AboutCommunitySectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutCommunitySections to delete
+     */
+    where?: AboutCommunitySectionWhereInput
+    /**
+     * Limit how many AboutCommunitySections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutCommunitySection without action
+   */
+  export type AboutCommunitySectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCommunitySection
+     */
+    select?: AboutCommunitySectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCommunitySection
+     */
+    omit?: AboutCommunitySectionOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AboutStats
+   */
+
+  export type AggregateAboutStats = {
+    _count: AboutStatsCountAggregateOutputType | null
+    _min: AboutStatsMinAggregateOutputType | null
+    _max: AboutStatsMaxAggregateOutputType | null
+  }
+
+  export type AboutStatsMinAggregateOutputType = {
+    id: string | null
+    stat1Number: string | null
+    stat1Label: string | null
+    stat2Number: string | null
+    stat2Label: string | null
+    stat3Number: string | null
+    stat3Label: string | null
+    stat4Number: string | null
+    stat4Label: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutStatsMaxAggregateOutputType = {
+    id: string | null
+    stat1Number: string | null
+    stat1Label: string | null
+    stat2Number: string | null
+    stat2Label: string | null
+    stat3Number: string | null
+    stat3Label: string | null
+    stat4Number: string | null
+    stat4Label: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutStatsCountAggregateOutputType = {
+    id: number
+    stat1Number: number
+    stat1Label: number
+    stat2Number: number
+    stat2Label: number
+    stat3Number: number
+    stat3Label: number
+    stat4Number: number
+    stat4Label: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AboutStatsMinAggregateInputType = {
+    id?: true
+    stat1Number?: true
+    stat1Label?: true
+    stat2Number?: true
+    stat2Label?: true
+    stat3Number?: true
+    stat3Label?: true
+    stat4Number?: true
+    stat4Label?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutStatsMaxAggregateInputType = {
+    id?: true
+    stat1Number?: true
+    stat1Label?: true
+    stat2Number?: true
+    stat2Label?: true
+    stat3Number?: true
+    stat3Label?: true
+    stat4Number?: true
+    stat4Label?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutStatsCountAggregateInputType = {
+    id?: true
+    stat1Number?: true
+    stat1Label?: true
+    stat2Number?: true
+    stat2Label?: true
+    stat3Number?: true
+    stat3Label?: true
+    stat4Number?: true
+    stat4Label?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AboutStatsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutStats to aggregate.
+     */
+    where?: AboutStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStats to fetch.
+     */
+    orderBy?: AboutStatsOrderByWithRelationInput | AboutStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AboutStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AboutStats
+    **/
+    _count?: true | AboutStatsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AboutStatsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AboutStatsMaxAggregateInputType
+  }
+
+  export type GetAboutStatsAggregateType<T extends AboutStatsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAboutStats]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAboutStats[P]>
+      : GetScalarType<T[P], AggregateAboutStats[P]>
+  }
+
+
+
+
+  export type AboutStatsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AboutStatsWhereInput
+    orderBy?: AboutStatsOrderByWithAggregationInput | AboutStatsOrderByWithAggregationInput[]
+    by: AboutStatsScalarFieldEnum[] | AboutStatsScalarFieldEnum
+    having?: AboutStatsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AboutStatsCountAggregateInputType | true
+    _min?: AboutStatsMinAggregateInputType
+    _max?: AboutStatsMaxAggregateInputType
+  }
+
+  export type AboutStatsGroupByOutputType = {
+    id: string
+    stat1Number: string
+    stat1Label: string
+    stat2Number: string
+    stat2Label: string
+    stat3Number: string
+    stat3Label: string
+    stat4Number: string
+    stat4Label: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AboutStatsCountAggregateOutputType | null
+    _min: AboutStatsMinAggregateOutputType | null
+    _max: AboutStatsMaxAggregateOutputType | null
+  }
+
+  type GetAboutStatsGroupByPayload<T extends AboutStatsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AboutStatsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AboutStatsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AboutStatsGroupByOutputType[P]>
+            : GetScalarType<T[P], AboutStatsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AboutStatsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stat1Number?: boolean
+    stat1Label?: boolean
+    stat2Number?: boolean
+    stat2Label?: boolean
+    stat3Number?: boolean
+    stat3Label?: boolean
+    stat4Number?: boolean
+    stat4Label?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutStats"]>
+
+  export type AboutStatsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stat1Number?: boolean
+    stat1Label?: boolean
+    stat2Number?: boolean
+    stat2Label?: boolean
+    stat3Number?: boolean
+    stat3Label?: boolean
+    stat4Number?: boolean
+    stat4Label?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutStats"]>
+
+  export type AboutStatsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stat1Number?: boolean
+    stat1Label?: boolean
+    stat2Number?: boolean
+    stat2Label?: boolean
+    stat3Number?: boolean
+    stat3Label?: boolean
+    stat4Number?: boolean
+    stat4Label?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutStats"]>
+
+  export type AboutStatsSelectScalar = {
+    id?: boolean
+    stat1Number?: boolean
+    stat1Label?: boolean
+    stat2Number?: boolean
+    stat2Label?: boolean
+    stat3Number?: boolean
+    stat3Label?: boolean
+    stat4Number?: boolean
+    stat4Label?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AboutStatsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stat1Number" | "stat1Label" | "stat2Number" | "stat2Label" | "stat3Number" | "stat3Label" | "stat4Number" | "stat4Label" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutStats"]>
+
+  export type $AboutStatsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AboutStats"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      stat1Number: string
+      stat1Label: string
+      stat2Number: string
+      stat2Label: string
+      stat3Number: string
+      stat3Label: string
+      stat4Number: string
+      stat4Label: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aboutStats"]>
+    composites: {}
+  }
+
+  type AboutStatsGetPayload<S extends boolean | null | undefined | AboutStatsDefaultArgs> = $Result.GetResult<Prisma.$AboutStatsPayload, S>
+
+  type AboutStatsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AboutStatsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AboutStatsCountAggregateInputType | true
+    }
+
+  export interface AboutStatsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AboutStats'], meta: { name: 'AboutStats' } }
+    /**
+     * Find zero or one AboutStats that matches the filter.
+     * @param {AboutStatsFindUniqueArgs} args - Arguments to find a AboutStats
+     * @example
+     * // Get one AboutStats
+     * const aboutStats = await prisma.aboutStats.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AboutStatsFindUniqueArgs>(args: SelectSubset<T, AboutStatsFindUniqueArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AboutStats that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AboutStatsFindUniqueOrThrowArgs} args - Arguments to find a AboutStats
+     * @example
+     * // Get one AboutStats
+     * const aboutStats = await prisma.aboutStats.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AboutStatsFindUniqueOrThrowArgs>(args: SelectSubset<T, AboutStatsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStatsFindFirstArgs} args - Arguments to find a AboutStats
+     * @example
+     * // Get one AboutStats
+     * const aboutStats = await prisma.aboutStats.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AboutStatsFindFirstArgs>(args?: SelectSubset<T, AboutStatsFindFirstArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutStats that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStatsFindFirstOrThrowArgs} args - Arguments to find a AboutStats
+     * @example
+     * // Get one AboutStats
+     * const aboutStats = await prisma.aboutStats.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AboutStatsFindFirstOrThrowArgs>(args?: SelectSubset<T, AboutStatsFindFirstOrThrowArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AboutStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStatsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AboutStats
+     * const aboutStats = await prisma.aboutStats.findMany()
+     * 
+     * // Get first 10 AboutStats
+     * const aboutStats = await prisma.aboutStats.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aboutStatsWithIdOnly = await prisma.aboutStats.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AboutStatsFindManyArgs>(args?: SelectSubset<T, AboutStatsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AboutStats.
+     * @param {AboutStatsCreateArgs} args - Arguments to create a AboutStats.
+     * @example
+     * // Create one AboutStats
+     * const AboutStats = await prisma.aboutStats.create({
+     *   data: {
+     *     // ... data to create a AboutStats
+     *   }
+     * })
+     * 
+     */
+    create<T extends AboutStatsCreateArgs>(args: SelectSubset<T, AboutStatsCreateArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AboutStats.
+     * @param {AboutStatsCreateManyArgs} args - Arguments to create many AboutStats.
+     * @example
+     * // Create many AboutStats
+     * const aboutStats = await prisma.aboutStats.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AboutStatsCreateManyArgs>(args?: SelectSubset<T, AboutStatsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AboutStats and returns the data saved in the database.
+     * @param {AboutStatsCreateManyAndReturnArgs} args - Arguments to create many AboutStats.
+     * @example
+     * // Create many AboutStats
+     * const aboutStats = await prisma.aboutStats.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AboutStats and only return the `id`
+     * const aboutStatsWithIdOnly = await prisma.aboutStats.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AboutStatsCreateManyAndReturnArgs>(args?: SelectSubset<T, AboutStatsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AboutStats.
+     * @param {AboutStatsDeleteArgs} args - Arguments to delete one AboutStats.
+     * @example
+     * // Delete one AboutStats
+     * const AboutStats = await prisma.aboutStats.delete({
+     *   where: {
+     *     // ... filter to delete one AboutStats
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AboutStatsDeleteArgs>(args: SelectSubset<T, AboutStatsDeleteArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AboutStats.
+     * @param {AboutStatsUpdateArgs} args - Arguments to update one AboutStats.
+     * @example
+     * // Update one AboutStats
+     * const aboutStats = await prisma.aboutStats.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AboutStatsUpdateArgs>(args: SelectSubset<T, AboutStatsUpdateArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AboutStats.
+     * @param {AboutStatsDeleteManyArgs} args - Arguments to filter AboutStats to delete.
+     * @example
+     * // Delete a few AboutStats
+     * const { count } = await prisma.aboutStats.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AboutStatsDeleteManyArgs>(args?: SelectSubset<T, AboutStatsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStatsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AboutStats
+     * const aboutStats = await prisma.aboutStats.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AboutStatsUpdateManyArgs>(args: SelectSubset<T, AboutStatsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutStats and returns the data updated in the database.
+     * @param {AboutStatsUpdateManyAndReturnArgs} args - Arguments to update many AboutStats.
+     * @example
+     * // Update many AboutStats
+     * const aboutStats = await prisma.aboutStats.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AboutStats and only return the `id`
+     * const aboutStatsWithIdOnly = await prisma.aboutStats.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AboutStatsUpdateManyAndReturnArgs>(args: SelectSubset<T, AboutStatsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AboutStats.
+     * @param {AboutStatsUpsertArgs} args - Arguments to update or create a AboutStats.
+     * @example
+     * // Update or create a AboutStats
+     * const aboutStats = await prisma.aboutStats.upsert({
+     *   create: {
+     *     // ... data to create a AboutStats
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AboutStats we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AboutStatsUpsertArgs>(args: SelectSubset<T, AboutStatsUpsertArgs<ExtArgs>>): Prisma__AboutStatsClient<$Result.GetResult<Prisma.$AboutStatsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AboutStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStatsCountArgs} args - Arguments to filter AboutStats to count.
+     * @example
+     * // Count the number of AboutStats
+     * const count = await prisma.aboutStats.count({
+     *   where: {
+     *     // ... the filter for the AboutStats we want to count
+     *   }
+     * })
+    **/
+    count<T extends AboutStatsCountArgs>(
+      args?: Subset<T, AboutStatsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AboutStatsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AboutStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStatsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AboutStatsAggregateArgs>(args: Subset<T, AboutStatsAggregateArgs>): Prisma.PrismaPromise<GetAboutStatsAggregateType<T>>
+
+    /**
+     * Group by AboutStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutStatsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AboutStatsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AboutStatsGroupByArgs['orderBy'] }
+        : { orderBy?: AboutStatsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AboutStatsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAboutStatsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AboutStats model
+   */
+  readonly fields: AboutStatsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AboutStats.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AboutStatsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AboutStats model
+   */
+  interface AboutStatsFieldRefs {
+    readonly id: FieldRef<"AboutStats", 'String'>
+    readonly stat1Number: FieldRef<"AboutStats", 'String'>
+    readonly stat1Label: FieldRef<"AboutStats", 'String'>
+    readonly stat2Number: FieldRef<"AboutStats", 'String'>
+    readonly stat2Label: FieldRef<"AboutStats", 'String'>
+    readonly stat3Number: FieldRef<"AboutStats", 'String'>
+    readonly stat3Label: FieldRef<"AboutStats", 'String'>
+    readonly stat4Number: FieldRef<"AboutStats", 'String'>
+    readonly stat4Label: FieldRef<"AboutStats", 'String'>
+    readonly status: FieldRef<"AboutStats", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"AboutStats", 'DateTime'>
+    readonly createdAt: FieldRef<"AboutStats", 'DateTime'>
+    readonly updatedAt: FieldRef<"AboutStats", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AboutStats findUnique
+   */
+  export type AboutStatsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStats to fetch.
+     */
+    where: AboutStatsWhereUniqueInput
+  }
+
+  /**
+   * AboutStats findUniqueOrThrow
+   */
+  export type AboutStatsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStats to fetch.
+     */
+    where: AboutStatsWhereUniqueInput
+  }
+
+  /**
+   * AboutStats findFirst
+   */
+  export type AboutStatsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStats to fetch.
+     */
+    where?: AboutStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStats to fetch.
+     */
+    orderBy?: AboutStatsOrderByWithRelationInput | AboutStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutStats.
+     */
+    cursor?: AboutStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutStats.
+     */
+    distinct?: AboutStatsScalarFieldEnum | AboutStatsScalarFieldEnum[]
+  }
+
+  /**
+   * AboutStats findFirstOrThrow
+   */
+  export type AboutStatsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStats to fetch.
+     */
+    where?: AboutStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStats to fetch.
+     */
+    orderBy?: AboutStatsOrderByWithRelationInput | AboutStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutStats.
+     */
+    cursor?: AboutStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutStats.
+     */
+    distinct?: AboutStatsScalarFieldEnum | AboutStatsScalarFieldEnum[]
+  }
+
+  /**
+   * AboutStats findMany
+   */
+  export type AboutStatsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutStats to fetch.
+     */
+    where?: AboutStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutStats to fetch.
+     */
+    orderBy?: AboutStatsOrderByWithRelationInput | AboutStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AboutStats.
+     */
+    cursor?: AboutStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutStats.
+     */
+    skip?: number
+    distinct?: AboutStatsScalarFieldEnum | AboutStatsScalarFieldEnum[]
+  }
+
+  /**
+   * AboutStats create
+   */
+  export type AboutStatsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AboutStats.
+     */
+    data: XOR<AboutStatsCreateInput, AboutStatsUncheckedCreateInput>
+  }
+
+  /**
+   * AboutStats createMany
+   */
+  export type AboutStatsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AboutStats.
+     */
+    data: AboutStatsCreateManyInput | AboutStatsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutStats createManyAndReturn
+   */
+  export type AboutStatsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * The data used to create many AboutStats.
+     */
+    data: AboutStatsCreateManyInput | AboutStatsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutStats update
+   */
+  export type AboutStatsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AboutStats.
+     */
+    data: XOR<AboutStatsUpdateInput, AboutStatsUncheckedUpdateInput>
+    /**
+     * Choose, which AboutStats to update.
+     */
+    where: AboutStatsWhereUniqueInput
+  }
+
+  /**
+   * AboutStats updateMany
+   */
+  export type AboutStatsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AboutStats.
+     */
+    data: XOR<AboutStatsUpdateManyMutationInput, AboutStatsUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutStats to update
+     */
+    where?: AboutStatsWhereInput
+    /**
+     * Limit how many AboutStats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutStats updateManyAndReturn
+   */
+  export type AboutStatsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * The data used to update AboutStats.
+     */
+    data: XOR<AboutStatsUpdateManyMutationInput, AboutStatsUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutStats to update
+     */
+    where?: AboutStatsWhereInput
+    /**
+     * Limit how many AboutStats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutStats upsert
+   */
+  export type AboutStatsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AboutStats to update in case it exists.
+     */
+    where: AboutStatsWhereUniqueInput
+    /**
+     * In case the AboutStats found by the `where` argument doesn't exist, create a new AboutStats with this data.
+     */
+    create: XOR<AboutStatsCreateInput, AboutStatsUncheckedCreateInput>
+    /**
+     * In case the AboutStats was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AboutStatsUpdateInput, AboutStatsUncheckedUpdateInput>
+  }
+
+  /**
+   * AboutStats delete
+   */
+  export type AboutStatsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+    /**
+     * Filter which AboutStats to delete.
+     */
+    where: AboutStatsWhereUniqueInput
+  }
+
+  /**
+   * AboutStats deleteMany
+   */
+  export type AboutStatsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutStats to delete
+     */
+    where?: AboutStatsWhereInput
+    /**
+     * Limit how many AboutStats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutStats without action
+   */
+  export type AboutStatsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutStats
+     */
+    select?: AboutStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutStats
+     */
+    omit?: AboutStatsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AboutValue
+   */
+
+  export type AggregateAboutValue = {
+    _count: AboutValueCountAggregateOutputType | null
+    _avg: AboutValueAvgAggregateOutputType | null
+    _sum: AboutValueSumAggregateOutputType | null
+    _min: AboutValueMinAggregateOutputType | null
+    _max: AboutValueMaxAggregateOutputType | null
+  }
+
+  export type AboutValueAvgAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type AboutValueSumAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type AboutValueMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    icon: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutValueMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    icon: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutValueCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    icon: number
+    displayOrder: number
+    active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AboutValueAvgAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type AboutValueSumAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type AboutValueMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    icon?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutValueMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    icon?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutValueCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    icon?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AboutValueAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutValue to aggregate.
+     */
+    where?: AboutValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutValues to fetch.
+     */
+    orderBy?: AboutValueOrderByWithRelationInput | AboutValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AboutValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutValues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutValues.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AboutValues
+    **/
+    _count?: true | AboutValueCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AboutValueAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AboutValueSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AboutValueMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AboutValueMaxAggregateInputType
+  }
+
+  export type GetAboutValueAggregateType<T extends AboutValueAggregateArgs> = {
+        [P in keyof T & keyof AggregateAboutValue]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAboutValue[P]>
+      : GetScalarType<T[P], AggregateAboutValue[P]>
+  }
+
+
+
+
+  export type AboutValueGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AboutValueWhereInput
+    orderBy?: AboutValueOrderByWithAggregationInput | AboutValueOrderByWithAggregationInput[]
+    by: AboutValueScalarFieldEnum[] | AboutValueScalarFieldEnum
+    having?: AboutValueScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AboutValueCountAggregateInputType | true
+    _avg?: AboutValueAvgAggregateInputType
+    _sum?: AboutValueSumAggregateInputType
+    _min?: AboutValueMinAggregateInputType
+    _max?: AboutValueMaxAggregateInputType
+  }
+
+  export type AboutValueGroupByOutputType = {
+    id: string
+    title: string
+    description: string
+    icon: string
+    displayOrder: number
+    active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AboutValueCountAggregateOutputType | null
+    _avg: AboutValueAvgAggregateOutputType | null
+    _sum: AboutValueSumAggregateOutputType | null
+    _min: AboutValueMinAggregateOutputType | null
+    _max: AboutValueMaxAggregateOutputType | null
+  }
+
+  type GetAboutValueGroupByPayload<T extends AboutValueGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AboutValueGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AboutValueGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AboutValueGroupByOutputType[P]>
+            : GetScalarType<T[P], AboutValueGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AboutValueSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutValue"]>
+
+  export type AboutValueSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutValue"]>
+
+  export type AboutValueSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutValue"]>
+
+  export type AboutValueSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AboutValueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "icon" | "displayOrder" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutValue"]>
+
+  export type $AboutValuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AboutValue"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string
+      icon: string
+      displayOrder: number
+      active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aboutValue"]>
+    composites: {}
+  }
+
+  type AboutValueGetPayload<S extends boolean | null | undefined | AboutValueDefaultArgs> = $Result.GetResult<Prisma.$AboutValuePayload, S>
+
+  type AboutValueCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AboutValueFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AboutValueCountAggregateInputType | true
+    }
+
+  export interface AboutValueDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AboutValue'], meta: { name: 'AboutValue' } }
+    /**
+     * Find zero or one AboutValue that matches the filter.
+     * @param {AboutValueFindUniqueArgs} args - Arguments to find a AboutValue
+     * @example
+     * // Get one AboutValue
+     * const aboutValue = await prisma.aboutValue.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AboutValueFindUniqueArgs>(args: SelectSubset<T, AboutValueFindUniqueArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AboutValue that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AboutValueFindUniqueOrThrowArgs} args - Arguments to find a AboutValue
+     * @example
+     * // Get one AboutValue
+     * const aboutValue = await prisma.aboutValue.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AboutValueFindUniqueOrThrowArgs>(args: SelectSubset<T, AboutValueFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutValue that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutValueFindFirstArgs} args - Arguments to find a AboutValue
+     * @example
+     * // Get one AboutValue
+     * const aboutValue = await prisma.aboutValue.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AboutValueFindFirstArgs>(args?: SelectSubset<T, AboutValueFindFirstArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutValue that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutValueFindFirstOrThrowArgs} args - Arguments to find a AboutValue
+     * @example
+     * // Get one AboutValue
+     * const aboutValue = await prisma.aboutValue.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AboutValueFindFirstOrThrowArgs>(args?: SelectSubset<T, AboutValueFindFirstOrThrowArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AboutValues that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutValueFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AboutValues
+     * const aboutValues = await prisma.aboutValue.findMany()
+     * 
+     * // Get first 10 AboutValues
+     * const aboutValues = await prisma.aboutValue.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aboutValueWithIdOnly = await prisma.aboutValue.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AboutValueFindManyArgs>(args?: SelectSubset<T, AboutValueFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AboutValue.
+     * @param {AboutValueCreateArgs} args - Arguments to create a AboutValue.
+     * @example
+     * // Create one AboutValue
+     * const AboutValue = await prisma.aboutValue.create({
+     *   data: {
+     *     // ... data to create a AboutValue
+     *   }
+     * })
+     * 
+     */
+    create<T extends AboutValueCreateArgs>(args: SelectSubset<T, AboutValueCreateArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AboutValues.
+     * @param {AboutValueCreateManyArgs} args - Arguments to create many AboutValues.
+     * @example
+     * // Create many AboutValues
+     * const aboutValue = await prisma.aboutValue.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AboutValueCreateManyArgs>(args?: SelectSubset<T, AboutValueCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AboutValues and returns the data saved in the database.
+     * @param {AboutValueCreateManyAndReturnArgs} args - Arguments to create many AboutValues.
+     * @example
+     * // Create many AboutValues
+     * const aboutValue = await prisma.aboutValue.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AboutValues and only return the `id`
+     * const aboutValueWithIdOnly = await prisma.aboutValue.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AboutValueCreateManyAndReturnArgs>(args?: SelectSubset<T, AboutValueCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AboutValue.
+     * @param {AboutValueDeleteArgs} args - Arguments to delete one AboutValue.
+     * @example
+     * // Delete one AboutValue
+     * const AboutValue = await prisma.aboutValue.delete({
+     *   where: {
+     *     // ... filter to delete one AboutValue
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AboutValueDeleteArgs>(args: SelectSubset<T, AboutValueDeleteArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AboutValue.
+     * @param {AboutValueUpdateArgs} args - Arguments to update one AboutValue.
+     * @example
+     * // Update one AboutValue
+     * const aboutValue = await prisma.aboutValue.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AboutValueUpdateArgs>(args: SelectSubset<T, AboutValueUpdateArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AboutValues.
+     * @param {AboutValueDeleteManyArgs} args - Arguments to filter AboutValues to delete.
+     * @example
+     * // Delete a few AboutValues
+     * const { count } = await prisma.aboutValue.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AboutValueDeleteManyArgs>(args?: SelectSubset<T, AboutValueDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutValues.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutValueUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AboutValues
+     * const aboutValue = await prisma.aboutValue.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AboutValueUpdateManyArgs>(args: SelectSubset<T, AboutValueUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutValues and returns the data updated in the database.
+     * @param {AboutValueUpdateManyAndReturnArgs} args - Arguments to update many AboutValues.
+     * @example
+     * // Update many AboutValues
+     * const aboutValue = await prisma.aboutValue.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AboutValues and only return the `id`
+     * const aboutValueWithIdOnly = await prisma.aboutValue.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AboutValueUpdateManyAndReturnArgs>(args: SelectSubset<T, AboutValueUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AboutValue.
+     * @param {AboutValueUpsertArgs} args - Arguments to update or create a AboutValue.
+     * @example
+     * // Update or create a AboutValue
+     * const aboutValue = await prisma.aboutValue.upsert({
+     *   create: {
+     *     // ... data to create a AboutValue
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AboutValue we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AboutValueUpsertArgs>(args: SelectSubset<T, AboutValueUpsertArgs<ExtArgs>>): Prisma__AboutValueClient<$Result.GetResult<Prisma.$AboutValuePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AboutValues.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutValueCountArgs} args - Arguments to filter AboutValues to count.
+     * @example
+     * // Count the number of AboutValues
+     * const count = await prisma.aboutValue.count({
+     *   where: {
+     *     // ... the filter for the AboutValues we want to count
+     *   }
+     * })
+    **/
+    count<T extends AboutValueCountArgs>(
+      args?: Subset<T, AboutValueCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AboutValueCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AboutValue.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutValueAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AboutValueAggregateArgs>(args: Subset<T, AboutValueAggregateArgs>): Prisma.PrismaPromise<GetAboutValueAggregateType<T>>
+
+    /**
+     * Group by AboutValue.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutValueGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AboutValueGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AboutValueGroupByArgs['orderBy'] }
+        : { orderBy?: AboutValueGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AboutValueGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAboutValueGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AboutValue model
+   */
+  readonly fields: AboutValueFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AboutValue.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AboutValueClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AboutValue model
+   */
+  interface AboutValueFieldRefs {
+    readonly id: FieldRef<"AboutValue", 'String'>
+    readonly title: FieldRef<"AboutValue", 'String'>
+    readonly description: FieldRef<"AboutValue", 'String'>
+    readonly icon: FieldRef<"AboutValue", 'String'>
+    readonly displayOrder: FieldRef<"AboutValue", 'Int'>
+    readonly active: FieldRef<"AboutValue", 'Boolean'>
+    readonly createdAt: FieldRef<"AboutValue", 'DateTime'>
+    readonly updatedAt: FieldRef<"AboutValue", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AboutValue findUnique
+   */
+  export type AboutValueFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutValue to fetch.
+     */
+    where: AboutValueWhereUniqueInput
+  }
+
+  /**
+   * AboutValue findUniqueOrThrow
+   */
+  export type AboutValueFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutValue to fetch.
+     */
+    where: AboutValueWhereUniqueInput
+  }
+
+  /**
+   * AboutValue findFirst
+   */
+  export type AboutValueFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutValue to fetch.
+     */
+    where?: AboutValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutValues to fetch.
+     */
+    orderBy?: AboutValueOrderByWithRelationInput | AboutValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutValues.
+     */
+    cursor?: AboutValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutValues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutValues.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutValues.
+     */
+    distinct?: AboutValueScalarFieldEnum | AboutValueScalarFieldEnum[]
+  }
+
+  /**
+   * AboutValue findFirstOrThrow
+   */
+  export type AboutValueFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutValue to fetch.
+     */
+    where?: AboutValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutValues to fetch.
+     */
+    orderBy?: AboutValueOrderByWithRelationInput | AboutValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutValues.
+     */
+    cursor?: AboutValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutValues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutValues.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutValues.
+     */
+    distinct?: AboutValueScalarFieldEnum | AboutValueScalarFieldEnum[]
+  }
+
+  /**
+   * AboutValue findMany
+   */
+  export type AboutValueFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutValues to fetch.
+     */
+    where?: AboutValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutValues to fetch.
+     */
+    orderBy?: AboutValueOrderByWithRelationInput | AboutValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AboutValues.
+     */
+    cursor?: AboutValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutValues from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutValues.
+     */
+    skip?: number
+    distinct?: AboutValueScalarFieldEnum | AboutValueScalarFieldEnum[]
+  }
+
+  /**
+   * AboutValue create
+   */
+  export type AboutValueCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AboutValue.
+     */
+    data: XOR<AboutValueCreateInput, AboutValueUncheckedCreateInput>
+  }
+
+  /**
+   * AboutValue createMany
+   */
+  export type AboutValueCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AboutValues.
+     */
+    data: AboutValueCreateManyInput | AboutValueCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutValue createManyAndReturn
+   */
+  export type AboutValueCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * The data used to create many AboutValues.
+     */
+    data: AboutValueCreateManyInput | AboutValueCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutValue update
+   */
+  export type AboutValueUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AboutValue.
+     */
+    data: XOR<AboutValueUpdateInput, AboutValueUncheckedUpdateInput>
+    /**
+     * Choose, which AboutValue to update.
+     */
+    where: AboutValueWhereUniqueInput
+  }
+
+  /**
+   * AboutValue updateMany
+   */
+  export type AboutValueUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AboutValues.
+     */
+    data: XOR<AboutValueUpdateManyMutationInput, AboutValueUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutValues to update
+     */
+    where?: AboutValueWhereInput
+    /**
+     * Limit how many AboutValues to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutValue updateManyAndReturn
+   */
+  export type AboutValueUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * The data used to update AboutValues.
+     */
+    data: XOR<AboutValueUpdateManyMutationInput, AboutValueUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutValues to update
+     */
+    where?: AboutValueWhereInput
+    /**
+     * Limit how many AboutValues to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutValue upsert
+   */
+  export type AboutValueUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AboutValue to update in case it exists.
+     */
+    where: AboutValueWhereUniqueInput
+    /**
+     * In case the AboutValue found by the `where` argument doesn't exist, create a new AboutValue with this data.
+     */
+    create: XOR<AboutValueCreateInput, AboutValueUncheckedCreateInput>
+    /**
+     * In case the AboutValue was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AboutValueUpdateInput, AboutValueUncheckedUpdateInput>
+  }
+
+  /**
+   * AboutValue delete
+   */
+  export type AboutValueDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+    /**
+     * Filter which AboutValue to delete.
+     */
+    where: AboutValueWhereUniqueInput
+  }
+
+  /**
+   * AboutValue deleteMany
+   */
+  export type AboutValueDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutValues to delete
+     */
+    where?: AboutValueWhereInput
+    /**
+     * Limit how many AboutValues to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutValue without action
+   */
+  export type AboutValueDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutValue
+     */
+    select?: AboutValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutValue
+     */
+    omit?: AboutValueOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AboutHero
+   */
+
+  export type AggregateAboutHero = {
+    _count: AboutHeroCountAggregateOutputType | null
+    _min: AboutHeroMinAggregateOutputType | null
+    _max: AboutHeroMaxAggregateOutputType | null
+  }
+
+  export type AboutHeroMinAggregateOutputType = {
+    id: string | null
+    image: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutHeroMaxAggregateOutputType = {
+    id: string | null
+    image: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutHeroCountAggregateOutputType = {
+    id: number
+    image: number
+    title: number
+    subtitle: number
+    description: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AboutHeroMinAggregateInputType = {
+    id?: true
+    image?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutHeroMaxAggregateInputType = {
+    id?: true
+    image?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutHeroCountAggregateInputType = {
+    id?: true
+    image?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AboutHeroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutHero to aggregate.
+     */
+    where?: AboutHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutHeroes to fetch.
+     */
+    orderBy?: AboutHeroOrderByWithRelationInput | AboutHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AboutHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AboutHeroes
+    **/
+    _count?: true | AboutHeroCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AboutHeroMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AboutHeroMaxAggregateInputType
+  }
+
+  export type GetAboutHeroAggregateType<T extends AboutHeroAggregateArgs> = {
+        [P in keyof T & keyof AggregateAboutHero]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAboutHero[P]>
+      : GetScalarType<T[P], AggregateAboutHero[P]>
+  }
+
+
+
+
+  export type AboutHeroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AboutHeroWhereInput
+    orderBy?: AboutHeroOrderByWithAggregationInput | AboutHeroOrderByWithAggregationInput[]
+    by: AboutHeroScalarFieldEnum[] | AboutHeroScalarFieldEnum
+    having?: AboutHeroScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AboutHeroCountAggregateInputType | true
+    _min?: AboutHeroMinAggregateInputType
+    _max?: AboutHeroMaxAggregateInputType
+  }
+
+  export type AboutHeroGroupByOutputType = {
+    id: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AboutHeroCountAggregateOutputType | null
+    _min: AboutHeroMinAggregateOutputType | null
+    _max: AboutHeroMaxAggregateOutputType | null
+  }
+
+  type GetAboutHeroGroupByPayload<T extends AboutHeroGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AboutHeroGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AboutHeroGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AboutHeroGroupByOutputType[P]>
+            : GetScalarType<T[P], AboutHeroGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AboutHeroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutHero"]>
+
+  export type AboutHeroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutHero"]>
+
+  export type AboutHeroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutHero"]>
+
+  export type AboutHeroSelectScalar = {
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AboutHeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "image" | "title" | "subtitle" | "description" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutHero"]>
+
+  export type $AboutHeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AboutHero"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      image: string
+      title: string
+      subtitle: string
+      description: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aboutHero"]>
+    composites: {}
+  }
+
+  type AboutHeroGetPayload<S extends boolean | null | undefined | AboutHeroDefaultArgs> = $Result.GetResult<Prisma.$AboutHeroPayload, S>
+
+  type AboutHeroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AboutHeroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AboutHeroCountAggregateInputType | true
+    }
+
+  export interface AboutHeroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AboutHero'], meta: { name: 'AboutHero' } }
+    /**
+     * Find zero or one AboutHero that matches the filter.
+     * @param {AboutHeroFindUniqueArgs} args - Arguments to find a AboutHero
+     * @example
+     * // Get one AboutHero
+     * const aboutHero = await prisma.aboutHero.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AboutHeroFindUniqueArgs>(args: SelectSubset<T, AboutHeroFindUniqueArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AboutHero that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AboutHeroFindUniqueOrThrowArgs} args - Arguments to find a AboutHero
+     * @example
+     * // Get one AboutHero
+     * const aboutHero = await prisma.aboutHero.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AboutHeroFindUniqueOrThrowArgs>(args: SelectSubset<T, AboutHeroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutHero that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutHeroFindFirstArgs} args - Arguments to find a AboutHero
+     * @example
+     * // Get one AboutHero
+     * const aboutHero = await prisma.aboutHero.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AboutHeroFindFirstArgs>(args?: SelectSubset<T, AboutHeroFindFirstArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutHero that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutHeroFindFirstOrThrowArgs} args - Arguments to find a AboutHero
+     * @example
+     * // Get one AboutHero
+     * const aboutHero = await prisma.aboutHero.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AboutHeroFindFirstOrThrowArgs>(args?: SelectSubset<T, AboutHeroFindFirstOrThrowArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AboutHeroes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutHeroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AboutHeroes
+     * const aboutHeroes = await prisma.aboutHero.findMany()
+     * 
+     * // Get first 10 AboutHeroes
+     * const aboutHeroes = await prisma.aboutHero.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aboutHeroWithIdOnly = await prisma.aboutHero.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AboutHeroFindManyArgs>(args?: SelectSubset<T, AboutHeroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AboutHero.
+     * @param {AboutHeroCreateArgs} args - Arguments to create a AboutHero.
+     * @example
+     * // Create one AboutHero
+     * const AboutHero = await prisma.aboutHero.create({
+     *   data: {
+     *     // ... data to create a AboutHero
+     *   }
+     * })
+     * 
+     */
+    create<T extends AboutHeroCreateArgs>(args: SelectSubset<T, AboutHeroCreateArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AboutHeroes.
+     * @param {AboutHeroCreateManyArgs} args - Arguments to create many AboutHeroes.
+     * @example
+     * // Create many AboutHeroes
+     * const aboutHero = await prisma.aboutHero.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AboutHeroCreateManyArgs>(args?: SelectSubset<T, AboutHeroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AboutHeroes and returns the data saved in the database.
+     * @param {AboutHeroCreateManyAndReturnArgs} args - Arguments to create many AboutHeroes.
+     * @example
+     * // Create many AboutHeroes
+     * const aboutHero = await prisma.aboutHero.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AboutHeroes and only return the `id`
+     * const aboutHeroWithIdOnly = await prisma.aboutHero.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AboutHeroCreateManyAndReturnArgs>(args?: SelectSubset<T, AboutHeroCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AboutHero.
+     * @param {AboutHeroDeleteArgs} args - Arguments to delete one AboutHero.
+     * @example
+     * // Delete one AboutHero
+     * const AboutHero = await prisma.aboutHero.delete({
+     *   where: {
+     *     // ... filter to delete one AboutHero
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AboutHeroDeleteArgs>(args: SelectSubset<T, AboutHeroDeleteArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AboutHero.
+     * @param {AboutHeroUpdateArgs} args - Arguments to update one AboutHero.
+     * @example
+     * // Update one AboutHero
+     * const aboutHero = await prisma.aboutHero.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AboutHeroUpdateArgs>(args: SelectSubset<T, AboutHeroUpdateArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AboutHeroes.
+     * @param {AboutHeroDeleteManyArgs} args - Arguments to filter AboutHeroes to delete.
+     * @example
+     * // Delete a few AboutHeroes
+     * const { count } = await prisma.aboutHero.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AboutHeroDeleteManyArgs>(args?: SelectSubset<T, AboutHeroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutHeroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AboutHeroes
+     * const aboutHero = await prisma.aboutHero.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AboutHeroUpdateManyArgs>(args: SelectSubset<T, AboutHeroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutHeroes and returns the data updated in the database.
+     * @param {AboutHeroUpdateManyAndReturnArgs} args - Arguments to update many AboutHeroes.
+     * @example
+     * // Update many AboutHeroes
+     * const aboutHero = await prisma.aboutHero.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AboutHeroes and only return the `id`
+     * const aboutHeroWithIdOnly = await prisma.aboutHero.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AboutHeroUpdateManyAndReturnArgs>(args: SelectSubset<T, AboutHeroUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AboutHero.
+     * @param {AboutHeroUpsertArgs} args - Arguments to update or create a AboutHero.
+     * @example
+     * // Update or create a AboutHero
+     * const aboutHero = await prisma.aboutHero.upsert({
+     *   create: {
+     *     // ... data to create a AboutHero
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AboutHero we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AboutHeroUpsertArgs>(args: SelectSubset<T, AboutHeroUpsertArgs<ExtArgs>>): Prisma__AboutHeroClient<$Result.GetResult<Prisma.$AboutHeroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AboutHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutHeroCountArgs} args - Arguments to filter AboutHeroes to count.
+     * @example
+     * // Count the number of AboutHeroes
+     * const count = await prisma.aboutHero.count({
+     *   where: {
+     *     // ... the filter for the AboutHeroes we want to count
+     *   }
+     * })
+    **/
+    count<T extends AboutHeroCountArgs>(
+      args?: Subset<T, AboutHeroCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AboutHeroCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AboutHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutHeroAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AboutHeroAggregateArgs>(args: Subset<T, AboutHeroAggregateArgs>): Prisma.PrismaPromise<GetAboutHeroAggregateType<T>>
+
+    /**
+     * Group by AboutHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutHeroGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AboutHeroGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AboutHeroGroupByArgs['orderBy'] }
+        : { orderBy?: AboutHeroGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AboutHeroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAboutHeroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AboutHero model
+   */
+  readonly fields: AboutHeroFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AboutHero.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AboutHeroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AboutHero model
+   */
+  interface AboutHeroFieldRefs {
+    readonly id: FieldRef<"AboutHero", 'String'>
+    readonly image: FieldRef<"AboutHero", 'String'>
+    readonly title: FieldRef<"AboutHero", 'String'>
+    readonly subtitle: FieldRef<"AboutHero", 'String'>
+    readonly description: FieldRef<"AboutHero", 'String'>
+    readonly status: FieldRef<"AboutHero", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"AboutHero", 'DateTime'>
+    readonly createdAt: FieldRef<"AboutHero", 'DateTime'>
+    readonly updatedAt: FieldRef<"AboutHero", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AboutHero findUnique
+   */
+  export type AboutHeroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutHero to fetch.
+     */
+    where: AboutHeroWhereUniqueInput
+  }
+
+  /**
+   * AboutHero findUniqueOrThrow
+   */
+  export type AboutHeroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutHero to fetch.
+     */
+    where: AboutHeroWhereUniqueInput
+  }
+
+  /**
+   * AboutHero findFirst
+   */
+  export type AboutHeroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutHero to fetch.
+     */
+    where?: AboutHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutHeroes to fetch.
+     */
+    orderBy?: AboutHeroOrderByWithRelationInput | AboutHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutHeroes.
+     */
+    cursor?: AboutHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutHeroes.
+     */
+    distinct?: AboutHeroScalarFieldEnum | AboutHeroScalarFieldEnum[]
+  }
+
+  /**
+   * AboutHero findFirstOrThrow
+   */
+  export type AboutHeroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutHero to fetch.
+     */
+    where?: AboutHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutHeroes to fetch.
+     */
+    orderBy?: AboutHeroOrderByWithRelationInput | AboutHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutHeroes.
+     */
+    cursor?: AboutHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutHeroes.
+     */
+    distinct?: AboutHeroScalarFieldEnum | AboutHeroScalarFieldEnum[]
+  }
+
+  /**
+   * AboutHero findMany
+   */
+  export type AboutHeroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutHeroes to fetch.
+     */
+    where?: AboutHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutHeroes to fetch.
+     */
+    orderBy?: AboutHeroOrderByWithRelationInput | AboutHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AboutHeroes.
+     */
+    cursor?: AboutHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutHeroes.
+     */
+    skip?: number
+    distinct?: AboutHeroScalarFieldEnum | AboutHeroScalarFieldEnum[]
+  }
+
+  /**
+   * AboutHero create
+   */
+  export type AboutHeroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AboutHero.
+     */
+    data: XOR<AboutHeroCreateInput, AboutHeroUncheckedCreateInput>
+  }
+
+  /**
+   * AboutHero createMany
+   */
+  export type AboutHeroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AboutHeroes.
+     */
+    data: AboutHeroCreateManyInput | AboutHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutHero createManyAndReturn
+   */
+  export type AboutHeroCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * The data used to create many AboutHeroes.
+     */
+    data: AboutHeroCreateManyInput | AboutHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutHero update
+   */
+  export type AboutHeroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AboutHero.
+     */
+    data: XOR<AboutHeroUpdateInput, AboutHeroUncheckedUpdateInput>
+    /**
+     * Choose, which AboutHero to update.
+     */
+    where: AboutHeroWhereUniqueInput
+  }
+
+  /**
+   * AboutHero updateMany
+   */
+  export type AboutHeroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AboutHeroes.
+     */
+    data: XOR<AboutHeroUpdateManyMutationInput, AboutHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutHeroes to update
+     */
+    where?: AboutHeroWhereInput
+    /**
+     * Limit how many AboutHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutHero updateManyAndReturn
+   */
+  export type AboutHeroUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * The data used to update AboutHeroes.
+     */
+    data: XOR<AboutHeroUpdateManyMutationInput, AboutHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutHeroes to update
+     */
+    where?: AboutHeroWhereInput
+    /**
+     * Limit how many AboutHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutHero upsert
+   */
+  export type AboutHeroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AboutHero to update in case it exists.
+     */
+    where: AboutHeroWhereUniqueInput
+    /**
+     * In case the AboutHero found by the `where` argument doesn't exist, create a new AboutHero with this data.
+     */
+    create: XOR<AboutHeroCreateInput, AboutHeroUncheckedCreateInput>
+    /**
+     * In case the AboutHero was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AboutHeroUpdateInput, AboutHeroUncheckedUpdateInput>
+  }
+
+  /**
+   * AboutHero delete
+   */
+  export type AboutHeroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+    /**
+     * Filter which AboutHero to delete.
+     */
+    where: AboutHeroWhereUniqueInput
+  }
+
+  /**
+   * AboutHero deleteMany
+   */
+  export type AboutHeroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutHeroes to delete
+     */
+    where?: AboutHeroWhereInput
+    /**
+     * Limit how many AboutHeroes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutHero without action
+   */
+  export type AboutHeroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutHero
+     */
+    select?: AboutHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutHero
+     */
+    omit?: AboutHeroOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AboutCTA
+   */
+
+  export type AggregateAboutCTA = {
+    _count: AboutCTACountAggregateOutputType | null
+    _min: AboutCTAMinAggregateOutputType | null
+    _max: AboutCTAMaxAggregateOutputType | null
+  }
+
+  export type AboutCTAMinAggregateOutputType = {
+    id: string | null
+    badge: string | null
+    heading: string | null
+    headingHighlight: string | null
+    description: string | null
+    button1Text: string | null
+    button1Link: string | null
+    button2Text: string | null
+    button2Link: string | null
+    footerText: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutCTAMaxAggregateOutputType = {
+    id: string | null
+    badge: string | null
+    heading: string | null
+    headingHighlight: string | null
+    description: string | null
+    button1Text: string | null
+    button1Link: string | null
+    button2Text: string | null
+    button2Link: string | null
+    footerText: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AboutCTACountAggregateOutputType = {
+    id: number
+    badge: number
+    heading: number
+    headingHighlight: number
+    description: number
+    button1Text: number
+    button1Link: number
+    button2Text: number
+    button2Link: number
+    footerText: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AboutCTAMinAggregateInputType = {
+    id?: true
+    badge?: true
+    heading?: true
+    headingHighlight?: true
+    description?: true
+    button1Text?: true
+    button1Link?: true
+    button2Text?: true
+    button2Link?: true
+    footerText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutCTAMaxAggregateInputType = {
+    id?: true
+    badge?: true
+    heading?: true
+    headingHighlight?: true
+    description?: true
+    button1Text?: true
+    button1Link?: true
+    button2Text?: true
+    button2Link?: true
+    footerText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AboutCTACountAggregateInputType = {
+    id?: true
+    badge?: true
+    heading?: true
+    headingHighlight?: true
+    description?: true
+    button1Text?: true
+    button1Link?: true
+    button2Text?: true
+    button2Link?: true
+    footerText?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AboutCTAAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutCTA to aggregate.
+     */
+    where?: AboutCTAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCTAS to fetch.
+     */
+    orderBy?: AboutCTAOrderByWithRelationInput | AboutCTAOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AboutCTAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCTAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCTAS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AboutCTAS
+    **/
+    _count?: true | AboutCTACountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AboutCTAMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AboutCTAMaxAggregateInputType
+  }
+
+  export type GetAboutCTAAggregateType<T extends AboutCTAAggregateArgs> = {
+        [P in keyof T & keyof AggregateAboutCTA]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAboutCTA[P]>
+      : GetScalarType<T[P], AggregateAboutCTA[P]>
+  }
+
+
+
+
+  export type AboutCTAGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AboutCTAWhereInput
+    orderBy?: AboutCTAOrderByWithAggregationInput | AboutCTAOrderByWithAggregationInput[]
+    by: AboutCTAScalarFieldEnum[] | AboutCTAScalarFieldEnum
+    having?: AboutCTAScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AboutCTACountAggregateInputType | true
+    _min?: AboutCTAMinAggregateInputType
+    _max?: AboutCTAMaxAggregateInputType
+  }
+
+  export type AboutCTAGroupByOutputType = {
+    id: string
+    badge: string
+    heading: string
+    headingHighlight: string
+    description: string
+    button1Text: string
+    button1Link: string
+    button2Text: string
+    button2Link: string
+    footerText: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AboutCTACountAggregateOutputType | null
+    _min: AboutCTAMinAggregateOutputType | null
+    _max: AboutCTAMaxAggregateOutputType | null
+  }
+
+  type GetAboutCTAGroupByPayload<T extends AboutCTAGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AboutCTAGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AboutCTAGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AboutCTAGroupByOutputType[P]>
+            : GetScalarType<T[P], AboutCTAGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AboutCTASelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    badge?: boolean
+    heading?: boolean
+    headingHighlight?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    footerText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutCTA"]>
+
+  export type AboutCTASelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    badge?: boolean
+    heading?: boolean
+    headingHighlight?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    footerText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutCTA"]>
+
+  export type AboutCTASelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    badge?: boolean
+    heading?: boolean
+    headingHighlight?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    footerText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["aboutCTA"]>
+
+  export type AboutCTASelectScalar = {
+    id?: boolean
+    badge?: boolean
+    heading?: boolean
+    headingHighlight?: boolean
+    description?: boolean
+    button1Text?: boolean
+    button1Link?: boolean
+    button2Text?: boolean
+    button2Link?: boolean
+    footerText?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AboutCTAOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "badge" | "heading" | "headingHighlight" | "description" | "button1Text" | "button1Link" | "button2Text" | "button2Link" | "footerText" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutCTA"]>
+
+  export type $AboutCTAPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AboutCTA"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      badge: string
+      heading: string
+      headingHighlight: string
+      description: string
+      button1Text: string
+      button1Link: string
+      button2Text: string
+      button2Link: string
+      footerText: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aboutCTA"]>
+    composites: {}
+  }
+
+  type AboutCTAGetPayload<S extends boolean | null | undefined | AboutCTADefaultArgs> = $Result.GetResult<Prisma.$AboutCTAPayload, S>
+
+  type AboutCTACountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AboutCTAFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AboutCTACountAggregateInputType | true
+    }
+
+  export interface AboutCTADelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AboutCTA'], meta: { name: 'AboutCTA' } }
+    /**
+     * Find zero or one AboutCTA that matches the filter.
+     * @param {AboutCTAFindUniqueArgs} args - Arguments to find a AboutCTA
+     * @example
+     * // Get one AboutCTA
+     * const aboutCTA = await prisma.aboutCTA.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AboutCTAFindUniqueArgs>(args: SelectSubset<T, AboutCTAFindUniqueArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AboutCTA that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AboutCTAFindUniqueOrThrowArgs} args - Arguments to find a AboutCTA
+     * @example
+     * // Get one AboutCTA
+     * const aboutCTA = await prisma.aboutCTA.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AboutCTAFindUniqueOrThrowArgs>(args: SelectSubset<T, AboutCTAFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutCTA that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCTAFindFirstArgs} args - Arguments to find a AboutCTA
+     * @example
+     * // Get one AboutCTA
+     * const aboutCTA = await prisma.aboutCTA.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AboutCTAFindFirstArgs>(args?: SelectSubset<T, AboutCTAFindFirstArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AboutCTA that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCTAFindFirstOrThrowArgs} args - Arguments to find a AboutCTA
+     * @example
+     * // Get one AboutCTA
+     * const aboutCTA = await prisma.aboutCTA.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AboutCTAFindFirstOrThrowArgs>(args?: SelectSubset<T, AboutCTAFindFirstOrThrowArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AboutCTAS that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCTAFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AboutCTAS
+     * const aboutCTAS = await prisma.aboutCTA.findMany()
+     * 
+     * // Get first 10 AboutCTAS
+     * const aboutCTAS = await prisma.aboutCTA.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aboutCTAWithIdOnly = await prisma.aboutCTA.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AboutCTAFindManyArgs>(args?: SelectSubset<T, AboutCTAFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AboutCTA.
+     * @param {AboutCTACreateArgs} args - Arguments to create a AboutCTA.
+     * @example
+     * // Create one AboutCTA
+     * const AboutCTA = await prisma.aboutCTA.create({
+     *   data: {
+     *     // ... data to create a AboutCTA
+     *   }
+     * })
+     * 
+     */
+    create<T extends AboutCTACreateArgs>(args: SelectSubset<T, AboutCTACreateArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AboutCTAS.
+     * @param {AboutCTACreateManyArgs} args - Arguments to create many AboutCTAS.
+     * @example
+     * // Create many AboutCTAS
+     * const aboutCTA = await prisma.aboutCTA.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AboutCTACreateManyArgs>(args?: SelectSubset<T, AboutCTACreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AboutCTAS and returns the data saved in the database.
+     * @param {AboutCTACreateManyAndReturnArgs} args - Arguments to create many AboutCTAS.
+     * @example
+     * // Create many AboutCTAS
+     * const aboutCTA = await prisma.aboutCTA.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AboutCTAS and only return the `id`
+     * const aboutCTAWithIdOnly = await prisma.aboutCTA.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AboutCTACreateManyAndReturnArgs>(args?: SelectSubset<T, AboutCTACreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AboutCTA.
+     * @param {AboutCTADeleteArgs} args - Arguments to delete one AboutCTA.
+     * @example
+     * // Delete one AboutCTA
+     * const AboutCTA = await prisma.aboutCTA.delete({
+     *   where: {
+     *     // ... filter to delete one AboutCTA
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AboutCTADeleteArgs>(args: SelectSubset<T, AboutCTADeleteArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AboutCTA.
+     * @param {AboutCTAUpdateArgs} args - Arguments to update one AboutCTA.
+     * @example
+     * // Update one AboutCTA
+     * const aboutCTA = await prisma.aboutCTA.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AboutCTAUpdateArgs>(args: SelectSubset<T, AboutCTAUpdateArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AboutCTAS.
+     * @param {AboutCTADeleteManyArgs} args - Arguments to filter AboutCTAS to delete.
+     * @example
+     * // Delete a few AboutCTAS
+     * const { count } = await prisma.aboutCTA.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AboutCTADeleteManyArgs>(args?: SelectSubset<T, AboutCTADeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutCTAS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCTAUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AboutCTAS
+     * const aboutCTA = await prisma.aboutCTA.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AboutCTAUpdateManyArgs>(args: SelectSubset<T, AboutCTAUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AboutCTAS and returns the data updated in the database.
+     * @param {AboutCTAUpdateManyAndReturnArgs} args - Arguments to update many AboutCTAS.
+     * @example
+     * // Update many AboutCTAS
+     * const aboutCTA = await prisma.aboutCTA.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AboutCTAS and only return the `id`
+     * const aboutCTAWithIdOnly = await prisma.aboutCTA.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AboutCTAUpdateManyAndReturnArgs>(args: SelectSubset<T, AboutCTAUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AboutCTA.
+     * @param {AboutCTAUpsertArgs} args - Arguments to update or create a AboutCTA.
+     * @example
+     * // Update or create a AboutCTA
+     * const aboutCTA = await prisma.aboutCTA.upsert({
+     *   create: {
+     *     // ... data to create a AboutCTA
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AboutCTA we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AboutCTAUpsertArgs>(args: SelectSubset<T, AboutCTAUpsertArgs<ExtArgs>>): Prisma__AboutCTAClient<$Result.GetResult<Prisma.$AboutCTAPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AboutCTAS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCTACountArgs} args - Arguments to filter AboutCTAS to count.
+     * @example
+     * // Count the number of AboutCTAS
+     * const count = await prisma.aboutCTA.count({
+     *   where: {
+     *     // ... the filter for the AboutCTAS we want to count
+     *   }
+     * })
+    **/
+    count<T extends AboutCTACountArgs>(
+      args?: Subset<T, AboutCTACountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AboutCTACountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AboutCTA.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCTAAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AboutCTAAggregateArgs>(args: Subset<T, AboutCTAAggregateArgs>): Prisma.PrismaPromise<GetAboutCTAAggregateType<T>>
+
+    /**
+     * Group by AboutCTA.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AboutCTAGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AboutCTAGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AboutCTAGroupByArgs['orderBy'] }
+        : { orderBy?: AboutCTAGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AboutCTAGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAboutCTAGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AboutCTA model
+   */
+  readonly fields: AboutCTAFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AboutCTA.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AboutCTAClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AboutCTA model
+   */
+  interface AboutCTAFieldRefs {
+    readonly id: FieldRef<"AboutCTA", 'String'>
+    readonly badge: FieldRef<"AboutCTA", 'String'>
+    readonly heading: FieldRef<"AboutCTA", 'String'>
+    readonly headingHighlight: FieldRef<"AboutCTA", 'String'>
+    readonly description: FieldRef<"AboutCTA", 'String'>
+    readonly button1Text: FieldRef<"AboutCTA", 'String'>
+    readonly button1Link: FieldRef<"AboutCTA", 'String'>
+    readonly button2Text: FieldRef<"AboutCTA", 'String'>
+    readonly button2Link: FieldRef<"AboutCTA", 'String'>
+    readonly footerText: FieldRef<"AboutCTA", 'String'>
+    readonly status: FieldRef<"AboutCTA", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"AboutCTA", 'DateTime'>
+    readonly createdAt: FieldRef<"AboutCTA", 'DateTime'>
+    readonly updatedAt: FieldRef<"AboutCTA", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AboutCTA findUnique
+   */
+  export type AboutCTAFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCTA to fetch.
+     */
+    where: AboutCTAWhereUniqueInput
+  }
+
+  /**
+   * AboutCTA findUniqueOrThrow
+   */
+  export type AboutCTAFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCTA to fetch.
+     */
+    where: AboutCTAWhereUniqueInput
+  }
+
+  /**
+   * AboutCTA findFirst
+   */
+  export type AboutCTAFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCTA to fetch.
+     */
+    where?: AboutCTAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCTAS to fetch.
+     */
+    orderBy?: AboutCTAOrderByWithRelationInput | AboutCTAOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutCTAS.
+     */
+    cursor?: AboutCTAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCTAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCTAS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutCTAS.
+     */
+    distinct?: AboutCTAScalarFieldEnum | AboutCTAScalarFieldEnum[]
+  }
+
+  /**
+   * AboutCTA findFirstOrThrow
+   */
+  export type AboutCTAFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCTA to fetch.
+     */
+    where?: AboutCTAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCTAS to fetch.
+     */
+    orderBy?: AboutCTAOrderByWithRelationInput | AboutCTAOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AboutCTAS.
+     */
+    cursor?: AboutCTAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCTAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCTAS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AboutCTAS.
+     */
+    distinct?: AboutCTAScalarFieldEnum | AboutCTAScalarFieldEnum[]
+  }
+
+  /**
+   * AboutCTA findMany
+   */
+  export type AboutCTAFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * Filter, which AboutCTAS to fetch.
+     */
+    where?: AboutCTAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AboutCTAS to fetch.
+     */
+    orderBy?: AboutCTAOrderByWithRelationInput | AboutCTAOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AboutCTAS.
+     */
+    cursor?: AboutCTAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AboutCTAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AboutCTAS.
+     */
+    skip?: number
+    distinct?: AboutCTAScalarFieldEnum | AboutCTAScalarFieldEnum[]
+  }
+
+  /**
+   * AboutCTA create
+   */
+  export type AboutCTACreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AboutCTA.
+     */
+    data: XOR<AboutCTACreateInput, AboutCTAUncheckedCreateInput>
+  }
+
+  /**
+   * AboutCTA createMany
+   */
+  export type AboutCTACreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AboutCTAS.
+     */
+    data: AboutCTACreateManyInput | AboutCTACreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutCTA createManyAndReturn
+   */
+  export type AboutCTACreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * The data used to create many AboutCTAS.
+     */
+    data: AboutCTACreateManyInput | AboutCTACreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AboutCTA update
+   */
+  export type AboutCTAUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AboutCTA.
+     */
+    data: XOR<AboutCTAUpdateInput, AboutCTAUncheckedUpdateInput>
+    /**
+     * Choose, which AboutCTA to update.
+     */
+    where: AboutCTAWhereUniqueInput
+  }
+
+  /**
+   * AboutCTA updateMany
+   */
+  export type AboutCTAUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AboutCTAS.
+     */
+    data: XOR<AboutCTAUpdateManyMutationInput, AboutCTAUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutCTAS to update
+     */
+    where?: AboutCTAWhereInput
+    /**
+     * Limit how many AboutCTAS to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutCTA updateManyAndReturn
+   */
+  export type AboutCTAUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * The data used to update AboutCTAS.
+     */
+    data: XOR<AboutCTAUpdateManyMutationInput, AboutCTAUncheckedUpdateManyInput>
+    /**
+     * Filter which AboutCTAS to update
+     */
+    where?: AboutCTAWhereInput
+    /**
+     * Limit how many AboutCTAS to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutCTA upsert
+   */
+  export type AboutCTAUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AboutCTA to update in case it exists.
+     */
+    where: AboutCTAWhereUniqueInput
+    /**
+     * In case the AboutCTA found by the `where` argument doesn't exist, create a new AboutCTA with this data.
+     */
+    create: XOR<AboutCTACreateInput, AboutCTAUncheckedCreateInput>
+    /**
+     * In case the AboutCTA was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AboutCTAUpdateInput, AboutCTAUncheckedUpdateInput>
+  }
+
+  /**
+   * AboutCTA delete
+   */
+  export type AboutCTADeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+    /**
+     * Filter which AboutCTA to delete.
+     */
+    where: AboutCTAWhereUniqueInput
+  }
+
+  /**
+   * AboutCTA deleteMany
+   */
+  export type AboutCTADeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AboutCTAS to delete
+     */
+    where?: AboutCTAWhereInput
+    /**
+     * Limit how many AboutCTAS to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AboutCTA without action
+   */
+  export type AboutCTADefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AboutCTA
+     */
+    select?: AboutCTASelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AboutCTA
+     */
+    omit?: AboutCTAOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ContactHero
+   */
+
+  export type AggregateContactHero = {
+    _count: ContactHeroCountAggregateOutputType | null
+    _min: ContactHeroMinAggregateOutputType | null
+    _max: ContactHeroMaxAggregateOutputType | null
+  }
+
+  export type ContactHeroMinAggregateOutputType = {
+    id: string | null
+    image: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactHeroMaxAggregateOutputType = {
+    id: string | null
+    image: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactHeroCountAggregateOutputType = {
+    id: number
+    image: number
+    title: number
+    subtitle: number
+    description: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContactHeroMinAggregateInputType = {
+    id?: true
+    image?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactHeroMaxAggregateInputType = {
+    id?: true
+    image?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactHeroCountAggregateInputType = {
+    id?: true
+    image?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContactHeroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactHero to aggregate.
+     */
+    where?: ContactHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactHeroes to fetch.
+     */
+    orderBy?: ContactHeroOrderByWithRelationInput | ContactHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContactHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContactHeroes
+    **/
+    _count?: true | ContactHeroCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContactHeroMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContactHeroMaxAggregateInputType
+  }
+
+  export type GetContactHeroAggregateType<T extends ContactHeroAggregateArgs> = {
+        [P in keyof T & keyof AggregateContactHero]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContactHero[P]>
+      : GetScalarType<T[P], AggregateContactHero[P]>
+  }
+
+
+
+
+  export type ContactHeroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactHeroWhereInput
+    orderBy?: ContactHeroOrderByWithAggregationInput | ContactHeroOrderByWithAggregationInput[]
+    by: ContactHeroScalarFieldEnum[] | ContactHeroScalarFieldEnum
+    having?: ContactHeroScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContactHeroCountAggregateInputType | true
+    _min?: ContactHeroMinAggregateInputType
+    _max?: ContactHeroMaxAggregateInputType
+  }
+
+  export type ContactHeroGroupByOutputType = {
+    id: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ContactHeroCountAggregateOutputType | null
+    _min: ContactHeroMinAggregateOutputType | null
+    _max: ContactHeroMaxAggregateOutputType | null
+  }
+
+  type GetContactHeroGroupByPayload<T extends ContactHeroGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactHeroGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContactHeroGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactHeroGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactHeroGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContactHeroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactHero"]>
+
+  export type ContactHeroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactHero"]>
+
+  export type ContactHeroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactHero"]>
+
+  export type ContactHeroSelectScalar = {
+    id?: boolean
+    image?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContactHeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "image" | "title" | "subtitle" | "description" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["contactHero"]>
+
+  export type $ContactHeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContactHero"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      image: string
+      title: string
+      subtitle: string
+      description: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contactHero"]>
+    composites: {}
+  }
+
+  type ContactHeroGetPayload<S extends boolean | null | undefined | ContactHeroDefaultArgs> = $Result.GetResult<Prisma.$ContactHeroPayload, S>
+
+  type ContactHeroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactHeroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactHeroCountAggregateInputType | true
+    }
+
+  export interface ContactHeroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContactHero'], meta: { name: 'ContactHero' } }
+    /**
+     * Find zero or one ContactHero that matches the filter.
+     * @param {ContactHeroFindUniqueArgs} args - Arguments to find a ContactHero
+     * @example
+     * // Get one ContactHero
+     * const contactHero = await prisma.contactHero.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactHeroFindUniqueArgs>(args: SelectSubset<T, ContactHeroFindUniqueArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContactHero that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactHeroFindUniqueOrThrowArgs} args - Arguments to find a ContactHero
+     * @example
+     * // Get one ContactHero
+     * const contactHero = await prisma.contactHero.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactHeroFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactHeroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactHero that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactHeroFindFirstArgs} args - Arguments to find a ContactHero
+     * @example
+     * // Get one ContactHero
+     * const contactHero = await prisma.contactHero.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactHeroFindFirstArgs>(args?: SelectSubset<T, ContactHeroFindFirstArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactHero that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactHeroFindFirstOrThrowArgs} args - Arguments to find a ContactHero
+     * @example
+     * // Get one ContactHero
+     * const contactHero = await prisma.contactHero.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactHeroFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactHeroFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContactHeroes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactHeroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContactHeroes
+     * const contactHeroes = await prisma.contactHero.findMany()
+     * 
+     * // Get first 10 ContactHeroes
+     * const contactHeroes = await prisma.contactHero.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contactHeroWithIdOnly = await prisma.contactHero.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContactHeroFindManyArgs>(args?: SelectSubset<T, ContactHeroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContactHero.
+     * @param {ContactHeroCreateArgs} args - Arguments to create a ContactHero.
+     * @example
+     * // Create one ContactHero
+     * const ContactHero = await prisma.contactHero.create({
+     *   data: {
+     *     // ... data to create a ContactHero
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContactHeroCreateArgs>(args: SelectSubset<T, ContactHeroCreateArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContactHeroes.
+     * @param {ContactHeroCreateManyArgs} args - Arguments to create many ContactHeroes.
+     * @example
+     * // Create many ContactHeroes
+     * const contactHero = await prisma.contactHero.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContactHeroCreateManyArgs>(args?: SelectSubset<T, ContactHeroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContactHeroes and returns the data saved in the database.
+     * @param {ContactHeroCreateManyAndReturnArgs} args - Arguments to create many ContactHeroes.
+     * @example
+     * // Create many ContactHeroes
+     * const contactHero = await prisma.contactHero.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContactHeroes and only return the `id`
+     * const contactHeroWithIdOnly = await prisma.contactHero.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContactHeroCreateManyAndReturnArgs>(args?: SelectSubset<T, ContactHeroCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContactHero.
+     * @param {ContactHeroDeleteArgs} args - Arguments to delete one ContactHero.
+     * @example
+     * // Delete one ContactHero
+     * const ContactHero = await prisma.contactHero.delete({
+     *   where: {
+     *     // ... filter to delete one ContactHero
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContactHeroDeleteArgs>(args: SelectSubset<T, ContactHeroDeleteArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContactHero.
+     * @param {ContactHeroUpdateArgs} args - Arguments to update one ContactHero.
+     * @example
+     * // Update one ContactHero
+     * const contactHero = await prisma.contactHero.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContactHeroUpdateArgs>(args: SelectSubset<T, ContactHeroUpdateArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContactHeroes.
+     * @param {ContactHeroDeleteManyArgs} args - Arguments to filter ContactHeroes to delete.
+     * @example
+     * // Delete a few ContactHeroes
+     * const { count } = await prisma.contactHero.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContactHeroDeleteManyArgs>(args?: SelectSubset<T, ContactHeroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactHeroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContactHeroes
+     * const contactHero = await prisma.contactHero.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContactHeroUpdateManyArgs>(args: SelectSubset<T, ContactHeroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactHeroes and returns the data updated in the database.
+     * @param {ContactHeroUpdateManyAndReturnArgs} args - Arguments to update many ContactHeroes.
+     * @example
+     * // Update many ContactHeroes
+     * const contactHero = await prisma.contactHero.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContactHeroes and only return the `id`
+     * const contactHeroWithIdOnly = await prisma.contactHero.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContactHeroUpdateManyAndReturnArgs>(args: SelectSubset<T, ContactHeroUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContactHero.
+     * @param {ContactHeroUpsertArgs} args - Arguments to update or create a ContactHero.
+     * @example
+     * // Update or create a ContactHero
+     * const contactHero = await prisma.contactHero.upsert({
+     *   create: {
+     *     // ... data to create a ContactHero
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContactHero we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactHeroUpsertArgs>(args: SelectSubset<T, ContactHeroUpsertArgs<ExtArgs>>): Prisma__ContactHeroClient<$Result.GetResult<Prisma.$ContactHeroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContactHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactHeroCountArgs} args - Arguments to filter ContactHeroes to count.
+     * @example
+     * // Count the number of ContactHeroes
+     * const count = await prisma.contactHero.count({
+     *   where: {
+     *     // ... the filter for the ContactHeroes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContactHeroCountArgs>(
+      args?: Subset<T, ContactHeroCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactHeroCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContactHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactHeroAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContactHeroAggregateArgs>(args: Subset<T, ContactHeroAggregateArgs>): Prisma.PrismaPromise<GetContactHeroAggregateType<T>>
+
+    /**
+     * Group by ContactHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactHeroGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContactHeroGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactHeroGroupByArgs['orderBy'] }
+        : { orderBy?: ContactHeroGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContactHeroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactHeroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContactHero model
+   */
+  readonly fields: ContactHeroFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContactHero.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactHeroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContactHero model
+   */
+  interface ContactHeroFieldRefs {
+    readonly id: FieldRef<"ContactHero", 'String'>
+    readonly image: FieldRef<"ContactHero", 'String'>
+    readonly title: FieldRef<"ContactHero", 'String'>
+    readonly subtitle: FieldRef<"ContactHero", 'String'>
+    readonly description: FieldRef<"ContactHero", 'String'>
+    readonly status: FieldRef<"ContactHero", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"ContactHero", 'DateTime'>
+    readonly createdAt: FieldRef<"ContactHero", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContactHero", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContactHero findUnique
+   */
+  export type ContactHeroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactHero to fetch.
+     */
+    where: ContactHeroWhereUniqueInput
+  }
+
+  /**
+   * ContactHero findUniqueOrThrow
+   */
+  export type ContactHeroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactHero to fetch.
+     */
+    where: ContactHeroWhereUniqueInput
+  }
+
+  /**
+   * ContactHero findFirst
+   */
+  export type ContactHeroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactHero to fetch.
+     */
+    where?: ContactHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactHeroes to fetch.
+     */
+    orderBy?: ContactHeroOrderByWithRelationInput | ContactHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactHeroes.
+     */
+    cursor?: ContactHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactHeroes.
+     */
+    distinct?: ContactHeroScalarFieldEnum | ContactHeroScalarFieldEnum[]
+  }
+
+  /**
+   * ContactHero findFirstOrThrow
+   */
+  export type ContactHeroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactHero to fetch.
+     */
+    where?: ContactHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactHeroes to fetch.
+     */
+    orderBy?: ContactHeroOrderByWithRelationInput | ContactHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactHeroes.
+     */
+    cursor?: ContactHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactHeroes.
+     */
+    distinct?: ContactHeroScalarFieldEnum | ContactHeroScalarFieldEnum[]
+  }
+
+  /**
+   * ContactHero findMany
+   */
+  export type ContactHeroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactHeroes to fetch.
+     */
+    where?: ContactHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactHeroes to fetch.
+     */
+    orderBy?: ContactHeroOrderByWithRelationInput | ContactHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContactHeroes.
+     */
+    cursor?: ContactHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactHeroes.
+     */
+    skip?: number
+    distinct?: ContactHeroScalarFieldEnum | ContactHeroScalarFieldEnum[]
+  }
+
+  /**
+   * ContactHero create
+   */
+  export type ContactHeroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ContactHero.
+     */
+    data: XOR<ContactHeroCreateInput, ContactHeroUncheckedCreateInput>
+  }
+
+  /**
+   * ContactHero createMany
+   */
+  export type ContactHeroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContactHeroes.
+     */
+    data: ContactHeroCreateManyInput | ContactHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactHero createManyAndReturn
+   */
+  export type ContactHeroCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContactHeroes.
+     */
+    data: ContactHeroCreateManyInput | ContactHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactHero update
+   */
+  export type ContactHeroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ContactHero.
+     */
+    data: XOR<ContactHeroUpdateInput, ContactHeroUncheckedUpdateInput>
+    /**
+     * Choose, which ContactHero to update.
+     */
+    where: ContactHeroWhereUniqueInput
+  }
+
+  /**
+   * ContactHero updateMany
+   */
+  export type ContactHeroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContactHeroes.
+     */
+    data: XOR<ContactHeroUpdateManyMutationInput, ContactHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactHeroes to update
+     */
+    where?: ContactHeroWhereInput
+    /**
+     * Limit how many ContactHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactHero updateManyAndReturn
+   */
+  export type ContactHeroUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * The data used to update ContactHeroes.
+     */
+    data: XOR<ContactHeroUpdateManyMutationInput, ContactHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactHeroes to update
+     */
+    where?: ContactHeroWhereInput
+    /**
+     * Limit how many ContactHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactHero upsert
+   */
+  export type ContactHeroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ContactHero to update in case it exists.
+     */
+    where: ContactHeroWhereUniqueInput
+    /**
+     * In case the ContactHero found by the `where` argument doesn't exist, create a new ContactHero with this data.
+     */
+    create: XOR<ContactHeroCreateInput, ContactHeroUncheckedCreateInput>
+    /**
+     * In case the ContactHero was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactHeroUpdateInput, ContactHeroUncheckedUpdateInput>
+  }
+
+  /**
+   * ContactHero delete
+   */
+  export type ContactHeroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+    /**
+     * Filter which ContactHero to delete.
+     */
+    where: ContactHeroWhereUniqueInput
+  }
+
+  /**
+   * ContactHero deleteMany
+   */
+  export type ContactHeroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactHeroes to delete
+     */
+    where?: ContactHeroWhereInput
+    /**
+     * Limit how many ContactHeroes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactHero without action
+   */
+  export type ContactHeroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactHero
+     */
+    select?: ContactHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactHero
+     */
+    omit?: ContactHeroOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ContactInfo
+   */
+
+  export type AggregateContactInfo = {
+    _count: ContactInfoCountAggregateOutputType | null
+    _min: ContactInfoMinAggregateOutputType | null
+    _max: ContactInfoMaxAggregateOutputType | null
+  }
+
+  export type ContactInfoMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    phone: string | null
+    whatsapp: string | null
+    office: string | null
+    quickResponse: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactInfoMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    phone: string | null
+    whatsapp: string | null
+    office: string | null
+    quickResponse: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactInfoCountAggregateOutputType = {
+    id: number
+    email: number
+    phone: number
+    whatsapp: number
+    office: number
+    businessHours: number
+    quickResponse: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContactInfoMinAggregateInputType = {
+    id?: true
+    email?: true
+    phone?: true
+    whatsapp?: true
+    office?: true
+    quickResponse?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactInfoMaxAggregateInputType = {
+    id?: true
+    email?: true
+    phone?: true
+    whatsapp?: true
+    office?: true
+    quickResponse?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactInfoCountAggregateInputType = {
+    id?: true
+    email?: true
+    phone?: true
+    whatsapp?: true
+    office?: true
+    businessHours?: true
+    quickResponse?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContactInfoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactInfo to aggregate.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContactInfos
+    **/
+    _count?: true | ContactInfoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContactInfoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContactInfoMaxAggregateInputType
+  }
+
+  export type GetContactInfoAggregateType<T extends ContactInfoAggregateArgs> = {
+        [P in keyof T & keyof AggregateContactInfo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContactInfo[P]>
+      : GetScalarType<T[P], AggregateContactInfo[P]>
+  }
+
+
+
+
+  export type ContactInfoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactInfoWhereInput
+    orderBy?: ContactInfoOrderByWithAggregationInput | ContactInfoOrderByWithAggregationInput[]
+    by: ContactInfoScalarFieldEnum[] | ContactInfoScalarFieldEnum
+    having?: ContactInfoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContactInfoCountAggregateInputType | true
+    _min?: ContactInfoMinAggregateInputType
+    _max?: ContactInfoMaxAggregateInputType
+  }
+
+  export type ContactInfoGroupByOutputType = {
+    id: string
+    email: string
+    phone: string
+    whatsapp: string
+    office: string
+    businessHours: JsonValue
+    quickResponse: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ContactInfoCountAggregateOutputType | null
+    _min: ContactInfoMinAggregateOutputType | null
+    _max: ContactInfoMaxAggregateOutputType | null
+  }
+
+  type GetContactInfoGroupByPayload<T extends ContactInfoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactInfoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContactInfoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactInfoGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactInfoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContactInfoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    office?: boolean
+    businessHours?: boolean
+    quickResponse?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactInfo"]>
+
+  export type ContactInfoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    office?: boolean
+    businessHours?: boolean
+    quickResponse?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactInfo"]>
+
+  export type ContactInfoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    office?: boolean
+    businessHours?: boolean
+    quickResponse?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactInfo"]>
+
+  export type ContactInfoSelectScalar = {
+    id?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    office?: boolean
+    businessHours?: boolean
+    quickResponse?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContactInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "whatsapp" | "office" | "businessHours" | "quickResponse" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["contactInfo"]>
+
+  export type $ContactInfoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContactInfo"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      phone: string
+      whatsapp: string
+      office: string
+      businessHours: Prisma.JsonValue
+      quickResponse: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contactInfo"]>
+    composites: {}
+  }
+
+  type ContactInfoGetPayload<S extends boolean | null | undefined | ContactInfoDefaultArgs> = $Result.GetResult<Prisma.$ContactInfoPayload, S>
+
+  type ContactInfoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactInfoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactInfoCountAggregateInputType | true
+    }
+
+  export interface ContactInfoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContactInfo'], meta: { name: 'ContactInfo' } }
+    /**
+     * Find zero or one ContactInfo that matches the filter.
+     * @param {ContactInfoFindUniqueArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactInfoFindUniqueArgs>(args: SelectSubset<T, ContactInfoFindUniqueArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContactInfo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactInfoFindUniqueOrThrowArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactInfoFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactInfoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactInfo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoFindFirstArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactInfoFindFirstArgs>(args?: SelectSubset<T, ContactInfoFindFirstArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactInfo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoFindFirstOrThrowArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactInfoFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactInfoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContactInfos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContactInfos
+     * const contactInfos = await prisma.contactInfo.findMany()
+     * 
+     * // Get first 10 ContactInfos
+     * const contactInfos = await prisma.contactInfo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contactInfoWithIdOnly = await prisma.contactInfo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContactInfoFindManyArgs>(args?: SelectSubset<T, ContactInfoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContactInfo.
+     * @param {ContactInfoCreateArgs} args - Arguments to create a ContactInfo.
+     * @example
+     * // Create one ContactInfo
+     * const ContactInfo = await prisma.contactInfo.create({
+     *   data: {
+     *     // ... data to create a ContactInfo
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContactInfoCreateArgs>(args: SelectSubset<T, ContactInfoCreateArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContactInfos.
+     * @param {ContactInfoCreateManyArgs} args - Arguments to create many ContactInfos.
+     * @example
+     * // Create many ContactInfos
+     * const contactInfo = await prisma.contactInfo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContactInfoCreateManyArgs>(args?: SelectSubset<T, ContactInfoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContactInfos and returns the data saved in the database.
+     * @param {ContactInfoCreateManyAndReturnArgs} args - Arguments to create many ContactInfos.
+     * @example
+     * // Create many ContactInfos
+     * const contactInfo = await prisma.contactInfo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContactInfos and only return the `id`
+     * const contactInfoWithIdOnly = await prisma.contactInfo.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContactInfoCreateManyAndReturnArgs>(args?: SelectSubset<T, ContactInfoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContactInfo.
+     * @param {ContactInfoDeleteArgs} args - Arguments to delete one ContactInfo.
+     * @example
+     * // Delete one ContactInfo
+     * const ContactInfo = await prisma.contactInfo.delete({
+     *   where: {
+     *     // ... filter to delete one ContactInfo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContactInfoDeleteArgs>(args: SelectSubset<T, ContactInfoDeleteArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContactInfo.
+     * @param {ContactInfoUpdateArgs} args - Arguments to update one ContactInfo.
+     * @example
+     * // Update one ContactInfo
+     * const contactInfo = await prisma.contactInfo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContactInfoUpdateArgs>(args: SelectSubset<T, ContactInfoUpdateArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContactInfos.
+     * @param {ContactInfoDeleteManyArgs} args - Arguments to filter ContactInfos to delete.
+     * @example
+     * // Delete a few ContactInfos
+     * const { count } = await prisma.contactInfo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContactInfoDeleteManyArgs>(args?: SelectSubset<T, ContactInfoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactInfos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContactInfos
+     * const contactInfo = await prisma.contactInfo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContactInfoUpdateManyArgs>(args: SelectSubset<T, ContactInfoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactInfos and returns the data updated in the database.
+     * @param {ContactInfoUpdateManyAndReturnArgs} args - Arguments to update many ContactInfos.
+     * @example
+     * // Update many ContactInfos
+     * const contactInfo = await prisma.contactInfo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContactInfos and only return the `id`
+     * const contactInfoWithIdOnly = await prisma.contactInfo.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContactInfoUpdateManyAndReturnArgs>(args: SelectSubset<T, ContactInfoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContactInfo.
+     * @param {ContactInfoUpsertArgs} args - Arguments to update or create a ContactInfo.
+     * @example
+     * // Update or create a ContactInfo
+     * const contactInfo = await prisma.contactInfo.upsert({
+     *   create: {
+     *     // ... data to create a ContactInfo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContactInfo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactInfoUpsertArgs>(args: SelectSubset<T, ContactInfoUpsertArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContactInfos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoCountArgs} args - Arguments to filter ContactInfos to count.
+     * @example
+     * // Count the number of ContactInfos
+     * const count = await prisma.contactInfo.count({
+     *   where: {
+     *     // ... the filter for the ContactInfos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContactInfoCountArgs>(
+      args?: Subset<T, ContactInfoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactInfoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContactInfo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContactInfoAggregateArgs>(args: Subset<T, ContactInfoAggregateArgs>): Prisma.PrismaPromise<GetContactInfoAggregateType<T>>
+
+    /**
+     * Group by ContactInfo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContactInfoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactInfoGroupByArgs['orderBy'] }
+        : { orderBy?: ContactInfoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContactInfoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactInfoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContactInfo model
+   */
+  readonly fields: ContactInfoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContactInfo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactInfoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContactInfo model
+   */
+  interface ContactInfoFieldRefs {
+    readonly id: FieldRef<"ContactInfo", 'String'>
+    readonly email: FieldRef<"ContactInfo", 'String'>
+    readonly phone: FieldRef<"ContactInfo", 'String'>
+    readonly whatsapp: FieldRef<"ContactInfo", 'String'>
+    readonly office: FieldRef<"ContactInfo", 'String'>
+    readonly businessHours: FieldRef<"ContactInfo", 'Json'>
+    readonly quickResponse: FieldRef<"ContactInfo", 'String'>
+    readonly status: FieldRef<"ContactInfo", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"ContactInfo", 'DateTime'>
+    readonly createdAt: FieldRef<"ContactInfo", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContactInfo", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContactInfo findUnique
+   */
+  export type ContactInfoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo findUniqueOrThrow
+   */
+  export type ContactInfoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo findFirst
+   */
+  export type ContactInfoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactInfos.
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactInfos.
+     */
+    distinct?: ContactInfoScalarFieldEnum | ContactInfoScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInfo findFirstOrThrow
+   */
+  export type ContactInfoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactInfos.
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactInfos.
+     */
+    distinct?: ContactInfoScalarFieldEnum | ContactInfoScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInfo findMany
+   */
+  export type ContactInfoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInfos to fetch.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContactInfos.
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    distinct?: ContactInfoScalarFieldEnum | ContactInfoScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInfo create
+   */
+  export type ContactInfoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ContactInfo.
+     */
+    data: XOR<ContactInfoCreateInput, ContactInfoUncheckedCreateInput>
+  }
+
+  /**
+   * ContactInfo createMany
+   */
+  export type ContactInfoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContactInfos.
+     */
+    data: ContactInfoCreateManyInput | ContactInfoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactInfo createManyAndReturn
+   */
+  export type ContactInfoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContactInfos.
+     */
+    data: ContactInfoCreateManyInput | ContactInfoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactInfo update
+   */
+  export type ContactInfoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ContactInfo.
+     */
+    data: XOR<ContactInfoUpdateInput, ContactInfoUncheckedUpdateInput>
+    /**
+     * Choose, which ContactInfo to update.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo updateMany
+   */
+  export type ContactInfoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContactInfos.
+     */
+    data: XOR<ContactInfoUpdateManyMutationInput, ContactInfoUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactInfos to update
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * Limit how many ContactInfos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactInfo updateManyAndReturn
+   */
+  export type ContactInfoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * The data used to update ContactInfos.
+     */
+    data: XOR<ContactInfoUpdateManyMutationInput, ContactInfoUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactInfos to update
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * Limit how many ContactInfos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactInfo upsert
+   */
+  export type ContactInfoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ContactInfo to update in case it exists.
+     */
+    where: ContactInfoWhereUniqueInput
+    /**
+     * In case the ContactInfo found by the `where` argument doesn't exist, create a new ContactInfo with this data.
+     */
+    create: XOR<ContactInfoCreateInput, ContactInfoUncheckedCreateInput>
+    /**
+     * In case the ContactInfo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactInfoUpdateInput, ContactInfoUncheckedUpdateInput>
+  }
+
+  /**
+   * ContactInfo delete
+   */
+  export type ContactInfoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Filter which ContactInfo to delete.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo deleteMany
+   */
+  export type ContactInfoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactInfos to delete
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * Limit how many ContactInfos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactInfo without action
+   */
+  export type ContactInfoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ContactResource
+   */
+
+  export type AggregateContactResource = {
+    _count: ContactResourceCountAggregateOutputType | null
+    _avg: ContactResourceAvgAggregateOutputType | null
+    _sum: ContactResourceSumAggregateOutputType | null
+    _min: ContactResourceMinAggregateOutputType | null
+    _max: ContactResourceMaxAggregateOutputType | null
+  }
+
+  export type ContactResourceAvgAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type ContactResourceSumAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type ContactResourceMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    icon: string | null
+    linkText: string | null
+    linkUrl: string | null
+    isExternal: boolean | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactResourceMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    icon: string | null
+    linkText: string | null
+    linkUrl: string | null
+    isExternal: boolean | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactResourceCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    icon: number
+    linkText: number
+    linkUrl: number
+    isExternal: number
+    displayOrder: number
+    active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContactResourceAvgAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type ContactResourceSumAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type ContactResourceMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    icon?: true
+    linkText?: true
+    linkUrl?: true
+    isExternal?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactResourceMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    icon?: true
+    linkText?: true
+    linkUrl?: true
+    isExternal?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactResourceCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    icon?: true
+    linkText?: true
+    linkUrl?: true
+    isExternal?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContactResourceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactResource to aggregate.
+     */
+    where?: ContactResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactResources to fetch.
+     */
+    orderBy?: ContactResourceOrderByWithRelationInput | ContactResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContactResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactResources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactResources.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContactResources
+    **/
+    _count?: true | ContactResourceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContactResourceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContactResourceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContactResourceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContactResourceMaxAggregateInputType
+  }
+
+  export type GetContactResourceAggregateType<T extends ContactResourceAggregateArgs> = {
+        [P in keyof T & keyof AggregateContactResource]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContactResource[P]>
+      : GetScalarType<T[P], AggregateContactResource[P]>
+  }
+
+
+
+
+  export type ContactResourceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactResourceWhereInput
+    orderBy?: ContactResourceOrderByWithAggregationInput | ContactResourceOrderByWithAggregationInput[]
+    by: ContactResourceScalarFieldEnum[] | ContactResourceScalarFieldEnum
+    having?: ContactResourceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContactResourceCountAggregateInputType | true
+    _avg?: ContactResourceAvgAggregateInputType
+    _sum?: ContactResourceSumAggregateInputType
+    _min?: ContactResourceMinAggregateInputType
+    _max?: ContactResourceMaxAggregateInputType
+  }
+
+  export type ContactResourceGroupByOutputType = {
+    id: string
+    title: string
+    description: string
+    icon: string
+    linkText: string
+    linkUrl: string
+    isExternal: boolean
+    displayOrder: number
+    active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ContactResourceCountAggregateOutputType | null
+    _avg: ContactResourceAvgAggregateOutputType | null
+    _sum: ContactResourceSumAggregateOutputType | null
+    _min: ContactResourceMinAggregateOutputType | null
+    _max: ContactResourceMaxAggregateOutputType | null
+  }
+
+  type GetContactResourceGroupByPayload<T extends ContactResourceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactResourceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContactResourceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactResourceGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactResourceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContactResourceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    linkText?: boolean
+    linkUrl?: boolean
+    isExternal?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactResource"]>
+
+  export type ContactResourceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    linkText?: boolean
+    linkUrl?: boolean
+    isExternal?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactResource"]>
+
+  export type ContactResourceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    linkText?: boolean
+    linkUrl?: boolean
+    isExternal?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactResource"]>
+
+  export type ContactResourceSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    linkText?: boolean
+    linkUrl?: boolean
+    isExternal?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContactResourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "icon" | "linkText" | "linkUrl" | "isExternal" | "displayOrder" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["contactResource"]>
+
+  export type $ContactResourcePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContactResource"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string
+      icon: string
+      linkText: string
+      linkUrl: string
+      isExternal: boolean
+      displayOrder: number
+      active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contactResource"]>
+    composites: {}
+  }
+
+  type ContactResourceGetPayload<S extends boolean | null | undefined | ContactResourceDefaultArgs> = $Result.GetResult<Prisma.$ContactResourcePayload, S>
+
+  type ContactResourceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactResourceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactResourceCountAggregateInputType | true
+    }
+
+  export interface ContactResourceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContactResource'], meta: { name: 'ContactResource' } }
+    /**
+     * Find zero or one ContactResource that matches the filter.
+     * @param {ContactResourceFindUniqueArgs} args - Arguments to find a ContactResource
+     * @example
+     * // Get one ContactResource
+     * const contactResource = await prisma.contactResource.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactResourceFindUniqueArgs>(args: SelectSubset<T, ContactResourceFindUniqueArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContactResource that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactResourceFindUniqueOrThrowArgs} args - Arguments to find a ContactResource
+     * @example
+     * // Get one ContactResource
+     * const contactResource = await prisma.contactResource.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactResourceFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactResourceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactResource that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactResourceFindFirstArgs} args - Arguments to find a ContactResource
+     * @example
+     * // Get one ContactResource
+     * const contactResource = await prisma.contactResource.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactResourceFindFirstArgs>(args?: SelectSubset<T, ContactResourceFindFirstArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactResource that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactResourceFindFirstOrThrowArgs} args - Arguments to find a ContactResource
+     * @example
+     * // Get one ContactResource
+     * const contactResource = await prisma.contactResource.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactResourceFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactResourceFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContactResources that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactResourceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContactResources
+     * const contactResources = await prisma.contactResource.findMany()
+     * 
+     * // Get first 10 ContactResources
+     * const contactResources = await prisma.contactResource.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contactResourceWithIdOnly = await prisma.contactResource.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContactResourceFindManyArgs>(args?: SelectSubset<T, ContactResourceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContactResource.
+     * @param {ContactResourceCreateArgs} args - Arguments to create a ContactResource.
+     * @example
+     * // Create one ContactResource
+     * const ContactResource = await prisma.contactResource.create({
+     *   data: {
+     *     // ... data to create a ContactResource
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContactResourceCreateArgs>(args: SelectSubset<T, ContactResourceCreateArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContactResources.
+     * @param {ContactResourceCreateManyArgs} args - Arguments to create many ContactResources.
+     * @example
+     * // Create many ContactResources
+     * const contactResource = await prisma.contactResource.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContactResourceCreateManyArgs>(args?: SelectSubset<T, ContactResourceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContactResources and returns the data saved in the database.
+     * @param {ContactResourceCreateManyAndReturnArgs} args - Arguments to create many ContactResources.
+     * @example
+     * // Create many ContactResources
+     * const contactResource = await prisma.contactResource.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContactResources and only return the `id`
+     * const contactResourceWithIdOnly = await prisma.contactResource.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContactResourceCreateManyAndReturnArgs>(args?: SelectSubset<T, ContactResourceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContactResource.
+     * @param {ContactResourceDeleteArgs} args - Arguments to delete one ContactResource.
+     * @example
+     * // Delete one ContactResource
+     * const ContactResource = await prisma.contactResource.delete({
+     *   where: {
+     *     // ... filter to delete one ContactResource
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContactResourceDeleteArgs>(args: SelectSubset<T, ContactResourceDeleteArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContactResource.
+     * @param {ContactResourceUpdateArgs} args - Arguments to update one ContactResource.
+     * @example
+     * // Update one ContactResource
+     * const contactResource = await prisma.contactResource.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContactResourceUpdateArgs>(args: SelectSubset<T, ContactResourceUpdateArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContactResources.
+     * @param {ContactResourceDeleteManyArgs} args - Arguments to filter ContactResources to delete.
+     * @example
+     * // Delete a few ContactResources
+     * const { count } = await prisma.contactResource.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContactResourceDeleteManyArgs>(args?: SelectSubset<T, ContactResourceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactResources.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactResourceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContactResources
+     * const contactResource = await prisma.contactResource.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContactResourceUpdateManyArgs>(args: SelectSubset<T, ContactResourceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactResources and returns the data updated in the database.
+     * @param {ContactResourceUpdateManyAndReturnArgs} args - Arguments to update many ContactResources.
+     * @example
+     * // Update many ContactResources
+     * const contactResource = await prisma.contactResource.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContactResources and only return the `id`
+     * const contactResourceWithIdOnly = await prisma.contactResource.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContactResourceUpdateManyAndReturnArgs>(args: SelectSubset<T, ContactResourceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContactResource.
+     * @param {ContactResourceUpsertArgs} args - Arguments to update or create a ContactResource.
+     * @example
+     * // Update or create a ContactResource
+     * const contactResource = await prisma.contactResource.upsert({
+     *   create: {
+     *     // ... data to create a ContactResource
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContactResource we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactResourceUpsertArgs>(args: SelectSubset<T, ContactResourceUpsertArgs<ExtArgs>>): Prisma__ContactResourceClient<$Result.GetResult<Prisma.$ContactResourcePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContactResources.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactResourceCountArgs} args - Arguments to filter ContactResources to count.
+     * @example
+     * // Count the number of ContactResources
+     * const count = await prisma.contactResource.count({
+     *   where: {
+     *     // ... the filter for the ContactResources we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContactResourceCountArgs>(
+      args?: Subset<T, ContactResourceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactResourceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContactResource.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactResourceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContactResourceAggregateArgs>(args: Subset<T, ContactResourceAggregateArgs>): Prisma.PrismaPromise<GetContactResourceAggregateType<T>>
+
+    /**
+     * Group by ContactResource.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactResourceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContactResourceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactResourceGroupByArgs['orderBy'] }
+        : { orderBy?: ContactResourceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContactResourceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactResourceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContactResource model
+   */
+  readonly fields: ContactResourceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContactResource.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactResourceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContactResource model
+   */
+  interface ContactResourceFieldRefs {
+    readonly id: FieldRef<"ContactResource", 'String'>
+    readonly title: FieldRef<"ContactResource", 'String'>
+    readonly description: FieldRef<"ContactResource", 'String'>
+    readonly icon: FieldRef<"ContactResource", 'String'>
+    readonly linkText: FieldRef<"ContactResource", 'String'>
+    readonly linkUrl: FieldRef<"ContactResource", 'String'>
+    readonly isExternal: FieldRef<"ContactResource", 'Boolean'>
+    readonly displayOrder: FieldRef<"ContactResource", 'Int'>
+    readonly active: FieldRef<"ContactResource", 'Boolean'>
+    readonly createdAt: FieldRef<"ContactResource", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContactResource", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContactResource findUnique
+   */
+  export type ContactResourceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactResource to fetch.
+     */
+    where: ContactResourceWhereUniqueInput
+  }
+
+  /**
+   * ContactResource findUniqueOrThrow
+   */
+  export type ContactResourceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactResource to fetch.
+     */
+    where: ContactResourceWhereUniqueInput
+  }
+
+  /**
+   * ContactResource findFirst
+   */
+  export type ContactResourceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactResource to fetch.
+     */
+    where?: ContactResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactResources to fetch.
+     */
+    orderBy?: ContactResourceOrderByWithRelationInput | ContactResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactResources.
+     */
+    cursor?: ContactResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactResources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactResources.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactResources.
+     */
+    distinct?: ContactResourceScalarFieldEnum | ContactResourceScalarFieldEnum[]
+  }
+
+  /**
+   * ContactResource findFirstOrThrow
+   */
+  export type ContactResourceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactResource to fetch.
+     */
+    where?: ContactResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactResources to fetch.
+     */
+    orderBy?: ContactResourceOrderByWithRelationInput | ContactResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactResources.
+     */
+    cursor?: ContactResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactResources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactResources.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactResources.
+     */
+    distinct?: ContactResourceScalarFieldEnum | ContactResourceScalarFieldEnum[]
+  }
+
+  /**
+   * ContactResource findMany
+   */
+  export type ContactResourceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactResources to fetch.
+     */
+    where?: ContactResourceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactResources to fetch.
+     */
+    orderBy?: ContactResourceOrderByWithRelationInput | ContactResourceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContactResources.
+     */
+    cursor?: ContactResourceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactResources from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactResources.
+     */
+    skip?: number
+    distinct?: ContactResourceScalarFieldEnum | ContactResourceScalarFieldEnum[]
+  }
+
+  /**
+   * ContactResource create
+   */
+  export type ContactResourceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ContactResource.
+     */
+    data: XOR<ContactResourceCreateInput, ContactResourceUncheckedCreateInput>
+  }
+
+  /**
+   * ContactResource createMany
+   */
+  export type ContactResourceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContactResources.
+     */
+    data: ContactResourceCreateManyInput | ContactResourceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactResource createManyAndReturn
+   */
+  export type ContactResourceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContactResources.
+     */
+    data: ContactResourceCreateManyInput | ContactResourceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactResource update
+   */
+  export type ContactResourceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ContactResource.
+     */
+    data: XOR<ContactResourceUpdateInput, ContactResourceUncheckedUpdateInput>
+    /**
+     * Choose, which ContactResource to update.
+     */
+    where: ContactResourceWhereUniqueInput
+  }
+
+  /**
+   * ContactResource updateMany
+   */
+  export type ContactResourceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContactResources.
+     */
+    data: XOR<ContactResourceUpdateManyMutationInput, ContactResourceUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactResources to update
+     */
+    where?: ContactResourceWhereInput
+    /**
+     * Limit how many ContactResources to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactResource updateManyAndReturn
+   */
+  export type ContactResourceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * The data used to update ContactResources.
+     */
+    data: XOR<ContactResourceUpdateManyMutationInput, ContactResourceUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactResources to update
+     */
+    where?: ContactResourceWhereInput
+    /**
+     * Limit how many ContactResources to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactResource upsert
+   */
+  export type ContactResourceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ContactResource to update in case it exists.
+     */
+    where: ContactResourceWhereUniqueInput
+    /**
+     * In case the ContactResource found by the `where` argument doesn't exist, create a new ContactResource with this data.
+     */
+    create: XOR<ContactResourceCreateInput, ContactResourceUncheckedCreateInput>
+    /**
+     * In case the ContactResource was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactResourceUpdateInput, ContactResourceUncheckedUpdateInput>
+  }
+
+  /**
+   * ContactResource delete
+   */
+  export type ContactResourceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+    /**
+     * Filter which ContactResource to delete.
+     */
+    where: ContactResourceWhereUniqueInput
+  }
+
+  /**
+   * ContactResource deleteMany
+   */
+  export type ContactResourceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactResources to delete
+     */
+    where?: ContactResourceWhereInput
+    /**
+     * Limit how many ContactResources to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactResource without action
+   */
+  export type ContactResourceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactResource
+     */
+    select?: ContactResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactResource
+     */
+    omit?: ContactResourceOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -25912,6 +36543,166 @@ export namespace Prisma {
   };
 
   export type VideoSectionScalarFieldEnum = (typeof VideoSectionScalarFieldEnum)[keyof typeof VideoSectionScalarFieldEnum]
+
+
+  export const AboutStorySectionScalarFieldEnum: {
+    id: 'id',
+    heading: 'heading',
+    title: 'title',
+    titleHighlight: 'titleHighlight',
+    paragraph1: 'paragraph1',
+    paragraph2: 'paragraph2',
+    buttonText: 'buttonText',
+    buttonLink: 'buttonLink',
+    image: 'image',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AboutStorySectionScalarFieldEnum = (typeof AboutStorySectionScalarFieldEnum)[keyof typeof AboutStorySectionScalarFieldEnum]
+
+
+  export const AboutCommunitySectionScalarFieldEnum: {
+    id: 'id',
+    heading: 'heading',
+    title: 'title',
+    titleHighlight: 'titleHighlight',
+    paragraph1: 'paragraph1',
+    paragraph2: 'paragraph2',
+    buttonText: 'buttonText',
+    buttonLink: 'buttonLink',
+    feature1Title: 'feature1Title',
+    feature1Description: 'feature1Description',
+    feature2Title: 'feature2Title',
+    feature2Description: 'feature2Description',
+    feature3Title: 'feature3Title',
+    feature3Description: 'feature3Description',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AboutCommunitySectionScalarFieldEnum = (typeof AboutCommunitySectionScalarFieldEnum)[keyof typeof AboutCommunitySectionScalarFieldEnum]
+
+
+  export const AboutStatsScalarFieldEnum: {
+    id: 'id',
+    stat1Number: 'stat1Number',
+    stat1Label: 'stat1Label',
+    stat2Number: 'stat2Number',
+    stat2Label: 'stat2Label',
+    stat3Number: 'stat3Number',
+    stat3Label: 'stat3Label',
+    stat4Number: 'stat4Number',
+    stat4Label: 'stat4Label',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AboutStatsScalarFieldEnum = (typeof AboutStatsScalarFieldEnum)[keyof typeof AboutStatsScalarFieldEnum]
+
+
+  export const AboutValueScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    icon: 'icon',
+    displayOrder: 'displayOrder',
+    active: 'active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AboutValueScalarFieldEnum = (typeof AboutValueScalarFieldEnum)[keyof typeof AboutValueScalarFieldEnum]
+
+
+  export const AboutHeroScalarFieldEnum: {
+    id: 'id',
+    image: 'image',
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AboutHeroScalarFieldEnum = (typeof AboutHeroScalarFieldEnum)[keyof typeof AboutHeroScalarFieldEnum]
+
+
+  export const AboutCTAScalarFieldEnum: {
+    id: 'id',
+    badge: 'badge',
+    heading: 'heading',
+    headingHighlight: 'headingHighlight',
+    description: 'description',
+    button1Text: 'button1Text',
+    button1Link: 'button1Link',
+    button2Text: 'button2Text',
+    button2Link: 'button2Link',
+    footerText: 'footerText',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AboutCTAScalarFieldEnum = (typeof AboutCTAScalarFieldEnum)[keyof typeof AboutCTAScalarFieldEnum]
+
+
+  export const ContactHeroScalarFieldEnum: {
+    id: 'id',
+    image: 'image',
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContactHeroScalarFieldEnum = (typeof ContactHeroScalarFieldEnum)[keyof typeof ContactHeroScalarFieldEnum]
+
+
+  export const ContactInfoScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    phone: 'phone',
+    whatsapp: 'whatsapp',
+    office: 'office',
+    businessHours: 'businessHours',
+    quickResponse: 'quickResponse',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContactInfoScalarFieldEnum = (typeof ContactInfoScalarFieldEnum)[keyof typeof ContactInfoScalarFieldEnum]
+
+
+  export const ContactResourceScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    icon: 'icon',
+    linkText: 'linkText',
+    linkUrl: 'linkUrl',
+    isExternal: 'isExternal',
+    displayOrder: 'displayOrder',
+    active: 'active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContactResourceScalarFieldEnum = (typeof ContactResourceScalarFieldEnum)[keyof typeof ContactResourceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -27899,6 +38690,783 @@ export namespace Prisma {
     publishedAt?: DateTimeNullableWithAggregatesFilter<"VideoSection"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"VideoSection"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"VideoSection"> | Date | string
+  }
+
+  export type AboutStorySectionWhereInput = {
+    AND?: AboutStorySectionWhereInput | AboutStorySectionWhereInput[]
+    OR?: AboutStorySectionWhereInput[]
+    NOT?: AboutStorySectionWhereInput | AboutStorySectionWhereInput[]
+    id?: StringFilter<"AboutStorySection"> | string
+    heading?: StringFilter<"AboutStorySection"> | string
+    title?: StringFilter<"AboutStorySection"> | string
+    titleHighlight?: StringFilter<"AboutStorySection"> | string
+    paragraph1?: StringFilter<"AboutStorySection"> | string
+    paragraph2?: StringFilter<"AboutStorySection"> | string
+    buttonText?: StringFilter<"AboutStorySection"> | string
+    buttonLink?: StringFilter<"AboutStorySection"> | string
+    image?: StringFilter<"AboutStorySection"> | string
+    status?: EnumContentStatusFilter<"AboutStorySection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutStorySection"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutStorySection"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutStorySection"> | Date | string
+  }
+
+  export type AboutStorySectionOrderByWithRelationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutStorySectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AboutStorySectionWhereInput | AboutStorySectionWhereInput[]
+    OR?: AboutStorySectionWhereInput[]
+    NOT?: AboutStorySectionWhereInput | AboutStorySectionWhereInput[]
+    heading?: StringFilter<"AboutStorySection"> | string
+    title?: StringFilter<"AboutStorySection"> | string
+    titleHighlight?: StringFilter<"AboutStorySection"> | string
+    paragraph1?: StringFilter<"AboutStorySection"> | string
+    paragraph2?: StringFilter<"AboutStorySection"> | string
+    buttonText?: StringFilter<"AboutStorySection"> | string
+    buttonLink?: StringFilter<"AboutStorySection"> | string
+    image?: StringFilter<"AboutStorySection"> | string
+    status?: EnumContentStatusFilter<"AboutStorySection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutStorySection"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutStorySection"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutStorySection"> | Date | string
+  }, "id">
+
+  export type AboutStorySectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AboutStorySectionCountOrderByAggregateInput
+    _max?: AboutStorySectionMaxOrderByAggregateInput
+    _min?: AboutStorySectionMinOrderByAggregateInput
+  }
+
+  export type AboutStorySectionScalarWhereWithAggregatesInput = {
+    AND?: AboutStorySectionScalarWhereWithAggregatesInput | AboutStorySectionScalarWhereWithAggregatesInput[]
+    OR?: AboutStorySectionScalarWhereWithAggregatesInput[]
+    NOT?: AboutStorySectionScalarWhereWithAggregatesInput | AboutStorySectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    heading?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    title?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    titleHighlight?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    paragraph1?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    paragraph2?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    buttonText?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    buttonLink?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    image?: StringWithAggregatesFilter<"AboutStorySection"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"AboutStorySection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"AboutStorySection"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AboutStorySection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AboutStorySection"> | Date | string
+  }
+
+  export type AboutCommunitySectionWhereInput = {
+    AND?: AboutCommunitySectionWhereInput | AboutCommunitySectionWhereInput[]
+    OR?: AboutCommunitySectionWhereInput[]
+    NOT?: AboutCommunitySectionWhereInput | AboutCommunitySectionWhereInput[]
+    id?: StringFilter<"AboutCommunitySection"> | string
+    heading?: StringFilter<"AboutCommunitySection"> | string
+    title?: StringFilter<"AboutCommunitySection"> | string
+    titleHighlight?: StringFilter<"AboutCommunitySection"> | string
+    paragraph1?: StringFilter<"AboutCommunitySection"> | string
+    paragraph2?: StringFilter<"AboutCommunitySection"> | string
+    buttonText?: StringFilter<"AboutCommunitySection"> | string
+    buttonLink?: StringFilter<"AboutCommunitySection"> | string
+    feature1Title?: StringFilter<"AboutCommunitySection"> | string
+    feature1Description?: StringFilter<"AboutCommunitySection"> | string
+    feature2Title?: StringFilter<"AboutCommunitySection"> | string
+    feature2Description?: StringFilter<"AboutCommunitySection"> | string
+    feature3Title?: StringFilter<"AboutCommunitySection"> | string
+    feature3Description?: StringFilter<"AboutCommunitySection"> | string
+    status?: EnumContentStatusFilter<"AboutCommunitySection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutCommunitySection"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutCommunitySection"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutCommunitySection"> | Date | string
+  }
+
+  export type AboutCommunitySectionOrderByWithRelationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    feature1Title?: SortOrder
+    feature1Description?: SortOrder
+    feature2Title?: SortOrder
+    feature2Description?: SortOrder
+    feature3Title?: SortOrder
+    feature3Description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCommunitySectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AboutCommunitySectionWhereInput | AboutCommunitySectionWhereInput[]
+    OR?: AboutCommunitySectionWhereInput[]
+    NOT?: AboutCommunitySectionWhereInput | AboutCommunitySectionWhereInput[]
+    heading?: StringFilter<"AboutCommunitySection"> | string
+    title?: StringFilter<"AboutCommunitySection"> | string
+    titleHighlight?: StringFilter<"AboutCommunitySection"> | string
+    paragraph1?: StringFilter<"AboutCommunitySection"> | string
+    paragraph2?: StringFilter<"AboutCommunitySection"> | string
+    buttonText?: StringFilter<"AboutCommunitySection"> | string
+    buttonLink?: StringFilter<"AboutCommunitySection"> | string
+    feature1Title?: StringFilter<"AboutCommunitySection"> | string
+    feature1Description?: StringFilter<"AboutCommunitySection"> | string
+    feature2Title?: StringFilter<"AboutCommunitySection"> | string
+    feature2Description?: StringFilter<"AboutCommunitySection"> | string
+    feature3Title?: StringFilter<"AboutCommunitySection"> | string
+    feature3Description?: StringFilter<"AboutCommunitySection"> | string
+    status?: EnumContentStatusFilter<"AboutCommunitySection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutCommunitySection"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutCommunitySection"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutCommunitySection"> | Date | string
+  }, "id">
+
+  export type AboutCommunitySectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    feature1Title?: SortOrder
+    feature1Description?: SortOrder
+    feature2Title?: SortOrder
+    feature2Description?: SortOrder
+    feature3Title?: SortOrder
+    feature3Description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AboutCommunitySectionCountOrderByAggregateInput
+    _max?: AboutCommunitySectionMaxOrderByAggregateInput
+    _min?: AboutCommunitySectionMinOrderByAggregateInput
+  }
+
+  export type AboutCommunitySectionScalarWhereWithAggregatesInput = {
+    AND?: AboutCommunitySectionScalarWhereWithAggregatesInput | AboutCommunitySectionScalarWhereWithAggregatesInput[]
+    OR?: AboutCommunitySectionScalarWhereWithAggregatesInput[]
+    NOT?: AboutCommunitySectionScalarWhereWithAggregatesInput | AboutCommunitySectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    heading?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    title?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    titleHighlight?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    paragraph1?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    paragraph2?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    buttonText?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    buttonLink?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    feature1Title?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    feature1Description?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    feature2Title?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    feature2Description?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    feature3Title?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    feature3Description?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"AboutCommunitySection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"AboutCommunitySection"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AboutCommunitySection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AboutCommunitySection"> | Date | string
+  }
+
+  export type AboutStatsWhereInput = {
+    AND?: AboutStatsWhereInput | AboutStatsWhereInput[]
+    OR?: AboutStatsWhereInput[]
+    NOT?: AboutStatsWhereInput | AboutStatsWhereInput[]
+    id?: StringFilter<"AboutStats"> | string
+    stat1Number?: StringFilter<"AboutStats"> | string
+    stat1Label?: StringFilter<"AboutStats"> | string
+    stat2Number?: StringFilter<"AboutStats"> | string
+    stat2Label?: StringFilter<"AboutStats"> | string
+    stat3Number?: StringFilter<"AboutStats"> | string
+    stat3Label?: StringFilter<"AboutStats"> | string
+    stat4Number?: StringFilter<"AboutStats"> | string
+    stat4Label?: StringFilter<"AboutStats"> | string
+    status?: EnumContentStatusFilter<"AboutStats"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutStats"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutStats"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutStats"> | Date | string
+  }
+
+  export type AboutStatsOrderByWithRelationInput = {
+    id?: SortOrder
+    stat1Number?: SortOrder
+    stat1Label?: SortOrder
+    stat2Number?: SortOrder
+    stat2Label?: SortOrder
+    stat3Number?: SortOrder
+    stat3Label?: SortOrder
+    stat4Number?: SortOrder
+    stat4Label?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutStatsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AboutStatsWhereInput | AboutStatsWhereInput[]
+    OR?: AboutStatsWhereInput[]
+    NOT?: AboutStatsWhereInput | AboutStatsWhereInput[]
+    stat1Number?: StringFilter<"AboutStats"> | string
+    stat1Label?: StringFilter<"AboutStats"> | string
+    stat2Number?: StringFilter<"AboutStats"> | string
+    stat2Label?: StringFilter<"AboutStats"> | string
+    stat3Number?: StringFilter<"AboutStats"> | string
+    stat3Label?: StringFilter<"AboutStats"> | string
+    stat4Number?: StringFilter<"AboutStats"> | string
+    stat4Label?: StringFilter<"AboutStats"> | string
+    status?: EnumContentStatusFilter<"AboutStats"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutStats"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutStats"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutStats"> | Date | string
+  }, "id">
+
+  export type AboutStatsOrderByWithAggregationInput = {
+    id?: SortOrder
+    stat1Number?: SortOrder
+    stat1Label?: SortOrder
+    stat2Number?: SortOrder
+    stat2Label?: SortOrder
+    stat3Number?: SortOrder
+    stat3Label?: SortOrder
+    stat4Number?: SortOrder
+    stat4Label?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AboutStatsCountOrderByAggregateInput
+    _max?: AboutStatsMaxOrderByAggregateInput
+    _min?: AboutStatsMinOrderByAggregateInput
+  }
+
+  export type AboutStatsScalarWhereWithAggregatesInput = {
+    AND?: AboutStatsScalarWhereWithAggregatesInput | AboutStatsScalarWhereWithAggregatesInput[]
+    OR?: AboutStatsScalarWhereWithAggregatesInput[]
+    NOT?: AboutStatsScalarWhereWithAggregatesInput | AboutStatsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat1Number?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat1Label?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat2Number?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat2Label?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat3Number?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat3Label?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat4Number?: StringWithAggregatesFilter<"AboutStats"> | string
+    stat4Label?: StringWithAggregatesFilter<"AboutStats"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"AboutStats"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"AboutStats"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AboutStats"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AboutStats"> | Date | string
+  }
+
+  export type AboutValueWhereInput = {
+    AND?: AboutValueWhereInput | AboutValueWhereInput[]
+    OR?: AboutValueWhereInput[]
+    NOT?: AboutValueWhereInput | AboutValueWhereInput[]
+    id?: StringFilter<"AboutValue"> | string
+    title?: StringFilter<"AboutValue"> | string
+    description?: StringFilter<"AboutValue"> | string
+    icon?: StringFilter<"AboutValue"> | string
+    displayOrder?: IntFilter<"AboutValue"> | number
+    active?: BoolFilter<"AboutValue"> | boolean
+    createdAt?: DateTimeFilter<"AboutValue"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutValue"> | Date | string
+  }
+
+  export type AboutValueOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutValueWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AboutValueWhereInput | AboutValueWhereInput[]
+    OR?: AboutValueWhereInput[]
+    NOT?: AboutValueWhereInput | AboutValueWhereInput[]
+    title?: StringFilter<"AboutValue"> | string
+    description?: StringFilter<"AboutValue"> | string
+    icon?: StringFilter<"AboutValue"> | string
+    displayOrder?: IntFilter<"AboutValue"> | number
+    active?: BoolFilter<"AboutValue"> | boolean
+    createdAt?: DateTimeFilter<"AboutValue"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutValue"> | Date | string
+  }, "id">
+
+  export type AboutValueOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AboutValueCountOrderByAggregateInput
+    _avg?: AboutValueAvgOrderByAggregateInput
+    _max?: AboutValueMaxOrderByAggregateInput
+    _min?: AboutValueMinOrderByAggregateInput
+    _sum?: AboutValueSumOrderByAggregateInput
+  }
+
+  export type AboutValueScalarWhereWithAggregatesInput = {
+    AND?: AboutValueScalarWhereWithAggregatesInput | AboutValueScalarWhereWithAggregatesInput[]
+    OR?: AboutValueScalarWhereWithAggregatesInput[]
+    NOT?: AboutValueScalarWhereWithAggregatesInput | AboutValueScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AboutValue"> | string
+    title?: StringWithAggregatesFilter<"AboutValue"> | string
+    description?: StringWithAggregatesFilter<"AboutValue"> | string
+    icon?: StringWithAggregatesFilter<"AboutValue"> | string
+    displayOrder?: IntWithAggregatesFilter<"AboutValue"> | number
+    active?: BoolWithAggregatesFilter<"AboutValue"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"AboutValue"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AboutValue"> | Date | string
+  }
+
+  export type AboutHeroWhereInput = {
+    AND?: AboutHeroWhereInput | AboutHeroWhereInput[]
+    OR?: AboutHeroWhereInput[]
+    NOT?: AboutHeroWhereInput | AboutHeroWhereInput[]
+    id?: StringFilter<"AboutHero"> | string
+    image?: StringFilter<"AboutHero"> | string
+    title?: StringFilter<"AboutHero"> | string
+    subtitle?: StringFilter<"AboutHero"> | string
+    description?: StringFilter<"AboutHero"> | string
+    status?: EnumContentStatusFilter<"AboutHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutHero"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutHero"> | Date | string
+  }
+
+  export type AboutHeroOrderByWithRelationInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutHeroWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AboutHeroWhereInput | AboutHeroWhereInput[]
+    OR?: AboutHeroWhereInput[]
+    NOT?: AboutHeroWhereInput | AboutHeroWhereInput[]
+    image?: StringFilter<"AboutHero"> | string
+    title?: StringFilter<"AboutHero"> | string
+    subtitle?: StringFilter<"AboutHero"> | string
+    description?: StringFilter<"AboutHero"> | string
+    status?: EnumContentStatusFilter<"AboutHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutHero"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutHero"> | Date | string
+  }, "id">
+
+  export type AboutHeroOrderByWithAggregationInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AboutHeroCountOrderByAggregateInput
+    _max?: AboutHeroMaxOrderByAggregateInput
+    _min?: AboutHeroMinOrderByAggregateInput
+  }
+
+  export type AboutHeroScalarWhereWithAggregatesInput = {
+    AND?: AboutHeroScalarWhereWithAggregatesInput | AboutHeroScalarWhereWithAggregatesInput[]
+    OR?: AboutHeroScalarWhereWithAggregatesInput[]
+    NOT?: AboutHeroScalarWhereWithAggregatesInput | AboutHeroScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AboutHero"> | string
+    image?: StringWithAggregatesFilter<"AboutHero"> | string
+    title?: StringWithAggregatesFilter<"AboutHero"> | string
+    subtitle?: StringWithAggregatesFilter<"AboutHero"> | string
+    description?: StringWithAggregatesFilter<"AboutHero"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"AboutHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"AboutHero"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AboutHero"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AboutHero"> | Date | string
+  }
+
+  export type AboutCTAWhereInput = {
+    AND?: AboutCTAWhereInput | AboutCTAWhereInput[]
+    OR?: AboutCTAWhereInput[]
+    NOT?: AboutCTAWhereInput | AboutCTAWhereInput[]
+    id?: StringFilter<"AboutCTA"> | string
+    badge?: StringFilter<"AboutCTA"> | string
+    heading?: StringFilter<"AboutCTA"> | string
+    headingHighlight?: StringFilter<"AboutCTA"> | string
+    description?: StringFilter<"AboutCTA"> | string
+    button1Text?: StringFilter<"AboutCTA"> | string
+    button1Link?: StringFilter<"AboutCTA"> | string
+    button2Text?: StringFilter<"AboutCTA"> | string
+    button2Link?: StringFilter<"AboutCTA"> | string
+    footerText?: StringFilter<"AboutCTA"> | string
+    status?: EnumContentStatusFilter<"AboutCTA"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutCTA"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutCTA"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutCTA"> | Date | string
+  }
+
+  export type AboutCTAOrderByWithRelationInput = {
+    id?: SortOrder
+    badge?: SortOrder
+    heading?: SortOrder
+    headingHighlight?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    footerText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCTAWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AboutCTAWhereInput | AboutCTAWhereInput[]
+    OR?: AboutCTAWhereInput[]
+    NOT?: AboutCTAWhereInput | AboutCTAWhereInput[]
+    badge?: StringFilter<"AboutCTA"> | string
+    heading?: StringFilter<"AboutCTA"> | string
+    headingHighlight?: StringFilter<"AboutCTA"> | string
+    description?: StringFilter<"AboutCTA"> | string
+    button1Text?: StringFilter<"AboutCTA"> | string
+    button1Link?: StringFilter<"AboutCTA"> | string
+    button2Text?: StringFilter<"AboutCTA"> | string
+    button2Link?: StringFilter<"AboutCTA"> | string
+    footerText?: StringFilter<"AboutCTA"> | string
+    status?: EnumContentStatusFilter<"AboutCTA"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"AboutCTA"> | Date | string | null
+    createdAt?: DateTimeFilter<"AboutCTA"> | Date | string
+    updatedAt?: DateTimeFilter<"AboutCTA"> | Date | string
+  }, "id">
+
+  export type AboutCTAOrderByWithAggregationInput = {
+    id?: SortOrder
+    badge?: SortOrder
+    heading?: SortOrder
+    headingHighlight?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    footerText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AboutCTACountOrderByAggregateInput
+    _max?: AboutCTAMaxOrderByAggregateInput
+    _min?: AboutCTAMinOrderByAggregateInput
+  }
+
+  export type AboutCTAScalarWhereWithAggregatesInput = {
+    AND?: AboutCTAScalarWhereWithAggregatesInput | AboutCTAScalarWhereWithAggregatesInput[]
+    OR?: AboutCTAScalarWhereWithAggregatesInput[]
+    NOT?: AboutCTAScalarWhereWithAggregatesInput | AboutCTAScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AboutCTA"> | string
+    badge?: StringWithAggregatesFilter<"AboutCTA"> | string
+    heading?: StringWithAggregatesFilter<"AboutCTA"> | string
+    headingHighlight?: StringWithAggregatesFilter<"AboutCTA"> | string
+    description?: StringWithAggregatesFilter<"AboutCTA"> | string
+    button1Text?: StringWithAggregatesFilter<"AboutCTA"> | string
+    button1Link?: StringWithAggregatesFilter<"AboutCTA"> | string
+    button2Text?: StringWithAggregatesFilter<"AboutCTA"> | string
+    button2Link?: StringWithAggregatesFilter<"AboutCTA"> | string
+    footerText?: StringWithAggregatesFilter<"AboutCTA"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"AboutCTA"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"AboutCTA"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AboutCTA"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AboutCTA"> | Date | string
+  }
+
+  export type ContactHeroWhereInput = {
+    AND?: ContactHeroWhereInput | ContactHeroWhereInput[]
+    OR?: ContactHeroWhereInput[]
+    NOT?: ContactHeroWhereInput | ContactHeroWhereInput[]
+    id?: StringFilter<"ContactHero"> | string
+    image?: StringFilter<"ContactHero"> | string
+    title?: StringFilter<"ContactHero"> | string
+    subtitle?: StringFilter<"ContactHero"> | string
+    description?: StringFilter<"ContactHero"> | string
+    status?: EnumContentStatusFilter<"ContactHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"ContactHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"ContactHero"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactHero"> | Date | string
+  }
+
+  export type ContactHeroOrderByWithRelationInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactHeroWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContactHeroWhereInput | ContactHeroWhereInput[]
+    OR?: ContactHeroWhereInput[]
+    NOT?: ContactHeroWhereInput | ContactHeroWhereInput[]
+    image?: StringFilter<"ContactHero"> | string
+    title?: StringFilter<"ContactHero"> | string
+    subtitle?: StringFilter<"ContactHero"> | string
+    description?: StringFilter<"ContactHero"> | string
+    status?: EnumContentStatusFilter<"ContactHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"ContactHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"ContactHero"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactHero"> | Date | string
+  }, "id">
+
+  export type ContactHeroOrderByWithAggregationInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContactHeroCountOrderByAggregateInput
+    _max?: ContactHeroMaxOrderByAggregateInput
+    _min?: ContactHeroMinOrderByAggregateInput
+  }
+
+  export type ContactHeroScalarWhereWithAggregatesInput = {
+    AND?: ContactHeroScalarWhereWithAggregatesInput | ContactHeroScalarWhereWithAggregatesInput[]
+    OR?: ContactHeroScalarWhereWithAggregatesInput[]
+    NOT?: ContactHeroScalarWhereWithAggregatesInput | ContactHeroScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContactHero"> | string
+    image?: StringWithAggregatesFilter<"ContactHero"> | string
+    title?: StringWithAggregatesFilter<"ContactHero"> | string
+    subtitle?: StringWithAggregatesFilter<"ContactHero"> | string
+    description?: StringWithAggregatesFilter<"ContactHero"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"ContactHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"ContactHero"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ContactHero"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContactHero"> | Date | string
+  }
+
+  export type ContactInfoWhereInput = {
+    AND?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    OR?: ContactInfoWhereInput[]
+    NOT?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    id?: StringFilter<"ContactInfo"> | string
+    email?: StringFilter<"ContactInfo"> | string
+    phone?: StringFilter<"ContactInfo"> | string
+    whatsapp?: StringFilter<"ContactInfo"> | string
+    office?: StringFilter<"ContactInfo"> | string
+    businessHours?: JsonFilter<"ContactInfo">
+    quickResponse?: StringFilter<"ContactInfo"> | string
+    status?: EnumContentStatusFilter<"ContactInfo"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"ContactInfo"> | Date | string | null
+    createdAt?: DateTimeFilter<"ContactInfo"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactInfo"> | Date | string
+  }
+
+  export type ContactInfoOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    office?: SortOrder
+    businessHours?: SortOrder
+    quickResponse?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactInfoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    OR?: ContactInfoWhereInput[]
+    NOT?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    email?: StringFilter<"ContactInfo"> | string
+    phone?: StringFilter<"ContactInfo"> | string
+    whatsapp?: StringFilter<"ContactInfo"> | string
+    office?: StringFilter<"ContactInfo"> | string
+    businessHours?: JsonFilter<"ContactInfo">
+    quickResponse?: StringFilter<"ContactInfo"> | string
+    status?: EnumContentStatusFilter<"ContactInfo"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"ContactInfo"> | Date | string | null
+    createdAt?: DateTimeFilter<"ContactInfo"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactInfo"> | Date | string
+  }, "id">
+
+  export type ContactInfoOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    office?: SortOrder
+    businessHours?: SortOrder
+    quickResponse?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContactInfoCountOrderByAggregateInput
+    _max?: ContactInfoMaxOrderByAggregateInput
+    _min?: ContactInfoMinOrderByAggregateInput
+  }
+
+  export type ContactInfoScalarWhereWithAggregatesInput = {
+    AND?: ContactInfoScalarWhereWithAggregatesInput | ContactInfoScalarWhereWithAggregatesInput[]
+    OR?: ContactInfoScalarWhereWithAggregatesInput[]
+    NOT?: ContactInfoScalarWhereWithAggregatesInput | ContactInfoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContactInfo"> | string
+    email?: StringWithAggregatesFilter<"ContactInfo"> | string
+    phone?: StringWithAggregatesFilter<"ContactInfo"> | string
+    whatsapp?: StringWithAggregatesFilter<"ContactInfo"> | string
+    office?: StringWithAggregatesFilter<"ContactInfo"> | string
+    businessHours?: JsonWithAggregatesFilter<"ContactInfo">
+    quickResponse?: StringWithAggregatesFilter<"ContactInfo"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"ContactInfo"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"ContactInfo"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ContactInfo"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContactInfo"> | Date | string
+  }
+
+  export type ContactResourceWhereInput = {
+    AND?: ContactResourceWhereInput | ContactResourceWhereInput[]
+    OR?: ContactResourceWhereInput[]
+    NOT?: ContactResourceWhereInput | ContactResourceWhereInput[]
+    id?: StringFilter<"ContactResource"> | string
+    title?: StringFilter<"ContactResource"> | string
+    description?: StringFilter<"ContactResource"> | string
+    icon?: StringFilter<"ContactResource"> | string
+    linkText?: StringFilter<"ContactResource"> | string
+    linkUrl?: StringFilter<"ContactResource"> | string
+    isExternal?: BoolFilter<"ContactResource"> | boolean
+    displayOrder?: IntFilter<"ContactResource"> | number
+    active?: BoolFilter<"ContactResource"> | boolean
+    createdAt?: DateTimeFilter<"ContactResource"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactResource"> | Date | string
+  }
+
+  export type ContactResourceOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    linkText?: SortOrder
+    linkUrl?: SortOrder
+    isExternal?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactResourceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContactResourceWhereInput | ContactResourceWhereInput[]
+    OR?: ContactResourceWhereInput[]
+    NOT?: ContactResourceWhereInput | ContactResourceWhereInput[]
+    title?: StringFilter<"ContactResource"> | string
+    description?: StringFilter<"ContactResource"> | string
+    icon?: StringFilter<"ContactResource"> | string
+    linkText?: StringFilter<"ContactResource"> | string
+    linkUrl?: StringFilter<"ContactResource"> | string
+    isExternal?: BoolFilter<"ContactResource"> | boolean
+    displayOrder?: IntFilter<"ContactResource"> | number
+    active?: BoolFilter<"ContactResource"> | boolean
+    createdAt?: DateTimeFilter<"ContactResource"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactResource"> | Date | string
+  }, "id">
+
+  export type ContactResourceOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    linkText?: SortOrder
+    linkUrl?: SortOrder
+    isExternal?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContactResourceCountOrderByAggregateInput
+    _avg?: ContactResourceAvgOrderByAggregateInput
+    _max?: ContactResourceMaxOrderByAggregateInput
+    _min?: ContactResourceMinOrderByAggregateInput
+    _sum?: ContactResourceSumOrderByAggregateInput
+  }
+
+  export type ContactResourceScalarWhereWithAggregatesInput = {
+    AND?: ContactResourceScalarWhereWithAggregatesInput | ContactResourceScalarWhereWithAggregatesInput[]
+    OR?: ContactResourceScalarWhereWithAggregatesInput[]
+    NOT?: ContactResourceScalarWhereWithAggregatesInput | ContactResourceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContactResource"> | string
+    title?: StringWithAggregatesFilter<"ContactResource"> | string
+    description?: StringWithAggregatesFilter<"ContactResource"> | string
+    icon?: StringWithAggregatesFilter<"ContactResource"> | string
+    linkText?: StringWithAggregatesFilter<"ContactResource"> | string
+    linkUrl?: StringWithAggregatesFilter<"ContactResource"> | string
+    isExternal?: BoolWithAggregatesFilter<"ContactResource"> | boolean
+    displayOrder?: IntWithAggregatesFilter<"ContactResource"> | number
+    active?: BoolWithAggregatesFilter<"ContactResource"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ContactResource"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContactResource"> | Date | string
   }
 
   export type DestinationCreateInput = {
@@ -29897,6 +41465,937 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AboutStorySectionCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    image: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutStorySectionUncheckedCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    image: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutStorySectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutStorySectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutStorySectionCreateManyInput = {
+    id?: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    image: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutStorySectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutStorySectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCommunitySectionCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    feature1Title: string
+    feature1Description: string
+    feature2Title: string
+    feature2Description: string
+    feature3Title: string
+    feature3Description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutCommunitySectionUncheckedCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    feature1Title: string
+    feature1Description: string
+    feature2Title: string
+    feature2Description: string
+    feature3Title: string
+    feature3Description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutCommunitySectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    feature1Title?: StringFieldUpdateOperationsInput | string
+    feature1Description?: StringFieldUpdateOperationsInput | string
+    feature2Title?: StringFieldUpdateOperationsInput | string
+    feature2Description?: StringFieldUpdateOperationsInput | string
+    feature3Title?: StringFieldUpdateOperationsInput | string
+    feature3Description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCommunitySectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    feature1Title?: StringFieldUpdateOperationsInput | string
+    feature1Description?: StringFieldUpdateOperationsInput | string
+    feature2Title?: StringFieldUpdateOperationsInput | string
+    feature2Description?: StringFieldUpdateOperationsInput | string
+    feature3Title?: StringFieldUpdateOperationsInput | string
+    feature3Description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCommunitySectionCreateManyInput = {
+    id?: string
+    heading: string
+    title: string
+    titleHighlight: string
+    paragraph1: string
+    paragraph2: string
+    buttonText: string
+    buttonLink: string
+    feature1Title: string
+    feature1Description: string
+    feature2Title: string
+    feature2Description: string
+    feature3Title: string
+    feature3Description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutCommunitySectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    feature1Title?: StringFieldUpdateOperationsInput | string
+    feature1Description?: StringFieldUpdateOperationsInput | string
+    feature2Title?: StringFieldUpdateOperationsInput | string
+    feature2Description?: StringFieldUpdateOperationsInput | string
+    feature3Title?: StringFieldUpdateOperationsInput | string
+    feature3Description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCommunitySectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    titleHighlight?: StringFieldUpdateOperationsInput | string
+    paragraph1?: StringFieldUpdateOperationsInput | string
+    paragraph2?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    buttonLink?: StringFieldUpdateOperationsInput | string
+    feature1Title?: StringFieldUpdateOperationsInput | string
+    feature1Description?: StringFieldUpdateOperationsInput | string
+    feature2Title?: StringFieldUpdateOperationsInput | string
+    feature2Description?: StringFieldUpdateOperationsInput | string
+    feature3Title?: StringFieldUpdateOperationsInput | string
+    feature3Description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutStatsCreateInput = {
+    id?: string
+    stat1Number: string
+    stat1Label: string
+    stat2Number: string
+    stat2Label: string
+    stat3Number: string
+    stat3Label: string
+    stat4Number: string
+    stat4Label: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutStatsUncheckedCreateInput = {
+    id?: string
+    stat1Number: string
+    stat1Label: string
+    stat2Number: string
+    stat2Label: string
+    stat3Number: string
+    stat3Label: string
+    stat4Number: string
+    stat4Label: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutStatsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stat1Number?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Number?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    stat3Number?: StringFieldUpdateOperationsInput | string
+    stat3Label?: StringFieldUpdateOperationsInput | string
+    stat4Number?: StringFieldUpdateOperationsInput | string
+    stat4Label?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutStatsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stat1Number?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Number?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    stat3Number?: StringFieldUpdateOperationsInput | string
+    stat3Label?: StringFieldUpdateOperationsInput | string
+    stat4Number?: StringFieldUpdateOperationsInput | string
+    stat4Label?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutStatsCreateManyInput = {
+    id?: string
+    stat1Number: string
+    stat1Label: string
+    stat2Number: string
+    stat2Label: string
+    stat3Number: string
+    stat3Label: string
+    stat4Number: string
+    stat4Label: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutStatsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stat1Number?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Number?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    stat3Number?: StringFieldUpdateOperationsInput | string
+    stat3Label?: StringFieldUpdateOperationsInput | string
+    stat4Number?: StringFieldUpdateOperationsInput | string
+    stat4Label?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutStatsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stat1Number?: StringFieldUpdateOperationsInput | string
+    stat1Label?: StringFieldUpdateOperationsInput | string
+    stat2Number?: StringFieldUpdateOperationsInput | string
+    stat2Label?: StringFieldUpdateOperationsInput | string
+    stat3Number?: StringFieldUpdateOperationsInput | string
+    stat3Label?: StringFieldUpdateOperationsInput | string
+    stat4Number?: StringFieldUpdateOperationsInput | string
+    stat4Label?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutValueCreateInput = {
+    id?: string
+    title: string
+    description: string
+    icon: string
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutValueUncheckedCreateInput = {
+    id?: string
+    title: string
+    description: string
+    icon: string
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutValueUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutValueUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutValueCreateManyInput = {
+    id?: string
+    title: string
+    description: string
+    icon: string
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutValueUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutValueUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutHeroCreateInput = {
+    id?: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutHeroUncheckedCreateInput = {
+    id?: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutHeroUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutHeroUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutHeroCreateManyInput = {
+    id?: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutHeroUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutHeroUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCTACreateInput = {
+    id?: string
+    badge: string
+    heading: string
+    headingHighlight: string
+    description: string
+    button1Text: string
+    button1Link: string
+    button2Text: string
+    button2Link: string
+    footerText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutCTAUncheckedCreateInput = {
+    id?: string
+    badge: string
+    heading: string
+    headingHighlight: string
+    description: string
+    button1Text: string
+    button1Link: string
+    button2Text: string
+    button2Link: string
+    footerText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutCTAUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    headingHighlight?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    button1Text?: StringFieldUpdateOperationsInput | string
+    button1Link?: StringFieldUpdateOperationsInput | string
+    button2Text?: StringFieldUpdateOperationsInput | string
+    button2Link?: StringFieldUpdateOperationsInput | string
+    footerText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCTAUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    headingHighlight?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    button1Text?: StringFieldUpdateOperationsInput | string
+    button1Link?: StringFieldUpdateOperationsInput | string
+    button2Text?: StringFieldUpdateOperationsInput | string
+    button2Link?: StringFieldUpdateOperationsInput | string
+    footerText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCTACreateManyInput = {
+    id?: string
+    badge: string
+    heading: string
+    headingHighlight: string
+    description: string
+    button1Text: string
+    button1Link: string
+    button2Text: string
+    button2Link: string
+    footerText: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AboutCTAUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    headingHighlight?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    button1Text?: StringFieldUpdateOperationsInput | string
+    button1Link?: StringFieldUpdateOperationsInput | string
+    button2Text?: StringFieldUpdateOperationsInput | string
+    button2Link?: StringFieldUpdateOperationsInput | string
+    footerText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AboutCTAUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    headingHighlight?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    button1Text?: StringFieldUpdateOperationsInput | string
+    button1Link?: StringFieldUpdateOperationsInput | string
+    button2Text?: StringFieldUpdateOperationsInput | string
+    button2Link?: StringFieldUpdateOperationsInput | string
+    footerText?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactHeroCreateInput = {
+    id?: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactHeroUncheckedCreateInput = {
+    id?: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactHeroUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactHeroUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactHeroCreateManyInput = {
+    id?: string
+    image: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactHeroUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactHeroUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInfoCreateInput = {
+    id?: string
+    email: string
+    phone: string
+    whatsapp: string
+    office: string
+    businessHours: JsonNullValueInput | InputJsonValue
+    quickResponse: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactInfoUncheckedCreateInput = {
+    id?: string
+    email: string
+    phone: string
+    whatsapp: string
+    office: string
+    businessHours: JsonNullValueInput | InputJsonValue
+    quickResponse: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactInfoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: StringFieldUpdateOperationsInput | string
+    office?: StringFieldUpdateOperationsInput | string
+    businessHours?: JsonNullValueInput | InputJsonValue
+    quickResponse?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInfoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: StringFieldUpdateOperationsInput | string
+    office?: StringFieldUpdateOperationsInput | string
+    businessHours?: JsonNullValueInput | InputJsonValue
+    quickResponse?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInfoCreateManyInput = {
+    id?: string
+    email: string
+    phone: string
+    whatsapp: string
+    office: string
+    businessHours: JsonNullValueInput | InputJsonValue
+    quickResponse: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactInfoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: StringFieldUpdateOperationsInput | string
+    office?: StringFieldUpdateOperationsInput | string
+    businessHours?: JsonNullValueInput | InputJsonValue
+    quickResponse?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInfoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: StringFieldUpdateOperationsInput | string
+    office?: StringFieldUpdateOperationsInput | string
+    businessHours?: JsonNullValueInput | InputJsonValue
+    quickResponse?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactResourceCreateInput = {
+    id?: string
+    title: string
+    description: string
+    icon: string
+    linkText: string
+    linkUrl: string
+    isExternal?: boolean
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactResourceUncheckedCreateInput = {
+    id?: string
+    title: string
+    description: string
+    icon: string
+    linkText: string
+    linkUrl: string
+    isExternal?: boolean
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactResourceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    linkText?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    isExternal?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactResourceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    linkText?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    isExternal?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactResourceCreateManyInput = {
+    id?: string
+    title: string
+    description: string
+    icon: string
+    linkText: string
+    linkUrl: string
+    isExternal?: boolean
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactResourceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    linkText?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    isExternal?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactResourceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    linkText?: StringFieldUpdateOperationsInput | string
+    linkUrl?: StringFieldUpdateOperationsInput | string
+    isExternal?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -31428,6 +43927,419 @@ export namespace Prisma {
     publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type AboutStorySectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutStorySectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutStorySectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCommunitySectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    feature1Title?: SortOrder
+    feature1Description?: SortOrder
+    feature2Title?: SortOrder
+    feature2Description?: SortOrder
+    feature3Title?: SortOrder
+    feature3Description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCommunitySectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    feature1Title?: SortOrder
+    feature1Description?: SortOrder
+    feature2Title?: SortOrder
+    feature2Description?: SortOrder
+    feature3Title?: SortOrder
+    feature3Description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCommunitySectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    titleHighlight?: SortOrder
+    paragraph1?: SortOrder
+    paragraph2?: SortOrder
+    buttonText?: SortOrder
+    buttonLink?: SortOrder
+    feature1Title?: SortOrder
+    feature1Description?: SortOrder
+    feature2Title?: SortOrder
+    feature2Description?: SortOrder
+    feature3Title?: SortOrder
+    feature3Description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutStatsCountOrderByAggregateInput = {
+    id?: SortOrder
+    stat1Number?: SortOrder
+    stat1Label?: SortOrder
+    stat2Number?: SortOrder
+    stat2Label?: SortOrder
+    stat3Number?: SortOrder
+    stat3Label?: SortOrder
+    stat4Number?: SortOrder
+    stat4Label?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutStatsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    stat1Number?: SortOrder
+    stat1Label?: SortOrder
+    stat2Number?: SortOrder
+    stat2Label?: SortOrder
+    stat3Number?: SortOrder
+    stat3Label?: SortOrder
+    stat4Number?: SortOrder
+    stat4Label?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutStatsMinOrderByAggregateInput = {
+    id?: SortOrder
+    stat1Number?: SortOrder
+    stat1Label?: SortOrder
+    stat2Number?: SortOrder
+    stat2Label?: SortOrder
+    stat3Number?: SortOrder
+    stat3Label?: SortOrder
+    stat4Number?: SortOrder
+    stat4Label?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutValueCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutValueAvgOrderByAggregateInput = {
+    displayOrder?: SortOrder
+  }
+
+  export type AboutValueMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutValueMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutValueSumOrderByAggregateInput = {
+    displayOrder?: SortOrder
+  }
+
+  export type AboutHeroCountOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutHeroMaxOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutHeroMinOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCTACountOrderByAggregateInput = {
+    id?: SortOrder
+    badge?: SortOrder
+    heading?: SortOrder
+    headingHighlight?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    footerText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCTAMaxOrderByAggregateInput = {
+    id?: SortOrder
+    badge?: SortOrder
+    heading?: SortOrder
+    headingHighlight?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    footerText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AboutCTAMinOrderByAggregateInput = {
+    id?: SortOrder
+    badge?: SortOrder
+    heading?: SortOrder
+    headingHighlight?: SortOrder
+    description?: SortOrder
+    button1Text?: SortOrder
+    button1Link?: SortOrder
+    button2Text?: SortOrder
+    button2Link?: SortOrder
+    footerText?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactHeroCountOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactHeroMaxOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactHeroMinOrderByAggregateInput = {
+    id?: SortOrder
+    image?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactInfoCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    office?: SortOrder
+    businessHours?: SortOrder
+    quickResponse?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactInfoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    office?: SortOrder
+    quickResponse?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactInfoMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    office?: SortOrder
+    quickResponse?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactResourceCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    linkText?: SortOrder
+    linkUrl?: SortOrder
+    isExternal?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactResourceAvgOrderByAggregateInput = {
+    displayOrder?: SortOrder
+  }
+
+  export type ContactResourceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    linkText?: SortOrder
+    linkUrl?: SortOrder
+    isExternal?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactResourceMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    linkText?: SortOrder
+    linkUrl?: SortOrder
+    isExternal?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactResourceSumOrderByAggregateInput = {
+    displayOrder?: SortOrder
   }
 
   export type DestinationCreateimagesInput = {
