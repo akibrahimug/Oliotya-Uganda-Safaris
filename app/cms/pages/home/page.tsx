@@ -256,12 +256,24 @@ export default function CMSHomePageInline() {
 
           {/* Tour Guide Section - Editable */}
           <EditableWrapper onEdit={() => setTourGuideModalOpen(true)} label="Tour Guide">
-            <TourGuideSection />
+            {tourGuideSection ? (
+              <TourGuideSection data={tourGuideSection} />
+            ) : (
+              <div className="py-20 bg-muted/30 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+              </div>
+            )}
           </EditableWrapper>
 
           {/* Video Section - Editable */}
           <EditableWrapper onEdit={() => setVideoModalOpen(true)} label="Video">
-            <VideoSection />
+            {videoSection ? (
+              <VideoSection data={videoSection} />
+            ) : (
+              <div className="py-20 bg-muted/30 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+              </div>
+            )}
           </EditableWrapper>
 
           {/* Popular Places - Editable */}
@@ -276,7 +288,13 @@ export default function CMSHomePageInline() {
 
           {/* Experience Section - Editable */}
           <EditableWrapper onEdit={() => setExperienceModalOpen(true)} label="Experience">
-            <ExperienceSection />
+            {experienceSection ? (
+              <ExperienceSection data={experienceSection} />
+            ) : (
+              <div className="py-20 bg-muted/30 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+              </div>
+            )}
           </EditableWrapper>
         </div>
       </div>
