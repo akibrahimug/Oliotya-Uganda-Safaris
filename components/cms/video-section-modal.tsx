@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ImagePicker } from "@/components/cms/image-picker";
 import { Loader2 } from "lucide-react";
 
 interface VideoSectionData {
@@ -14,7 +13,6 @@ interface VideoSectionData {
   title: string;
   description: string;
   videoUrl: string;
-  thumbnailUrl: string | null;
   status: string;
 }
 
@@ -33,7 +31,6 @@ export function VideoSectionModal({
 }: VideoSectionModalProps) {
   const [formData, setFormData] = useState<VideoSectionData | null>(null);
   const [saving, setSaving] = useState(false);
-  const [imagePickerOpen, setImagePickerOpen] = useState(false);
 
   useEffect(() => {
     if (initialData) {
@@ -99,40 +96,6 @@ export function VideoSectionModal({
               YouTube, Vimeo, or direct video file URL
             </p>
           </div>
-
-          <div>
-            <Label>Thumbnail Image (Optional)</Label>
-            {formData.thumbnailUrl ? (
-              <div className="relative aspect-video bg-muted rounded-lg overflow-hidden max-w-md">
-                <img
-                  src={formData.thumbnailUrl}
-                  alt="Preview"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/60 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={() => setImagePickerOpen(true)}
-                  >
-                    Change Image
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full h-32"
-                onClick={() => setImagePickerOpen(true)}
-              >
-                Select Thumbnail
-              </Button>
-            )}
-            <p className="text-xs text-muted-foreground mt-1">
-              If not provided, YouTube/Vimeo thumbnail will be used
-            </p>
-          </div>
         </div>
 
         <div className="flex justify-between gap-2 pt-4 border-t">
@@ -168,15 +131,6 @@ export function VideoSectionModal({
         </div>
       </DialogContent>
     </Dialog>
-
-    <ImagePicker
-      open={imagePickerOpen}
-      onClose={() => setImagePickerOpen(false)}
-      onSelect={(url) => {
-        setFormData({ ...formData!, thumbnailUrl: url });
-        setImagePickerOpen(false);
-      }}
-    />
-  </>
+    </>
   );
 }

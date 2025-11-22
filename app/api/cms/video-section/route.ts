@@ -55,7 +55,7 @@ export async function PATCH(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, description, videoUrl, thumbnailUrl, publish } = body;
+    const { title, description, videoUrl, publish } = body;
 
     const existing = await prisma.videoSection.findFirst();
 
@@ -70,7 +70,6 @@ export async function PATCH(request: NextRequest) {
       title,
       description,
       videoUrl,
-      thumbnailUrl,
     };
 
     if (publish) {

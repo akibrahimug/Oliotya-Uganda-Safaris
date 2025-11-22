@@ -49,7 +49,6 @@ interface VideoSectionData {
   title: string;
   description: string;
   videoUrl: string;
-  thumbnailUrl: string | null;
   status: string;
 }
 

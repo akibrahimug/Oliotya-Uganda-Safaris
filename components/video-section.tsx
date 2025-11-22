@@ -8,7 +8,6 @@ interface VideoSectionProps {
     title: string;
     description: string;
     videoUrl: string;
-    thumbnailUrl: string | null;
   };
 }
 
@@ -21,7 +20,6 @@ export function VideoSection({ data }: VideoSectionProps) {
     title: "Experience Uganda",
     description: "Watch our journey through the Pearl of Africa and discover what makes Uganda a unique destination",
     videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    thumbnailUrl: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=675&fit=crop",
   };
 
   // Split title to highlight last word
@@ -94,7 +92,6 @@ export function VideoSection({ data }: VideoSectionProps) {
             muted
             playsInline
             preload="metadata"
-            poster={sectionData.thumbnailUrl || undefined}
           >
             <source
               src={sectionData.videoUrl}
