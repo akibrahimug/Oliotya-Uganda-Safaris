@@ -1,27 +1,294 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { Mail } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { EditableWrapper } from "@/components/cms/editable-wrapper";
+import { CMSLoader, CMSSectionLoader } from "@/components/cms/cms-loader";
+import { ContactHeroSection } from "@/components/contact-hero-section";
+import { ContactInfoSection } from "@/components/contact-info-section";
+import { ContactFAQSection } from "@/components/contact-faq-section";
+import { ContactResourcesSection } from "@/components/contact-resources-section";
+import { ContactHeroModal } from "@/components/cms/contact-hero-modal";
+import { ContactInfoModal } from "@/components/cms/contact-info-modal";
+import { ContactFAQModal } from "@/components/cms/contact-faq-modal";
+import { ContactResourcesModal } from "@/components/cms/contact-resources-modal";
 
-export default function ContactPageEditor() {
+interface HeroSection {
+  id: string;
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  status: string;
+}
+
+interface InfoSection {
+  id: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  office: string;
+  businessHours: {
+    monFri: string;
+    sat: string;
+    sun: string;
+  };
+  quickResponse: string;
+  status: string;
+}
+
+interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+  category?: string;
+  displayOrder: number;
+  active: boolean;
+}
+
+interface Resource {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  linkText: string;
+  linkUrl: string;
+  isExternal: boolean;
+  displayOrder: number;
+  active: boolean;
+}
+
+export default function CMSContactPageInline() {
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  // Section data
+  const [heroSection, setHeroSection] = useState<HeroSection | null>(null);
+  const [infoSection, setInfoSection] = useState<InfoSection | null>(null);
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+  const [resources, setResources] = useState<Resource[]>([]);
+
+  // Modal states
+  const [heroModalOpen, setHeroModalOpen] = useState(false);
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
+  const [faqModalOpen, setFaqModalOpen] = useState(false);
+  const [resourcesModalOpen, setResourcesModalOpen] = useState(false);
+
+  // Fetch all sections
+  const fetchSections = async () => {
+    try {
+      setLoading(true);
+
+      const [heroRes, infoRes, faqsRes, resourcesRes] = await Promise.all([
+        fetch("/api/cms/contact-hero?mode=cms"),
+        fetch("/api/cms/contact-info?mode=cms"),
+        fetch("/api/cms/contact-faqs?mode=cms"),
+        fetch("/api/cms/contact-resources?mode=cms"),
+      ]);
+
+      if (heroRes.ok) {
+        const data = await heroRes.json();
+        setHeroSection(data.section);
+      }
+
+      if (infoRes.ok) {
+        const data = await infoRes.json();
+        setInfoSection(data.section);
+      }
+
+      if (faqsRes.ok) {
+        const data = await faqsRes.json();
+        setFaqs(data.faqs || []);
+      }
+
+      if (resourcesRes.ok) {
+        const data = await resourcesRes.json();
+        setResources(data.resources || []);
+      }
+    } catch (error) {
+      console.error("Error fetching sections:", error);
+      toast({
+        title: "Error",
+        description: "Failed to load page content",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSections();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSaveHero = async (data: HeroSection, publish: boolean) => {
+    try {
+      const response = await fetch("/api/cms/contact-hero", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, publish }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to save");
+      }
+
+      const result = await response.json();
+
+      toast({
+        title: "Success",
+        description: publish
+          ? "Hero section published successfully. Vercel build triggered."
+          : "Hero section saved as draft",
+      });
+
+      setHeroSection(result.section);
+    } catch (error) {
+      console.error("Error saving:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to save",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
+
+  const handleSaveInfo = async (data: InfoSection, publish: boolean) => {
+    try {
+      const response = await fetch("/api/cms/contact-info", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, publish }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to save");
+      }
+
+      const result = await response.json();
+
+      toast({
+        title: "Success",
+        description: publish
+          ? "Contact info published successfully. Vercel build triggered."
+          : "Contact info saved as draft",
+      });
+
+      setInfoSection(result.section);
+    } catch (error) {
+      console.error("Error saving:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to save",
+        variant: "destructive",
+      });
+      throw error;
+    }
+  };
+
+  if (loading) {
+    return <CMSLoader />;
+  }
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Contact Page Editor</h1>
-        <p className="text-muted-foreground">
-          Manage content for the Contact page
-        </p>
+      {/* CMS Header */}
+      <div className="sticky top-0 z-50 bg-background border-b shadow-sm">
+        <div className="flex items-center justify-between p-4">
+          <div>
+            <h1 className="text-2xl font-bold">Contact Page Editor</h1>
+            <p className="text-sm text-muted-foreground">
+              Click any section to edit. Use "Save & Publish" in the modal to make changes live.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <Card className="p-12">
-        <div className="text-center">
-          <Mail className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="font-semibold text-lg mb-2">Coming Soon</h3>
-          <p className="text-muted-foreground">
-            The Contact page editor is under development
-          </p>
+      {/* Contact Page Preview with Inline Editing */}
+      <div className="bg-muted/30 p-4 rounded-lg">
+        <div className="bg-background rounded-lg shadow-sm overflow-hidden">
+          {/* Hero Section - Editable */}
+          <EditableWrapper onEdit={() => setHeroModalOpen(true)} label="Page Hero">
+            {heroSection ? (
+              <ContactHeroSection data={heroSection} />
+            ) : (
+              <CMSSectionLoader />
+            )}
+          </EditableWrapper>
+
+          {/* Contact Form & Info Section */}
+          <section className="py-16 container mx-auto px-4 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              {/* Contact Form - Not Editable (Functional) */}
+              <div className="lg:col-span-2">
+                <div className="bg-muted/30 rounded-lg p-8 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    Contact Form
+                    <br />
+                    (Functional - not editable in CMS)
+                  </p>
+                </div>
+              </div>
+
+              {/* Contact Info - Editable */}
+              <EditableWrapper onEdit={() => setInfoModalOpen(true)} label="Contact Information">
+                {infoSection ? (
+                  <ContactInfoSection data={infoSection} />
+                ) : (
+                  <CMSSectionLoader />
+                )}
+              </EditableWrapper>
+            </div>
+          </section>
+
+          {/* FAQ Section - Editable */}
+          <EditableWrapper onEdit={() => setFaqModalOpen(true)} label="FAQs">
+            <ContactFAQSection data={faqs.filter(f => f.active)} />
+          </EditableWrapper>
+
+          {/* Resources Section - Editable */}
+          <EditableWrapper onEdit={() => setResourcesModalOpen(true)} label="Resources">
+            <ContactResourcesSection data={resources.filter(r => r.active)} />
+          </EditableWrapper>
         </div>
-      </Card>
+      </div>
+
+      {/* Edit Modals */}
+      {heroSection && (
+        <ContactHeroModal
+          open={heroModalOpen}
+          onClose={() => setHeroModalOpen(false)}
+          onSave={handleSaveHero}
+          initialData={heroSection}
+        />
+      )}
+
+      {infoSection && (
+        <ContactInfoModal
+          open={infoModalOpen}
+          onClose={() => setInfoModalOpen(false)}
+          onSave={handleSaveInfo}
+          initialData={infoSection}
+        />
+      )}
+
+      <ContactFAQModal
+        open={faqModalOpen}
+        onClose={() => setFaqModalOpen(false)}
+        onRefresh={fetchSections}
+        initialFAQs={faqs}
+      />
+
+      <ContactResourcesModal
+        open={resourcesModalOpen}
+        onClose={() => setResourcesModalOpen(false)}
+        onRefresh={fetchSections}
+        initialResources={resources}
+      />
     </div>
   );
 }

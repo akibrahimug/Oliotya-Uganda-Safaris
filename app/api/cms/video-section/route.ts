@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { triggerVercelDeployAsync } from "@/lib/vercel-deploy";
 
 /**
  * GET /api/cms/video-section
@@ -100,17 +101,7 @@ export async function PATCH(request: NextRequest) {
       revalidatePath("/");
 
       // Trigger Vercel deployment (fire and forget)
-      if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-        fetch(process.env.VERCEL_DEPLOY_HOOK_URL, {
-          method: "POST",
-        }).then(() => {
-          console.log("Vercel deployment triggered successfully");
-        }).catch(err => {
-          console.error("Failed to trigger Vercel deployment:", err);
-        });
-      } else {
-        console.warn("VERCEL_DEPLOY_HOOK_URL not configured");
-      }
+      triggerVercelDeployAsync();
     }
 
     return NextResponse.json({ section: updated, published: publish });

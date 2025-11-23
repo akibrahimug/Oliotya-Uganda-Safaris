@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { triggerVercelDeployAsync } from "@/lib/vercel-deploy";
 
 // GET - Fetch all contact resources
 export async function GET(request: NextRequest) {
@@ -61,10 +62,7 @@ export async function POST(request: NextRequest) {
     });
 
     revalidatePath("/contact");
-    if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-      fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" })
-        .catch(err => console.error("Failed to trigger deployment:", err));
-    }
+    triggerVercelDeployAsync();
 
     return NextResponse.json({ resource });
   } catch (error) {
@@ -112,10 +110,7 @@ export async function PATCH(request: NextRequest) {
     });
 
     revalidatePath("/contact");
-    if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-      fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" })
-        .catch(err => console.error("Failed to trigger deployment:", err));
-    }
+    triggerVercelDeployAsync();
 
     return NextResponse.json({ resource });
   } catch (error) {
@@ -160,10 +155,7 @@ export async function DELETE(request: NextRequest) {
     });
 
     revalidatePath("/contact");
-    if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-      fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" })
-        .catch(err => console.error("Failed to trigger deployment:", err));
-    }
+    triggerVercelDeployAsync();
 
     return NextResponse.json({ success: true });
   } catch (error) {

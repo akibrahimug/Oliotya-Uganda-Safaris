@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { triggerVercelDeployAsync } from "@/lib/vercel-deploy";
 
 // GET - Fetch about CTA section
 export async function GET(request: NextRequest) {
@@ -80,10 +81,7 @@ export async function PATCH(request: NextRequest) {
 
       if (publish) {
         revalidatePath("/about");
-        if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-          fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" })
-            .catch(err => console.error("Failed to trigger deployment:", err));
-        }
+        triggerVercelDeployAsync();
       }
 
       return NextResponse.json({ section, published: publish });
@@ -125,10 +123,7 @@ export async function PATCH(request: NextRequest) {
 
     if (publish) {
       revalidatePath("/about");
-      if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-        fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" })
-          .catch(err => console.error("Failed to trigger deployment:", err));
-      }
+      triggerVercelDeployAsync();
     }
 
     return NextResponse.json({ section: updated, published: publish });

@@ -64,10 +64,7 @@ export async function PATCH(request: NextRequest) {
 
       if (publish) {
         revalidatePath("/about");
-        if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-          fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" })
-            .catch(err => console.error("Failed to trigger deployment:", err));
-        }
+        triggerVercelDeployAsync();
       }
 
       return NextResponse.json({ section, published: publish });
@@ -104,10 +101,7 @@ export async function PATCH(request: NextRequest) {
 
     if (publish) {
       revalidatePath("/about");
-      if (process.env.VERCEL_DEPLOY_HOOK_URL) {
-        fetch(process.env.VERCEL_DEPLOY_HOOK_URL, { method: "POST" })
-          .catch(err => console.error("Failed to trigger deployment:", err));
-      }
+      triggerVercelDeployAsync();
     }
 
     return NextResponse.json({ section: updated, published: publish });

@@ -65,11 +65,6 @@ const navigation = [
     icon: MapPin,
   },
   {
-    name: "Team",
-    href: "/cms/team",
-    icon: Users,
-  },
-  {
     name: "FAQs",
     href: "/cms/faqs",
     icon: HelpCircle,
