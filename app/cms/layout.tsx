@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { CMSSidebar } from "@/components/cms/cms-sidebar";
 import { CMSHeader } from "@/components/cms/cms-header";
@@ -17,15 +17,37 @@ export default async function CMSLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // First check if user is authenticated using auth()
+  const { userId } = await auth();
+
+  // Require authentication
+  if (!userId) {
+    redirect("/sign-in?redirect_url=/cms");
+  }
+
+  // Now get full user details
+  let user;
   try {
-    const user = await currentUser();
+    user = await currentUser();
+  } catch (error) {
+    console.error("Error fetching current user:", error);
+    console.error("Error details:", {
+      name: error instanceof Error ? error.name : "Unknown",
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : "No stack trace",
+    });
+    redirect("/?error=auth_error");
+  }
 
-    // Require authentication
-    if (!user) {
-      redirect("/sign-in?redirect_url=/cms");
-    }
+  if (!user) {
+    console.error("User authenticated but currentUser() returned null");
+    redirect("/sign-in?redirect_url=/cms");
+  }
 
-    // Check if user is admin (via publicMetadata or organization role)
+  // Check if user is admin (via publicMetadata or organization role)
+  let isAdmin = false;
+
+  try {
     const isAdminViaMetadata = user.publicMetadata?.role === "admin";
     const isAdminViaOrg =
       Array.isArray(user.organizationMemberships) &&
@@ -35,15 +57,29 @@ export default async function CMSLayout({
           (Array.isArray(org.permissions) && org.permissions.includes("org:sys_memberships:manage"))
       );
 
-    const isAdmin = isAdminViaMetadata || isAdminViaOrg;
+    isAdmin = isAdminViaMetadata || isAdminViaOrg;
 
-    // Redirect non-admin users
-    if (!isAdmin) {
-      redirect("/?error=unauthorized");
-    }
+    console.log("Admin check:", {
+      userId: user.id,
+      isAdminViaMetadata,
+      isAdminViaOrg,
+      isAdmin,
+      publicMetadataRole: user.publicMetadata?.role,
+      orgMembershipsCount: user.organizationMemberships?.length || 0,
+    });
   } catch (error) {
-    console.error("CMS Layout Error:", error);
-    redirect("/?error=cms_error");
+    console.error("Error checking admin permissions:", error);
+    console.error("User data:", {
+      id: user.id,
+      hasPublicMetadata: !!user.publicMetadata,
+      hasOrgMemberships: !!user.organizationMemberships,
+    });
+  }
+
+  // Redirect non-admin users
+  if (!isAdmin) {
+    console.warn("User is not admin, redirecting:", userId);
+    redirect("/?error=unauthorized");
   }
 
   return (

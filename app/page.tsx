@@ -4,6 +4,10 @@ import { HomePageContent } from "@/components/home-page-content";
 import { Footer } from "@/components/footer";
 import { prisma } from "@/lib/db";
 
+// Force dynamic rendering - fetch data from database on each request
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   // Fetch all section data on the server
   const [experienceSection, tourGuideSection, videoSection] = await Promise.all([
