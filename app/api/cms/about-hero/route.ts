@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { triggerVercelDeployAsync } from "@/lib/vercel-deploy";
 
 // GET - Fetch about hero section
 export async function GET(request: NextRequest) {
