@@ -27,7 +27,7 @@ export function TourGuideSection({ data }: TourGuideSectionProps) {
     buttonText: "Read More",
   };
 
-  // Split description at first period for preview
+  // Split description at first period for preview.
   const firstSentence = sectionData.description.split(". ")[0] + ".";
   const restOfDescription = sectionData.description.substring(firstSentence.length);
 
