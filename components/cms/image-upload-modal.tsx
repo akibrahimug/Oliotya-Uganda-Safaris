@@ -22,6 +22,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { Upload, X, CheckCircle2, AlertCircle } from "lucide-react";
+import { compressImageToWebp, validateImageFile } from "@/lib/image-client";
 
 interface ImageUploadModalProps {
   open: boolean;
@@ -31,11 +32,14 @@ interface ImageUploadModalProps {
 
 interface UploadFile {
   file: File;
+  originalFile: File; // Keep reference to original for display name/size
   altText: string;
   category: string;
-  status: "pending" | "uploading" | "success" | "error";
+  status: "pending" | "compressing" | "uploading" | "success" | "error";
   progress: number;
   error?: string;
+  originalSize?: number;
+  compressedSize?: number;
 }
 
 export function ImageUploadModal({
@@ -48,15 +52,38 @@ export function ImageUploadModal({
   const { toast } = useToast();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    const newFiles = acceptedFiles.map((file) => ({
-      file,
-      altText: "",
-      category: "other",
-      status: "pending" as const,
-      progress: 0,
-    }));
-    setFiles((prev) => [...prev, ...newFiles]);
-  }, []);
+    const validFiles: UploadFile[] = [];
+    const errors: string[] = [];
+
+    acceptedFiles.forEach((file) => {
+      const error = validateImageFile(file);
+      if (error) {
+        errors.push(`${file.name}: ${error}`);
+      } else {
+        validFiles.push({
+          file, // Will be replaced with compressed version during upload
+          originalFile: file,
+          altText: "",
+          category: "other",
+          status: "pending" as const,
+          progress: 0,
+          originalSize: file.size,
+        });
+      }
+    });
+
+    if (errors.length > 0) {
+      toast({
+        title: "Some files were rejected",
+        description: errors.join("\n"),
+        variant: "destructive",
+      });
+    }
+
+    if (validFiles.length > 0) {
+      setFiles((prev) => [...prev, ...validFiles]);
+    }
+  }, [toast]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -91,10 +118,30 @@ export function ImageUploadModal({
       if (fileData.status !== "pending") continue;
 
       try {
-        updateFile(i, { status: "uploading", progress: 0 });
+        // Step 1: Compress the image
+        updateFile(i, { status: "compressing", progress: 0 });
 
+        const compressionResult = await compressImageToWebp(
+          fileData.originalFile,
+          (progress) => {
+            // Progress 0-50 is for compression
+            updateFile(i, {
+              status: "compressing",
+              progress: Math.round(progress / 2)
+            });
+          }
+        );
+
+        updateFile(i, {
+          status: "uploading",
+          progress: 50,
+          compressedSize: compressionResult.compressedSize,
+          file: compressionResult.file,
+        });
+
+        // Step 2: Upload compressed image
         const formData = new FormData();
-        formData.append("file", fileData.file);
+        formData.append("file", compressionResult.file);
         formData.append("altText", fileData.altText);
         formData.append("category", fileData.category);
 
@@ -103,9 +150,28 @@ export function ImageUploadModal({
           body: formData,
         });
 
+        // Progress 50-100 is for upload
+        updateFile(i, { status: "uploading", progress: 75 });
+
         if (!response.ok) {
-          const error = await response.json();
-          throw new Error(error.error || "Upload failed");
+          // Handle 413 (Payload Too Large) specifically
+          if (response.status === 413) {
+            throw new Error(
+              "Image is too large even after compression. Please use a smaller image."
+            );
+          }
+
+          // Try to parse error JSON, but handle cases where response isn't JSON
+          let errorMessage = "Upload failed";
+          try {
+            const error = await response.json();
+            errorMessage = error.error || errorMessage;
+          } catch {
+            // Response wasn't JSON (e.g., 413 from Vercel proxy)
+            errorMessage = `Upload failed with status ${response.status}`;
+          }
+
+          throw new Error(errorMessage);
         }
 
         updateFile(i, { status: "success", progress: 100 });
@@ -155,7 +221,7 @@ export function ImageUploadModal({
         <DialogHeader>
           <DialogTitle>Upload Images</DialogTitle>
           <DialogDescription>
-            Upload images to your gallery. All formats will be automatically converted to WebP. Maximum file size: 10MB
+            Upload images to your gallery. Images will be automatically compressed and converted to WebP before upload. Maximum original file size: 10MB
           </DialogDescription>
         </DialogHeader>
 
@@ -183,7 +249,7 @@ export function ImageUploadModal({
                     Supports: JPEG, PNG, WebP, AVIF, GIF, BMP, TIFF, SVG (max 10MB)
                   </p>
                   <p className="text-xs text-primary mt-1">
-                    ✨ All images will be automatically optimized and converted to WebP
+                    ✨ Images will be compressed and optimized before upload
                   </p>
                 </>
               )}
@@ -216,11 +282,19 @@ export function ImageUploadModal({
                   <div className="flex items-start gap-3">
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-sm truncate">
-                        {fileData.file.name}
+                        {fileData.originalFile.name}
                       </p>
-                      <p className="text-xs text-muted-foreground">
-                        {(fileData.file.size / (1024 * 1024)).toFixed(2)} MB
-                      </p>
+                      <div className="text-xs text-muted-foreground space-y-0.5">
+                        <p>
+                          Original: {(fileData.originalSize! / (1024 * 1024)).toFixed(2)} MB
+                        </p>
+                        {fileData.compressedSize && (
+                          <p className="text-green-600">
+                            Compressed: {(fileData.compressedSize / (1024 * 1024)).toFixed(2)} MB
+                            {" "}({(((fileData.originalSize! - fileData.compressedSize) / fileData.originalSize!) * 100).toFixed(0)}% smaller)
+                          </p>
+                        )}
+                      </div>
                     </div>
 
                     {fileData.status === "success" && (
@@ -240,8 +314,13 @@ export function ImageUploadModal({
                     )}
                   </div>
 
-                  {fileData.status === "uploading" && (
-                    <Progress value={fileData.progress} className="h-2" />
+                  {(fileData.status === "compressing" || fileData.status === "uploading") && (
+                    <div className="space-y-1">
+                      <Progress value={fileData.progress} className="h-2" />
+                      <p className="text-xs text-muted-foreground">
+                        {fileData.status === "compressing" ? "Compressing image..." : "Uploading..."}
+                      </p>
+                    </div>
                   )}
 
                   {fileData.status === "error" && (

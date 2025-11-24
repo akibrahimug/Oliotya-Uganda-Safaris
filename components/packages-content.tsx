@@ -148,7 +148,7 @@ export function PackagesContent({ editable = false, onPackageClick, onPackageDel
                     animationDelay={index * 50}
                   />
                   {editable && (
-                    <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    <div className="absolute top-2 right-2 flex gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity z-10">
                       <Button
                         size="sm"
                         variant="secondary"

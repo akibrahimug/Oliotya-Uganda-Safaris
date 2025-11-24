@@ -156,6 +156,52 @@ export async function POST(request: NextRequest) {
 
       console.log(`SVG uploaded: ${file.name}`);
       console.log(`  Size: ${(buffer.length / 1024).toFixed(1)} KB`);
+    } else if (file.type === "image/webp" && file.name.endsWith(".webp")) {
+      // File is already WebP (pre-compressed on client), skip re-processing
+      const image = sharp(buffer);
+      const metadata = await image.metadata();
+
+      // Check if already reasonably sized (max 3840px)
+      const maxDimension = 3840;
+      const needsResize = (metadata.width && metadata.width > maxDimension) ||
+                          (metadata.height && metadata.height > maxDimension);
+
+      if (needsResize) {
+        // Only resize if still too large
+        const resizedBuffer = await image
+          .resize(maxDimension, maxDimension, {
+            withoutEnlargement: true,
+            fit: 'inside',
+          })
+          .webp({ quality: 85, effort: 3 }) // Lower effort since already compressed
+          .toBuffer();
+
+        finalBuffer = resizedBuffer;
+        const resizedMetadata = await sharp(resizedBuffer).metadata();
+        width = resizedMetadata.width || 0;
+        height = resizedMetadata.height || 0;
+
+        console.log(`Pre-compressed WebP resized: ${file.name}`);
+        console.log(`  Original: ${(buffer.length / 1024).toFixed(1)} KB (${metadata.width}x${metadata.height})`);
+        console.log(`  Resized: ${(resizedBuffer.length / 1024).toFixed(1)} KB (${width}x${height})`);
+      } else {
+        // Already optimal, use as-is
+        finalBuffer = buffer;
+        width = metadata.width || 0;
+        height = metadata.height || 0;
+
+        console.log(`Pre-compressed WebP uploaded as-is: ${file.name}`);
+        console.log(`  Size: ${(buffer.length / 1024).toFixed(1)} KB (${width}x${height})`);
+      }
+
+      finalFormat = "webp";
+      const timestamp = Date.now();
+      const sanitizedName = file.name
+        .replace(/\.[^/.]+$/, "")
+        .replace(/[^a-z0-9]/gi, "-")
+        .toLowerCase();
+      finalFileName = `${sanitizedName}-${timestamp}.webp`;
+      finalContentType = "image/webp";
     } else {
       // Process raster images with sharp
       const image = sharp(buffer);

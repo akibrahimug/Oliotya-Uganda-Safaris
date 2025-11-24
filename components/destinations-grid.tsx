@@ -133,7 +133,7 @@ export function DestinationsGrid({ editable = false, onDestinationClick, onDesti
             </Link>
 
             {editable && (
-              <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+              <div className="absolute top-2 right-2 flex gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity z-20">
                 <Button
                   size="sm"
                   variant="secondary"

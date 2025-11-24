@@ -10,7 +10,7 @@ import { imageUpdateSchema } from "@/lib/validations/image";
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -18,8 +18,10 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
+
     const image = await prisma.cMSImage.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!image) {
@@ -42,7 +44,7 @@ export async function GET(
  */
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -50,6 +52,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
     const body = await request.json();
 
     // Validate input
@@ -63,7 +66,7 @@ export async function PATCH(
 
     // Check if image exists
     const existingImage = await prisma.cMSImage.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existingImage) {
@@ -72,7 +75,7 @@ export async function PATCH(
 
     // Update image
     const updatedImage = await prisma.cMSImage.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         altText: validationResult.data.altText,
         category: validationResult.data.category,
@@ -84,7 +87,7 @@ export async function PATCH(
       data: {
         action: "UPDATE",
         entityType: "image",
-        entityId: params.id,
+        entityId: id,
         userId,
         userName: "Admin User", // TODO: Get from Clerk user
       },
@@ -106,7 +109,7 @@ export async function PATCH(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -114,9 +117,11 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
+
     // Check if image exists
     const image = await prisma.cMSImage.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!image) {
@@ -133,7 +138,7 @@ export async function DELETE(
 
     // Delete from database
     await prisma.cMSImage.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     // Log the action
@@ -141,7 +146,7 @@ export async function DELETE(
       data: {
         action: "DELETE",
         entityType: "image",
-        entityId: params.id,
+        entityId: id,
         userId,
         userName: "Admin User", // TODO: Get from Clerk user
       },
