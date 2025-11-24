@@ -205,7 +205,7 @@ export function CMSSidebar() {
     return (
         <>
             {/* Mobile Menu Button */}
-            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-card border-b border-border">
+            <div className="lg:hidden fixed top-0 left-0 right-0 z-[100] bg-card border-b border-border">
                 <div className="flex items-center justify-between p-4">
                     <Link href="/cms">
                         <h1 className="font-bold text-base">Nambi Uganda Safaris</h1>
@@ -227,7 +227,7 @@ export function CMSSidebar() {
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
                 <div
-                    className="lg:hidden fixed inset-0 bg-black/50 z-40"
+                    className="lg:hidden fixed inset-0 bg-black/50 z-[90]"
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
             )}
@@ -235,7 +235,7 @@ export function CMSSidebar() {
             {/* Desktop Sidebar */}
             <aside
                 className={cn(
-                    "hidden lg:flex lg:flex-col bg-card border-r border-border lg:h-screen lg:sticky lg:top-0 transition-[width] duration-300",
+                    "hidden lg:flex lg:flex-col bg-card border-r border-border lg:h-screen lg:sticky lg:top-0 transition-[width] duration-300 lg:z-[80]",
                     isCollapsed ? "lg:w-16" : "lg:w-64"
                 )}
             >
@@ -252,7 +252,7 @@ export function CMSSidebar() {
             {/* Mobile Sidebar */}
             <aside
                 className={cn(
-                    "lg:hidden fixed top-16 left-0 bottom-0 w-64 bg-card border-r border-border z-40 flex flex-col transition-transform duration-300",
+                    "lg:hidden fixed top-16 left-0 bottom-0 w-64 bg-card border-r border-border z-[95] flex flex-col transition-transform duration-300",
                     isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
                 )}
             >
