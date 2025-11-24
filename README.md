@@ -765,9 +765,9 @@ This project is proprietary and confidential. Unauthorized copying, distribution
 
 ## 👥 Team
 
-- **Developer**: [Your Name]
+- **Developer**: Kasoma Ibrahim
 - **Client**: Nambi Uganda Safaris
-- **Project Manager**: [PM Name]
+- **Project Manager**: Kasoma Ibrahim
 
 ## 📞 Support
 
