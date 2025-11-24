@@ -1,13 +1,16 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { customPackageSchema } from "@/lib/validations";
+import { customPackageSchema } from "@/lib/validations/custom-package";
 import {
   handleAPIError,
   createSuccessResponse,
   APIError,
 } from "@/lib/api-errors";
-// import { rateLimit } from "@/lib/rate-limit";
+import { customPackageRateLimit } from "@/lib/rate-limit";
+import { sanitizeObject } from "@/lib/sanitize";
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
@@ -18,20 +21,25 @@ export async function POST(req: Request) {
     }
 
     // Rate limiting
-    // const rateLimitResult = await rateLimit(userId);
-    // if (!rateLimitResult.success) {
-    //   throw new APIError(
-    //     429,
-    //     `Rate limit exceeded. Try again in ${Math.ceil(
-    //       rateLimitResult.reset / 1000
-    //     )} seconds`,
-    //     "RATE_LIMIT_EXCEEDED"
-    //   );
-    // }
+    const { success } = await customPackageRateLimit.limit(userId);
+    if (!success) {
+      throw new APIError(
+        429,
+        "Too many custom package requests. Please try again in an hour.",
+        "RATE_LIMIT_EXCEEDED"
+      );
+    }
 
-    // Parse and validate request body
+    // Parse and sanitize request body
     const body = await req.json();
-    const validatedData = customPackageSchema.parse(body);
+
+    // Honeypot check
+    if (body.website) {
+      throw new APIError(400, "Invalid submission", "INVALID_SUBMISSION");
+    }
+
+    const sanitizedBody = sanitizeObject(body);
+    const validatedData = customPackageSchema.parse(sanitizedBody);
 
     // Calculate total duration from destinations
     const totalDays = validatedData.destinations.reduce(

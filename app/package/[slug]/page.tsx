@@ -265,6 +265,8 @@ export default function PackagePage() {
                       packageName={pkg.name}
                       packageSlug={pkg.slug}
                       maxTravelers={pkg.maxTravelers}
+                      price={pkg.price}
+                      packageId={pkg.id}
                     />
 
                     <Link href="/build-package" className="block mt-3">

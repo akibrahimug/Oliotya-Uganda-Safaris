@@ -62,25 +62,35 @@ model Booking {
   lastName           String
   email              String
   phone              String
-  destinationId      Int
+  country            String?
+  // Support both packages and destinations
+  packageId          Int?
+  destinationId      Int?
+  bookingType        BookingType   @default(DESTINATION)
   numberOfTravelers  Int
-  specialRequests    String?
+  specialRequests    String?       @db.Text
   travelDateFrom     DateTime
   travelDateTo       DateTime
   pricePerPerson     Decimal       @db.Decimal(10, 2)
   totalPrice         Decimal       @db.Decimal(10, 2)
   status             BookingStatus @default(PENDING)
   paymentStatus      PaymentStatus @default(PENDING)
+  paymentMethod      String? // Bank transfer, etc
+  paymentReference   String? // Bank reference number
   paymentIntentId    String?       @unique
   stripeCustomerId   String?
+  adminNotes         String?       @db.Text
   createdAt          DateTime      @default(now())
   updatedAt          DateTime      @updatedAt
-  destination        Destination   @relation(fields: [destinationId], references: [id])
+  destination        Destination?  @relation(fields: [destinationId], references: [id])
+  package            Package?      @relation(fields: [packageId], references: [id])
 
   @@index([email])
   @@index([userId])
   @@index([destinationId])
+  @@index([packageId])
   @@index([status])
+  @@index([bookingType])
   @@index([createdAt])
   @@map("bookings")
 }
@@ -176,6 +186,11 @@ enum DifficultyLevel {
   CHALLENGING
 }
 
+enum BookingType {
+  PACKAGE
+  DESTINATION
+}
+
 model Package {
   id           Int                 @id @default(autoincrement())
   name         String
@@ -200,6 +215,7 @@ model Package {
   displayOrder Int                 @default(0) // For manual ordering
   createdAt    DateTime            @default(now())
   updatedAt    DateTime            @updatedAt
+  bookings     Booking[]
   bundleItems  PackageBundleItem[]
 
   @@index([slug])
@@ -682,5 +698,4 @@ model ContactResource {
 
   @@index([displayOrder])
   @@index([active])
-  @@map("contact_resources")
 }

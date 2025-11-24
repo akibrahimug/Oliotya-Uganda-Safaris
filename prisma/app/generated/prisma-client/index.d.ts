@@ -224,6 +224,14 @@ export const DifficultyLevel: {
 export type DifficultyLevel = (typeof DifficultyLevel)[keyof typeof DifficultyLevel]
 
 
+export const BookingType: {
+  PACKAGE: 'PACKAGE',
+  DESTINATION: 'DESTINATION'
+};
+
+export type BookingType = (typeof BookingType)[keyof typeof BookingType]
+
+
 export const CustomPackageStatus: {
   PENDING: 'PENDING',
   QUOTED: 'QUOTED',
@@ -263,6 +271,10 @@ export const SubscriptionStatus: typeof $Enums.SubscriptionStatus
 export type DifficultyLevel = $Enums.DifficultyLevel
 
 export const DifficultyLevel: typeof $Enums.DifficultyLevel
+
+export type BookingType = $Enums.BookingType
+
+export const BookingType: typeof $Enums.BookingType
 
 export type CustomPackageStatus = $Enums.CustomPackageStatus
 
@@ -3869,10 +3881,12 @@ export namespace Prisma {
    */
 
   export type PackageCountOutputType = {
+    bookings: number
     bundleItems: number
   }
 
   export type PackageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bookings?: boolean | PackageCountOutputTypeCountBookingsArgs
     bundleItems?: boolean | PackageCountOutputTypeCountBundleItemsArgs
   }
 
@@ -3885,6 +3899,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the PackageCountOutputType
      */
     select?: PackageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PackageCountOutputType without action
+   */
+  export type PackageCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
   }
 
   /**
@@ -5410,6 +5431,7 @@ export namespace Prisma {
 
   export type BookingAvgAggregateOutputType = {
     id: number | null
+    packageId: number | null
     destinationId: number | null
     numberOfTravelers: number | null
     pricePerPerson: Decimal | null
@@ -5418,6 +5440,7 @@ export namespace Prisma {
 
   export type BookingSumAggregateOutputType = {
     id: number | null
+    packageId: number | null
     destinationId: number | null
     numberOfTravelers: number | null
     pricePerPerson: Decimal | null
@@ -5432,7 +5455,10 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phone: string | null
+    country: string | null
+    packageId: number | null
     destinationId: number | null
+    bookingType: $Enums.BookingType | null
     numberOfTravelers: number | null
     specialRequests: string | null
     travelDateFrom: Date | null
@@ -5441,8 +5467,11 @@ export namespace Prisma {
     totalPrice: Decimal | null
     status: $Enums.BookingStatus | null
     paymentStatus: $Enums.PaymentStatus | null
+    paymentMethod: string | null
+    paymentReference: string | null
     paymentIntentId: string | null
     stripeCustomerId: string | null
+    adminNotes: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5455,7 +5484,10 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phone: string | null
+    country: string | null
+    packageId: number | null
     destinationId: number | null
+    bookingType: $Enums.BookingType | null
     numberOfTravelers: number | null
     specialRequests: string | null
     travelDateFrom: Date | null
@@ -5464,8 +5496,11 @@ export namespace Prisma {
     totalPrice: Decimal | null
     status: $Enums.BookingStatus | null
     paymentStatus: $Enums.PaymentStatus | null
+    paymentMethod: string | null
+    paymentReference: string | null
     paymentIntentId: string | null
     stripeCustomerId: string | null
+    adminNotes: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5478,7 +5513,10 @@ export namespace Prisma {
     lastName: number
     email: number
     phone: number
+    country: number
+    packageId: number
     destinationId: number
+    bookingType: number
     numberOfTravelers: number
     specialRequests: number
     travelDateFrom: number
@@ -5487,8 +5525,11 @@ export namespace Prisma {
     totalPrice: number
     status: number
     paymentStatus: number
+    paymentMethod: number
+    paymentReference: number
     paymentIntentId: number
     stripeCustomerId: number
+    adminNotes: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5497,6 +5538,7 @@ export namespace Prisma {
 
   export type BookingAvgAggregateInputType = {
     id?: true
+    packageId?: true
     destinationId?: true
     numberOfTravelers?: true
     pricePerPerson?: true
@@ -5505,6 +5547,7 @@ export namespace Prisma {
 
   export type BookingSumAggregateInputType = {
     id?: true
+    packageId?: true
     destinationId?: true
     numberOfTravelers?: true
     pricePerPerson?: true
@@ -5519,7 +5562,10 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    country?: true
+    packageId?: true
     destinationId?: true
+    bookingType?: true
     numberOfTravelers?: true
     specialRequests?: true
     travelDateFrom?: true
@@ -5528,8 +5574,11 @@ export namespace Prisma {
     totalPrice?: true
     status?: true
     paymentStatus?: true
+    paymentMethod?: true
+    paymentReference?: true
     paymentIntentId?: true
     stripeCustomerId?: true
+    adminNotes?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5542,7 +5591,10 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    country?: true
+    packageId?: true
     destinationId?: true
+    bookingType?: true
     numberOfTravelers?: true
     specialRequests?: true
     travelDateFrom?: true
@@ -5551,8 +5603,11 @@ export namespace Prisma {
     totalPrice?: true
     status?: true
     paymentStatus?: true
+    paymentMethod?: true
+    paymentReference?: true
     paymentIntentId?: true
     stripeCustomerId?: true
+    adminNotes?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5565,7 +5620,10 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    country?: true
+    packageId?: true
     destinationId?: true
+    bookingType?: true
     numberOfTravelers?: true
     specialRequests?: true
     travelDateFrom?: true
@@ -5574,8 +5632,11 @@ export namespace Prisma {
     totalPrice?: true
     status?: true
     paymentStatus?: true
+    paymentMethod?: true
+    paymentReference?: true
     paymentIntentId?: true
     stripeCustomerId?: true
+    adminNotes?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5675,7 +5736,10 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
-    destinationId: number
+    country: string | null
+    packageId: number | null
+    destinationId: number | null
+    bookingType: $Enums.BookingType
     numberOfTravelers: number
     specialRequests: string | null
     travelDateFrom: Date
@@ -5684,8 +5748,11 @@ export namespace Prisma {
     totalPrice: Decimal
     status: $Enums.BookingStatus
     paymentStatus: $Enums.PaymentStatus
+    paymentMethod: string | null
+    paymentReference: string | null
     paymentIntentId: string | null
     stripeCustomerId: string | null
+    adminNotes: string | null
     createdAt: Date
     updatedAt: Date
     _count: BookingCountAggregateOutputType | null
@@ -5717,7 +5784,10 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    country?: boolean
+    packageId?: boolean
     destinationId?: boolean
+    bookingType?: boolean
     numberOfTravelers?: boolean
     specialRequests?: boolean
     travelDateFrom?: boolean
@@ -5726,11 +5796,15 @@ export namespace Prisma {
     totalPrice?: boolean
     status?: boolean
     paymentStatus?: boolean
+    paymentMethod?: boolean
+    paymentReference?: boolean
     paymentIntentId?: boolean
     stripeCustomerId?: boolean
+    adminNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    destination?: boolean | Booking$destinationArgs<ExtArgs>
+    package?: boolean | Booking$packageArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
 
   export type BookingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5741,7 +5815,10 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    country?: boolean
+    packageId?: boolean
     destinationId?: boolean
+    bookingType?: boolean
     numberOfTravelers?: boolean
     specialRequests?: boolean
     travelDateFrom?: boolean
@@ -5750,11 +5827,15 @@ export namespace Prisma {
     totalPrice?: boolean
     status?: boolean
     paymentStatus?: boolean
+    paymentMethod?: boolean
+    paymentReference?: boolean
     paymentIntentId?: boolean
     stripeCustomerId?: boolean
+    adminNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    destination?: boolean | Booking$destinationArgs<ExtArgs>
+    package?: boolean | Booking$packageArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
 
   export type BookingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5765,7 +5846,10 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    country?: boolean
+    packageId?: boolean
     destinationId?: boolean
+    bookingType?: boolean
     numberOfTravelers?: boolean
     specialRequests?: boolean
     travelDateFrom?: boolean
@@ -5774,11 +5858,15 @@ export namespace Prisma {
     totalPrice?: boolean
     status?: boolean
     paymentStatus?: boolean
+    paymentMethod?: boolean
+    paymentReference?: boolean
     paymentIntentId?: boolean
     stripeCustomerId?: boolean
+    adminNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    destination?: boolean | Booking$destinationArgs<ExtArgs>
+    package?: boolean | Booking$packageArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
 
   export type BookingSelectScalar = {
@@ -5789,7 +5877,10 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    country?: boolean
+    packageId?: boolean
     destinationId?: boolean
+    bookingType?: boolean
     numberOfTravelers?: boolean
     specialRequests?: boolean
     travelDateFrom?: boolean
@@ -5798,27 +5889,34 @@ export namespace Prisma {
     totalPrice?: boolean
     status?: boolean
     paymentStatus?: boolean
+    paymentMethod?: boolean
+    paymentReference?: boolean
     paymentIntentId?: boolean
     stripeCustomerId?: boolean
+    adminNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "confirmationNumber" | "userId" | "firstName" | "lastName" | "email" | "phone" | "destinationId" | "numberOfTravelers" | "specialRequests" | "travelDateFrom" | "travelDateTo" | "pricePerPerson" | "totalPrice" | "status" | "paymentStatus" | "paymentIntentId" | "stripeCustomerId" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
+  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "confirmationNumber" | "userId" | "firstName" | "lastName" | "email" | "phone" | "country" | "packageId" | "destinationId" | "bookingType" | "numberOfTravelers" | "specialRequests" | "travelDateFrom" | "travelDateTo" | "pricePerPerson" | "totalPrice" | "status" | "paymentStatus" | "paymentMethod" | "paymentReference" | "paymentIntentId" | "stripeCustomerId" | "adminNotes" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
   export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    destination?: boolean | Booking$destinationArgs<ExtArgs>
+    package?: boolean | Booking$packageArgs<ExtArgs>
   }
   export type BookingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    destination?: boolean | Booking$destinationArgs<ExtArgs>
+    package?: boolean | Booking$packageArgs<ExtArgs>
   }
   export type BookingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destination?: boolean | DestinationDefaultArgs<ExtArgs>
+    destination?: boolean | Booking$destinationArgs<ExtArgs>
+    package?: boolean | Booking$packageArgs<ExtArgs>
   }
 
   export type $BookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Booking"
     objects: {
-      destination: Prisma.$DestinationPayload<ExtArgs>
+      destination: Prisma.$DestinationPayload<ExtArgs> | null
+      package: Prisma.$PackagePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5828,7 +5926,10 @@ export namespace Prisma {
       lastName: string
       email: string
       phone: string
-      destinationId: number
+      country: string | null
+      packageId: number | null
+      destinationId: number | null
+      bookingType: $Enums.BookingType
       numberOfTravelers: number
       specialRequests: string | null
       travelDateFrom: Date
@@ -5837,8 +5938,11 @@ export namespace Prisma {
       totalPrice: Prisma.Decimal
       status: $Enums.BookingStatus
       paymentStatus: $Enums.PaymentStatus
+      paymentMethod: string | null
+      paymentReference: string | null
       paymentIntentId: string | null
       stripeCustomerId: string | null
+      adminNotes: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["booking"]>
@@ -6235,7 +6339,8 @@ export namespace Prisma {
    */
   export interface Prisma__BookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    destination<T extends DestinationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DestinationDefaultArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    destination<T extends Booking$destinationArgs<ExtArgs> = {}>(args?: Subset<T, Booking$destinationArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    package<T extends Booking$packageArgs<ExtArgs> = {}>(args?: Subset<T, Booking$packageArgs<ExtArgs>>): Prisma__PackageClient<$Result.GetResult<Prisma.$PackagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6272,7 +6377,10 @@ export namespace Prisma {
     readonly lastName: FieldRef<"Booking", 'String'>
     readonly email: FieldRef<"Booking", 'String'>
     readonly phone: FieldRef<"Booking", 'String'>
+    readonly country: FieldRef<"Booking", 'String'>
+    readonly packageId: FieldRef<"Booking", 'Int'>
     readonly destinationId: FieldRef<"Booking", 'Int'>
+    readonly bookingType: FieldRef<"Booking", 'BookingType'>
     readonly numberOfTravelers: FieldRef<"Booking", 'Int'>
     readonly specialRequests: FieldRef<"Booking", 'String'>
     readonly travelDateFrom: FieldRef<"Booking", 'DateTime'>
@@ -6281,8 +6389,11 @@ export namespace Prisma {
     readonly totalPrice: FieldRef<"Booking", 'Decimal'>
     readonly status: FieldRef<"Booking", 'BookingStatus'>
     readonly paymentStatus: FieldRef<"Booking", 'PaymentStatus'>
+    readonly paymentMethod: FieldRef<"Booking", 'String'>
+    readonly paymentReference: FieldRef<"Booking", 'String'>
     readonly paymentIntentId: FieldRef<"Booking", 'String'>
     readonly stripeCustomerId: FieldRef<"Booking", 'String'>
+    readonly adminNotes: FieldRef<"Booking", 'String'>
     readonly createdAt: FieldRef<"Booking", 'DateTime'>
     readonly updatedAt: FieldRef<"Booking", 'DateTime'>
   }
@@ -6678,6 +6789,44 @@ export namespace Prisma {
      * Limit how many Bookings to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Booking.destination
+   */
+  export type Booking$destinationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Destination
+     */
+    select?: DestinationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Destination
+     */
+    omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    where?: DestinationWhereInput
+  }
+
+  /**
+   * Booking.package
+   */
+  export type Booking$packageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Package
+     */
+    select?: PackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Package
+     */
+    omit?: PackageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageInclude<ExtArgs> | null
+    where?: PackageWhereInput
   }
 
   /**
@@ -11403,6 +11552,7 @@ export namespace Prisma {
     displayOrder?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    bookings?: boolean | Package$bookingsArgs<ExtArgs>
     bundleItems?: boolean | Package$bundleItemsArgs<ExtArgs>
     _count?: boolean | PackageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["package"]>
@@ -11487,6 +11637,7 @@ export namespace Prisma {
 
   export type PackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "category" | "duration" | "price" | "description" | "shortDesc" | "image" | "images" | "highlights" | "itinerary" | "included" | "excluded" | "minTravelers" | "maxTravelers" | "difficulty" | "featured" | "popular" | "active" | "displayOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["package"]>
   export type PackageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bookings?: boolean | Package$bookingsArgs<ExtArgs>
     bundleItems?: boolean | Package$bundleItemsArgs<ExtArgs>
     _count?: boolean | PackageCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -11496,6 +11647,7 @@ export namespace Prisma {
   export type $PackagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Package"
     objects: {
+      bookings: Prisma.$BookingPayload<ExtArgs>[]
       bundleItems: Prisma.$PackageBundleItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -11916,6 +12068,7 @@ export namespace Prisma {
    */
   export interface Prisma__PackageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    bookings<T extends Package$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, Package$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bundleItems<T extends Package$bundleItemsArgs<ExtArgs> = {}>(args?: Subset<T, Package$bundleItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageBundleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12354,6 +12507,30 @@ export namespace Prisma {
      * Limit how many Packages to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Package.bookings
+   */
+  export type Package$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Booking
+     */
+    omit?: BookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    where?: BookingWhereInput
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    cursor?: BookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
   }
 
   /**
@@ -39846,7 +40023,10 @@ export namespace Prisma {
     lastName: 'lastName',
     email: 'email',
     phone: 'phone',
+    country: 'country',
+    packageId: 'packageId',
     destinationId: 'destinationId',
+    bookingType: 'bookingType',
     numberOfTravelers: 'numberOfTravelers',
     specialRequests: 'specialRequests',
     travelDateFrom: 'travelDateFrom',
@@ -39855,8 +40035,11 @@ export namespace Prisma {
     totalPrice: 'totalPrice',
     status: 'status',
     paymentStatus: 'paymentStatus',
+    paymentMethod: 'paymentMethod',
+    paymentReference: 'paymentReference',
     paymentIntentId: 'paymentIntentId',
     stripeCustomerId: 'stripeCustomerId',
+    adminNotes: 'adminNotes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -40478,6 +40661,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'BookingType'
+   */
+  export type EnumBookingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingType'>
+    
+
+
+  /**
+   * Reference to a field of type 'BookingType[]'
+   */
+  export type ListEnumBookingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'BookingStatus'
    */
   export type EnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus'>
@@ -40814,7 +41011,10 @@ export namespace Prisma {
     lastName?: StringFilter<"Booking"> | string
     email?: StringFilter<"Booking"> | string
     phone?: StringFilter<"Booking"> | string
-    destinationId?: IntFilter<"Booking"> | number
+    country?: StringNullableFilter<"Booking"> | string | null
+    packageId?: IntNullableFilter<"Booking"> | number | null
+    destinationId?: IntNullableFilter<"Booking"> | number | null
+    bookingType?: EnumBookingTypeFilter<"Booking"> | $Enums.BookingType
     numberOfTravelers?: IntFilter<"Booking"> | number
     specialRequests?: StringNullableFilter<"Booking"> | string | null
     travelDateFrom?: DateTimeFilter<"Booking"> | Date | string
@@ -40823,11 +41023,15 @@ export namespace Prisma {
     totalPrice?: DecimalFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFilter<"Booking"> | $Enums.PaymentStatus
+    paymentMethod?: StringNullableFilter<"Booking"> | string | null
+    paymentReference?: StringNullableFilter<"Booking"> | string | null
     paymentIntentId?: StringNullableFilter<"Booking"> | string | null
     stripeCustomerId?: StringNullableFilter<"Booking"> | string | null
+    adminNotes?: StringNullableFilter<"Booking"> | string | null
     createdAt?: DateTimeFilter<"Booking"> | Date | string
     updatedAt?: DateTimeFilter<"Booking"> | Date | string
-    destination?: XOR<DestinationScalarRelationFilter, DestinationWhereInput>
+    destination?: XOR<DestinationNullableScalarRelationFilter, DestinationWhereInput> | null
+    package?: XOR<PackageNullableScalarRelationFilter, PackageWhereInput> | null
   }
 
   export type BookingOrderByWithRelationInput = {
@@ -40838,7 +41042,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    destinationId?: SortOrder
+    country?: SortOrderInput | SortOrder
+    packageId?: SortOrderInput | SortOrder
+    destinationId?: SortOrderInput | SortOrder
+    bookingType?: SortOrder
     numberOfTravelers?: SortOrder
     specialRequests?: SortOrderInput | SortOrder
     travelDateFrom?: SortOrder
@@ -40847,11 +41054,15 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    paymentReference?: SortOrderInput | SortOrder
     paymentIntentId?: SortOrderInput | SortOrder
     stripeCustomerId?: SortOrderInput | SortOrder
+    adminNotes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     destination?: DestinationOrderByWithRelationInput
+    package?: PackageOrderByWithRelationInput
   }
 
   export type BookingWhereUniqueInput = Prisma.AtLeast<{
@@ -40866,7 +41077,10 @@ export namespace Prisma {
     lastName?: StringFilter<"Booking"> | string
     email?: StringFilter<"Booking"> | string
     phone?: StringFilter<"Booking"> | string
-    destinationId?: IntFilter<"Booking"> | number
+    country?: StringNullableFilter<"Booking"> | string | null
+    packageId?: IntNullableFilter<"Booking"> | number | null
+    destinationId?: IntNullableFilter<"Booking"> | number | null
+    bookingType?: EnumBookingTypeFilter<"Booking"> | $Enums.BookingType
     numberOfTravelers?: IntFilter<"Booking"> | number
     specialRequests?: StringNullableFilter<"Booking"> | string | null
     travelDateFrom?: DateTimeFilter<"Booking"> | Date | string
@@ -40875,10 +41089,14 @@ export namespace Prisma {
     totalPrice?: DecimalFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFilter<"Booking"> | $Enums.PaymentStatus
+    paymentMethod?: StringNullableFilter<"Booking"> | string | null
+    paymentReference?: StringNullableFilter<"Booking"> | string | null
     stripeCustomerId?: StringNullableFilter<"Booking"> | string | null
+    adminNotes?: StringNullableFilter<"Booking"> | string | null
     createdAt?: DateTimeFilter<"Booking"> | Date | string
     updatedAt?: DateTimeFilter<"Booking"> | Date | string
-    destination?: XOR<DestinationScalarRelationFilter, DestinationWhereInput>
+    destination?: XOR<DestinationNullableScalarRelationFilter, DestinationWhereInput> | null
+    package?: XOR<PackageNullableScalarRelationFilter, PackageWhereInput> | null
   }, "id" | "confirmationNumber" | "paymentIntentId">
 
   export type BookingOrderByWithAggregationInput = {
@@ -40889,7 +41107,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
-    destinationId?: SortOrder
+    country?: SortOrderInput | SortOrder
+    packageId?: SortOrderInput | SortOrder
+    destinationId?: SortOrderInput | SortOrder
+    bookingType?: SortOrder
     numberOfTravelers?: SortOrder
     specialRequests?: SortOrderInput | SortOrder
     travelDateFrom?: SortOrder
@@ -40898,8 +41119,11 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    paymentReference?: SortOrderInput | SortOrder
     paymentIntentId?: SortOrderInput | SortOrder
     stripeCustomerId?: SortOrderInput | SortOrder
+    adminNotes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BookingCountOrderByAggregateInput
@@ -40920,7 +41144,10 @@ export namespace Prisma {
     lastName?: StringWithAggregatesFilter<"Booking"> | string
     email?: StringWithAggregatesFilter<"Booking"> | string
     phone?: StringWithAggregatesFilter<"Booking"> | string
-    destinationId?: IntWithAggregatesFilter<"Booking"> | number
+    country?: StringNullableWithAggregatesFilter<"Booking"> | string | null
+    packageId?: IntNullableWithAggregatesFilter<"Booking"> | number | null
+    destinationId?: IntNullableWithAggregatesFilter<"Booking"> | number | null
+    bookingType?: EnumBookingTypeWithAggregatesFilter<"Booking"> | $Enums.BookingType
     numberOfTravelers?: IntWithAggregatesFilter<"Booking"> | number
     specialRequests?: StringNullableWithAggregatesFilter<"Booking"> | string | null
     travelDateFrom?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
@@ -40929,8 +41156,11 @@ export namespace Prisma {
     totalPrice?: DecimalWithAggregatesFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusWithAggregatesFilter<"Booking"> | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusWithAggregatesFilter<"Booking"> | $Enums.PaymentStatus
+    paymentMethod?: StringNullableWithAggregatesFilter<"Booking"> | string | null
+    paymentReference?: StringNullableWithAggregatesFilter<"Booking"> | string | null
     paymentIntentId?: StringNullableWithAggregatesFilter<"Booking"> | string | null
     stripeCustomerId?: StringNullableWithAggregatesFilter<"Booking"> | string | null
+    adminNotes?: StringNullableWithAggregatesFilter<"Booking"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
   }
@@ -41222,6 +41452,7 @@ export namespace Prisma {
     displayOrder?: IntFilter<"Package"> | number
     createdAt?: DateTimeFilter<"Package"> | Date | string
     updatedAt?: DateTimeFilter<"Package"> | Date | string
+    bookings?: BookingListRelationFilter
     bundleItems?: PackageBundleItemListRelationFilter
   }
 
@@ -41249,6 +41480,7 @@ export namespace Prisma {
     displayOrder?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bookings?: BookingOrderByRelationAggregateInput
     bundleItems?: PackageBundleItemOrderByRelationAggregateInput
   }
 
@@ -41279,6 +41511,7 @@ export namespace Prisma {
     displayOrder?: IntFilter<"Package"> | number
     createdAt?: DateTimeFilter<"Package"> | Date | string
     updatedAt?: DateTimeFilter<"Package"> | Date | string
+    bookings?: BookingListRelationFilter
     bundleItems?: PackageBundleItemListRelationFilter
   }, "id" | "slug">
 
@@ -43678,6 +43911,8 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    country?: string | null
+    bookingType?: $Enums.BookingType
     numberOfTravelers: number
     specialRequests?: string | null
     travelDateFrom: Date | string
@@ -43686,11 +43921,15 @@ export namespace Prisma {
     totalPrice: Decimal | DecimalJsLike | number | string
     status?: $Enums.BookingStatus
     paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
     paymentIntentId?: string | null
     stripeCustomerId?: string | null
+    adminNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    destination: DestinationCreateNestedOneWithoutBookingsInput
+    destination?: DestinationCreateNestedOneWithoutBookingsInput
+    package?: PackageCreateNestedOneWithoutBookingsInput
   }
 
   export type BookingUncheckedCreateInput = {
@@ -43701,7 +43940,10 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
-    destinationId: number
+    country?: string | null
+    packageId?: number | null
+    destinationId?: number | null
+    bookingType?: $Enums.BookingType
     numberOfTravelers: number
     specialRequests?: string | null
     travelDateFrom: Date | string
@@ -43710,8 +43952,11 @@ export namespace Prisma {
     totalPrice: Decimal | DecimalJsLike | number | string
     status?: $Enums.BookingStatus
     paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
     paymentIntentId?: string | null
     stripeCustomerId?: string | null
+    adminNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -43723,6 +43968,8 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
     numberOfTravelers?: IntFieldUpdateOperationsInput | number
     specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
     travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -43731,11 +43978,15 @@ export namespace Prisma {
     totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
     paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
     stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    destination?: DestinationUpdateOneRequiredWithoutBookingsNestedInput
+    destination?: DestinationUpdateOneWithoutBookingsNestedInput
+    package?: PackageUpdateOneWithoutBookingsNestedInput
   }
 
   export type BookingUncheckedUpdateInput = {
@@ -43746,7 +43997,10 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    destinationId?: IntFieldUpdateOperationsInput | number
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    packageId?: NullableIntFieldUpdateOperationsInput | number | null
+    destinationId?: NullableIntFieldUpdateOperationsInput | number | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
     numberOfTravelers?: IntFieldUpdateOperationsInput | number
     specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
     travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -43755,8 +44009,11 @@ export namespace Prisma {
     totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
     paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
     stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -43769,7 +44026,10 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
-    destinationId: number
+    country?: string | null
+    packageId?: number | null
+    destinationId?: number | null
+    bookingType?: $Enums.BookingType
     numberOfTravelers: number
     specialRequests?: string | null
     travelDateFrom: Date | string
@@ -43778,8 +44038,11 @@ export namespace Prisma {
     totalPrice: Decimal | DecimalJsLike | number | string
     status?: $Enums.BookingStatus
     paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
     paymentIntentId?: string | null
     stripeCustomerId?: string | null
+    adminNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -43791,6 +44054,8 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
     numberOfTravelers?: IntFieldUpdateOperationsInput | number
     specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
     travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -43799,8 +44064,11 @@ export namespace Prisma {
     totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
     paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
     stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -43813,7 +44081,10 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
-    destinationId?: IntFieldUpdateOperationsInput | number
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    packageId?: NullableIntFieldUpdateOperationsInput | number | null
+    destinationId?: NullableIntFieldUpdateOperationsInput | number | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
     numberOfTravelers?: IntFieldUpdateOperationsInput | number
     specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
     travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -43822,8 +44093,11 @@ export namespace Prisma {
     totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
     paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
     stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -44118,6 +44392,7 @@ export namespace Prisma {
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    bookings?: BookingCreateNestedManyWithoutPackageInput
     bundleItems?: PackageBundleItemCreateNestedManyWithoutPackageInput
   }
 
@@ -44145,6 +44420,7 @@ export namespace Prisma {
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    bookings?: BookingUncheckedCreateNestedManyWithoutPackageInput
     bundleItems?: PackageBundleItemUncheckedCreateNestedManyWithoutPackageInput
   }
 
@@ -44171,6 +44447,7 @@ export namespace Prisma {
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUpdateManyWithoutPackageNestedInput
     bundleItems?: PackageBundleItemUpdateManyWithoutPackageNestedInput
   }
 
@@ -44198,6 +44475,7 @@ export namespace Prisma {
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUncheckedUpdateManyWithoutPackageNestedInput
     bundleItems?: PackageBundleItemUncheckedUpdateManyWithoutPackageNestedInput
   }
 
@@ -47032,6 +47310,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumBookingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BookingType | EnumBookingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBookingTypeFilter<$PrismaModel> | $Enums.BookingType
+  }
+
   export type EnumBookingStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
     in?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
@@ -47046,9 +47331,14 @@ export namespace Prisma {
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
   }
 
-  export type DestinationScalarRelationFilter = {
-    is?: DestinationWhereInput
-    isNot?: DestinationWhereInput
+  export type DestinationNullableScalarRelationFilter = {
+    is?: DestinationWhereInput | null
+    isNot?: DestinationWhereInput | null
+  }
+
+  export type PackageNullableScalarRelationFilter = {
+    is?: PackageWhereInput | null
+    isNot?: PackageWhereInput | null
   }
 
   export type BookingCountOrderByAggregateInput = {
@@ -47059,7 +47349,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    country?: SortOrder
+    packageId?: SortOrder
     destinationId?: SortOrder
+    bookingType?: SortOrder
     numberOfTravelers?: SortOrder
     specialRequests?: SortOrder
     travelDateFrom?: SortOrder
@@ -47068,14 +47361,18 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paymentMethod?: SortOrder
+    paymentReference?: SortOrder
     paymentIntentId?: SortOrder
     stripeCustomerId?: SortOrder
+    adminNotes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type BookingAvgOrderByAggregateInput = {
     id?: SortOrder
+    packageId?: SortOrder
     destinationId?: SortOrder
     numberOfTravelers?: SortOrder
     pricePerPerson?: SortOrder
@@ -47090,7 +47387,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    country?: SortOrder
+    packageId?: SortOrder
     destinationId?: SortOrder
+    bookingType?: SortOrder
     numberOfTravelers?: SortOrder
     specialRequests?: SortOrder
     travelDateFrom?: SortOrder
@@ -47099,8 +47399,11 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paymentMethod?: SortOrder
+    paymentReference?: SortOrder
     paymentIntentId?: SortOrder
     stripeCustomerId?: SortOrder
+    adminNotes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -47113,7 +47416,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    country?: SortOrder
+    packageId?: SortOrder
     destinationId?: SortOrder
+    bookingType?: SortOrder
     numberOfTravelers?: SortOrder
     specialRequests?: SortOrder
     travelDateFrom?: SortOrder
@@ -47122,18 +47428,32 @@ export namespace Prisma {
     totalPrice?: SortOrder
     status?: SortOrder
     paymentStatus?: SortOrder
+    paymentMethod?: SortOrder
+    paymentReference?: SortOrder
     paymentIntentId?: SortOrder
     stripeCustomerId?: SortOrder
+    adminNotes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type BookingSumOrderByAggregateInput = {
     id?: SortOrder
+    packageId?: SortOrder
     destinationId?: SortOrder
     numberOfTravelers?: SortOrder
     pricePerPerson?: SortOrder
     totalPrice?: SortOrder
+  }
+
+  export type EnumBookingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BookingType | EnumBookingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBookingTypeWithAggregatesFilter<$PrismaModel> | $Enums.BookingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBookingTypeFilter<$PrismaModel>
+    _max?: NestedEnumBookingTypeFilter<$PrismaModel>
   }
 
   export type EnumBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -47342,6 +47662,11 @@ export namespace Prisma {
     profileImageUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type DestinationScalarRelationFilter = {
+    is?: DestinationWhereInput
+    isNot?: DestinationWhereInput
   }
 
   export type UserScalarRelationFilter = {
@@ -48991,6 +49316,16 @@ export namespace Prisma {
     connect?: DestinationWhereUniqueInput
   }
 
+  export type PackageCreateNestedOneWithoutBookingsInput = {
+    create?: XOR<PackageCreateWithoutBookingsInput, PackageUncheckedCreateWithoutBookingsInput>
+    connectOrCreate?: PackageCreateOrConnectWithoutBookingsInput
+    connect?: PackageWhereUniqueInput
+  }
+
+  export type EnumBookingTypeFieldUpdateOperationsInput = {
+    set?: $Enums.BookingType
+  }
+
   export type EnumBookingStatusFieldUpdateOperationsInput = {
     set?: $Enums.BookingStatus
   }
@@ -48999,12 +49334,24 @@ export namespace Prisma {
     set?: $Enums.PaymentStatus
   }
 
-  export type DestinationUpdateOneRequiredWithoutBookingsNestedInput = {
+  export type DestinationUpdateOneWithoutBookingsNestedInput = {
     create?: XOR<DestinationCreateWithoutBookingsInput, DestinationUncheckedCreateWithoutBookingsInput>
     connectOrCreate?: DestinationCreateOrConnectWithoutBookingsInput
     upsert?: DestinationUpsertWithoutBookingsInput
+    disconnect?: DestinationWhereInput | boolean
+    delete?: DestinationWhereInput | boolean
     connect?: DestinationWhereUniqueInput
     update?: XOR<XOR<DestinationUpdateToOneWithWhereWithoutBookingsInput, DestinationUpdateWithoutBookingsInput>, DestinationUncheckedUpdateWithoutBookingsInput>
+  }
+
+  export type PackageUpdateOneWithoutBookingsNestedInput = {
+    create?: XOR<PackageCreateWithoutBookingsInput, PackageUncheckedCreateWithoutBookingsInput>
+    connectOrCreate?: PackageCreateOrConnectWithoutBookingsInput
+    upsert?: PackageUpsertWithoutBookingsInput
+    disconnect?: PackageWhereInput | boolean
+    delete?: PackageWhereInput | boolean
+    connect?: PackageWhereUniqueInput
+    update?: XOR<XOR<PackageUpdateToOneWithWhereWithoutBookingsInput, PackageUpdateWithoutBookingsInput>, PackageUncheckedUpdateWithoutBookingsInput>
   }
 
   export type EnumInquiryStatusFieldUpdateOperationsInput = {
@@ -49189,11 +49536,25 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type BookingCreateNestedManyWithoutPackageInput = {
+    create?: XOR<BookingCreateWithoutPackageInput, BookingUncheckedCreateWithoutPackageInput> | BookingCreateWithoutPackageInput[] | BookingUncheckedCreateWithoutPackageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPackageInput | BookingCreateOrConnectWithoutPackageInput[]
+    createMany?: BookingCreateManyPackageInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
   export type PackageBundleItemCreateNestedManyWithoutPackageInput = {
     create?: XOR<PackageBundleItemCreateWithoutPackageInput, PackageBundleItemUncheckedCreateWithoutPackageInput> | PackageBundleItemCreateWithoutPackageInput[] | PackageBundleItemUncheckedCreateWithoutPackageInput[]
     connectOrCreate?: PackageBundleItemCreateOrConnectWithoutPackageInput | PackageBundleItemCreateOrConnectWithoutPackageInput[]
     createMany?: PackageBundleItemCreateManyPackageInputEnvelope
     connect?: PackageBundleItemWhereUniqueInput | PackageBundleItemWhereUniqueInput[]
+  }
+
+  export type BookingUncheckedCreateNestedManyWithoutPackageInput = {
+    create?: XOR<BookingCreateWithoutPackageInput, BookingUncheckedCreateWithoutPackageInput> | BookingCreateWithoutPackageInput[] | BookingUncheckedCreateWithoutPackageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPackageInput | BookingCreateOrConnectWithoutPackageInput[]
+    createMany?: BookingCreateManyPackageInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
   }
 
   export type PackageBundleItemUncheckedCreateNestedManyWithoutPackageInput = {
@@ -49231,6 +49592,20 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type BookingUpdateManyWithoutPackageNestedInput = {
+    create?: XOR<BookingCreateWithoutPackageInput, BookingUncheckedCreateWithoutPackageInput> | BookingCreateWithoutPackageInput[] | BookingUncheckedCreateWithoutPackageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPackageInput | BookingCreateOrConnectWithoutPackageInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutPackageInput | BookingUpsertWithWhereUniqueWithoutPackageInput[]
+    createMany?: BookingCreateManyPackageInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutPackageInput | BookingUpdateWithWhereUniqueWithoutPackageInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutPackageInput | BookingUpdateManyWithWhereWithoutPackageInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
   export type PackageBundleItemUpdateManyWithoutPackageNestedInput = {
     create?: XOR<PackageBundleItemCreateWithoutPackageInput, PackageBundleItemUncheckedCreateWithoutPackageInput> | PackageBundleItemCreateWithoutPackageInput[] | PackageBundleItemUncheckedCreateWithoutPackageInput[]
     connectOrCreate?: PackageBundleItemCreateOrConnectWithoutPackageInput | PackageBundleItemCreateOrConnectWithoutPackageInput[]
@@ -49243,6 +49618,20 @@ export namespace Prisma {
     update?: PackageBundleItemUpdateWithWhereUniqueWithoutPackageInput | PackageBundleItemUpdateWithWhereUniqueWithoutPackageInput[]
     updateMany?: PackageBundleItemUpdateManyWithWhereWithoutPackageInput | PackageBundleItemUpdateManyWithWhereWithoutPackageInput[]
     deleteMany?: PackageBundleItemScalarWhereInput | PackageBundleItemScalarWhereInput[]
+  }
+
+  export type BookingUncheckedUpdateManyWithoutPackageNestedInput = {
+    create?: XOR<BookingCreateWithoutPackageInput, BookingUncheckedCreateWithoutPackageInput> | BookingCreateWithoutPackageInput[] | BookingUncheckedCreateWithoutPackageInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPackageInput | BookingCreateOrConnectWithoutPackageInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutPackageInput | BookingUpsertWithWhereUniqueWithoutPackageInput[]
+    createMany?: BookingCreateManyPackageInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutPackageInput | BookingUpdateWithWhereUniqueWithoutPackageInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutPackageInput | BookingUpdateManyWithWhereWithoutPackageInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
   }
 
   export type PackageBundleItemUncheckedUpdateManyWithoutPackageNestedInput = {
@@ -49563,6 +49952,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumBookingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BookingType | EnumBookingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBookingTypeFilter<$PrismaModel> | $Enums.BookingType
+  }
+
   export type NestedEnumBookingStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.BookingStatus | EnumBookingStatusFieldRefInput<$PrismaModel>
     in?: $Enums.BookingStatus[] | ListEnumBookingStatusFieldRefInput<$PrismaModel>
@@ -49575,6 +49971,16 @@ export namespace Prisma {
     in?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
+  }
+
+  export type NestedEnumBookingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BookingType | EnumBookingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BookingType[] | ListEnumBookingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBookingTypeWithAggregatesFilter<$PrismaModel> | $Enums.BookingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBookingTypeFilter<$PrismaModel>
+    _max?: NestedEnumBookingTypeFilter<$PrismaModel>
   }
 
   export type NestedEnumBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -49800,6 +50206,8 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    country?: string | null
+    bookingType?: $Enums.BookingType
     numberOfTravelers: number
     specialRequests?: string | null
     travelDateFrom: Date | string
@@ -49808,10 +50216,14 @@ export namespace Prisma {
     totalPrice: Decimal | DecimalJsLike | number | string
     status?: $Enums.BookingStatus
     paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
     paymentIntentId?: string | null
     stripeCustomerId?: string | null
+    adminNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    package?: PackageCreateNestedOneWithoutBookingsInput
   }
 
   export type BookingUncheckedCreateWithoutDestinationInput = {
@@ -49822,6 +50234,9 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    country?: string | null
+    packageId?: number | null
+    bookingType?: $Enums.BookingType
     numberOfTravelers: number
     specialRequests?: string | null
     travelDateFrom: Date | string
@@ -49830,8 +50245,11 @@ export namespace Prisma {
     totalPrice: Decimal | DecimalJsLike | number | string
     status?: $Enums.BookingStatus
     paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
     paymentIntentId?: string | null
     stripeCustomerId?: string | null
+    adminNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -49894,7 +50312,10 @@ export namespace Prisma {
     lastName?: StringFilter<"Booking"> | string
     email?: StringFilter<"Booking"> | string
     phone?: StringFilter<"Booking"> | string
-    destinationId?: IntFilter<"Booking"> | number
+    country?: StringNullableFilter<"Booking"> | string | null
+    packageId?: IntNullableFilter<"Booking"> | number | null
+    destinationId?: IntNullableFilter<"Booking"> | number | null
+    bookingType?: EnumBookingTypeFilter<"Booking"> | $Enums.BookingType
     numberOfTravelers?: IntFilter<"Booking"> | number
     specialRequests?: StringNullableFilter<"Booking"> | string | null
     travelDateFrom?: DateTimeFilter<"Booking"> | Date | string
@@ -49903,8 +50324,11 @@ export namespace Prisma {
     totalPrice?: DecimalFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFilter<"Booking"> | $Enums.PaymentStatus
+    paymentMethod?: StringNullableFilter<"Booking"> | string | null
+    paymentReference?: StringNullableFilter<"Booking"> | string | null
     paymentIntentId?: StringNullableFilter<"Booking"> | string | null
     stripeCustomerId?: StringNullableFilter<"Booking"> | string | null
+    adminNotes?: StringNullableFilter<"Booking"> | string | null
     createdAt?: DateTimeFilter<"Booking"> | Date | string
     updatedAt?: DateTimeFilter<"Booking"> | Date | string
   }
@@ -50009,6 +50433,64 @@ export namespace Prisma {
     create: XOR<DestinationCreateWithoutBookingsInput, DestinationUncheckedCreateWithoutBookingsInput>
   }
 
+  export type PackageCreateWithoutBookingsInput = {
+    name: string
+    slug: string
+    category: string
+    duration: string
+    price: Decimal | DecimalJsLike | number | string
+    description: string
+    shortDesc?: string | null
+    image: string
+    images?: PackageCreateimagesInput | string[]
+    highlights?: PackageCreatehighlightsInput | string[]
+    itinerary: JsonNullValueInput | InputJsonValue
+    included?: PackageCreateincludedInput | string[]
+    excluded?: PackageCreateexcludedInput | string[]
+    minTravelers: number
+    maxTravelers: number
+    difficulty?: $Enums.DifficultyLevel
+    featured?: boolean
+    popular?: boolean
+    active?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bundleItems?: PackageBundleItemCreateNestedManyWithoutPackageInput
+  }
+
+  export type PackageUncheckedCreateWithoutBookingsInput = {
+    id?: number
+    name: string
+    slug: string
+    category: string
+    duration: string
+    price: Decimal | DecimalJsLike | number | string
+    description: string
+    shortDesc?: string | null
+    image: string
+    images?: PackageCreateimagesInput | string[]
+    highlights?: PackageCreatehighlightsInput | string[]
+    itinerary: JsonNullValueInput | InputJsonValue
+    included?: PackageCreateincludedInput | string[]
+    excluded?: PackageCreateexcludedInput | string[]
+    minTravelers: number
+    maxTravelers: number
+    difficulty?: $Enums.DifficultyLevel
+    featured?: boolean
+    popular?: boolean
+    active?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bundleItems?: PackageBundleItemUncheckedCreateNestedManyWithoutPackageInput
+  }
+
+  export type PackageCreateOrConnectWithoutBookingsInput = {
+    where: PackageWhereUniqueInput
+    create: XOR<PackageCreateWithoutBookingsInput, PackageUncheckedCreateWithoutBookingsInput>
+  }
+
   export type DestinationUpsertWithoutBookingsInput = {
     update: XOR<DestinationUpdateWithoutBookingsInput, DestinationUncheckedUpdateWithoutBookingsInput>
     create: XOR<DestinationCreateWithoutBookingsInput, DestinationUncheckedCreateWithoutBookingsInput>
@@ -50087,6 +50569,70 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     favorites?: UserFavoriteUncheckedUpdateManyWithoutDestinationNestedInput
+  }
+
+  export type PackageUpsertWithoutBookingsInput = {
+    update: XOR<PackageUpdateWithoutBookingsInput, PackageUncheckedUpdateWithoutBookingsInput>
+    create: XOR<PackageCreateWithoutBookingsInput, PackageUncheckedCreateWithoutBookingsInput>
+    where?: PackageWhereInput
+  }
+
+  export type PackageUpdateToOneWithWhereWithoutBookingsInput = {
+    where?: PackageWhereInput
+    data: XOR<PackageUpdateWithoutBookingsInput, PackageUncheckedUpdateWithoutBookingsInput>
+  }
+
+  export type PackageUpdateWithoutBookingsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    duration?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: StringFieldUpdateOperationsInput | string
+    shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
+    images?: PackageUpdateimagesInput | string[]
+    highlights?: PackageUpdatehighlightsInput | string[]
+    itinerary?: JsonNullValueInput | InputJsonValue
+    included?: PackageUpdateincludedInput | string[]
+    excluded?: PackageUpdateexcludedInput | string[]
+    minTravelers?: IntFieldUpdateOperationsInput | number
+    maxTravelers?: IntFieldUpdateOperationsInput | number
+    difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
+    featured?: BoolFieldUpdateOperationsInput | boolean
+    popular?: BoolFieldUpdateOperationsInput | boolean
+    active?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bundleItems?: PackageBundleItemUpdateManyWithoutPackageNestedInput
+  }
+
+  export type PackageUncheckedUpdateWithoutBookingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    duration?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: StringFieldUpdateOperationsInput | string
+    shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
+    images?: PackageUpdateimagesInput | string[]
+    highlights?: PackageUpdatehighlightsInput | string[]
+    itinerary?: JsonNullValueInput | InputJsonValue
+    included?: PackageUpdateincludedInput | string[]
+    excluded?: PackageUpdateexcludedInput | string[]
+    minTravelers?: IntFieldUpdateOperationsInput | number
+    maxTravelers?: IntFieldUpdateOperationsInput | number
+    difficulty?: EnumDifficultyLevelFieldUpdateOperationsInput | $Enums.DifficultyLevel
+    featured?: BoolFieldUpdateOperationsInput | boolean
+    popular?: BoolFieldUpdateOperationsInput | boolean
+    active?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bundleItems?: PackageBundleItemUncheckedUpdateManyWithoutPackageNestedInput
   }
 
   export type UserFavoriteCreateWithoutUserInput = {
@@ -50495,6 +51041,71 @@ export namespace Prisma {
     packageBundles?: PackageBundleUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type BookingCreateWithoutPackageInput = {
+    confirmationNumber?: string
+    userId?: string | null
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    country?: string | null
+    bookingType?: $Enums.BookingType
+    numberOfTravelers: number
+    specialRequests?: string | null
+    travelDateFrom: Date | string
+    travelDateTo: Date | string
+    pricePerPerson: Decimal | DecimalJsLike | number | string
+    totalPrice: Decimal | DecimalJsLike | number | string
+    status?: $Enums.BookingStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
+    paymentIntentId?: string | null
+    stripeCustomerId?: string | null
+    adminNotes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    destination?: DestinationCreateNestedOneWithoutBookingsInput
+  }
+
+  export type BookingUncheckedCreateWithoutPackageInput = {
+    id?: number
+    confirmationNumber?: string
+    userId?: string | null
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    country?: string | null
+    destinationId?: number | null
+    bookingType?: $Enums.BookingType
+    numberOfTravelers: number
+    specialRequests?: string | null
+    travelDateFrom: Date | string
+    travelDateTo: Date | string
+    pricePerPerson: Decimal | DecimalJsLike | number | string
+    totalPrice: Decimal | DecimalJsLike | number | string
+    status?: $Enums.BookingStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
+    paymentIntentId?: string | null
+    stripeCustomerId?: string | null
+    adminNotes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingCreateOrConnectWithoutPackageInput = {
+    where: BookingWhereUniqueInput
+    create: XOR<BookingCreateWithoutPackageInput, BookingUncheckedCreateWithoutPackageInput>
+  }
+
+  export type BookingCreateManyPackageInputEnvelope = {
+    data: BookingCreateManyPackageInput | BookingCreateManyPackageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PackageBundleItemCreateWithoutPackageInput = {
     notes?: string | null
     bundle: PackageBundleCreateNestedOneWithoutPackagesInput
@@ -50514,6 +51125,22 @@ export namespace Prisma {
   export type PackageBundleItemCreateManyPackageInputEnvelope = {
     data: PackageBundleItemCreateManyPackageInput | PackageBundleItemCreateManyPackageInput[]
     skipDuplicates?: boolean
+  }
+
+  export type BookingUpsertWithWhereUniqueWithoutPackageInput = {
+    where: BookingWhereUniqueInput
+    update: XOR<BookingUpdateWithoutPackageInput, BookingUncheckedUpdateWithoutPackageInput>
+    create: XOR<BookingCreateWithoutPackageInput, BookingUncheckedCreateWithoutPackageInput>
+  }
+
+  export type BookingUpdateWithWhereUniqueWithoutPackageInput = {
+    where: BookingWhereUniqueInput
+    data: XOR<BookingUpdateWithoutPackageInput, BookingUncheckedUpdateWithoutPackageInput>
+  }
+
+  export type BookingUpdateManyWithWhereWithoutPackageInput = {
+    where: BookingScalarWhereInput
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutPackageInput>
   }
 
   export type PackageBundleItemUpsertWithWhereUniqueWithoutPackageInput = {
@@ -50770,6 +51397,7 @@ export namespace Prisma {
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    bookings?: BookingCreateNestedManyWithoutPackageInput
   }
 
   export type PackageUncheckedCreateWithoutBundleItemsInput = {
@@ -50796,6 +51424,7 @@ export namespace Prisma {
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    bookings?: BookingUncheckedCreateNestedManyWithoutPackageInput
   }
 
   export type PackageCreateOrConnectWithoutBundleItemsInput = {
@@ -50875,6 +51504,7 @@ export namespace Prisma {
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUpdateManyWithoutPackageNestedInput
   }
 
   export type PackageUncheckedUpdateWithoutBundleItemsInput = {
@@ -50901,6 +51531,7 @@ export namespace Prisma {
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bookings?: BookingUncheckedUpdateManyWithoutPackageNestedInput
   }
 
   export type BookingCreateManyDestinationInput = {
@@ -50911,6 +51542,9 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    country?: string | null
+    packageId?: number | null
+    bookingType?: $Enums.BookingType
     numberOfTravelers: number
     specialRequests?: string | null
     travelDateFrom: Date | string
@@ -50919,8 +51553,11 @@ export namespace Prisma {
     totalPrice: Decimal | DecimalJsLike | number | string
     status?: $Enums.BookingStatus
     paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
     paymentIntentId?: string | null
     stripeCustomerId?: string | null
+    adminNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -50938,6 +51575,8 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
     numberOfTravelers?: IntFieldUpdateOperationsInput | number
     specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
     travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50946,10 +51585,14 @@ export namespace Prisma {
     totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
     paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
     stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    package?: PackageUpdateOneWithoutBookingsNestedInput
   }
 
   export type BookingUncheckedUpdateWithoutDestinationInput = {
@@ -50960,6 +51603,9 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    packageId?: NullableIntFieldUpdateOperationsInput | number | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
     numberOfTravelers?: IntFieldUpdateOperationsInput | number
     specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
     travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50968,8 +51614,11 @@ export namespace Prisma {
     totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
     paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
     stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -50982,6 +51631,9 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    packageId?: NullableIntFieldUpdateOperationsInput | number | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
     numberOfTravelers?: IntFieldUpdateOperationsInput | number
     specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
     travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50990,8 +51642,11 @@ export namespace Prisma {
     totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
     paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
     stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -51152,10 +51807,121 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BookingCreateManyPackageInput = {
+    id?: number
+    confirmationNumber?: string
+    userId?: string | null
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    country?: string | null
+    destinationId?: number | null
+    bookingType?: $Enums.BookingType
+    numberOfTravelers: number
+    specialRequests?: string | null
+    travelDateFrom: Date | string
+    travelDateTo: Date | string
+    pricePerPerson: Decimal | DecimalJsLike | number | string
+    totalPrice: Decimal | DecimalJsLike | number | string
+    status?: $Enums.BookingStatus
+    paymentStatus?: $Enums.PaymentStatus
+    paymentMethod?: string | null
+    paymentReference?: string | null
+    paymentIntentId?: string | null
+    stripeCustomerId?: string | null
+    adminNotes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type PackageBundleItemCreateManyPackageInput = {
     id?: number
     bundleId: number
     notes?: string | null
+  }
+
+  export type BookingUpdateWithoutPackageInput = {
+    confirmationNumber?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
+    numberOfTravelers?: IntFieldUpdateOperationsInput | number
+    specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
+    travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
+    travelDateTo?: DateTimeFieldUpdateOperationsInput | Date | string
+    pricePerPerson?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    destination?: DestinationUpdateOneWithoutBookingsNestedInput
+  }
+
+  export type BookingUncheckedUpdateWithoutPackageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    confirmationNumber?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationId?: NullableIntFieldUpdateOperationsInput | number | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
+    numberOfTravelers?: IntFieldUpdateOperationsInput | number
+    specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
+    travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
+    travelDateTo?: DateTimeFieldUpdateOperationsInput | Date | string
+    pricePerPerson?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingUncheckedUpdateManyWithoutPackageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    confirmationNumber?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationId?: NullableIntFieldUpdateOperationsInput | number | null
+    bookingType?: EnumBookingTypeFieldUpdateOperationsInput | $Enums.BookingType
+    numberOfTravelers?: IntFieldUpdateOperationsInput | number
+    specialRequests?: NullableStringFieldUpdateOperationsInput | string | null
+    travelDateFrom?: DateTimeFieldUpdateOperationsInput | Date | string
+    travelDateTo?: DateTimeFieldUpdateOperationsInput | Date | string
+    pricePerPerson?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentReference?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PackageBundleItemUpdateWithoutPackageInput = {

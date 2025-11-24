@@ -4,10 +4,23 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { fetchSiteSettingsClient, type SiteSettings } from "@/lib/settings";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [settings, setSettings] = useState<SiteSettings | null>(null);
+
+  // Default logo URL
+  const defaultLogo = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev/nambi-uganda-safaris/images/fox_logo.webp";
+
+  // Fetch settings on mount
+  useEffect(() => {
+    fetchSiteSettingsClient().then((data) => {
+      console.log("Header: Fetched settings", data);
+      setSettings(data);
+    });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,8 +70,8 @@ export function Header() {
           >
             <Link href="/" className="flex items-center gap-2 group">
               <img
-                src={process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp"}
-                alt="Nambi Uganda Safaris Logo"
+                src={settings?.brand?.logo || defaultLogo}
+                alt={`${settings?.brand?.siteName || "Nambi Uganda Safaris"} Logo`}
                 className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
               />
               <span
@@ -66,7 +79,7 @@ export function Header() {
                   scrolled ? "text-foreground" : "text-background"
                 }`}
               >
-                Nambi Uganda Safaris
+                {settings?.brand?.siteName || "Nambi Uganda Safaris"}
               </span>
             </Link>
 
@@ -146,12 +159,12 @@ export function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <img
-                  src={process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp"}
-                  alt="Nambi Uganda Safaris Logo"
+                  src={settings?.brand?.logo || defaultLogo}
+                  alt={`${settings?.brand?.siteName || "Nambi Uganda Safaris"} Logo`}
                   className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
                 />
                 <span className="font-serif text-xl font-bold text-background">
-                  Nambi Uganda Safaris
+                  {settings?.brand?.siteName || "Nambi Uganda Safaris"}
                 </span>
               </Link>
               <Button

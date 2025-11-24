@@ -162,7 +162,10 @@ exports.Prisma.BookingScalarFieldEnum = {
   lastName: 'lastName',
   email: 'email',
   phone: 'phone',
+  country: 'country',
+  packageId: 'packageId',
   destinationId: 'destinationId',
+  bookingType: 'bookingType',
   numberOfTravelers: 'numberOfTravelers',
   specialRequests: 'specialRequests',
   travelDateFrom: 'travelDateFrom',
@@ -171,8 +174,11 @@ exports.Prisma.BookingScalarFieldEnum = {
   totalPrice: 'totalPrice',
   status: 'status',
   paymentStatus: 'paymentStatus',
+  paymentMethod: 'paymentMethod',
+  paymentReference: 'paymentReference',
   paymentIntentId: 'paymentIntentId',
   stripeCustomerId: 'stripeCustomerId',
+  adminNotes: 'adminNotes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -620,6 +626,11 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+exports.BookingType = exports.$Enums.BookingType = {
+  PACKAGE: 'PACKAGE',
+  DESTINATION: 'DESTINATION'
+};
+
 exports.BookingStatus = exports.$Enums.BookingStatus = {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED',

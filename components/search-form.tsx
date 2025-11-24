@@ -1,10 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Calendar, MapPin, Users, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Popover,
   PopoverContent,
@@ -18,21 +26,59 @@ interface SearchFormProps {
   onSearch: (filters: SearchFilters) => void;
 }
 
+interface Package {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  duration: string;
+  price: number;
+}
+
 export function SearchForm({ onSearch }: SearchFormProps) {
-  const [destination, setDestination] = useState("Kampala");
+  const router = useRouter();
+  const [selectedPackage, setSelectedPackage] = useState<string>("");
+  const [packages, setPackages] = useState<Package[]>([]);
+  const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState<{ from: Date; to?: Date }>();
   const [travelers, setTravelers] = useState(2);
 
-  const handleSearch = () => {
-    onSearch({
-      destination,
-      dateRange,
-      travelers,
-    });
+  // Fetch packages on mount
+  useEffect(() => {
+    fetchPackages();
+  }, []);
 
-    const resultsSection = document.getElementById("search-results");
-    if (resultsSection) {
-      resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  const fetchPackages = async () => {
+    try {
+      const response = await fetch("/api/cms/packages");
+      if (!response.ok) {
+        throw new Error("Failed to fetch packages");
+      }
+      const data = await response.json();
+      setPackages(data.packages || []);
+    } catch (error) {
+      console.error("Error fetching packages:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSearch = () => {
+    if (selectedPackage) {
+      // Navigate to the selected package page
+      router.push(`/package/${selectedPackage}`);
+    } else {
+      // If no package selected, trigger the existing search behavior
+      onSearch({
+        destination: selectedPackage || "",
+        dateRange,
+        travelers,
+      });
+
+      const resultsSection = document.getElementById("search-results");
+      if (resultsSection) {
+        resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
@@ -42,19 +88,33 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
           <div className="space-y-2">
             <Label
-              htmlFor="destination"
+              htmlFor="package-select"
               className="flex items-center gap-2 text-sm font-medium"
             >
               <MapPin className="h-4 w-4 text-primary" />
               Safari Packages
             </Label>
-            <Input
-              id="destination"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              placeholder="Where to?"
-              size="lg"
-            />
+            <Select
+              value={selectedPackage}
+              onValueChange={setSelectedPackage}
+              disabled={loading}
+            >
+              <SelectTrigger
+                id="package-select"
+                className="w-full h-12 bg-transparent font-semibold"
+              >
+                <SelectValue
+                  placeholder={loading ? "Loading packages..." : "Select a safari package"}
+                />
+              </SelectTrigger>
+              <SelectContent className="max-h-[300px]">
+                {packages.map((pkg) => (
+                  <SelectItem key={pkg.id} value={pkg.slug}>
+                    {pkg.name} - {pkg.duration}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="space-y-2">

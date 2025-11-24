@@ -1,13 +1,13 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { DestinationGallery } from "@/components/destination-gallery";
-import { allDestinationsOnly } from "@/lib/destinations-only-data";
 import {
   MapPin,
   Globe,
@@ -21,10 +21,70 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+interface Destination {
+  id: number;
+  name: string;
+  category: string;
+  country: string;
+  region: string | null;
+  description: string;
+  image: string;
+  images: string[];
+  historyTitle: string | null;
+  historyContent: string[];
+  geographyDescription: string | null;
+  geographyClimate: string | null;
+  wildlifeDescription: string | null;
+  wildlifeMammals: string[];
+  wildlifeBirds: string[];
+  wildlifeFlora: string[];
+  cultureDescription: string | null;
+  cultureExperiences: string[];
+  bestTimeDescription: string | null;
+  drySeasonTitle: string | null;
+  drySeasonDescription: string | null;
+  wetSeasonTitle: string | null;
+  wetSeasonDescription: string | null;
+}
+
 export default function DestinationPage() {
   const params = useParams();
   const destinationId = Number.parseInt(params.id as string);
-  const destination = allDestinationsOnly.find((dest) => dest.id === destinationId);
+  const [destination, setDestination] = useState<Destination | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchDestination();
+  }, [destinationId]);
+
+  const fetchDestination = async () => {
+    try {
+      const response = await fetch(`/api/cms/destinations/${destinationId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch destination");
+      }
+      const data = await response.json();
+      setDestination(data.destination);
+    } catch (error) {
+      console.error("Error fetching destination:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <main className="min-h-screen">
+        <Header />
+        <div className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+          </div>
+        </div>
+        <Footer />
+      </main>
+    );
+  }
 
   if (!destination) {
     return (

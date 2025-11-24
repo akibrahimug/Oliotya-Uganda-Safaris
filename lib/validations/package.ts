@@ -30,7 +30,7 @@ export const packageSchema = z.object({
   image: z.string().min(1, "Main image is required"),
   images: z.array(z.string()).optional(),
   highlights: z.array(z.string()).optional(),
-  itinerary: z.array(itineraryDaySchema).min(1, "At least one itinerary day is required. Click 'Add Day' to create the first day."),
+  itinerary: z.array(itineraryDaySchema).min(3, "At least 3 itinerary days are required (getting there, activity day, getting back). Click 'Add Day' to create more days."),
   included: z.array(z.string()).optional(),
   excluded: z.array(z.string()).optional(),
   minTravelers: z.number().int().min(1, "Minimum travelers must be at least 1"),
