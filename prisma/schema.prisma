@@ -682,5 +682,3 @@ model ContactResource {
 
   @@index([displayOrder])
   @@index([active])
-  @@map("contact_resources")
-}

@@ -5,7 +5,8 @@
 
 const MAX_DIMENSION = 3840; // 4K
 const WEBP_QUALITY = 0.85; // 85%
-const MAX_COMPRESSED_SIZE = 4 * 1024 * 1024; // 4MB (under Vercel's 4.5MB limit)
+const MAX_ORIGINAL_SIZE = 10 * 1024 * 1024; // 10MB - max original file size
+const MAX_COMPRESSED_SIZE = 4 * 1024 * 1024; // 4MB - stay under Vercel's 4.5MB limit
 
 interface CompressionResult {
   blob: Blob;
@@ -106,26 +107,81 @@ export async function compressImageToWebp(
 
   onProgress?.(90);
 
-  // Check if compressed size exceeds limit
+  // If original is smaller and already under limit, use original
+  if (originalSize < blob.size && originalSize < MAX_COMPRESSED_SIZE) {
+    console.log(`Original file is smaller (${(originalSize / (1024 * 1024)).toFixed(2)}MB vs ${(blob.size / (1024 * 1024)).toFixed(2)}MB), using original`);
+    const originalFile = new File([file], file.name, { type: file.type });
+    return {
+      blob: file,
+      file: originalFile,
+      originalSize,
+      compressedSize: originalSize,
+      compressionRatio: 1,
+    };
+  }
+
+  // Check if compressed size exceeds limit - try lower quality if needed
+  let finalBlob = blob;
   if (blob.size > MAX_COMPRESSED_SIZE) {
-    throw new Error(
-      `Compressed image size (${(blob.size / (1024 * 1024)).toFixed(2)}MB) exceeds maximum allowed size (${(MAX_COMPRESSED_SIZE / (1024 * 1024)).toFixed(2)}MB). Please use a smaller image.`
-    );
+    console.warn(`Initial compression too large (${(blob.size / (1024 * 1024)).toFixed(2)}MB), trying lower quality...`);
+
+    // Try again with lower quality (70%)
+    const lowerQualityBlob = await new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error("Failed to create blob"));
+          }
+        },
+        "image/webp",
+        0.70 // Lower quality
+      );
+    });
+
+    if (lowerQualityBlob.size > MAX_COMPRESSED_SIZE) {
+      // If still too large, try even lower quality (50%)
+      const evenLowerQualityBlob = await new Promise<Blob>((resolve, reject) => {
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              resolve(blob);
+            } else {
+              reject(new Error("Failed to create blob"));
+            }
+          },
+          "image/webp",
+          0.50 // Even lower quality
+        );
+      });
+
+      if (evenLowerQualityBlob.size > MAX_COMPRESSED_SIZE) {
+        throw new Error(
+          `Image is too large even after maximum compression (${(evenLowerQualityBlob.size / (1024 * 1024)).toFixed(2)}MB). Please use a smaller image or reduce its dimensions.`
+        );
+      }
+      finalBlob = evenLowerQualityBlob;
+      console.log(`Used quality 50%, final size: ${(evenLowerQualityBlob.size / (1024 * 1024)).toFixed(2)}MB`);
+    } else {
+      finalBlob = lowerQualityBlob;
+      console.log(`Used quality 70%, final size: ${(lowerQualityBlob.size / (1024 * 1024)).toFixed(2)}MB`);
+    }
   }
 
   // Create a new file with .webp extension
   const newFileName = file.name.replace(/\.[^.]+$/, ".webp");
-  const compressedFile = new File([blob], newFileName, {
+  const compressedFile = new File([finalBlob], newFileName, {
     type: "image/webp",
   });
 
   onProgress?.(100);
 
-  const compressedSize = blob.size;
+  const compressedSize = finalBlob.size;
   const compressionRatio = originalSize / compressedSize;
 
   return {
-    blob,
+    blob: finalBlob,
     file: compressedFile,
     originalSize,
     compressedSize,
@@ -167,9 +223,7 @@ async function isAnimatedGif(file: File): Promise<boolean> {
  * @returns Error message if invalid, null if valid
  */
 export function validateImageFile(file: File): string | null {
-  const maxOriginalSize = 10 * 1024 * 1024; // 10MB
-
-  if (file.size > maxOriginalSize) {
+  if (file.size > MAX_ORIGINAL_SIZE) {
     return `File size (${(file.size / (1024 * 1024)).toFixed(2)}MB) exceeds maximum allowed size (10MB)`;
   }
 
