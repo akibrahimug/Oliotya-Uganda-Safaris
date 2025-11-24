@@ -1,102 +1,48 @@
-"use client";
-
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PageHero } from "@/components/page-hero";
-import { PackageCard } from "@/components/package-card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { allPackages } from "@/lib/packages-data";
+import { PackagesContent } from "@/components/packages-content";
+import { prisma } from "@/lib/db";
 
-const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-const IMAGE_PATH = "nambi-uganda-safaris/images";
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-const heroSlides = [
-  {
-    image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
-    title: "Discover the Pearl of Africa",
-    subtitle: "Safari Packages",
-    description:
-      "Explore curated safari experiences across Uganda's most breathtaking destinations and national parks.",
-  },
-];
+async function getHeroData() {
+  const heroSection = await prisma.packagesHero.findFirst({
+    where: { status: "PUBLISHED" },
+    orderBy: { publishedAt: "desc" },
+  });
 
-function DestinationsContent() {
-  const searchParams = useSearchParams();
-  const destination = searchParams.get("destination");
-  const travelers = searchParams.get("travelers");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  if (!heroSection) {
+    // Fallback to default
+    const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+    const IMAGE_PATH = "nambi-uganda-safaris/images";
 
-  // Get unique categories from all packages
-  const categories = Array.from(
-    new Set(allPackages.map((pkg) => pkg.category))
-  );
+    return [{
+      image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
+      title: "Discover the Pearl of Africa",
+      subtitle: "Safari Packages",
+      description: "Explore curated safari experiences across Uganda's most breathtaking destinations and national parks.",
+    }];
+  }
 
-  // Filter packages based on selected category
-  const filteredPackages = selectedCategory
-    ? allPackages.filter((pkg) => pkg.category === selectedCategory)
-    : allPackages;
-
-  return (
-    <>
-      <PageHero slides={heroSlides} showCounter={false} showDots={false} autoPlay={false} />
-      {destination && (
-        <div className="container mx-auto px-4 lg:px-8 py-4">
-          <Badge className="bg-primary text-primary-foreground text-base px-4 py-2">
-            Searching: {destination} • {travelers} travelers
-          </Badge>
-        </div>
-      )}
-
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-wrap gap-4 mb-12">
-            <Button
-              variant={selectedCategory === null ? "default" : "outline"}
-              onClick={() => setSelectedCategory(null)}
-            >
-              All Packages
-            </Button>
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPackages.map((pkg, index) => (
-              <PackageCard
-                key={pkg.id}
-                id={pkg.id}
-                slug={pkg.slug}
-                name={pkg.name}
-                category={pkg.category}
-                price={pkg.price}
-                duration={pkg.duration}
-                maxTravelers={pkg.maxTravelers}
-                image={pkg.image}
-                difficulty={pkg.difficulty}
-                animationDelay={index * 50}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
+  return [{
+    image: heroSection.image,
+    title: heroSection.title,
+    subtitle: heroSection.subtitle,
+    description: heroSection.description,
+  }];
 }
 
-export default function DestinationsPage() {
+export default async function PackagesPage() {
+  const heroSlides = await getHeroData();
+
   return (
     <main className="min-h-screen">
       <Header />
+      <PageHero slides={heroSlides} showCounter={false} showDots={false} autoPlay={false} />
       <Suspense
         fallback={
           <div className="h-96 flex items-center justify-center">
@@ -104,7 +50,7 @@ export default function DestinationsPage() {
           </div>
         }
       >
-        <DestinationsContent />
+        <PackagesContent />
       </Suspense>
       <Footer />
     </main>

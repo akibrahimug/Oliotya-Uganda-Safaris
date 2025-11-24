@@ -18,6 +18,8 @@ interface PackageCardProps {
   image: string;
   difficulty: DifficultyLevel;
   animationDelay?: number;
+  editable?: boolean;
+  onEdit?: () => void;
 }
 
 // Helper function to format difficulty for display
@@ -36,6 +38,8 @@ export function PackageCard({
   image,
   difficulty,
   animationDelay = 0,
+  editable = false,
+  onEdit,
 }: PackageCardProps) {
   return (
     <Card
@@ -91,17 +95,28 @@ export function PackageCard({
               <p className="text-xs text-muted-foreground mb-1">From</p>
               <div className="flex items-baseline gap-1">
                 <span className="text-2xl font-bold text-primary">
-                  ${price.toFixed(2)}
+                  ${typeof price === 'number' ? price.toFixed(2) : Number(price).toFixed(2)}
                 </span>
                 <span className="text-xs text-muted-foreground">/person</span>
               </div>
             </div>
-            <Link href={`/package/${slug}`}>
-              <Button size="lg" className="group/btn shadow-lg hover:shadow-xl">
-                Explore
+            {editable ? (
+              <Button
+                size="lg"
+                className="group/btn shadow-lg hover:shadow-xl"
+                onClick={onEdit}
+              >
+                Edit
                 <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
               </Button>
-            </Link>
+            ) : (
+              <Link href={`/package/${slug}`}>
+                <Button size="lg" className="group/btn shadow-lg hover:shadow-xl">
+                  Explore
+                  <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </CardContent>

@@ -53,8 +53,14 @@ export async function GET(request: NextRequest) {
       prisma.package.count({ where }),
     ]);
 
+    // Convert Decimal fields to numbers for JSON serialization
+    const serializedPackages = packages.map(pkg => ({
+      ...pkg,
+      price: Number(pkg.price),
+    }));
+
     return NextResponse.json({
-      packages,
+      packages: serializedPackages,
       pagination: {
         total,
         limit,
@@ -87,8 +93,13 @@ export async function POST(request: NextRequest) {
     // Validate input
     const validationResult = packageSchema.safeParse(body);
     if (!validationResult.success) {
+      console.error("Package validation failed:", validationResult.error);
       return NextResponse.json(
-        { error: "Invalid data", details: validationResult.error },
+        {
+          error: "Invalid data",
+          details: validationResult.error.format(),
+          message: validationResult.error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
+        },
         { status: 400 }
       );
     }
@@ -152,7 +163,13 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({ package: packageData }, { status: 201 });
+    // Convert Decimal to number for JSON serialization
+    const serializedPackage = {
+      ...packageData,
+      price: Number(packageData.price),
+    };
+
+    return NextResponse.json({ package: serializedPackage }, { status: 201 });
   } catch (error) {
     console.error("Error creating package:", error);
     return NextResponse.json(

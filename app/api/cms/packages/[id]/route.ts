@@ -9,7 +9,7 @@ import { packageSchema } from "@/lib/validations/package";
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -17,7 +17,8 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const packageId = parseInt(params.id);
+    const { id } = await params;
+    const packageId = parseInt(id);
     if (isNaN(packageId)) {
       return NextResponse.json({ error: "Invalid package ID" }, { status: 400 });
     }
@@ -30,7 +31,13 @@ export async function GET(
       return NextResponse.json({ error: "Package not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ package: packageData });
+    // Convert Decimal to number for JSON serialization
+    const serializedPackage = {
+      ...packageData,
+      price: Number(packageData.price),
+    };
+
+    return NextResponse.json({ package: serializedPackage });
   } catch (error) {
     console.error("Error fetching package:", error);
     return NextResponse.json(
@@ -46,7 +53,7 @@ export async function GET(
  */
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -54,7 +61,8 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const packageId = parseInt(params.id);
+    const { id } = await params;
+    const packageId = parseInt(id);
     if (isNaN(packageId)) {
       return NextResponse.json({ error: "Invalid package ID" }, { status: 400 });
     }
@@ -64,8 +72,13 @@ export async function PATCH(
     // Validate input
     const validationResult = packageSchema.partial().safeParse(body);
     if (!validationResult.success) {
+      console.error("Package validation failed:", validationResult.error);
       return NextResponse.json(
-        { error: "Invalid data", details: validationResult.error },
+        {
+          error: "Invalid data",
+          details: validationResult.error.format(),
+          message: validationResult.error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
+        },
         { status: 400 }
       );
     }
@@ -146,7 +159,13 @@ export async function PATCH(
       },
     });
 
-    return NextResponse.json({ package: packageData });
+    // Convert Decimal to number for JSON serialization
+    const serializedPackage = {
+      ...packageData,
+      price: Number(packageData.price),
+    };
+
+    return NextResponse.json({ package: serializedPackage });
   } catch (error) {
     console.error("Error updating package:", error);
     return NextResponse.json(
@@ -162,7 +181,7 @@ export async function PATCH(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -170,7 +189,8 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const packageId = parseInt(params.id);
+    const { id } = await params;
+    const packageId = parseInt(id);
     if (isNaN(packageId)) {
       return NextResponse.json({ error: "Invalid package ID" }, { status: 400 });
     }

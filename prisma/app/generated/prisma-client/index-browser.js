@@ -125,6 +125,7 @@ exports.Prisma.DestinationScalarFieldEnum = {
   name: 'name',
   category: 'category',
   country: 'country',
+  region: 'region',
   price: 'price',
   rating: 'rating',
   duration: 'duration',
@@ -134,6 +135,21 @@ exports.Prisma.DestinationScalarFieldEnum = {
   description: 'description',
   image: 'image',
   images: 'images',
+  historyTitle: 'historyTitle',
+  historyContent: 'historyContent',
+  geographyDescription: 'geographyDescription',
+  geographyClimate: 'geographyClimate',
+  wildlifeDescription: 'wildlifeDescription',
+  wildlifeMammals: 'wildlifeMammals',
+  wildlifeBirds: 'wildlifeBirds',
+  wildlifeFlora: 'wildlifeFlora',
+  cultureDescription: 'cultureDescription',
+  cultureExperiences: 'cultureExperiences',
+  bestTimeDescription: 'bestTimeDescription',
+  drySeasonTitle: 'drySeasonTitle',
+  drySeasonDescription: 'drySeasonDescription',
+  wetSeasonTitle: 'wetSeasonTitle',
+  wetSeasonDescription: 'wetSeasonDescription',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -406,6 +422,42 @@ exports.Prisma.VideoSectionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PackagesHeroScalarFieldEnum = {
+  id: 'id',
+  image: 'image',
+  title: 'title',
+  subtitle: 'subtitle',
+  description: 'description',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DestinationsHeroScalarFieldEnum = {
+  id: 'id',
+  image: 'image',
+  title: 'title',
+  subtitle: 'subtitle',
+  description: 'description',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DestinationsCTAScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  buttonText: 'buttonText',
+  buttonLink: 'buttonLink',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.AboutStorySectionScalarFieldEnum = {
   id: 'id',
   heading: 'heading',
@@ -633,6 +685,9 @@ exports.Prisma.ModelName = {
   ExperienceSection: 'ExperienceSection',
   TourGuideSection: 'TourGuideSection',
   VideoSection: 'VideoSection',
+  PackagesHero: 'PackagesHero',
+  DestinationsHero: 'DestinationsHero',
+  DestinationsCTA: 'DestinationsCTA',
   AboutStorySection: 'AboutStorySection',
   AboutCommunitySection: 'AboutCommunitySection',
   AboutStats: 'AboutStats',

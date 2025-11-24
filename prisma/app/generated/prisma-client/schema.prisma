@@ -10,23 +10,44 @@ datasource db {
 }
 
 model Destination {
-  id           Int            @id @default(autoincrement())
-  name         String
-  category     String
-  country      String         @default("Uganda")
-  price        Decimal        @db.Decimal(10, 2)
-  rating       Int            @default(5)
-  duration     String
-  groupSize    Int
-  minTravelers Int?
-  maxTravelers Int?
-  description  String
-  image        String
-  images       String[]       @default([])
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  bookings     Booking[]
-  favorites    UserFavorite[]
+  id                   Int            @id @default(autoincrement())
+  name                 String
+  category             String
+  country              String         @default("Uganda")
+  region               String?
+  price                Decimal        @db.Decimal(10, 2)
+  rating               Int            @default(5)
+  duration             String
+  groupSize            Int
+  minTravelers         Int?
+  maxTravelers         Int?
+  description          String         @db.Text
+  image                String
+  images               String[]       @default([])
+  // History section
+  historyTitle         String?        @db.Text
+  historyContent       String[]       @default([])
+  // Geography section
+  geographyDescription String?        @db.Text
+  geographyClimate     String?        @db.Text
+  // Wildlife section
+  wildlifeDescription  String?        @db.Text
+  wildlifeMammals      String[]       @default([])
+  wildlifeBirds        String[]       @default([])
+  wildlifeFlora        String[]       @default([])
+  // Culture section
+  cultureDescription   String?        @db.Text
+  cultureExperiences   String[]       @default([])
+  // Best time to visit
+  bestTimeDescription  String?        @db.Text
+  drySeasonTitle       String?
+  drySeasonDescription String?        @db.Text
+  wetSeasonTitle       String?
+  wetSeasonDescription String?        @db.Text
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  bookings             Booking[]
+  favorites            UserFavorite[]
 
   @@index([category])
   @@index([country])
@@ -449,6 +470,56 @@ model VideoSection {
 enum ContentStatus {
   DRAFT
   PUBLISHED
+}
+
+// ============================================
+// PACKAGES PAGE CONTENT MODELS
+// ============================================
+
+model PackagesHero {
+  id          String        @id @default(cuid())
+  image       String
+  title       String // "Discover the Pearl of Africa"
+  subtitle    String // "Safari Packages"
+  description String        @db.Text
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("packages_hero")
+}
+
+// ============================================
+// DESTINATIONS PAGE CONTENT MODELS
+// ============================================
+
+model DestinationsHero {
+  id          String        @id @default(cuid())
+  image       String
+  title       String // "Discover the Pearl of Africa"
+  subtitle    String // "Explore Destinations"
+  description String        @db.Text
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("destinations_hero")
+}
+
+model DestinationsCTA {
+  id          String        @id @default(cuid())
+  title       String // "Ready to Start Your Adventure?"
+  description String        @db.Text
+  buttonText  String // "View Safari Packages"
+  buttonLink  String // "/packages"
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("destinations_cta")
 }
 
 // ============================================

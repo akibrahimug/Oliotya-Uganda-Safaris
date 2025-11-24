@@ -8,10 +8,14 @@ interface AboutStatsSectionProps {
     stat3Label: string;
     stat4Number: string;
     stat4Label: string;
-  };
+  } | null;
 }
 
 export function AboutStatsSection({ data }: AboutStatsSectionProps) {
+  if (!data) {
+    return null;
+  }
+
   const stats = [
     { number: data.stat1Number, label: data.stat1Label },
     { number: data.stat2Number, label: data.stat2Label },
@@ -24,7 +28,11 @@ export function AboutStatsSection({ data }: AboutStatsSectionProps) {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, index) => (
-            <div key={index}>
+            <div
+              key={index}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <div className="text-5xl md:text-6xl font-bold mb-2">{stat.number}</div>
               <div className="text-primary-foreground/80 text-lg">{stat.label}</div>
             </div>

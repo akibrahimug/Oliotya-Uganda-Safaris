@@ -27,10 +27,10 @@ export const packageSchema = z.object({
   price: z.number().positive("Price must be greater than 0"),
   description: z.string().min(1, "Description is required"),
   shortDesc: z.string().optional(),
-  image: z.string().url("Main image URL is required"),
-  images: z.array(z.string().url()).optional(),
+  image: z.string().min(1, "Main image is required"),
+  images: z.array(z.string()).optional(),
   highlights: z.array(z.string()).optional(),
-  itinerary: z.array(itineraryDaySchema).min(1, "At least one day is required"),
+  itinerary: z.array(itineraryDaySchema).min(1, "At least one itinerary day is required. Click 'Add Day' to create the first day."),
   included: z.array(z.string()).optional(),
   excluded: z.array(z.string()).optional(),
   minTravelers: z.number().int().min(1, "Minimum travelers must be at least 1"),
@@ -38,7 +38,7 @@ export const packageSchema = z.object({
     .number()
     .int()
     .min(1, "Maximum travelers must be at least 1"),
-  difficulty: z.enum(["EASY", "MODERATE", "CHALLENGING", "DIFFICULT"]),
+  difficulty: z.enum(["EASY", "MODERATE", "CHALLENGING"]),
   featured: z.boolean().optional(),
   popular: z.boolean().optional(),
   active: z.boolean().optional(),
@@ -78,10 +78,5 @@ export const DIFFICULTY_LEVELS = [
     value: "CHALLENGING",
     label: "Challenging",
     description: "Good fitness level required",
-  },
-  {
-    value: "DIFFICULT",
-    label: "Difficult",
-    description: "Excellent fitness level required",
   },
 ] as const;

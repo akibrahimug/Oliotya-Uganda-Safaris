@@ -19,7 +19,7 @@ export default async function AboutPage() {
     heroSection,
     storySection,
     communitySection,
-    statsData,
+    statsSection,
     valuesData,
     teamMembers,
     ctaSection,
@@ -36,9 +36,9 @@ export default async function AboutPage() {
       where: { status: "PUBLISHED" },
       orderBy: { publishedAt: "desc" },
     }),
-    prisma.aboutStats.findMany({
-      where: { active: true },
-      orderBy: { displayOrder: "asc" },
+    prisma.aboutStats.findFirst({
+      where: { status: "PUBLISHED" },
+      orderBy: { publishedAt: "desc" },
     }),
     prisma.aboutValue.findMany({
       where: { active: true },
@@ -68,7 +68,7 @@ export default async function AboutPage() {
       {communitySection && <AboutCommunitySection data={communitySection} />}
 
       {/* Stats Section */}
-      {statsData.length > 0 && <AboutStatsSection stats={statsData} />}
+      {statsSection && <AboutStatsSection data={statsSection} />}
 
       {/* Team Section */}
       {teamMembers.length > 0 && <AboutTeamSection members={teamMembers} />}
