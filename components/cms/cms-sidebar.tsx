@@ -20,6 +20,8 @@ import {
     ArrowLeft,
     ChevronLeft,
     ChevronRight,
+    Calendar,
+    MessageSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -64,6 +66,16 @@ const navigation = [
         name: "Destinations",
         href: "/cms/destinations",
         icon: MapPin,
+    },
+    {
+        name: "Bookings",
+        href: "/cms/bookings",
+        icon: Calendar,
+    },
+    {
+        name: "Inquiries",
+        href: "/cms/inquiries",
+        icon: MessageSquare,
     },
     {
         name: "FAQs",

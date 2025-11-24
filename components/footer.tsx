@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Facebook,
@@ -12,15 +12,27 @@ import {
   Send,
   CheckCircle2,
   Shield,
+  Linkedin,
+  Youtube,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { fetchSiteSettingsClient, type SiteSettings } from "@/lib/settings";
 
 export function Footer() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [settings, setSettings] = useState<SiteSettings | null>(null);
+
+  // Default logo URL
+  const defaultLogo = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev/nambi-uganda-safaris/images/fox_logo.webp";
+
+  // Fetch settings on mount
+  useEffect(() => {
+    fetchSiteSettingsClient().then(setSettings);
+  }, []);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,10 +70,10 @@ export function Footer() {
         <div className="container mx-auto px-4 lg:px-8 py-12">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="font-inter text-2xl md:text-3xl font-bold mb-3">
-              Subscribe to Our Newsletter
+              {settings?.newsletter?.title || "Subscribe to Our Newsletter"}
             </h3>
             <p className="text-muted-foreground mb-6">
-              Get exclusive travel tips, special offers, and updates on Uganda's best safari experiences
+              {settings?.newsletter?.description || "Get exclusive travel tips, special offers, and updates on Uganda's best safari experiences"}
             </p>
 
             {submitSuccess && (
@@ -110,36 +122,68 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img
-                src={process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp"}
-                alt="Nambi Uganda Safaris Logo"
+                src={settings?.brand?.logo || defaultLogo}
+                alt={`${settings?.brand?.siteName || "Nambi Uganda Safaris"} Logo`}
                 className="w-12 h-12 rounded-full object-cover"
               />
               <span className="font-inter text-xl font-bold">
-                Nambi Uganda Safaris
+                {settings?.brand?.siteName || "Nambi Uganda Safaris"}
               </span>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.
+              {settings?.footer?.description || "Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures."}
             </p>
             <div className="flex gap-3">
-              <Link
-                href="#"
-                className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
-              >
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link
-                href="#"
-                className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
-              >
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link
-                href="#"
-                className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
-              >
-                <Twitter className="h-5 w-5" />
-              </Link>
+              {settings?.social?.facebook && (
+                <Link
+                  href={settings.social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
+                >
+                  <Facebook className="h-5 w-5" />
+                </Link>
+              )}
+              {settings?.social?.instagram && (
+                <Link
+                  href={settings.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
+                >
+                  <Instagram className="h-5 w-5" />
+                </Link>
+              )}
+              {settings?.social?.twitter && (
+                <Link
+                  href={settings.social.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
+                >
+                  <Twitter className="h-5 w-5" />
+                </Link>
+              )}
+              {settings?.social?.linkedin && (
+                <Link
+                  href={settings.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </Link>
+              )}
+              {settings?.social?.youtube && (
+                <Link
+                  href={settings.social.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
+                >
+                  <Youtube className="h-5 w-5" />
+                </Link>
+              )}
             </div>
           </div>
 
@@ -233,49 +277,55 @@ export function Footer() {
           <div>
             <h3 className="font-inter text-lg font-bold mb-4">Get In Touch</h3>
             <ul className="space-y-4">
-              <li>
-                <div className="flex items-start gap-3 text-muted-foreground group">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <MapPin className="h-5 w-5 text-primary" />
+              {settings?.contact?.address && (
+                <li>
+                  <div className="flex items-start gap-3 text-muted-foreground group">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <MapPin className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground mb-1">Office</p>
+                      <p className="text-sm">{settings.contact.address}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-foreground mb-1">Office</p>
-                    <p className="text-sm">Kampala, Uganda</p>
+                </li>
+              )}
+              {settings?.contact?.phone && (
+                <li>
+                  <div className="flex items-start gap-3 text-muted-foreground group">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <Phone className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground mb-1">Phone</p>
+                      <a
+                        href={`tel:${settings.contact.phone.replace(/\s/g, '')}`}
+                        className="text-sm hover:text-primary transition-colors"
+                      >
+                        {settings.contact.phone}
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-3 text-muted-foreground group">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <Phone className="h-5 w-5 text-primary" />
+                </li>
+              )}
+              {settings?.contact?.email && (
+                <li>
+                  <div className="flex items-start gap-3 text-muted-foreground group">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground mb-1">Email</p>
+                      <a
+                        href={`mailto:${settings.contact.email}`}
+                        className="text-sm hover:text-primary transition-colors"
+                      >
+                        {settings.contact.email}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-foreground mb-1">Phone</p>
-                    <a
-                      href="tel:+256788048210"
-                      className="text-sm hover:text-primary transition-colors"
-                    >
-                      +256 788048210
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-3 text-muted-foreground group">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground mb-1">Email</p>
-                    <a
-                      href="mailto:info@nambiuganda.com"
-                      className="text-sm hover:text-primary transition-colors"
-                    >
-                      info@nambiuganda.com
-                    </a>
-                  </div>
-                </div>
-              </li>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -284,7 +334,7 @@ export function Footer() {
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              &copy; 2025 Nambi Uganda Safaris. All rights reserved.
+              {settings?.footer?.copyright || "© 2025 Nambi Uganda Safaris. All rights reserved."}
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground items-center">
               <Link href="/about" className="hover:text-primary transition-colors">

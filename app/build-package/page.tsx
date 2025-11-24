@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/header";
@@ -11,7 +11,6 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { allDestinationsOnly } from "@/lib/destinations-only-data";
 import {
   CheckCircle2,
   Plus,
@@ -21,6 +20,16 @@ import {
   DollarSign,
   Send,
 } from "lucide-react";
+
+interface Destination {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+  description: string;
+  country: string;
+  region: string | null;
+}
 
 interface SelectedDestination {
   id: number;
@@ -33,6 +42,8 @@ interface SelectedDestination {
 export default function BuildPackagePage() {
   const { user, isLoaded, isSignedIn } = useUser();
   const router = useRouter();
+  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [loadingDestinations, setLoadingDestinations] = useState(true);
   const [selectedDestinations, setSelectedDestinations] = useState<SelectedDestination[]>([]);
   const [packageName, setPackageName] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState(2);
@@ -40,6 +51,25 @@ export default function BuildPackagePage() {
   const [budget, setBudget] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState(""); // Bot detection
+
+  // Fetch destinations on mount
+  useEffect(() => {
+    fetchDestinations();
+  }, []);
+
+  const fetchDestinations = async () => {
+    try {
+      const response = await fetch('/api/cms/destinations');
+      if (!response.ok) throw new Error('Failed to fetch destinations');
+      const data = await response.json();
+      setDestinations(data.destinations || []);
+    } catch (error) {
+      console.error('Error fetching destinations:', error);
+    } finally {
+      setLoadingDestinations(false);
+    }
+  };
 
   // Redirect if not signed in
   if (isLoaded && !isSignedIn) {
@@ -47,7 +77,7 @@ export default function BuildPackagePage() {
     return null;
   }
 
-  const toggleDestination = (dest: typeof allDestinationsOnly[0]) => {
+  const toggleDestination = (dest: Destination) => {
     const exists = selectedDestinations.find((d) => d.id === dest.id);
     if (exists) {
       setSelectedDestinations(selectedDestinations.filter((d) => d.id !== dest.id));
@@ -77,6 +107,12 @@ export default function BuildPackagePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Bot detection
+    if (honeypot) {
+      return;
+    }
+
     if (selectedDestinations.length === 0) {
       alert("Please select at least one destination");
       return;
@@ -96,18 +132,38 @@ export default function BuildPackagePage() {
           travelDate: travelDate ? new Date(travelDate) : null,
           budget: budget ? parseFloat(budget) : null,
           specialRequests,
+          website: honeypot, // Include honeypot for server-side check
         }),
       });
+
+      const data = await response.json();
 
       if (response.ok) {
         alert("Your custom package request has been submitted! We'll send you a quote soon.");
         router.push("/");
       } else {
-        alert("Failed to submit package. Please try again.");
+        // Handle specific error types
+        if (response.status === 400 && data.details) {
+          const validationErrors = data.details
+            .map((err: any) => err.message)
+            .join(", ");
+          alert(`Validation failed: ${validationErrors}`);
+        } else if (response.status === 429) {
+          alert("Too many requests. Please wait an hour and try again.");
+        } else if (response.status === 401) {
+          alert("You must be signed in to create a custom package.");
+          router.push("/sign-in?redirect_url=/build-package");
+        } else {
+          alert(data.error || "Failed to submit package. Please try again.");
+        }
       }
     } catch (error) {
       console.error("Error submitting package:", error);
-      alert("An error occurred. Please try again.");
+      alert(
+        error instanceof Error
+          ? error.message
+          : "An error occurred. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -138,7 +194,15 @@ export default function BuildPackagePage() {
                     Step 1: Select Destinations
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {allDestinationsOnly.map((dest) => {
+                    {loadingDestinations ? (
+                      <div className="col-span-2 text-center py-8">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto" />
+                      </div>
+                    ) : destinations.length === 0 ? (
+                      <div className="col-span-2 text-center py-8 text-muted-foreground">
+                        No destinations available. Please create destinations in the CMS first.
+                      </div>
+                    ) : destinations.map((dest) => {
                       const isSelected = selectedDestinations.some((d) => d.id === dest.id);
                       return (
                         <Card
@@ -332,6 +396,17 @@ export default function BuildPackagePage() {
                             onChange={(e) => setSpecialRequests(e.target.value)}
                           />
                         </div>
+
+                        {/* Honeypot field - hidden from real users */}
+                        <input
+                          type="text"
+                          name="website"
+                          value={honeypot}
+                          onChange={(e) => setHoneypot(e.target.value)}
+                          style={{ display: "none" }}
+                          tabIndex={-1}
+                          autoComplete="off"
+                        />
                       </div>
 
                       <Button

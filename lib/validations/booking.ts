@@ -26,10 +26,23 @@ export const bookingFormSchema = z.object({
     .regex(/^[\d\s\-\+\(\)]+$/, 'Invalid phone format')
     .trim(),
 
-  // Trip Details
+  country: z.string()
+    .min(2, 'Country is required')
+    .max(100, 'Country name too long')
+    .trim(),
+
+  // Trip Details - either packageId or destinationId must be provided
+  bookingType: z.enum(['PACKAGE', 'DESTINATION']),
+
+  packageId: z.number()
+    .int('Invalid package')
+    .positive('Invalid package')
+    .optional(),
+
   destinationId: z.number()
     .int('Invalid destination')
-    .positive('Invalid destination'),
+    .positive('Invalid destination')
+    .optional(),
 
   numberOfTravelers: z.number()
     .int('Number of travelers must be a whole number')
@@ -50,8 +63,24 @@ export const bookingFormSchema = z.object({
 
   travelDateTo: z.string(),
 
+  // Payment Info (optional for initial booking)
+  paymentMethod: z.string().optional(),
+  paymentReference: z.string().optional(),
+
   // Honeypot field
   website: z.string().optional(),
+}).refine((data) => {
+  // Validate that packageId or destinationId matches bookingType
+  if (data.bookingType === 'PACKAGE' && !data.packageId) {
+    return false;
+  }
+  if (data.bookingType === 'DESTINATION' && !data.destinationId) {
+    return false;
+  }
+  return true;
+}, {
+  message: 'Package or destination must be selected based on booking type',
+  path: ['packageId'],
 }).refine((data) => {
   const from = new Date(data.travelDateFrom);
   const to = new Date(data.travelDateTo);

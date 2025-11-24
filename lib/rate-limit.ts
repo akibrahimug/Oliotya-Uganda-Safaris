@@ -52,6 +52,16 @@ export const searchRateLimit = redis
     })
   : mockRateLimit;
 
+// Custom package rate limiter: 5 requests per hour (same as bookings)
+export const customPackageRateLimit = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(5, '1 h'),
+      analytics: true,
+      prefix: 'ratelimit:custom-package',
+    })
+  : mockRateLimit;
+
 // Helper function to get client IP from headers
 export function getClientIp(headers: Headers): string {
   return headers.get('x-forwarded-for')?.split(',')[0].trim()
