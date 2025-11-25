@@ -47,7 +47,7 @@ export function ContactFormComponent() {
       formData.name.trim().length >= 2 &&
       formData.email.trim().length > 0 &&
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
-      formData.subject.length > 0 &&
+      formData.subject.trim().length > 0 &&
       formData.message.trim().length >= 10
     );
   };
