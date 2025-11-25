@@ -124,7 +124,25 @@ export function sanitizeInput(input: string): string {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#x27;")
-    .replace(/\//g, "&#x2F;");
+    .replace(/\//g, "&#x2F;")
+    .trim();
+}
+
+/**
+ * Sanitize all fields in an object
+ */
+export function sanitizeObject<T extends Record<string, any>>(obj: T): T {
+  const sanitized = {} as T;
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === 'string') {
+      sanitized[key as keyof T] = sanitizeInput(value) as T[keyof T];
+    } else {
+      sanitized[key as keyof T] = value;
+    }
+  }
+
+  return sanitized;
 }
 
 // Email validation helper

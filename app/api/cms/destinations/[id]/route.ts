@@ -74,10 +74,23 @@ export async function PATCH(
       );
     }
 
+    // Merge with existing data to preserve fields not sent in the update
+    const updateData = {
+      ...body,
+      // Ensure arrays and JSON fields are properly handled
+      images: body.images !== undefined ? body.images : existing.images,
+      gallery2Images: body.gallery2Images !== undefined ? body.gallery2Images : existing.gallery2Images,
+      historyContent: body.historyContent !== undefined ? body.historyContent : existing.historyContent,
+      wildlifeMammals: body.wildlifeMammals !== undefined ? body.wildlifeMammals : existing.wildlifeMammals,
+      wildlifeBirds: body.wildlifeBirds !== undefined ? body.wildlifeBirds : existing.wildlifeBirds,
+      wildlifeFlora: body.wildlifeFlora !== undefined ? body.wildlifeFlora : existing.wildlifeFlora,
+      cultureExperiences: body.cultureExperiences !== undefined ? body.cultureExperiences : existing.cultureExperiences,
+    };
+
     // Update destination
     const destination = await prisma.destination.update({
       where: { id },
-      data: body,
+      data: updateData,
     });
 
     // Log the action

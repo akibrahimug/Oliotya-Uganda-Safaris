@@ -6,26 +6,60 @@ import { PackageCard } from "@/components/package-card";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
-import { allPackages } from "@/lib/packages-data";
 import type { SearchFilters } from "@/app/page";
 
 interface PopularPlacesProps {
   filters: SearchFilters | null;
 }
 
+interface Package {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  duration: string;
+  price: number;
+  image: string;
+  minTravelers: number;
+  maxTravelers: number;
+  difficulty: string;
+  popular: boolean;
+}
+
 export function PopularPlaces({ filters }: PopularPlacesProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const popularPackages = useRef(allPackages.filter((pkg) => pkg.popular === true));
-  const [filteredPlaces, setFilteredPlaces] = useState(popularPackages.current);
+  const [allPackages, setAllPackages] = useState<Package[]>([]);
+  const [filteredPlaces, setFilteredPlaces] = useState<Package[]>([]);
+  const [loading, setLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Fetch packages from the database
   useEffect(() => {
-    if (!filters) {
-      setFilteredPlaces(popularPackages.current);
+    const fetchPackages = async () => {
+      try {
+        const response = await fetch("/api/cms/packages");
+        if (!response.ok) throw new Error("Failed to fetch packages");
+        const data = await response.json();
+        const popularPkgs = data.packages.filter((pkg: Package) => pkg.popular === true);
+        setAllPackages(popularPkgs);
+        setFilteredPlaces(popularPkgs);
+      } catch (error) {
+        console.error("Error fetching packages:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPackages();
+  }, []);
+
+  useEffect(() => {
+    if (!filters || allPackages.length === 0) {
+      setFilteredPlaces(allPackages);
       return;
     }
 
-    const filtered = popularPackages.current.filter((pkg) => {
+    const filtered = allPackages.filter((pkg) => {
       // Filter by package name or category (case-insensitive partial match)
       const matchesDestination =
         pkg.name.toLowerCase().includes(filters.destination.toLowerCase()) ||
@@ -42,7 +76,7 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
     });
 
     setFilteredPlaces(filtered);
-  }, [filters]);
+  }, [filters, allPackages]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -58,6 +92,18 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
     container.addEventListener("scroll", handleScroll);
     return () => container.removeEventListener("scroll", handleScroll);
   }, [filteredPlaces]);
+
+  if (loading) {
+    return (
+      <section id="search-results" className="py-20 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="search-results" className="py-20 bg-background">

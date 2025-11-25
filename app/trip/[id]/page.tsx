@@ -1,19 +1,17 @@
 "use client";
 
 import { useParams, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { allDestinations } from "@/lib/destinations-data";
+import { DestinationGallery } from "@/components/destination-gallery";
 import {
-  Star,
   Users,
   Clock,
-  MapPin,
   CheckCircle,
-  Calendar,
   Plane,
   Hotel,
   Eye,
@@ -21,11 +19,52 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+interface Package {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  duration: string;
+  price: number;
+  description: string;
+  image: string;
+  images: string[];
+  gallery2Images: string[];
+  highlights: string[];
+  itinerary: Array<{ day: number; title: string; description: string }>;
+  included: string[];
+  excluded: string[];
+  minTravelers: number;
+  maxTravelers: number;
+  difficulty: string;
+}
+
 export default function TripDetailPage() {
   const params = useParams();
   const searchParams = useSearchParams();
   const tripId = Number.parseInt(params.id as string);
-  const trip = allDestinations.find((dest) => dest.id === tripId);
+  const [trip, setTrip] = useState<Package | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPackage();
+  }, [tripId]);
+
+  const fetchPackage = async () => {
+    try {
+      const response = await fetch(`/api/packages`);
+      if (!response.ok) throw new Error("Failed to fetch packages");
+
+      const data = await response.json();
+      const foundPkg = data.packages.find((p: Package) => p.id === tripId);
+
+      setTrip(foundPkg || null);
+    } catch (error) {
+      console.error("Error fetching package:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Get search data from URL params
   const travelers = searchParams.get("travelers");
@@ -39,6 +78,20 @@ export default function TripDetailPage() {
     dateTo ? `${travelers || dateFrom ? "&" : ""}dateTo=${dateTo}` : ""
   }`;
 
+  if (loading) {
+    return (
+      <main className="min-h-screen">
+        <Header />
+        <div className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+          </div>
+        </div>
+        <Footer />
+      </main>
+    );
+  }
+
   if (!trip) {
     return (
       <main className="min-h-screen">
@@ -51,8 +104,8 @@ export default function TripDetailPage() {
             <p className="text-muted-foreground mb-8">
               The trip you're looking for doesn't exist.
             </p>
-            <Link href="/destinations">
-              <Button size="lg">View All Destinations</Button>
+            <Link href="/packages">
+              <Button size="lg">View All Packages</Button>
             </Link>
           </div>
         </div>
@@ -81,41 +134,33 @@ export default function TripDetailPage() {
           </h1>
           <div className="flex items-center gap-6 text-foreground/90">
             <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 fill-current text-primary" />
-              <span className="font-semibold">{trip.rating}.0</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5 text-primary" />
-              <span>{trip.country}</span>
-            </div>
-            <div className="flex items-center gap-2">
               <Clock className="h-5 w-5 text-primary" />
               <span>{trip.duration}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Users className="h-5 w-5 text-primary" />
+              <span>{trip.minTravelers}-{trip.maxTravelers} travelers</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Image Gallery */}
-      {trip.images && trip.images.length > 0 && (
+      {trip.images && trip.images.length > 1 && (
         <section className="py-8 bg-muted/30">
           <div className="container mx-auto px-4 lg:px-8">
-            <h2 className="font-inter text-2xl font-bold mb-6">Gallery</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {trip.images.map((image, index) => (
-                <div
-                  key={index}
-                  className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer"
-                >
-                  <img
-                    src={image}
-                    alt={`${trip.name} - Image ${index + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
-                </div>
-              ))}
-            </div>
+            <h2 className="font-inter text-2xl font-bold mb-6">Package Gallery</h2>
+            <DestinationGallery images={trip.images} columns={3} />
+          </div>
+        </section>
+      )}
+
+      {/* Image Gallery 2 */}
+      {trip.gallery2Images && trip.gallery2Images.length > 1 && (
+        <section className="py-8 bg-muted/30">
+          <div className="container mx-auto px-4 lg:px-8">
+            <h2 className="font-inter text-2xl font-bold mb-6">More Package Photos</h2>
+            <DestinationGallery images={trip.gallery2Images} columns={3} />
           </div>
         </section>
       )}
@@ -132,55 +177,45 @@ export default function TripDetailPage() {
               </p>
             </div>
 
-            <div>
-              <h2 className="font-inter text-3xl font-bold mb-4">
-                What's Included
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Professional Guide</p>
-                    <p className="text-sm text-muted-foreground">
-                      Expert local guides
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Transportation</p>
-                    <p className="text-sm text-muted-foreground">
-                      All transfers included
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Accommodation</p>
-                    <p className="text-sm text-muted-foreground">
-                      Quality lodging
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Meals</p>
-                    <p className="text-sm text-muted-foreground">
-                      Daily breakfast & lunch
-                    </p>
-                  </div>
+            {/* Highlights */}
+            {trip.highlights && trip.highlights.length > 0 && (
+              <div>
+                <h2 className="font-inter text-3xl font-bold mb-4">
+                  Safari Highlights
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {trip.highlights.map((highlight, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-muted-foreground">{highlight}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* What's Included */}
+            {trip.included && trip.included.length > 0 && (
+              <div>
+                <h2 className="font-inter text-3xl font-bold mb-4">
+                  What's Included
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {trip.included.map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div>
               <h2 className="font-inter text-3xl font-bold mb-4">
                 Trip Details
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 gap-6">
                 <div>
                   <div className="flex items-center gap-2 text-muted-foreground mb-2">
                     <Clock className="h-5 w-5" />
@@ -193,16 +228,7 @@ export default function TripDetailPage() {
                     <Users className="h-5 w-5" />
                     <span className="text-sm">Group Size</span>
                   </div>
-                  <p className="font-semibold text-lg">Max {trip.groupSize}</p>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                    <Calendar className="h-5 w-5" />
-                    <span className="text-sm">Min Travelers</span>
-                  </div>
-                  <p className="font-semibold text-lg">
-                    {trip.minTravelers || 1}
-                  </p>
+                  <p className="font-semibold text-lg">{trip.minTravelers}-{trip.maxTravelers} people</p>
                 </div>
               </div>
             </div>
@@ -316,7 +342,7 @@ export default function TripDetailPage() {
                     Starting from
                   </p>
                   <p className="text-4xl font-bold text-primary">
-                    ${trip.price.toFixed(2)}
+                    ${Number(trip.price).toFixed(2)}
                   </p>
                   <p className="text-sm text-muted-foreground">per person</p>
                 </div>
@@ -329,15 +355,8 @@ export default function TripDetailPage() {
                   <div className="flex items-center justify-between py-3 border-b">
                     <span className="text-muted-foreground">Group Size</span>
                     <span className="font-semibold">
-                      Up to {trip.groupSize}
+                      {trip.minTravelers}-{trip.maxTravelers} people
                     </span>
-                  </div>
-                  <div className="flex items-center justify-between py-3 border-b">
-                    <span className="text-muted-foreground">Rating</span>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-current text-primary" />
-                      <span className="font-semibold">{trip.rating}.0</span>
-                    </div>
                   </div>
                 </div>
 

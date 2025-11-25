@@ -1,25 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { fetchSiteSettingsClient, type SiteSettings } from "@/lib/settings";
+import { useRouter, usePathname } from "next/navigation";
 
-export function Header() {
+interface HeaderProps {
+  showBackButton?: boolean;
+  backButtonText?: string;
+  onBackClick?: () => void;
+}
+
+export function Header({ showBackButton = false, backButtonText = "Back", onBackClick }: HeaderProps = {}) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [settings, setSettings] = useState<SiteSettings | null>(null);
+  const [logoUrl, setLogoUrl] = useState<string>("");
+  const [siteName, setSiteName] = useState<string>("Nambi Uganda Safaris");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Default logo URL
   const defaultLogo = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev/nambi-uganda-safaris/images/fox_logo.webp";
 
   // Fetch settings on mount
   useEffect(() => {
-    fetchSiteSettingsClient().then((data) => {
-      console.log("Header: Fetched settings", data);
-      setSettings(data);
-    });
+    setIsLoading(true);
+    fetchSiteSettingsClient()
+      .then((data) => {
+        console.log("Header: Fetched settings", data);
+        setLogoUrl(data?.brand?.logo || defaultLogo);
+        setSiteName(data?.brand?.siteName || "Nambi Uganda Safaris");
+      })
+      .catch((error) => {
+        console.error("Failed to fetch settings:", error);
+        setLogoUrl(defaultLogo);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -69,21 +90,48 @@ export function Header() {
             }`}
           >
             <Link href="/" className="flex items-center gap-2 group">
-              <img
-                src={settings?.brand?.logo || defaultLogo}
-                alt={`${settings?.brand?.siteName || "Nambi Uganda Safaris"} Logo`}
-                className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
-              />
+              {!isLoading && logoUrl && (
+                <img
+                  src={logoUrl}
+                  alt={`${siteName} Logo`}
+                  className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
+                  onError={(e) => {
+                    // Fallback to default logo if image fails to load
+                    e.currentTarget.src = defaultLogo;
+                  }}
+                />
+              )}
+              {isLoading && (
+                <div className="w-10 h-10 rounded-full bg-muted animate-pulse" />
+              )}
               <span
                 className={`font-serif text-2xl font-bold transition-colors ${
                   scrolled ? "text-foreground" : "text-background"
                 }`}
               >
-                {settings?.brand?.siteName || "Nambi Uganda Safaris"}
+                {siteName}
               </span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-8">
+              {showBackButton && (
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    if (onBackClick) {
+                      onBackClick();
+                    } else {
+                      router.back();
+                    }
+                  }}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    scrolled ? "text-foreground" : "text-background"
+                  }`}
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  {backButtonText}
+                </Button>
+              )}
               <Link
                 href="/about"
                 className={`text-sm font-medium transition-colors hover:text-primary ${
@@ -158,13 +206,21 @@ export function Header() {
                 className="flex items-center gap-2 group"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <img
-                  src={settings?.brand?.logo || defaultLogo}
-                  alt={`${settings?.brand?.siteName || "Nambi Uganda Safaris"} Logo`}
-                  className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
-                />
+                {!isLoading && logoUrl && (
+                  <img
+                    src={logoUrl}
+                    alt={`${siteName} Logo`}
+                    className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
+                    onError={(e) => {
+                      e.currentTarget.src = defaultLogo;
+                    }}
+                  />
+                )}
+                {isLoading && (
+                  <div className="w-10 h-10 rounded-full bg-muted animate-pulse" />
+                )}
                 <span className="font-serif text-xl font-bold text-background">
-                  {settings?.brand?.siteName || "Nambi Uganda Safaris"}
+                  {siteName}
                 </span>
               </Link>
               <Button
@@ -179,6 +235,23 @@ export function Header() {
 
             {/* Mobile menu navigation */}
             <nav className="flex flex-col gap-2 py-8">
+              {showBackButton && (
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (onBackClick) {
+                      onBackClick();
+                    } else {
+                      router.back();
+                    }
+                  }}
+                  className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors justify-start"
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  {backButtonText}
+                </Button>
+              )}
               <Link
                 href="/"
                 className="text-background text-lg font-medium py-4 px-4 rounded-lg hover:bg-background/10 transition-colors"

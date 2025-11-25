@@ -93,21 +93,7 @@ export default function BookingPage() {
 
   return (
     <main className="min-h-screen bg-muted/30">
-      <Header />
-
-      {/* Back Navigation */}
-      <div className="bg-background border-b">
-        <div className="container mx-auto px-4 lg:px-8 py-4">
-          <Button
-            variant="ghost"
-            onClick={() => router.back()}
-            className="text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Package
-          </Button>
-        </div>
-      </div>
+      <Header showBackButton backButtonText="Back to Package" />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary to-primary/80 text-primary-foreground py-16">

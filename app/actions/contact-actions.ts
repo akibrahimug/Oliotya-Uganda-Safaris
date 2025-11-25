@@ -3,9 +3,13 @@
 import { headers } from 'next/headers';
 import { contactFormSchema } from '@/lib/validations/contact';
 import { contactRateLimit, getClientIp } from '@/lib/rate-limit';
-import { sanitizeObject } from '@/lib/sanitize';
+import { sanitizeObject } from '@/lib/validations';
 import { handleError, handleRateLimitError, handleValidationError, logSecurityEvent } from '@/lib/error-handler';
 import { prisma } from '@/lib/db';
+import { sendEmail, ADMIN_EMAIL } from '@/lib/email';
+import { renderAsync } from '@react-email/components';
+import ContactNotificationEmail from '@/emails/contact-notification';
+import ContactConfirmationEmail from '@/emails/contact-confirmation';
 
 export async function submitContactForm(formData: FormData) {
   try {
@@ -75,8 +79,10 @@ export async function submitContactForm(formData: FormData) {
       },
     });
 
-    // TODO: Send email notification
-    // await sendContactNotification(inquiry);
+    // Send email notifications (don't await - fire and forget to avoid slowing down response)
+    sendContactEmails(inquiry).catch(error =>
+      console.error('Error sending contact emails:', error)
+    );
 
     return {
       success: true,
@@ -85,5 +91,51 @@ export async function submitContactForm(formData: FormData) {
     };
   } catch (error) {
     return handleError(error, 'Contact form submission');
+  }
+}
+
+// Helper function to send contact form emails
+async function sendContactEmails(inquiry: {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}) {
+  try {
+    // Send notification to admin
+    const adminHtml = await renderAsync(
+      ContactNotificationEmail({
+        name: inquiry.name,
+        email: inquiry.email,
+        subject: inquiry.subject,
+        message: inquiry.message,
+        inquiryId: inquiry.id,
+      })
+    );
+
+    await sendEmail({
+      to: ADMIN_EMAIL,
+      subject: `New Contact Form: ${inquiry.subject}`,
+      html: adminHtml,
+      replyTo: inquiry.email,
+    });
+
+    // Send confirmation to customer
+    const customerHtml = await renderAsync(
+      ContactConfirmationEmail({
+        name: inquiry.name,
+        subject: inquiry.subject,
+      })
+    );
+
+    await sendEmail({
+      to: inquiry.email,
+      subject: 'Thank you for contacting Fox Adventures',
+      html: customerHtml,
+    });
+  } catch (error) {
+    console.error('Failed to send contact emails:', error);
+    throw error;
   }
 }

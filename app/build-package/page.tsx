@@ -19,6 +19,10 @@ import {
   Users,
   DollarSign,
   Send,
+  AlertCircle,
+  Mail,
+  Phone,
+  User,
 } from "lucide-react";
 
 interface Destination {
@@ -46,12 +50,16 @@ export default function BuildPackagePage() {
   const [loadingDestinations, setLoadingDestinations] = useState(true);
   const [selectedDestinations, setSelectedDestinations] = useState<SelectedDestination[]>([]);
   const [packageName, setPackageName] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState(2);
   const [travelDate, setTravelDate] = useState("");
   const [budget, setBudget] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState(""); // Bot detection
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Fetch destinations on mount
   useEffect(() => {
@@ -105,6 +113,104 @@ export default function BuildPackagePage() {
 
   const totalDays = selectedDestinations.reduce((sum, dest) => sum + dest.days, 0);
 
+  const updateField = (field: string, value: string | number) => {
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+
+    // Update the appropriate state
+    switch (field) {
+      case "name":
+        setName(value as string);
+        break;
+      case "email":
+        setEmail(value as string);
+        break;
+      case "phone":
+        setPhone(value as string);
+        break;
+      case "numberOfPeople":
+        setNumberOfPeople(value as number);
+        break;
+      case "travelDate":
+        setTravelDate(value as string);
+        break;
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    // Name validation
+    if (!name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (name.length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    } else if (!/^[a-zA-Z\s'-]+$/.test(name)) {
+      newErrors.name = "Name contains invalid characters";
+    }
+
+    // Email validation
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    // Phone validation
+    if (!phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (phone.length < 10) {
+      newErrors.phone = "Phone number is too short";
+    } else if (!/^[\d\s\-\+\(\)]+$/.test(phone)) {
+      newErrors.phone = "Invalid phone number format";
+    }
+
+    // Number of people validation
+    if (numberOfPeople < 1) {
+      newErrors.numberOfPeople = "At least 1 person is required";
+    } else if (numberOfPeople > 50) {
+      newErrors.numberOfPeople = "Maximum 50 people allowed";
+    }
+
+    // Travel date validation
+    if (travelDate) {
+      const selectedDate = new Date(travelDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (selectedDate < today) {
+        newErrors.travelDate = "Travel date cannot be in the past";
+      }
+    }
+
+    // Destinations validation
+    if (selectedDestinations.length === 0) {
+      newErrors.destinations = "Please select at least one destination";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Check if form is complete and valid for button state
+  const isFormValid = () => {
+    return (
+      name.trim().length >= 2 &&
+      email.trim().length > 0 &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+      phone.trim().length >= 10 &&
+      selectedDestinations.length > 0 &&
+      numberOfPeople >= 1 &&
+      numberOfPeople <= 50
+    );
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -113,8 +219,9 @@ export default function BuildPackagePage() {
       return;
     }
 
-    if (selectedDestinations.length === 0) {
-      alert("Please select at least one destination");
+    // Validate form
+    if (!validateForm()) {
+      alert("Please correct the errors in the form before submitting.");
       return;
     }
 
@@ -126,6 +233,9 @@ export default function BuildPackagePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: packageName || "Custom Safari Package",
+          contactName: name,
+          email,
+          phone,
           destinations: selectedDestinations,
           duration: `${totalDays} Days`,
           numberOfPeople,
@@ -324,99 +434,205 @@ export default function BuildPackagePage() {
                             {selectedDestinations.length}
                           </span>
                         </div>
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">Total Duration</span>
-                          <span className="font-semibold">{totalDays} days</span>
-                        </div>
+                        {errors.destinations && (
+                          <div className="flex items-center gap-1 text-sm text-destructive font-medium">
+                            <AlertCircle className="h-4 w-4" />
+                            <span>{errors.destinations}</span>
+                          </div>
+                        )}
                       </div>
 
                       <div className="border-t pt-4 space-y-4">
+                        {/* Contact Information */}
                         <div>
-                          <Label htmlFor="packageName">Package Name (Optional)</Label>
-                          <Input
-                            id="packageName"
-                            placeholder="My Custom Safari"
-                            value={packageName}
-                            onChange={(e) => setPackageName(e.target.value)}
-                          />
-                        </div>
-
-                        <div>
-                          <Label htmlFor="numberOfPeople">
-                            <Users className="h-4 w-4 inline mr-2" />
-                            Number of People
+                          <Label htmlFor="name" className={errors.name ? "text-destructive" : ""}>
+                            <User className="h-4 w-4 inline mr-2" />
+                            Your Name *
                           </Label>
                           <Input
-                            id="numberOfPeople"
-                            type="number"
-                            min="1"
-                            max="100"
-                            value={numberOfPeople}
-                            onChange={(e) => setNumberOfPeople(parseInt(e.target.value))}
+                            id="name"
+                            placeholder="John Doe"
+                            value={name}
+                            onChange={(e) => updateField("name", e.target.value)}
                             required
+                            className={errors.name ? "border-destructive focus-visible:ring-destructive" : ""}
+                            aria-invalid={!!errors.name}
+                            aria-describedby={errors.name ? "name-error" : undefined}
                           />
+                          {errors.name && (
+                            <div id="name-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
+                              <AlertCircle className="h-4 w-4" />
+                              <span>{errors.name}</span>
+                            </div>
+                          )}
                         </div>
 
                         <div>
-                          <Label htmlFor="travelDate">
-                            <Calendar className="h-4 w-4 inline mr-2" />
-                            Preferred Travel Date
+                          <Label htmlFor="email" className={errors.email ? "text-destructive" : ""}>
+                            <Mail className="h-4 w-4 inline mr-2" />
+                            Email Address *
                           </Label>
                           <Input
-                            id="travelDate"
-                            type="date"
-                            value={travelDate}
-                            onChange={(e) => setTravelDate(e.target.value)}
+                            id="email"
+                            type="email"
+                            placeholder="john@example.com"
+                            value={email}
+                            onChange={(e) => updateField("email", e.target.value)}
+                            required
+                            className={errors.email ? "border-destructive focus-visible:ring-destructive" : ""}
+                            aria-invalid={!!errors.email}
+                            aria-describedby={errors.email ? "email-error" : undefined}
                           />
+                          {errors.email && (
+                            <div id="email-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
+                              <AlertCircle className="h-4 w-4" />
+                              <span>{errors.email}</span>
+                            </div>
+                          )}
                         </div>
 
                         <div>
-                          <Label htmlFor="budget">
-                            <DollarSign className="h-4 w-4 inline mr-2" />
-                            Budget per Person (Optional)
+                          <Label htmlFor="phone" className={errors.phone ? "text-destructive" : ""}>
+                            <Phone className="h-4 w-4 inline mr-2" />
+                            Phone Number *
                           </Label>
                           <Input
-                            id="budget"
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            placeholder="1000.00"
-                            value={budget}
-                            onChange={(e) => setBudget(e.target.value)}
+                            id="phone"
+                            type="tel"
+                            placeholder="+256 123 456 789"
+                            value={phone}
+                            onChange={(e) => updateField("phone", e.target.value)}
+                            required
+                            className={errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}
+                            aria-invalid={!!errors.phone}
+                            aria-describedby={errors.phone ? "phone-error" : undefined}
                           />
+                          {errors.phone && (
+                            <div id="phone-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
+                              <AlertCircle className="h-4 w-4" />
+                              <span>{errors.phone}</span>
+                            </div>
+                          )}
                         </div>
 
-                        <div>
-                          <Label htmlFor="specialRequests">Special Requests</Label>
-                          <Textarea
-                            id="specialRequests"
-                            placeholder="Any special requirements or preferences..."
-                            rows={4}
-                            value={specialRequests}
-                            onChange={(e) => setSpecialRequests(e.target.value)}
+                        <div className="border-t pt-4 space-y-4">
+                          <div>
+                            <Label htmlFor="packageName">Package Name (Optional)</Label>
+                            <Input
+                              id="packageName"
+                              placeholder="My Custom Safari"
+                              value={packageName}
+                              onChange={(e) => setPackageName(e.target.value)}
+                            />
+                          </div>
+
+                          <div>
+                            <Label htmlFor="numberOfPeople" className={errors.numberOfPeople ? "text-destructive" : ""}>
+                              <Users className="h-4 w-4 inline mr-2" />
+                              Number of People *
+                            </Label>
+                            <Input
+                              id="numberOfPeople"
+                              type="number"
+                              min="1"
+                              max="50"
+                              value={numberOfPeople}
+                              onChange={(e) => updateField("numberOfPeople", parseInt(e.target.value) || 1)}
+                              required
+                              className={errors.numberOfPeople ? "border-destructive focus-visible:ring-destructive" : ""}
+                              aria-invalid={!!errors.numberOfPeople}
+                              aria-describedby={errors.numberOfPeople ? "numberOfPeople-error" : undefined}
+                            />
+                            {errors.numberOfPeople && (
+                              <div id="numberOfPeople-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
+                                <AlertCircle className="h-4 w-4" />
+                                <span>{errors.numberOfPeople}</span>
+                              </div>
+                            )}
+                          </div>
+
+                          <div>
+                            <Label htmlFor="travelDate" className={errors.travelDate ? "text-destructive" : ""}>
+                              <Calendar className="h-4 w-4 inline mr-2" />
+                              Preferred Travel Date
+                            </Label>
+                            <Input
+                              id="travelDate"
+                              type="date"
+                              min={new Date().toISOString().split("T")[0]}
+                              value={travelDate}
+                              onChange={(e) => updateField("travelDate", e.target.value)}
+                              className={errors.travelDate ? "border-destructive focus-visible:ring-destructive" : ""}
+                              aria-invalid={!!errors.travelDate}
+                              aria-describedby={errors.travelDate ? "travelDate-error" : undefined}
+                            />
+                            {errors.travelDate && (
+                              <div id="travelDate-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
+                                <AlertCircle className="h-4 w-4" />
+                                <span>{errors.travelDate}</span>
+                              </div>
+                            )}
+                          </div>
+
+                          <div>
+                            <Label htmlFor="budget">
+                              <DollarSign className="h-4 w-4 inline mr-2" />
+                              Budget per Person (Optional)
+                            </Label>
+                            <Input
+                              id="budget"
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              placeholder="1000.00"
+                              value={budget}
+                              onChange={(e) => setBudget(e.target.value)}
+                            />
+                          </div>
+
+                          <div>
+                            <Label htmlFor="specialRequests">Special Requests</Label>
+                            <Textarea
+                              id="specialRequests"
+                              placeholder="Any special requirements or preferences..."
+                              rows={4}
+                              value={specialRequests}
+                              onChange={(e) => setSpecialRequests(e.target.value)}
+                            />
+                          </div>
+
+                          {/* Honeypot field - hidden from real users */}
+                          <input
+                            type="text"
+                            name="website"
+                            value={honeypot}
+                            onChange={(e) => setHoneypot(e.target.value)}
+                            style={{ display: "none" }}
+                            tabIndex={-1}
+                            autoComplete="off"
                           />
                         </div>
-
-                        {/* Honeypot field - hidden from real users */}
-                        <input
-                          type="text"
-                          name="website"
-                          value={honeypot}
-                          onChange={(e) => setHoneypot(e.target.value)}
-                          style={{ display: "none" }}
-                          tabIndex={-1}
-                          autoComplete="off"
-                        />
                       </div>
 
                       <Button
                         type="submit"
                         className="w-full"
                         size="lg"
-                        disabled={isSubmitting || selectedDestinations.length === 0}
+                        disabled={isSubmitting || !isFormValid()}
                       >
-                        <Send className="mr-2 h-4 w-4" />
-                        {isSubmitting ? "Submitting..." : "Request Quote"}
+                        {isSubmitting ? (
+                          <>
+                            <Send className="mr-2 h-4 w-4" />
+                            Submitting...
+                          </>
+                        ) : !isFormValid() ? (
+                          "Please Complete All Required Fields"
+                        ) : (
+                          <>
+                            <Send className="mr-2 h-4 w-4" />
+                            Request Quote
+                          </>
+                        )}
                       </Button>
 
                       <p className="text-xs text-center text-muted-foreground">

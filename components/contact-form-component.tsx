@@ -13,11 +13,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Mail, Phone, MessageSquare, User } from "lucide-react";
+import { Loader2, Mail, Phone, MessageSquare, User, AlertCircle } from "lucide-react";
 
 export function ContactFormComponent() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [formData, setFormData] = useState({
     name: "",
@@ -30,6 +31,62 @@ export function ContactFormComponent() {
 
   const updateField = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
+
+  // Check if form is complete and valid
+  const isFormValid = () => {
+    return (
+      formData.name.trim().length >= 2 &&
+      formData.email.trim().length > 0 &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+      formData.subject.length > 0 &&
+      formData.message.trim().length >= 10
+    );
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (formData.name.length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    } else if (!/^[a-zA-Z\s'-]+$/.test(formData.name)) {
+      newErrors.name = "Name contains invalid characters";
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    // Subject validation
+    if (!formData.subject) {
+      newErrors.subject = "Please select a subject";
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    } else if (formData.message.length > 5000) {
+      newErrors.message = "Message is too long (max 5000 characters)";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,6 +94,16 @@ export function ContactFormComponent() {
 
     // Bot detection - silently reject
     if (formData.website) {
+      return;
+    }
+
+    // Validate form
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please correct the errors in the form",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -100,7 +167,9 @@ export function ContactFormComponent() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="name">Your Name *</Label>
+        <Label htmlFor="name" className={errors.name ? "text-destructive" : ""}>
+          Your Name *
+        </Label>
         <div className="relative">
           <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
           <Input
@@ -109,14 +178,24 @@ export function ContactFormComponent() {
             onChange={(e) => updateField("name", e.target.value)}
             required
             placeholder="John Doe"
-            className="pl-10"
+            className={`pl-10 ${errors.name ? "border-destructive focus-visible:ring-destructive" : ""}`}
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "name-error" : undefined}
           />
         </div>
+        {errors.name && (
+          <div id="name-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+            <AlertCircle className="h-4 w-4" />
+            <span>{errors.name}</span>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="email">Email Address *</Label>
+          <Label htmlFor="email" className={errors.email ? "text-destructive" : ""}>
+            Email Address *
+          </Label>
           <div className="relative">
             <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
             <Input
@@ -126,9 +205,17 @@ export function ContactFormComponent() {
               onChange={(e) => updateField("email", e.target.value)}
               required
               placeholder="john@example.com"
-              className="pl-10"
+              className={`pl-10 ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
             />
           </div>
+          {errors.email && (
+            <div id="email-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+              <AlertCircle className="h-4 w-4" />
+              <span>{errors.email}</span>
+            </div>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -148,11 +235,17 @@ export function ContactFormComponent() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="subject">Subject *</Label>
+        <Label htmlFor="subject" className={errors.subject ? "text-destructive" : ""}>
+          Subject *
+        </Label>
         <div className="relative">
           <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
           <Select value={formData.subject} onValueChange={(value) => updateField("subject", value)}>
-            <SelectTrigger className="pl-10">
+            <SelectTrigger
+              className={`pl-10 ${errors.subject ? "border-destructive focus-visible:ring-destructive" : ""}`}
+              aria-invalid={!!errors.subject}
+              aria-describedby={errors.subject ? "subject-error" : undefined}
+            >
               <SelectValue placeholder="Select a subject" />
             </SelectTrigger>
             <SelectContent>
@@ -166,10 +259,18 @@ export function ContactFormComponent() {
             </SelectContent>
           </Select>
         </div>
+        {errors.subject && (
+          <div id="subject-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+            <AlertCircle className="h-4 w-4" />
+            <span>{errors.subject}</span>
+          </div>
+        )}
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Message *</Label>
+        <Label htmlFor="message" className={errors.message ? "text-destructive" : ""}>
+          Message *
+        </Label>
         <Textarea
           id="message"
           value={formData.message}
@@ -177,7 +278,16 @@ export function ContactFormComponent() {
           required
           placeholder="Tell us about your inquiry..."
           rows={6}
+          className={errors.message ? "border-destructive focus-visible:ring-destructive" : ""}
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "message-error" : undefined}
         />
+        {errors.message && (
+          <div id="message-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+            <AlertCircle className="h-4 w-4" />
+            <span>{errors.message}</span>
+          </div>
+        )}
       </div>
 
       {/* Honeypot field */}
@@ -191,12 +301,14 @@ export function ContactFormComponent() {
         autoComplete="off"
       />
 
-      <Button type="submit" disabled={loading} className="w-full" size="lg">
+      <Button type="submit" disabled={loading || !isFormValid()} className="w-full" size="lg">
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Sending...
           </>
+        ) : !isFormValid() ? (
+          "Please Complete All Required Fields"
         ) : (
           <>
             <Mail className="mr-2 h-4 w-4" />

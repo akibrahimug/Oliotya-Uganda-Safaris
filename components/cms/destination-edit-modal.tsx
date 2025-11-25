@@ -26,6 +26,7 @@ interface DestinationData {
   description: string;
   image: string;
   images: string[];
+  gallery2Images: string[];
   // History
   historyTitle?: string;
   historyContent: string[];
@@ -77,6 +78,7 @@ export function DestinationEditModal({
     description: "",
     image: "",
     images: [],
+    gallery2Images: [],
     historyTitle: "",
     historyContent: [],
     geographyDescription: "",
@@ -95,7 +97,7 @@ export function DestinationEditModal({
   });
   const [saving, setSaving] = useState(false);
   const [imagePickerOpen, setImagePickerOpen] = useState(false);
-  const [imagePickerTarget, setImagePickerTarget] = useState<"main" | "gallery">("main");
+  const [imagePickerTarget, setImagePickerTarget] = useState<"main" | "gallery" | "gallery2">("main");
 
   // Input states for dynamic arrays
   const [newHistoryContent, setNewHistoryContent] = useState("");
@@ -106,7 +108,16 @@ export function DestinationEditModal({
 
   useEffect(() => {
     if (initialData) {
-      setFormData(initialData);
+      setFormData({
+        ...initialData,
+        gallery2Images: initialData.gallery2Images || [],
+        images: initialData.images || [],
+        historyContent: initialData.historyContent || [],
+        wildlifeMammals: initialData.wildlifeMammals || [],
+        wildlifeBirds: initialData.wildlifeBirds || [],
+        wildlifeFlora: initialData.wildlifeFlora || [],
+        cultureExperiences: initialData.cultureExperiences || [],
+      });
     }
   }, [initialData]);
 
@@ -125,10 +136,15 @@ export function DestinationEditModal({
   const addImage = (imageUrl: string) => {
     if (imagePickerTarget === "main") {
       setFormData(prev => ({ ...prev, image: imageUrl }));
-    } else {
+    } else if (imagePickerTarget === "gallery") {
       setFormData(prev => ({
         ...prev,
         images: [...prev.images, imageUrl],
+      }));
+    } else if (imagePickerTarget === "gallery2") {
+      setFormData(prev => ({
+        ...prev,
+        gallery2Images: [...prev.gallery2Images, imageUrl],
       }));
     }
   };
@@ -137,6 +153,13 @@ export function DestinationEditModal({
     setFormData(prev => ({
       ...prev,
       images: prev.images.filter((_, i) => i !== index),
+    }));
+  };
+
+  const removeGallery2Image = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      gallery2Images: prev.gallery2Images.filter((_, i) => i !== index),
     }));
   };
 
@@ -161,7 +184,7 @@ export function DestinationEditModal({
   return (
     <>
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className="max-w-[95vw] lg:max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-[90vw] lg:max-w-5xl w-full max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {mode === "create" ? "Create New Destination" : "Edit Destination"}
@@ -376,6 +399,43 @@ export function DestinationEditModal({
                     >
                       <Plus className="h-4 w-4 mr-2" />
                       Add Gallery Image
+                    </Button>
+                  </div>
+                </div>
+
+                <div>
+                  <Label>Second Gallery Images</Label>
+                  <div className="mt-2 space-y-2">
+                    <div className="flex flex-wrap gap-2">
+                      {(formData.gallery2Images || []).map((img, index) => (
+                        <div key={index} className="relative">
+                          <img
+                            src={img}
+                            alt={`Gallery 2 ${index + 1}`}
+                            className="w-24 h-20 object-cover rounded"
+                          />
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            className="absolute top-0 right-0 h-6 w-6 p-0"
+                            onClick={() => removeGallery2Image(index)}
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setImagePickerTarget("gallery2");
+                        setImagePickerOpen(true);
+                      }}
+                    >
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add Second Gallery Image
                     </Button>
                   </div>
                 </div>

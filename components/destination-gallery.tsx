@@ -11,6 +11,7 @@ interface DestinationGalleryProps {
 export function DestinationGallery({ images, columns = 3 }: DestinationGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  // Don't show gallery if there are no images
   if (!images || images.length === 0) return null;
 
   const gridCols = {

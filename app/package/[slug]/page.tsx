@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -8,19 +9,73 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { DestinationGallery } from "@/components/destination-gallery";
 import { BookingButton } from "@/components/booking-button";
-import { allPackages, type DifficultyLevel } from "@/lib/packages-data";
 import { Clock, Users, TrendingUp, CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
 
+interface Package {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  duration: string;
+  price: number;
+  description: string;
+  shortDesc: string | null;
+  image: string;
+  images: string[];
+  gallery2Images: string[];
+  highlights: string[];
+  itinerary: Array<{ day: number; title: string; description: string }>;
+  included: string[];
+  excluded: string[];
+  minTravelers: number;
+  maxTravelers: number;
+  difficulty: string;
+}
+
 // Helper function to format difficulty for display
-const formatDifficulty = (difficulty: DifficultyLevel): string => {
+const formatDifficulty = (difficulty: string): string => {
   return difficulty.charAt(0) + difficulty.slice(1).toLowerCase();
 };
 
 export default function PackagePage() {
   const params = useParams();
   const packageSlug = params.slug as string;
-  const pkg = allPackages.find((p) => p.slug === packageSlug);
+  const [pkg, setPkg] = useState<Package | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPackage();
+  }, [packageSlug]);
+
+  const fetchPackage = async () => {
+    try {
+      const response = await fetch(`/api/packages/${packageSlug}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch package");
+      }
+      const data = await response.json();
+      setPkg(data.package);
+    } catch (error) {
+      console.error("Error fetching package:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <main className="min-h-screen">
+        <Header />
+        <div className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+          </div>
+        </div>
+        <Footer />
+      </main>
+    );
+  }
 
   if (!pkg) {
     return (
@@ -122,12 +177,22 @@ export default function PackagePage() {
               </div>
 
               {/* Gallery */}
-              {pkg.images && pkg.images.length > 0 && (
+              {pkg.images && pkg.images.length > 1 && (
                 <div className="mb-12">
                   <h2 className="font-inter text-3xl font-bold mb-6">
                     Package Gallery
                   </h2>
                   <DestinationGallery images={pkg.images} columns={2} />
+                </div>
+              )}
+
+              {/* Gallery 2 */}
+              {pkg.gallery2Images && pkg.gallery2Images.length > 1 && (
+                <div className="mb-12">
+                  <h2 className="font-inter text-3xl font-bold mb-6">
+                    More Package Photos
+                  </h2>
+                  <DestinationGallery images={pkg.gallery2Images} columns={2} />
                 </div>
               )}
 

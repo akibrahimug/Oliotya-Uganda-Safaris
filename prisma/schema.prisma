@@ -23,7 +23,9 @@ model Destination {
   maxTravelers         Int?
   description          String         @db.Text
   image                String
-  images               String[]       @default([])
+  images               String[]       @default([]) // Main gallery images
+  gallery2Images       String[]       @default([]) // Second gallery images
+  featured             Boolean        @default(false) // For featured destinations on home page
   // History section
   historyTitle         String?        @db.Text
   historyContent       String[]       @default([])
@@ -51,6 +53,7 @@ model Destination {
 
   @@index([category])
   @@index([country])
+  @@index([featured])
   @@map("destinations")
 }
 
@@ -201,7 +204,8 @@ model Package {
   description  String              @db.Text
   shortDesc    String?             @db.Text // Short description for cards
   image        String
-  images       String[]            @default([])
+  images       String[]            @default([]) // Main gallery images
+  gallery2Images String[]          @default([]) // Second gallery images
   highlights   String[]            @default([])
   itinerary    Json // Array of {day, title, description}
   included     String[]            @default([])
@@ -231,6 +235,9 @@ model CustomPackage {
   id              Int                 @id @default(autoincrement())
   userId          String
   name            String
+  contactName     String // Contact person name
+  email           String // Contact email
+  phone           String // Contact phone number
   destinations    Json // Array of destination IDs and details
   duration        String?
   numberOfPeople  Int

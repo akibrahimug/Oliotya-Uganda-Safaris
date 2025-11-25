@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { contactFormSchema } from "@/lib/validations/contact";
 import { contactRateLimit, getClientIp } from "@/lib/rate-limit";
-import { sanitizeObject } from "@/lib/sanitize";
+import { sanitizeObject } from "@/lib/validations";
 
 export const dynamic = "force-dynamic";
 

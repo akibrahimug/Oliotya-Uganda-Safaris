@@ -3995,6 +3995,7 @@ export namespace Prisma {
     maxTravelers: number | null
     description: string | null
     image: string | null
+    featured: boolean | null
     historyTitle: string | null
     geographyDescription: string | null
     geographyClimate: string | null
@@ -4023,6 +4024,7 @@ export namespace Prisma {
     maxTravelers: number | null
     description: string | null
     image: string | null
+    featured: boolean | null
     historyTitle: string | null
     geographyDescription: string | null
     geographyClimate: string | null
@@ -4052,6 +4054,8 @@ export namespace Prisma {
     description: number
     image: number
     images: number
+    gallery2Images: number
+    featured: number
     historyTitle: number
     historyContent: number
     geographyDescription: number
@@ -4105,6 +4109,7 @@ export namespace Prisma {
     maxTravelers?: true
     description?: true
     image?: true
+    featured?: true
     historyTitle?: true
     geographyDescription?: true
     geographyClimate?: true
@@ -4133,6 +4138,7 @@ export namespace Prisma {
     maxTravelers?: true
     description?: true
     image?: true
+    featured?: true
     historyTitle?: true
     geographyDescription?: true
     geographyClimate?: true
@@ -4162,6 +4168,8 @@ export namespace Prisma {
     description?: true
     image?: true
     images?: true
+    gallery2Images?: true
+    featured?: true
     historyTitle?: true
     historyContent?: true
     geographyDescription?: true
@@ -4283,6 +4291,8 @@ export namespace Prisma {
     description: string
     image: string
     images: string[]
+    gallery2Images: string[]
+    featured: boolean
     historyTitle: string | null
     historyContent: string[]
     geographyDescription: string | null
@@ -4336,6 +4346,8 @@ export namespace Prisma {
     description?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
+    featured?: boolean
     historyTitle?: boolean
     historyContent?: boolean
     geographyDescription?: boolean
@@ -4373,6 +4385,8 @@ export namespace Prisma {
     description?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
+    featured?: boolean
     historyTitle?: boolean
     historyContent?: boolean
     geographyDescription?: boolean
@@ -4407,6 +4421,8 @@ export namespace Prisma {
     description?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
+    featured?: boolean
     historyTitle?: boolean
     historyContent?: boolean
     geographyDescription?: boolean
@@ -4441,6 +4457,8 @@ export namespace Prisma {
     description?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
+    featured?: boolean
     historyTitle?: boolean
     historyContent?: boolean
     geographyDescription?: boolean
@@ -4460,7 +4478,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "category" | "country" | "region" | "price" | "rating" | "duration" | "groupSize" | "minTravelers" | "maxTravelers" | "description" | "image" | "images" | "historyTitle" | "historyContent" | "geographyDescription" | "geographyClimate" | "wildlifeDescription" | "wildlifeMammals" | "wildlifeBirds" | "wildlifeFlora" | "cultureDescription" | "cultureExperiences" | "bestTimeDescription" | "drySeasonTitle" | "drySeasonDescription" | "wetSeasonTitle" | "wetSeasonDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["destination"]>
+  export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "category" | "country" | "region" | "price" | "rating" | "duration" | "groupSize" | "minTravelers" | "maxTravelers" | "description" | "image" | "images" | "gallery2Images" | "featured" | "historyTitle" | "historyContent" | "geographyDescription" | "geographyClimate" | "wildlifeDescription" | "wildlifeMammals" | "wildlifeBirds" | "wildlifeFlora" | "cultureDescription" | "cultureExperiences" | "bestTimeDescription" | "drySeasonTitle" | "drySeasonDescription" | "wetSeasonTitle" | "wetSeasonDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["destination"]>
   export type DestinationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     bookings?: boolean | Destination$bookingsArgs<ExtArgs>
     favorites?: boolean | Destination$favoritesArgs<ExtArgs>
@@ -4490,6 +4508,8 @@ export namespace Prisma {
       description: string
       image: string
       images: string[]
+      gallery2Images: string[]
+      featured: boolean
       historyTitle: string | null
       historyContent: string[]
       geographyDescription: string | null
@@ -4946,6 +4966,8 @@ export namespace Prisma {
     readonly description: FieldRef<"Destination", 'String'>
     readonly image: FieldRef<"Destination", 'String'>
     readonly images: FieldRef<"Destination", 'String[]'>
+    readonly gallery2Images: FieldRef<"Destination", 'String[]'>
+    readonly featured: FieldRef<"Destination", 'Boolean'>
     readonly historyTitle: FieldRef<"Destination", 'String'>
     readonly historyContent: FieldRef<"Destination", 'String[]'>
     readonly geographyDescription: FieldRef<"Destination", 'String'>
@@ -11295,6 +11317,7 @@ export namespace Prisma {
     shortDesc: number
     image: number
     images: number
+    gallery2Images: number
     highlights: number
     itinerary: number
     included: number
@@ -11381,6 +11404,7 @@ export namespace Prisma {
     shortDesc?: true
     image?: true
     images?: true
+    gallery2Images?: true
     highlights?: true
     itinerary?: true
     included?: true
@@ -11494,6 +11518,7 @@ export namespace Prisma {
     shortDesc: string | null
     image: string
     images: string[]
+    gallery2Images: string[]
     highlights: string[]
     itinerary: JsonValue
     included: string[]
@@ -11539,6 +11564,7 @@ export namespace Prisma {
     shortDesc?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
     highlights?: boolean
     itinerary?: boolean
     included?: boolean
@@ -11568,6 +11594,7 @@ export namespace Prisma {
     shortDesc?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
     highlights?: boolean
     itinerary?: boolean
     included?: boolean
@@ -11594,6 +11621,7 @@ export namespace Prisma {
     shortDesc?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
     highlights?: boolean
     itinerary?: boolean
     included?: boolean
@@ -11620,6 +11648,7 @@ export namespace Prisma {
     shortDesc?: boolean
     image?: boolean
     images?: boolean
+    gallery2Images?: boolean
     highlights?: boolean
     itinerary?: boolean
     included?: boolean
@@ -11635,7 +11664,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "category" | "duration" | "price" | "description" | "shortDesc" | "image" | "images" | "highlights" | "itinerary" | "included" | "excluded" | "minTravelers" | "maxTravelers" | "difficulty" | "featured" | "popular" | "active" | "displayOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["package"]>
+  export type PackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "category" | "duration" | "price" | "description" | "shortDesc" | "image" | "images" | "gallery2Images" | "highlights" | "itinerary" | "included" | "excluded" | "minTravelers" | "maxTravelers" | "difficulty" | "featured" | "popular" | "active" | "displayOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["package"]>
   export type PackageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     bookings?: boolean | Package$bookingsArgs<ExtArgs>
     bundleItems?: boolean | Package$bundleItemsArgs<ExtArgs>
@@ -11661,6 +11690,7 @@ export namespace Prisma {
       shortDesc: string | null
       image: string
       images: string[]
+      gallery2Images: string[]
       highlights: string[]
       itinerary: Prisma.JsonValue
       included: string[]
@@ -12109,6 +12139,7 @@ export namespace Prisma {
     readonly shortDesc: FieldRef<"Package", 'String'>
     readonly image: FieldRef<"Package", 'String'>
     readonly images: FieldRef<"Package", 'String[]'>
+    readonly gallery2Images: FieldRef<"Package", 'String[]'>
     readonly highlights: FieldRef<"Package", 'String[]'>
     readonly itinerary: FieldRef<"Package", 'Json'>
     readonly included: FieldRef<"Package", 'String[]'>
@@ -12606,6 +12637,9 @@ export namespace Prisma {
     id: number | null
     userId: string | null
     name: string | null
+    contactName: string | null
+    email: string | null
+    phone: string | null
     duration: string | null
     numberOfPeople: number | null
     travelDate: Date | null
@@ -12622,6 +12656,9 @@ export namespace Prisma {
     id: number | null
     userId: string | null
     name: string | null
+    contactName: string | null
+    email: string | null
+    phone: string | null
     duration: string | null
     numberOfPeople: number | null
     travelDate: Date | null
@@ -12638,6 +12675,9 @@ export namespace Prisma {
     id: number
     userId: number
     name: number
+    contactName: number
+    email: number
+    phone: number
     destinations: number
     duration: number
     numberOfPeople: number
@@ -12671,6 +12711,9 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    contactName?: true
+    email?: true
+    phone?: true
     duration?: true
     numberOfPeople?: true
     travelDate?: true
@@ -12687,6 +12730,9 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    contactName?: true
+    email?: true
+    phone?: true
     duration?: true
     numberOfPeople?: true
     travelDate?: true
@@ -12703,6 +12749,9 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    contactName?: true
+    email?: true
+    phone?: true
     destinations?: true
     duration?: true
     numberOfPeople?: true
@@ -12807,6 +12856,9 @@ export namespace Prisma {
     id: number
     userId: string
     name: string
+    contactName: string
+    email: string
+    phone: string
     destinations: JsonValue
     duration: string | null
     numberOfPeople: number
@@ -12843,6 +12895,9 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     name?: boolean
+    contactName?: boolean
+    email?: boolean
+    phone?: boolean
     destinations?: boolean
     duration?: boolean
     numberOfPeople?: boolean
@@ -12861,6 +12916,9 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     name?: boolean
+    contactName?: boolean
+    email?: boolean
+    phone?: boolean
     destinations?: boolean
     duration?: boolean
     numberOfPeople?: boolean
@@ -12879,6 +12937,9 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     name?: boolean
+    contactName?: boolean
+    email?: boolean
+    phone?: boolean
     destinations?: boolean
     duration?: boolean
     numberOfPeople?: boolean
@@ -12897,6 +12958,9 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     name?: boolean
+    contactName?: boolean
+    email?: boolean
+    phone?: boolean
     destinations?: boolean
     duration?: boolean
     numberOfPeople?: boolean
@@ -12910,7 +12974,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CustomPackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "destinations" | "duration" | "numberOfPeople" | "travelDate" | "specialRequests" | "budget" | "status" | "quotedPrice" | "quoteNotes" | "createdAt" | "updatedAt", ExtArgs["result"]["customPackage"]>
+  export type CustomPackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "contactName" | "email" | "phone" | "destinations" | "duration" | "numberOfPeople" | "travelDate" | "specialRequests" | "budget" | "status" | "quotedPrice" | "quoteNotes" | "createdAt" | "updatedAt", ExtArgs["result"]["customPackage"]>
   export type CustomPackageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -12930,6 +12994,9 @@ export namespace Prisma {
       id: number
       userId: string
       name: string
+      contactName: string
+      email: string
+      phone: string
       destinations: Prisma.JsonValue
       duration: string | null
       numberOfPeople: number
@@ -13368,6 +13435,9 @@ export namespace Prisma {
     readonly id: FieldRef<"CustomPackage", 'Int'>
     readonly userId: FieldRef<"CustomPackage", 'String'>
     readonly name: FieldRef<"CustomPackage", 'String'>
+    readonly contactName: FieldRef<"CustomPackage", 'String'>
+    readonly email: FieldRef<"CustomPackage", 'String'>
+    readonly phone: FieldRef<"CustomPackage", 'String'>
     readonly destinations: FieldRef<"CustomPackage", 'Json'>
     readonly duration: FieldRef<"CustomPackage", 'String'>
     readonly numberOfPeople: FieldRef<"CustomPackage", 'Int'>
@@ -39993,6 +40063,8 @@ export namespace Prisma {
     description: 'description',
     image: 'image',
     images: 'images',
+    gallery2Images: 'gallery2Images',
+    featured: 'featured',
     historyTitle: 'historyTitle',
     historyContent: 'historyContent',
     geographyDescription: 'geographyDescription',
@@ -40108,6 +40180,7 @@ export namespace Prisma {
     shortDesc: 'shortDesc',
     image: 'image',
     images: 'images',
+    gallery2Images: 'gallery2Images',
     highlights: 'highlights',
     itinerary: 'itinerary',
     included: 'included',
@@ -40130,6 +40203,9 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     name: 'name',
+    contactName: 'contactName',
+    email: 'email',
+    phone: 'phone',
     destinations: 'destinations',
     duration: 'duration',
     numberOfPeople: 'numberOfPeople',
@@ -40647,6 +40723,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -40759,13 +40842,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'CustomPackageStatus'
    */
   export type EnumCustomPackageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CustomPackageStatus'>
@@ -40828,6 +40904,8 @@ export namespace Prisma {
     description?: StringFilter<"Destination"> | string
     image?: StringFilter<"Destination"> | string
     images?: StringNullableListFilter<"Destination">
+    gallery2Images?: StringNullableListFilter<"Destination">
+    featured?: BoolFilter<"Destination"> | boolean
     historyTitle?: StringNullableFilter<"Destination"> | string | null
     historyContent?: StringNullableListFilter<"Destination">
     geographyDescription?: StringNullableFilter<"Destination"> | string | null
@@ -40864,6 +40942,8 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     images?: SortOrder
+    gallery2Images?: SortOrder
+    featured?: SortOrder
     historyTitle?: SortOrderInput | SortOrder
     historyContent?: SortOrder
     geographyDescription?: SortOrderInput | SortOrder
@@ -40903,6 +40983,8 @@ export namespace Prisma {
     description?: StringFilter<"Destination"> | string
     image?: StringFilter<"Destination"> | string
     images?: StringNullableListFilter<"Destination">
+    gallery2Images?: StringNullableListFilter<"Destination">
+    featured?: BoolFilter<"Destination"> | boolean
     historyTitle?: StringNullableFilter<"Destination"> | string | null
     historyContent?: StringNullableListFilter<"Destination">
     geographyDescription?: StringNullableFilter<"Destination"> | string | null
@@ -40939,6 +41021,8 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     images?: SortOrder
+    gallery2Images?: SortOrder
+    featured?: SortOrder
     historyTitle?: SortOrderInput | SortOrder
     historyContent?: SortOrder
     geographyDescription?: SortOrderInput | SortOrder
@@ -40981,6 +41065,8 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Destination"> | string
     image?: StringWithAggregatesFilter<"Destination"> | string
     images?: StringNullableListFilter<"Destination">
+    gallery2Images?: StringNullableListFilter<"Destination">
+    featured?: BoolWithAggregatesFilter<"Destination"> | boolean
     historyTitle?: StringNullableWithAggregatesFilter<"Destination"> | string | null
     historyContent?: StringNullableListFilter<"Destination">
     geographyDescription?: StringNullableWithAggregatesFilter<"Destination"> | string | null
@@ -41439,6 +41525,7 @@ export namespace Prisma {
     shortDesc?: StringNullableFilter<"Package"> | string | null
     image?: StringFilter<"Package"> | string
     images?: StringNullableListFilter<"Package">
+    gallery2Images?: StringNullableListFilter<"Package">
     highlights?: StringNullableListFilter<"Package">
     itinerary?: JsonFilter<"Package">
     included?: StringNullableListFilter<"Package">
@@ -41467,6 +41554,7 @@ export namespace Prisma {
     shortDesc?: SortOrderInput | SortOrder
     image?: SortOrder
     images?: SortOrder
+    gallery2Images?: SortOrder
     highlights?: SortOrder
     itinerary?: SortOrder
     included?: SortOrder
@@ -41498,6 +41586,7 @@ export namespace Prisma {
     shortDesc?: StringNullableFilter<"Package"> | string | null
     image?: StringFilter<"Package"> | string
     images?: StringNullableListFilter<"Package">
+    gallery2Images?: StringNullableListFilter<"Package">
     highlights?: StringNullableListFilter<"Package">
     itinerary?: JsonFilter<"Package">
     included?: StringNullableListFilter<"Package">
@@ -41526,6 +41615,7 @@ export namespace Prisma {
     shortDesc?: SortOrderInput | SortOrder
     image?: SortOrder
     images?: SortOrder
+    gallery2Images?: SortOrder
     highlights?: SortOrder
     itinerary?: SortOrder
     included?: SortOrder
@@ -41560,6 +41650,7 @@ export namespace Prisma {
     shortDesc?: StringNullableWithAggregatesFilter<"Package"> | string | null
     image?: StringWithAggregatesFilter<"Package"> | string
     images?: StringNullableListFilter<"Package">
+    gallery2Images?: StringNullableListFilter<"Package">
     highlights?: StringNullableListFilter<"Package">
     itinerary?: JsonWithAggregatesFilter<"Package">
     included?: StringNullableListFilter<"Package">
@@ -41582,6 +41673,9 @@ export namespace Prisma {
     id?: IntFilter<"CustomPackage"> | number
     userId?: StringFilter<"CustomPackage"> | string
     name?: StringFilter<"CustomPackage"> | string
+    contactName?: StringFilter<"CustomPackage"> | string
+    email?: StringFilter<"CustomPackage"> | string
+    phone?: StringFilter<"CustomPackage"> | string
     destinations?: JsonFilter<"CustomPackage">
     duration?: StringNullableFilter<"CustomPackage"> | string | null
     numberOfPeople?: IntFilter<"CustomPackage"> | number
@@ -41600,6 +41694,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    contactName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
     destinations?: SortOrder
     duration?: SortOrderInput | SortOrder
     numberOfPeople?: SortOrder
@@ -41621,6 +41718,9 @@ export namespace Prisma {
     NOT?: CustomPackageWhereInput | CustomPackageWhereInput[]
     userId?: StringFilter<"CustomPackage"> | string
     name?: StringFilter<"CustomPackage"> | string
+    contactName?: StringFilter<"CustomPackage"> | string
+    email?: StringFilter<"CustomPackage"> | string
+    phone?: StringFilter<"CustomPackage"> | string
     destinations?: JsonFilter<"CustomPackage">
     duration?: StringNullableFilter<"CustomPackage"> | string | null
     numberOfPeople?: IntFilter<"CustomPackage"> | number
@@ -41639,6 +41739,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    contactName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
     destinations?: SortOrder
     duration?: SortOrderInput | SortOrder
     numberOfPeople?: SortOrder
@@ -41664,6 +41767,9 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"CustomPackage"> | number
     userId?: StringWithAggregatesFilter<"CustomPackage"> | string
     name?: StringWithAggregatesFilter<"CustomPackage"> | string
+    contactName?: StringWithAggregatesFilter<"CustomPackage"> | string
+    email?: StringWithAggregatesFilter<"CustomPackage"> | string
+    phone?: StringWithAggregatesFilter<"CustomPackage"> | string
     destinations?: JsonWithAggregatesFilter<"CustomPackage">
     duration?: StringNullableWithAggregatesFilter<"CustomPackage"> | string | null
     numberOfPeople?: IntWithAggregatesFilter<"CustomPackage"> | number
@@ -43675,6 +43781,8 @@ export namespace Prisma {
     description: string
     image: string
     images?: DestinationCreateimagesInput | string[]
+    gallery2Images?: DestinationCreategallery2ImagesInput | string[]
+    featured?: boolean
     historyTitle?: string | null
     historyContent?: DestinationCreatehistoryContentInput | string[]
     geographyDescription?: string | null
@@ -43711,6 +43819,8 @@ export namespace Prisma {
     description: string
     image: string
     images?: DestinationCreateimagesInput | string[]
+    gallery2Images?: DestinationCreategallery2ImagesInput | string[]
+    featured?: boolean
     historyTitle?: string | null
     historyContent?: DestinationCreatehistoryContentInput | string[]
     geographyDescription?: string | null
@@ -43746,6 +43856,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -43782,6 +43894,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -43818,6 +43932,8 @@ export namespace Prisma {
     description: string
     image: string
     images?: DestinationCreateimagesInput | string[]
+    gallery2Images?: DestinationCreategallery2ImagesInput | string[]
+    featured?: boolean
     historyTitle?: string | null
     historyContent?: DestinationCreatehistoryContentInput | string[]
     geographyDescription?: string | null
@@ -43851,6 +43967,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -43885,6 +44003,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44379,6 +44499,7 @@ export namespace Prisma {
     shortDesc?: string | null
     image: string
     images?: PackageCreateimagesInput | string[]
+    gallery2Images?: PackageCreategallery2ImagesInput | string[]
     highlights?: PackageCreatehighlightsInput | string[]
     itinerary: JsonNullValueInput | InputJsonValue
     included?: PackageCreateincludedInput | string[]
@@ -44407,6 +44528,7 @@ export namespace Prisma {
     shortDesc?: string | null
     image: string
     images?: PackageCreateimagesInput | string[]
+    gallery2Images?: PackageCreategallery2ImagesInput | string[]
     highlights?: PackageCreatehighlightsInput | string[]
     itinerary: JsonNullValueInput | InputJsonValue
     included?: PackageCreateincludedInput | string[]
@@ -44434,6 +44556,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -44462,6 +44585,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -44490,6 +44614,7 @@ export namespace Prisma {
     shortDesc?: string | null
     image: string
     images?: PackageCreateimagesInput | string[]
+    gallery2Images?: PackageCreategallery2ImagesInput | string[]
     highlights?: PackageCreatehighlightsInput | string[]
     itinerary: JsonNullValueInput | InputJsonValue
     included?: PackageCreateincludedInput | string[]
@@ -44515,6 +44640,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -44541,6 +44667,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -44558,6 +44685,9 @@ export namespace Prisma {
 
   export type CustomPackageCreateInput = {
     name: string
+    contactName: string
+    email: string
+    phone: string
     destinations: JsonNullValueInput | InputJsonValue
     duration?: string | null
     numberOfPeople: number
@@ -44576,6 +44706,9 @@ export namespace Prisma {
     id?: number
     userId: string
     name: string
+    contactName: string
+    email: string
+    phone: string
     destinations: JsonNullValueInput | InputJsonValue
     duration?: string | null
     numberOfPeople: number
@@ -44591,6 +44724,9 @@ export namespace Prisma {
 
   export type CustomPackageUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    contactName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     destinations?: JsonNullValueInput | InputJsonValue
     duration?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
@@ -44609,6 +44745,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    contactName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     destinations?: JsonNullValueInput | InputJsonValue
     duration?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
@@ -44626,6 +44765,9 @@ export namespace Prisma {
     id?: number
     userId: string
     name: string
+    contactName: string
+    email: string
+    phone: string
     destinations: JsonNullValueInput | InputJsonValue
     duration?: string | null
     numberOfPeople: number
@@ -44641,6 +44783,9 @@ export namespace Prisma {
 
   export type CustomPackageUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    contactName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     destinations?: JsonNullValueInput | InputJsonValue
     duration?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
@@ -44658,6 +44803,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    contactName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     destinations?: JsonNullValueInput | InputJsonValue
     duration?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
@@ -47068,6 +47216,11 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -47119,6 +47272,8 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     images?: SortOrder
+    gallery2Images?: SortOrder
+    featured?: SortOrder
     historyTitle?: SortOrder
     historyContent?: SortOrder
     geographyDescription?: SortOrder
@@ -47161,6 +47316,7 @@ export namespace Prisma {
     maxTravelers?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    featured?: SortOrder
     historyTitle?: SortOrder
     geographyDescription?: SortOrder
     geographyClimate?: SortOrder
@@ -47189,6 +47345,7 @@ export namespace Prisma {
     maxTravelers?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    featured?: SortOrder
     historyTitle?: SortOrder
     geographyDescription?: SortOrder
     geographyClimate?: SortOrder
@@ -47294,6 +47451,14 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -47740,11 +47905,6 @@ export namespace Prisma {
     not?: NestedEnumDifficultyLevelFilter<$PrismaModel> | $Enums.DifficultyLevel
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type PackageBundleItemListRelationFilter = {
     every?: PackageBundleItemWhereInput
     some?: PackageBundleItemWhereInput
@@ -47766,6 +47926,7 @@ export namespace Prisma {
     shortDesc?: SortOrder
     image?: SortOrder
     images?: SortOrder
+    gallery2Images?: SortOrder
     highlights?: SortOrder
     itinerary?: SortOrder
     included?: SortOrder
@@ -47875,14 +48036,6 @@ export namespace Prisma {
     _max?: NestedEnumDifficultyLevelFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type DecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -47905,6 +48058,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    contactName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
     destinations?: SortOrder
     duration?: SortOrder
     numberOfPeople?: SortOrder
@@ -47929,6 +48085,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    contactName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
     duration?: SortOrder
     numberOfPeople?: SortOrder
     travelDate?: SortOrder
@@ -47945,6 +48104,9 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    contactName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
     duration?: SortOrder
     numberOfPeople?: SortOrder
     travelDate?: SortOrder
@@ -49140,6 +49302,10 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type DestinationCreategallery2ImagesInput = {
+    set: string[]
+  }
+
   export type DestinationCreatehistoryContentInput = {
     set: string[]
   }
@@ -49223,6 +49389,15 @@ export namespace Prisma {
   export type DestinationUpdateimagesInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type DestinationUpdategallery2ImagesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type DestinationUpdatehistoryContentInput = {
@@ -49524,6 +49699,10 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type PackageCreategallery2ImagesInput = {
+    set: string[]
+  }
+
   export type PackageCreatehighlightsInput = {
     set: string[]
   }
@@ -49569,6 +49748,11 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type PackageUpdategallery2ImagesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
   export type PackageUpdatehighlightsInput = {
     set?: string[]
     push?: string | string[]
@@ -49586,10 +49770,6 @@ export namespace Prisma {
 
   export type EnumDifficultyLevelFieldUpdateOperationsInput = {
     set?: $Enums.DifficultyLevel
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type BookingUpdateManyWithoutPackageNestedInput = {
@@ -49823,6 +50003,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -49936,6 +50121,14 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -50068,11 +50261,6 @@ export namespace Prisma {
     notIn?: $Enums.DifficultyLevel[] | ListEnumDifficultyLevelFieldRefInput<$PrismaModel>
     not?: NestedEnumDifficultyLevelFilter<$PrismaModel> | $Enums.DifficultyLevel
   }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -50105,14 +50293,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDifficultyLevelFilter<$PrismaModel>
     _max?: NestedEnumDifficultyLevelFilter<$PrismaModel>
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
@@ -50373,6 +50553,8 @@ export namespace Prisma {
     description: string
     image: string
     images?: DestinationCreateimagesInput | string[]
+    gallery2Images?: DestinationCreategallery2ImagesInput | string[]
+    featured?: boolean
     historyTitle?: string | null
     historyContent?: DestinationCreatehistoryContentInput | string[]
     geographyDescription?: string | null
@@ -50408,6 +50590,8 @@ export namespace Prisma {
     description: string
     image: string
     images?: DestinationCreateimagesInput | string[]
+    gallery2Images?: DestinationCreategallery2ImagesInput | string[]
+    featured?: boolean
     historyTitle?: string | null
     historyContent?: DestinationCreatehistoryContentInput | string[]
     geographyDescription?: string | null
@@ -50443,6 +50627,7 @@ export namespace Prisma {
     shortDesc?: string | null
     image: string
     images?: PackageCreateimagesInput | string[]
+    gallery2Images?: PackageCreategallery2ImagesInput | string[]
     highlights?: PackageCreatehighlightsInput | string[]
     itinerary: JsonNullValueInput | InputJsonValue
     included?: PackageCreateincludedInput | string[]
@@ -50470,6 +50655,7 @@ export namespace Prisma {
     shortDesc?: string | null
     image: string
     images?: PackageCreateimagesInput | string[]
+    gallery2Images?: PackageCreategallery2ImagesInput | string[]
     highlights?: PackageCreatehighlightsInput | string[]
     itinerary: JsonNullValueInput | InputJsonValue
     included?: PackageCreateincludedInput | string[]
@@ -50516,6 +50702,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50551,6 +50739,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50592,6 +50782,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -50619,6 +50810,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -50658,6 +50850,9 @@ export namespace Prisma {
 
   export type CustomPackageCreateWithoutUserInput = {
     name: string
+    contactName: string
+    email: string
+    phone: string
     destinations: JsonNullValueInput | InputJsonValue
     duration?: string | null
     numberOfPeople: number
@@ -50674,6 +50869,9 @@ export namespace Prisma {
   export type CustomPackageUncheckedCreateWithoutUserInput = {
     id?: number
     name: string
+    contactName: string
+    email: string
+    phone: string
     destinations: JsonNullValueInput | InputJsonValue
     duration?: string | null
     numberOfPeople: number
@@ -50773,6 +50971,9 @@ export namespace Prisma {
     id?: IntFilter<"CustomPackage"> | number
     userId?: StringFilter<"CustomPackage"> | string
     name?: StringFilter<"CustomPackage"> | string
+    contactName?: StringFilter<"CustomPackage"> | string
+    email?: StringFilter<"CustomPackage"> | string
+    phone?: StringFilter<"CustomPackage"> | string
     destinations?: JsonFilter<"CustomPackage">
     duration?: StringNullableFilter<"CustomPackage"> | string | null
     numberOfPeople?: IntFilter<"CustomPackage"> | number
@@ -50833,6 +51034,8 @@ export namespace Prisma {
     description: string
     image: string
     images?: DestinationCreateimagesInput | string[]
+    gallery2Images?: DestinationCreategallery2ImagesInput | string[]
+    featured?: boolean
     historyTitle?: string | null
     historyContent?: DestinationCreatehistoryContentInput | string[]
     geographyDescription?: string | null
@@ -50868,6 +51071,8 @@ export namespace Prisma {
     description: string
     image: string
     images?: DestinationCreateimagesInput | string[]
+    gallery2Images?: DestinationCreategallery2ImagesInput | string[]
+    featured?: boolean
     historyTitle?: string | null
     historyContent?: DestinationCreatehistoryContentInput | string[]
     geographyDescription?: string | null
@@ -50949,6 +51154,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50984,6 +51191,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     images?: DestinationUpdateimagesInput | string[]
+    gallery2Images?: DestinationUpdategallery2ImagesInput | string[]
+    featured?: BoolFieldUpdateOperationsInput | boolean
     historyTitle?: NullableStringFieldUpdateOperationsInput | string | null
     historyContent?: DestinationUpdatehistoryContentInput | string[]
     geographyDescription?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51384,6 +51593,7 @@ export namespace Prisma {
     shortDesc?: string | null
     image: string
     images?: PackageCreateimagesInput | string[]
+    gallery2Images?: PackageCreategallery2ImagesInput | string[]
     highlights?: PackageCreatehighlightsInput | string[]
     itinerary: JsonNullValueInput | InputJsonValue
     included?: PackageCreateincludedInput | string[]
@@ -51411,6 +51621,7 @@ export namespace Prisma {
     shortDesc?: string | null
     image: string
     images?: PackageCreateimagesInput | string[]
+    gallery2Images?: PackageCreategallery2ImagesInput | string[]
     highlights?: PackageCreatehighlightsInput | string[]
     itinerary: JsonNullValueInput | InputJsonValue
     included?: PackageCreateincludedInput | string[]
@@ -51491,6 +51702,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -51518,6 +51730,7 @@ export namespace Prisma {
     shortDesc?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
     images?: PackageUpdateimagesInput | string[]
+    gallery2Images?: PackageUpdategallery2ImagesInput | string[]
     highlights?: PackageUpdatehighlightsInput | string[]
     itinerary?: JsonNullValueInput | InputJsonValue
     included?: PackageUpdateincludedInput | string[]
@@ -51677,6 +51890,9 @@ export namespace Prisma {
   export type CustomPackageCreateManyUserInput = {
     id?: number
     name: string
+    contactName: string
+    email: string
+    phone: string
     destinations: JsonNullValueInput | InputJsonValue
     duration?: string | null
     numberOfPeople: number
@@ -51722,6 +51938,9 @@ export namespace Prisma {
 
   export type CustomPackageUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
+    contactName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     destinations?: JsonNullValueInput | InputJsonValue
     duration?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
@@ -51738,6 +51957,9 @@ export namespace Prisma {
   export type CustomPackageUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    contactName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     destinations?: JsonNullValueInput | InputJsonValue
     duration?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
@@ -51754,6 +51976,9 @@ export namespace Prisma {
   export type CustomPackageUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    contactName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     destinations?: JsonNullValueInput | InputJsonValue
     duration?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number

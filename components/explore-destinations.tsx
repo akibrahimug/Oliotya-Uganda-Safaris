@@ -4,22 +4,55 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ScrollIndicator } from "@/components/scroll-indicator"
+import { MapPin } from "lucide-react"
 import Link from "next/link"
-import { allDestinations } from "@/lib/destinations-data"
 import type { SearchFilters } from "@/app/page"
 
 interface ExploreDestinationsProps {
   filters: SearchFilters | null
 }
 
+interface Destination {
+  id: number
+  name: string
+  category: string
+  country: string
+  image: string
+  description: string
+  minTravelers: number | null
+  maxTravelers: number | null
+}
+
 export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
   const [currentIndex, setCurrentIndex] = useState(0) // Start at first card
-  const [filteredDestinations, setFilteredDestinations] = useState(allDestinations.slice(0, 3))
+  const [allDestinations, setAllDestinations] = useState<Destination[]>([])
+  const [filteredDestinations, setFilteredDestinations] = useState<Destination[]>([])
+  const [loading, setLoading] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
   const [isInitialized, setIsInitialized] = useState(false)
 
+  // Fetch featured destinations from database
   useEffect(() => {
-    if (!filters) {
+    const fetchDestinations = async () => {
+      try {
+        const response = await fetch("/api/cms/destinations")
+        if (!response.ok) throw new Error("Failed to fetch destinations")
+        const data = await response.json()
+        const featuredDests = data.destinations.filter((dest: any) => dest.featured === true)
+        setAllDestinations(featuredDests)
+        setFilteredDestinations(featuredDests.slice(0, 3))
+      } catch (error) {
+        console.error("Error fetching destinations:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchDestinations()
+  }, [])
+
+  useEffect(() => {
+    if (!filters || allDestinations.length === 0) {
       setFilteredDestinations(allDestinations.slice(0, 3))
       setCurrentIndex(0) // Reset to first card
       setIsInitialized(false)
@@ -42,7 +75,7 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
     setFilteredDestinations(limitedFiltered)
     setCurrentIndex(Math.floor(limitedFiltered.length / 2))
     setIsInitialized(false)
-  }, [filters])
+  }, [filters, allDestinations])
 
   // Initialize scroll to middle card on mount
   useEffect(() => {
@@ -84,6 +117,20 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
       left: cardWidth * index,
       behavior: "smooth",
     })
+  }
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">Explore Destinations</h2>
+            <div className="w-20 h-1 bg-accent mx-auto mb-6" />
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Loading destinations...</p>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (
@@ -139,18 +186,21 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
                     alt={dest.name}
                     className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 text-background">
-                    <p className="text-sm mb-2 opacity-90">{dest.country}</p>
-                    <h3 className="font-serif text-2xl md:text-4xl font-bold mb-3 md:mb-4">{dest.name}</h3>
-                    <p className="text-background/90 mb-4 md:mb-6 leading-relaxed max-w-2xl hidden md:block">{dest.shortDesc}</p>
-                    <div>
-                      <Link href={`/destination/${dest.id}`}>
-                        <Button size="lg" className="bg-background text-foreground hover:bg-background/90">
-                          Learn More
-                        </Button>
-                      </Link>
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-background">
+                    <div className="flex items-center gap-2 mb-2 opacity-90">
+                      <MapPin className="h-4 w-4" />
+                      <p className="text-sm">{dest.country}</p>
                     </div>
+                    <h3 className="font-serif text-2xl md:text-3xl font-bold mb-3">{dest.name}</h3>
+                    <p className="text-background/90 mb-4 line-clamp-2 text-sm leading-relaxed">
+                      {dest.description}
+                    </p>
+                    <Link href={`/destination/${dest.id}`}>
+                      <Button size="sm" className="bg-background text-foreground hover:bg-background/90">
+                        Explore
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

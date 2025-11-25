@@ -30,6 +30,7 @@ interface Destination {
   description: string;
   image: string;
   images: string[];
+  gallery2Images: string[];
   historyTitle: string | null;
   historyContent: string[];
   geographyDescription: string | null;
@@ -59,7 +60,7 @@ export default function DestinationPage() {
 
   const fetchDestination = async () => {
     try {
-      const response = await fetch(`/api/cms/destinations/${destinationId}`);
+      const response = await fetch(`/api/destinations/${destinationId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch destination");
       }
@@ -268,16 +269,6 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* Gallery Section 2 - Natural Beauty */}
-          {destination.images && destination.images.length > 0 && (
-            <div className="mb-16">
-              <h3 className="font-inter text-2xl font-bold mb-6 text-center">
-                Natural Beauty & Wildlife
-              </h3>
-              <DestinationGallery images={destination.images.slice(0, 4)} columns={2} />
-            </div>
-          )}
-
           {/* Local Culture & Communities */}
           {destination.culture && (
             <div className="mb-12">
@@ -338,6 +329,16 @@ export default function DestinationPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* Gallery Section 2 */}
+          {destination.gallery2Images && destination.gallery2Images.length > 0 && (
+            <div className="mb-16">
+              <h3 className="font-inter text-2xl font-bold mb-6 text-center">
+                More of {destination.name}
+              </h3>
+              <DestinationGallery images={destination.gallery2Images} columns={3} />
             </div>
           )}
 

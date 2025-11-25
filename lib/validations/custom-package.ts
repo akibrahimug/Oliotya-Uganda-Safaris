@@ -38,6 +38,27 @@ export const customPackageSchema = z
       )
       .trim(),
 
+    // Contact information
+    contactName: z
+      .string()
+      .min(2, "Name must be at least 2 characters")
+      .max(100, "Name too long")
+      .regex(/^[a-zA-Z\s'-]+$/, "Name contains invalid characters")
+      .trim(),
+
+    email: z
+      .string()
+      .email("Invalid email address")
+      .max(255, "Email too long")
+      .trim(),
+
+    phone: z
+      .string()
+      .min(10, "Phone number too short")
+      .max(20, "Phone number too long")
+      .regex(/^[\d\s\-\+\(\)]+$/, "Invalid phone number format")
+      .trim(),
+
     destinations: z
       .array(selectedDestinationSchema)
       .min(1, "At least one destination is required")

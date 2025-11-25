@@ -23,7 +23,9 @@ model Destination {
   maxTravelers         Int?
   description          String         @db.Text
   image                String
-  images               String[]       @default([])
+  images               String[]       @default([]) // Main gallery images
+  gallery2Images       String[]       @default([]) // Second gallery images
+  featured             Boolean        @default(false) // For featured destinations on home page
   // History section
   historyTitle         String?        @db.Text
   historyContent       String[]       @default([])
@@ -51,6 +53,7 @@ model Destination {
 
   @@index([category])
   @@index([country])
+  @@index([featured])
   @@map("destinations")
 }
 
@@ -192,31 +195,32 @@ enum BookingType {
 }
 
 model Package {
-  id           Int                 @id @default(autoincrement())
-  name         String
-  slug         String              @unique
-  category     String
-  duration     String
-  price        Decimal             @db.Decimal(10, 2)
-  description  String              @db.Text
-  shortDesc    String?             @db.Text // Short description for cards
-  image        String
-  images       String[]            @default([])
-  highlights   String[]            @default([])
-  itinerary    Json // Array of {day, title, description}
-  included     String[]            @default([])
-  excluded     String[]            @default([])
-  minTravelers Int
-  maxTravelers Int
-  difficulty   DifficultyLevel     @default(MODERATE)
-  featured     Boolean             @default(false)
-  popular      Boolean             @default(false) // For popular packages section
-  active       Boolean             @default(true)
-  displayOrder Int                 @default(0) // For manual ordering
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-  bookings     Booking[]
-  bundleItems  PackageBundleItem[]
+  id             Int                 @id @default(autoincrement())
+  name           String
+  slug           String              @unique
+  category       String
+  duration       String
+  price          Decimal             @db.Decimal(10, 2)
+  description    String              @db.Text
+  shortDesc      String?             @db.Text // Short description for cards
+  image          String
+  images         String[]            @default([]) // Main gallery images
+  gallery2Images String[]            @default([]) // Second gallery images
+  highlights     String[]            @default([])
+  itinerary      Json // Array of {day, title, description}
+  included       String[]            @default([])
+  excluded       String[]            @default([])
+  minTravelers   Int
+  maxTravelers   Int
+  difficulty     DifficultyLevel     @default(MODERATE)
+  featured       Boolean             @default(false)
+  popular        Boolean             @default(false) // For popular packages section
+  active         Boolean             @default(true)
+  displayOrder   Int                 @default(0) // For manual ordering
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  bookings       Booking[]
+  bundleItems    PackageBundleItem[]
 
   @@index([slug])
   @@index([category])
@@ -231,6 +235,9 @@ model CustomPackage {
   id              Int                 @id @default(autoincrement())
   userId          String
   name            String
+  contactName     String // Contact person name
+  email           String // Contact email
+  phone           String // Contact phone number
   destinations    Json // Array of destination IDs and details
   duration        String?
   numberOfPeople  Int

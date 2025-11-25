@@ -25,13 +25,29 @@ export function Footer() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [error, setError] = useState("");
   const [settings, setSettings] = useState<SiteSettings | null>(null);
+  const [logoUrl, setLogoUrl] = useState<string>("");
+  const [siteName, setSiteName] = useState<string>("Nambi Uganda Safaris");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Default logo URL
   const defaultLogo = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev/nambi-uganda-safaris/images/fox_logo.webp";
 
   // Fetch settings on mount
   useEffect(() => {
-    fetchSiteSettingsClient().then(setSettings);
+    setIsLoading(true);
+    fetchSiteSettingsClient()
+      .then((data) => {
+        setSettings(data);
+        setLogoUrl(data?.brand?.logo || defaultLogo);
+        setSiteName(data?.brand?.siteName || "Nambi Uganda Safaris");
+      })
+      .catch((error) => {
+        console.error("Failed to fetch settings:", error);
+        setLogoUrl(defaultLogo);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -121,13 +137,21 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img
-                src={settings?.brand?.logo || defaultLogo}
-                alt={`${settings?.brand?.siteName || "Nambi Uganda Safaris"} Logo`}
-                className="w-12 h-12 rounded-full object-cover"
-              />
+              {!isLoading && logoUrl && (
+                <img
+                  src={logoUrl}
+                  alt={`${siteName} Logo`}
+                  className="w-12 h-12 rounded-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = defaultLogo;
+                  }}
+                />
+              )}
+              {isLoading && (
+                <div className="w-12 h-12 rounded-full bg-muted animate-pulse" />
+              )}
               <span className="font-inter text-xl font-bold">
-                {settings?.brand?.siteName || "Nambi Uganda Safaris"}
+                {siteName}
               </span>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">

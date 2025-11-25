@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Calendar, Users, Mail, Phone, MapPin } from "lucide-react";
+import { Loader2, Calendar, Users, Mail, Phone, MapPin, AlertCircle } from "lucide-react";
 import { countries } from "@/lib/countries";
 
 interface BookingFormProps {
@@ -38,6 +38,7 @@ export function BookingForm({
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -54,15 +55,126 @@ export function BookingForm({
 
   const updateField = (field: string, value: string | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    // First name validation
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required";
+    } else if (formData.firstName.length < 2) {
+      newErrors.firstName = "First name must be at least 2 characters";
+    } else if (!/^[a-zA-Z\s'-]+$/.test(formData.firstName)) {
+      newErrors.firstName = "First name contains invalid characters";
+    }
+
+    // Last name validation
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required";
+    } else if (formData.lastName.length < 2) {
+      newErrors.lastName = "Last name must be at least 2 characters";
+    } else if (!/^[a-zA-Z\s'-]+$/.test(formData.lastName)) {
+      newErrors.lastName = "Last name contains invalid characters";
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    // Phone validation
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (formData.phone.length < 10) {
+      newErrors.phone = "Phone number is too short";
+    } else if (!/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+      newErrors.phone = "Invalid phone number format";
+    }
+
+    // Country validation
+    if (!formData.country) {
+      newErrors.country = "Country is required";
+    }
+
+    // Travel dates validation
+    if (!formData.travelDateFrom) {
+      newErrors.travelDateFrom = "Travel start date is required";
+    }
+
+    if (!formData.travelDateTo) {
+      newErrors.travelDateTo = "Travel end date is required";
+    }
+
+    if (formData.travelDateFrom && formData.travelDateTo) {
+      const fromDate = new Date(formData.travelDateFrom);
+      const toDate = new Date(formData.travelDateTo);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (fromDate < today) {
+        newErrors.travelDateFrom = "Start date cannot be in the past";
+      }
+
+      if (toDate <= fromDate) {
+        newErrors.travelDateTo = "End date must be after start date";
+      }
+    }
+
+    // Number of travelers validation
+    if (formData.numberOfTravelers < 1) {
+      newErrors.numberOfTravelers = "At least 1 traveler is required";
+    } else if (formData.numberOfTravelers > 50) {
+      newErrors.numberOfTravelers = "Maximum 50 travelers allowed";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const totalPrice = pricePerPerson * formData.numberOfTravelers;
+
+  // Check if form is complete and valid
+  const isFormValid = () => {
+    return (
+      formData.firstName.trim().length >= 2 &&
+      formData.lastName.trim().length >= 2 &&
+      formData.email.trim().length > 0 &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+      formData.phone.trim().length >= 10 &&
+      formData.country.length > 0 &&
+      formData.travelDateFrom.length > 0 &&
+      formData.travelDateTo.length > 0 &&
+      formData.numberOfTravelers >= 1 &&
+      formData.numberOfTravelers <= 50
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Bot detection - silently reject
     if (formData.website) {
+      return;
+    }
+
+    // Validate form
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please correct the errors in the form",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -135,30 +247,53 @@ export function BookingForm({
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="firstName">First Name *</Label>
+              <Label htmlFor="firstName" className={errors.firstName ? "text-destructive" : ""}>
+                First Name *
+              </Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
                 onChange={(e) => updateField("firstName", e.target.value)}
-                required
                 placeholder="John"
+                className={errors.firstName ? "border-destructive focus-visible:ring-destructive" : ""}
+                aria-invalid={!!errors.firstName}
+                aria-describedby={errors.firstName ? "firstName-error" : undefined}
               />
+              {errors.firstName && (
+                <div id="firstName-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>{errors.firstName}</span>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="lastName">Last Name *</Label>
+              <Label htmlFor="lastName" className={errors.lastName ? "text-destructive" : ""}>
+                Last Name *
+              </Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
                 onChange={(e) => updateField("lastName", e.target.value)}
-                required
+                
                 placeholder="Doe"
+                className={errors.lastName ? "border-destructive focus-visible:ring-destructive" : ""}
+                aria-invalid={!!errors.lastName}
+                aria-describedby={errors.lastName ? "lastName-error" : undefined}
               />
+              {errors.lastName && (
+                <div id="lastName-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>{errors.lastName}</span>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email Address *</Label>
+            <Label htmlFor="email" className={errors.email ? "text-destructive" : ""}>
+              Email Address *
+            </Label>
             <div className="relative">
               <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -166,16 +301,26 @@ export function BookingForm({
                 type="email"
                 value={formData.email}
                 onChange={(e) => updateField("email", e.target.value)}
-                required
+                
                 placeholder="john@example.com"
-                className="pl-10"
+                className={`pl-10 ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
               />
             </div>
+            {errors.email && (
+              <div id="email-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                <AlertCircle className="h-4 w-4" />
+                <span>{errors.email}</span>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number *</Label>
+              <Label htmlFor="phone" className={errors.phone ? "text-destructive" : ""}>
+                Phone Number *
+              </Label>
               <div className="relative">
                 <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -183,23 +328,38 @@ export function BookingForm({
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => updateField("phone", e.target.value)}
-                  required
+                  
                   placeholder="+1 234 567 8900"
-                  className="pl-10"
+                  className={`pl-10 ${errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  aria-invalid={!!errors.phone}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
                 />
               </div>
+              {errors.phone && (
+                <div id="phone-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>{errors.phone}</span>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="country">Country *</Label>
+              <Label htmlFor="country" className={errors.country ? "text-destructive" : ""}>
+                Country *
+              </Label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground z-10 pointer-events-none" />
                 <Select
                   value={formData.country}
                   onValueChange={(value) => updateField("country", value)}
-                  required
+                  
                 >
-                  <SelectTrigger id="country" className="pl-10">
+                  <SelectTrigger
+                    id="country"
+                    className={`pl-10 ${errors.country ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                    aria-invalid={!!errors.country}
+                    aria-describedby={errors.country ? "country-error" : undefined}
+                  >
                     <SelectValue placeholder="Select your country" />
                   </SelectTrigger>
                   <SelectContent className="max-h-[300px]">
@@ -211,6 +371,12 @@ export function BookingForm({
                   </SelectContent>
                 </Select>
               </div>
+              {errors.country && (
+                <div id="country-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>{errors.country}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -236,7 +402,9 @@ export function BookingForm({
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="travelDateFrom">Travel Date From *</Label>
+              <Label htmlFor="travelDateFrom" className={errors.travelDateFrom ? "text-destructive" : ""}>
+                Travel Date From *
+              </Label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -244,15 +412,25 @@ export function BookingForm({
                   type="date"
                   value={formData.travelDateFrom}
                   onChange={(e) => updateField("travelDateFrom", e.target.value)}
-                  required
+                  
                   min={new Date().toISOString().split("T")[0]}
-                  className="pl-10"
+                  className={`pl-10 ${errors.travelDateFrom ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  aria-invalid={!!errors.travelDateFrom}
+                  aria-describedby={errors.travelDateFrom ? "travelDateFrom-error" : undefined}
                 />
               </div>
+              {errors.travelDateFrom && (
+                <div id="travelDateFrom-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>{errors.travelDateFrom}</span>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="travelDateTo">Travel Date To *</Label>
+              <Label htmlFor="travelDateTo" className={errors.travelDateTo ? "text-destructive" : ""}>
+                Travel Date To *
+              </Label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -260,11 +438,19 @@ export function BookingForm({
                   type="date"
                   value={formData.travelDateTo}
                   onChange={(e) => updateField("travelDateTo", e.target.value)}
-                  required
+                  
                   min={formData.travelDateFrom || new Date().toISOString().split("T")[0]}
-                  className="pl-10"
+                  className={`pl-10 ${errors.travelDateTo ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  aria-invalid={!!errors.travelDateTo}
+                  aria-describedby={errors.travelDateTo ? "travelDateTo-error" : undefined}
                 />
               </div>
+              {errors.travelDateTo && (
+                <div id="travelDateTo-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                  <AlertCircle className="h-4 w-4" />
+                  <span>{errors.travelDateTo}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -294,7 +480,9 @@ export function BookingForm({
         <CardContent className="space-y-6">
           {/* Number of Travelers Input */}
           <div className="space-y-2">
-            <Label htmlFor="numberOfTravelers">Number of Travelers *</Label>
+            <Label htmlFor="numberOfTravelers" className={errors.numberOfTravelers ? "text-destructive" : ""}>
+              Number of Travelers *
+            </Label>
             <div className="relative">
               <Users className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -306,13 +494,22 @@ export function BookingForm({
                 onChange={(e) =>
                   updateField("numberOfTravelers", parseInt(e.target.value) || 1)
                 }
-                required
-                className="pl-10"
+                
+                className={`pl-10 ${errors.numberOfTravelers ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                aria-invalid={!!errors.numberOfTravelers}
+                aria-describedby={errors.numberOfTravelers ? "numberOfTravelers-error" : undefined}
               />
             </div>
-            <p className="text-xs text-muted-foreground">
-              Large groups (10+ travelers) may receive discounted rates
-            </p>
+            {errors.numberOfTravelers ? (
+              <div id="numberOfTravelers-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+                <AlertCircle className="h-4 w-4" />
+                <span>{errors.numberOfTravelers}</span>
+              </div>
+            ) : (
+              <p className="text-xs text-muted-foreground">
+                Large groups (10+ travelers) may receive discounted rates
+              </p>
+            )}
           </div>
 
           {/* Booking Summary */}
@@ -412,7 +609,7 @@ export function BookingForm({
       {/* Submit Button */}
       <Button
         type="submit"
-        disabled={loading}
+        disabled={loading || !isFormValid()}
         className="w-full"
         size="lg"
       >
@@ -421,6 +618,8 @@ export function BookingForm({
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Submitting...
           </>
+        ) : !isFormValid() ? (
+          "Please Complete All Required Fields"
         ) : (
           "Submit Booking Request"
         )}
