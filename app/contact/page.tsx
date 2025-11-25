@@ -1,10 +1,9 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ContactHeroSection } from "@/components/contact-hero-section";
-import { ContactInfoSection } from "@/components/contact-info-section";
+import { ContactFormSection } from "@/components/contact-form-section";
 import { ContactFAQSection } from "@/components/contact-faq-section";
 import { ContactResourcesSection } from "@/components/contact-resources-section";
-import { ContactFormSection } from "@/components/contact-form-section";
 import { prisma } from "@/lib/db";
 
 // Force dynamic rendering - fetch data from database on each request
@@ -39,17 +38,14 @@ export default async function ContactPage() {
       {/* Hero Section */}
       {heroSection && <ContactHeroSection data={heroSection} />}
 
-      {/* Contact Info Section */}
-      {infoSection && <ContactInfoSection data={infoSection} />}
-
-      {/* Contact Form Section */}
-      <ContactFormSection />
-
-      {/* Resources Section */}
-      {resources.length > 0 && <ContactResourcesSection resources={resources} />}
+      {/* Contact Form Section with Info Sidebar */}
+      <ContactFormSection infoData={infoSection} />
 
       {/* FAQ Section */}
-      {faqs.length > 0 && <ContactFAQSection faqs={faqs} />}
+      {faqs.length > 0 && <ContactFAQSection data={faqs} />}
+
+      {/* Resources Section */}
+      {resources.length > 0 && <ContactResourcesSection data={resources} />}
 
       <Footer />
     </main>
