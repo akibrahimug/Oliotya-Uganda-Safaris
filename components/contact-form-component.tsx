@@ -29,6 +29,8 @@ export function ContactFormComponent() {
     website: "", // Honeypot
   });
 
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
   const updateField = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
@@ -39,6 +41,50 @@ export function ContactFormComponent() {
         return newErrors;
       });
     }
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    validateField(field);
+  };
+
+  const validateField = (field: string) => {
+    const newErrors: Record<string, string> = {};
+
+    switch (field) {
+      case "name":
+        if (!formData.name.trim()) {
+          newErrors.name = "Name is required";
+        } else if (formData.name.trim().length < 2) {
+          newErrors.name = "Name must be at least 2 characters";
+        } else if (!/^[a-zA-Z\s'-]+$/.test(formData.name)) {
+          newErrors.name = "Name contains invalid characters";
+        }
+        break;
+      case "email":
+        if (!formData.email.trim()) {
+          newErrors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+          newErrors.email = "Invalid email address";
+        }
+        break;
+      case "subject":
+        if (!formData.subject) {
+          newErrors.subject = "Please select a subject";
+        }
+        break;
+      case "message":
+        if (!formData.message.trim()) {
+          newErrors.message = "Message is required";
+        } else if (formData.message.trim().length < 10) {
+          newErrors.message = "Message must be at least 10 characters";
+        } else if (formData.message.length > 5000) {
+          newErrors.message = "Message is too long (max 5000 characters)";
+        }
+        break;
+    }
+
+    setErrors((prev) => ({ ...prev, ...newErrors }));
   };
 
   // Check if form is complete and valid
@@ -176,6 +222,7 @@ export function ContactFormComponent() {
             id="name"
             value={formData.name}
             onChange={(e) => updateField("name", e.target.value)}
+            onBlur={() => handleBlur("name")}
             required
             placeholder="John Doe"
             className={`pl-10 ${errors.name ? "border-destructive focus-visible:ring-destructive" : ""}`}
@@ -203,6 +250,7 @@ export function ContactFormComponent() {
               type="email"
               value={formData.email}
               onChange={(e) => updateField("email", e.target.value)}
+              onBlur={() => handleBlur("email")}
               required
               placeholder="john@example.com"
               className={`pl-10 ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
@@ -240,7 +288,13 @@ export function ContactFormComponent() {
         </Label>
         <div className="relative">
           <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-          <Select value={formData.subject} onValueChange={(value) => updateField("subject", value)}>
+          <Select
+            value={formData.subject}
+            onValueChange={(value) => {
+              updateField("subject", value);
+              handleBlur("subject");
+            }}
+          >
             <SelectTrigger
               className={`pl-10 ${errors.subject ? "border-destructive focus-visible:ring-destructive" : ""}`}
               aria-invalid={!!errors.subject}
@@ -275,6 +329,7 @@ export function ContactFormComponent() {
           id="message"
           value={formData.message}
           onChange={(e) => updateField("message", e.target.value)}
+          onBlur={() => handleBlur("message")}
           required
           placeholder="Tell us about your inquiry..."
           rows={6}
@@ -282,12 +337,23 @@ export function ContactFormComponent() {
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
         />
-        {errors.message && (
-          <div id="message-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
-            <AlertCircle className="h-4 w-4" />
-            <span>{errors.message}</span>
-          </div>
-        )}
+        <div className="flex items-center justify-between">
+          {errors.message ? (
+            <div id="message-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
+              <AlertCircle className="h-4 w-4" />
+              <span>{errors.message}</span>
+            </div>
+          ) : (
+            <div className="text-xs text-muted-foreground">
+              {formData.message.length > 0 && `${formData.message.length} / 5000 characters`}
+            </div>
+          )}
+          {formData.message.trim().length > 0 && formData.message.trim().length < 10 && !errors.message && (
+            <div className="text-xs text-muted-foreground">
+              {10 - formData.message.trim().length} more characters needed
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Honeypot field */}
@@ -301,18 +367,30 @@ export function ContactFormComponent() {
         autoComplete="off"
       />
 
+      {!isFormValid() && Object.keys(errors).length === 0 && (
+        <div className="bg-muted/50 border border-muted-foreground/20 rounded-lg p-4">
+          <p className="text-sm text-muted-foreground font-medium mb-2">
+            Please complete the following required fields:
+          </p>
+          <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+            {formData.name.trim().length < 2 && <li>Your Name (at least 2 characters)</li>}
+            {!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && <li>Valid Email Address</li>}
+            {!formData.subject.trim() && <li>Subject</li>}
+            {formData.message.trim().length < 10 && <li>Message (at least 10 characters)</li>}
+          </ul>
+        </div>
+      )}
+
       <Button type="submit" disabled={loading || !isFormValid()} className="w-full" size="lg">
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Sending...
           </>
-        ) : !isFormValid() ? (
-          "Please Complete All Required Fields"
         ) : (
           <>
             <Mail className="mr-2 h-4 w-4" />
-            Send Message
+            {isFormValid() ? "Send Message" : "Complete Required Fields"}
           </>
         )}
       </Button>

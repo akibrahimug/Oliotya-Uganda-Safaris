@@ -7,7 +7,7 @@ import { sanitizeObject } from '@/lib/validations';
 import { handleError, handleRateLimitError, handleValidationError, logSecurityEvent } from '@/lib/error-handler';
 import { prisma } from '@/lib/db';
 import { sendEmail, ADMIN_EMAIL } from '@/lib/email';
-import { renderAsync } from '@react-email/components';
+import { render } from '@react-email/components';
 import ContactNotificationEmail from '@/emails/contact-notification';
 import ContactConfirmationEmail from '@/emails/contact-confirmation';
 
@@ -104,7 +104,7 @@ async function sendContactEmails(inquiry: {
 }) {
   try {
     // Send notification to admin
-    const adminHtml = await renderAsync(
+    const adminHtml = await render(
       ContactNotificationEmail({
         name: inquiry.name,
         email: inquiry.email,
@@ -122,7 +122,7 @@ async function sendContactEmails(inquiry: {
     });
 
     // Send confirmation to customer
-    const customerHtml = await renderAsync(
+    const customerHtml = await render(
       ContactConfirmationEmail({
         name: inquiry.name,
         subject: inquiry.subject,

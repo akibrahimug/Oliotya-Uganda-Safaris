@@ -4,7 +4,7 @@ import { bookingFormSchema } from "@/lib/validations/booking";
 import { bookingRateLimit, getClientIp } from "@/lib/rate-limit";
 import { sanitizeObject } from "@/lib/validations";
 import { sendEmail, ADMIN_EMAIL } from "@/lib/email";
-import { renderAsync } from "@react-email/components";
+import { render } from "@react-email/components";
 import BookingNotificationEmail from "@/emails/booking-notification";
 import BookingConfirmationEmail from "@/emails/booking-confirmation";
 
@@ -22,8 +22,8 @@ export async function POST(request: NextRequest) {
 
     if (!success) {
       return NextResponse.json(
-        { error: "Too many requests. Please try again in an hour." },
-        { status: 429 }
+          { error: "Too many requests. Please try again in an hour." },
+          { status: 429 }
       );
     }
 
@@ -32,8 +32,8 @@ export async function POST(request: NextRequest) {
     // Honeypot check
     if (body.website) {
       return NextResponse.json(
-        { error: "Invalid submission" },
-        { status: 400 }
+          { error: "Invalid submission" },
+          { status: 400 }
       );
     }
 
@@ -55,14 +55,17 @@ export async function POST(request: NextRequest) {
 
       if (!pkg || !pkg.active) {
         return NextResponse.json(
-          { error: "Package not found or not available" },
-          { status: 404 }
+            { error: "Package not found or not available" },
+            { status: 404 }
         );
       }
 
       pricePerPerson = Number(pkg.price);
       itemName = pkg.name;
-    } else if (validatedData.bookingType === "DESTINATION" && validatedData.destinationId) {
+    } else if (
+        validatedData.bookingType === "DESTINATION" &&
+        validatedData.destinationId
+    ) {
       const destination = await prisma.destination.findUnique({
         where: { id: validatedData.destinationId },
         select: { price: true, name: true },
@@ -70,8 +73,8 @@ export async function POST(request: NextRequest) {
 
       if (!destination) {
         return NextResponse.json(
-          { error: "Destination not found" },
-          { status: 404 }
+            { error: "Destination not found" },
+            { status: 404 }
         );
       }
 
@@ -79,8 +82,8 @@ export async function POST(request: NextRequest) {
       itemName = destination.name;
     } else {
       return NextResponse.json(
-        { error: "Invalid booking type or missing package/destination ID" },
-        { status: 400 }
+          { error: "Invalid booking type or missing package/destination ID" },
+          { status: 400 }
       );
     }
 
@@ -131,7 +134,7 @@ export async function POST(request: NextRequest) {
       itemName,
       totalPrice,
     }).catch((error) =>
-      console.error("Error sending booking emails:", error)
+        console.error("Error sending booking emails:", error)
     );
 
     return NextResponse.json({
@@ -149,14 +152,14 @@ export async function POST(request: NextRequest) {
 
     if (error.name === "ZodError") {
       return NextResponse.json(
-        { error: "Validation failed", details: error.errors },
-        { status: 400 }
+          { error: "Validation failed", details: error.errors },
+          { status: 400 }
       );
     }
 
     return NextResponse.json(
-      { error: "Failed to create booking. Please try again." },
-      { status: 500 }
+        { error: "Failed to create booking. Please try again." },
+        { status: 500 }
     );
   }
 }
@@ -178,23 +181,23 @@ async function sendBookingEmails(booking: {
   specialRequests?: string | null;
 }) {
   try {
-    // Send notification to admin
-    const adminHtml = await renderAsync(
-      BookingNotificationEmail({
-        confirmationNumber: booking.confirmationNumber,
-        firstName: booking.firstName,
-        lastName: booking.lastName,
-        email: booking.email,
-        phone: booking.phone,
-        country: booking.country,
-        itemName: booking.itemName,
-        bookingType: booking.bookingType,
-        numberOfTravelers: booking.numberOfTravelers,
-        travelDateFrom: booking.travelDateFrom.toISOString(),
-        travelDateTo: booking.travelDateTo.toISOString(),
-        totalPrice: Number(booking.totalPrice),
-        specialRequests: booking.specialRequests || undefined,
-      })
+    // Admin notification email
+    const adminHtml = await render(
+        BookingNotificationEmail({
+          confirmationNumber: booking.confirmationNumber,
+          firstName: booking.firstName,
+          lastName: booking.lastName,
+          email: booking.email,
+          phone: booking.phone,
+          country: booking.country,
+          itemName: booking.itemName,
+          bookingType: booking.bookingType,
+          numberOfTravelers: booking.numberOfTravelers,
+          travelDateFrom: booking.travelDateFrom.toISOString(),
+          travelDateTo: booking.travelDateTo.toISOString(),
+          totalPrice: Number(booking.totalPrice),
+          specialRequests: booking.specialRequests || undefined,
+        })
     );
 
     await sendEmail({
@@ -204,17 +207,17 @@ async function sendBookingEmails(booking: {
       replyTo: booking.email,
     });
 
-    // Send confirmation to customer
-    const customerHtml = await renderAsync(
-      BookingConfirmationEmail({
-        firstName: booking.firstName,
-        confirmationNumber: booking.confirmationNumber,
-        itemName: booking.itemName,
-        numberOfTravelers: booking.numberOfTravelers,
-        travelDateFrom: booking.travelDateFrom.toISOString(),
-        travelDateTo: booking.travelDateTo.toISOString(),
-        totalPrice: Number(booking.totalPrice),
-      })
+    // Customer confirmation email
+    const customerHtml = await render(
+        BookingConfirmationEmail({
+          firstName: booking.firstName,
+          confirmationNumber: booking.confirmationNumber,
+          itemName: booking.itemName,
+          numberOfTravelers: booking.numberOfTravelers,
+          travelDateFrom: booking.travelDateFrom.toISOString(),
+          travelDateTo: booking.travelDateTo.toISOString(),
+          totalPrice: Number(booking.totalPrice),
+        })
     );
 
     await sendEmail({

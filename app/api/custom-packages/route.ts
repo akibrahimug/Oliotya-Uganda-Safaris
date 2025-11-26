@@ -9,7 +9,7 @@ import {
 } from "@/lib/api-errors";
 import { customPackageRateLimit } from "@/lib/rate-limit";
 import { sendEmail, ADMIN_EMAIL } from "@/lib/email";
-import { renderAsync } from "@react-email/components";
+import { render } from "@react-email/components";
 import CustomPackageNotificationEmail from "@/emails/custom-package-notification";
 import CustomPackageConfirmationEmail from "@/emails/custom-package-confirmation";
 
@@ -136,7 +136,7 @@ async function sendCustomPackageEmails(customPackage: {
 }) {
   try {
     // Send notification to admin
-    const adminHtml = await renderAsync(
+    const adminHtml = await render(
       CustomPackageNotificationEmail({
         packageId: customPackage.id,
         name: customPackage.name,
@@ -160,7 +160,7 @@ async function sendCustomPackageEmails(customPackage: {
     });
 
     // Send confirmation to customer
-    const customerHtml = await renderAsync(
+    const customerHtml = await render(
       CustomPackageConfirmationEmail({
         contactName: customPackage.contactName,
         name: customPackage.name,
