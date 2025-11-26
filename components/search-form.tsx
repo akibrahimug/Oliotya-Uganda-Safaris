@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Calendar, MapPin, Users, Search } from "lucide-react";
+import { MapPin, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -13,17 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import type { SearchFilters } from "@/lib/types";
 
 interface SearchFormProps {
-  onSearch: (filters: SearchFilters) => void;
+  onSearch?: () => void;
 }
 
 interface Package {
@@ -40,8 +31,6 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   const [selectedPackage, setSelectedPackage] = useState<string>("");
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
-  const [dateRange, setDateRange] = useState<{ from: Date; to?: Date }>();
-  const [travelers, setTravelers] = useState(2);
 
   // Fetch packages on mount
   useEffect(() => {
@@ -67,26 +56,17 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     if (selectedPackage) {
       // Navigate to the selected package page
       router.push(`/package/${selectedPackage}`);
-    } else {
-      // If no package selected, trigger the existing search behavior
-      onSearch({
-        destination: selectedPackage || "",
-        dateRange,
-        travelers,
-      });
-
-      const resultsSection = document.getElementById("search-results");
-      if (resultsSection) {
-        resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+    } else if (onSearch) {
+      // Trigger callback if provided
+      onSearch();
     }
   };
 
   return (
     <div className="relative -mt-20 z-30 container mx-auto px-4 lg:px-8">
       <div className="bg-card rounded-2xl shadow-2xl p-6 md:p-8 animate-fade-in-up">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-          <div className="space-y-2">
+        <div className="flex flex-col sm:flex-row gap-4 items-end max-w-2xl mx-auto">
+          <div className="flex-1 space-y-2 w-full">
             <Label
               htmlFor="package-select"
               className="flex items-center gap-2 text-sm font-medium"
@@ -101,7 +81,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
             >
               <SelectTrigger
                 id="package-select"
-                className="w-full h-12 bg-transparent font-semibold"
+                className="w-full h-12 bg-transparent font-semibold text-base"
               >
                 <SelectValue
                   placeholder={loading ? "Loading packages..." : "Select a safari package"}
@@ -117,76 +97,15 @@ export function SearchForm({ onSearch }: SearchFormProps) {
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <Label className="flex items-center gap-2 text-sm font-medium">
-              <Calendar className="h-4 w-4 text-primary" />
-              Travel Dates
-            </Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-full h-12 justify-start text-left font-semibold bg-transparent"
-                >
-                  {dateRange?.from ? (
-                    dateRange.to ? (
-                      <>
-                        {format(dateRange.from, "dd MMM")} -{" "}
-                        {format(dateRange.to, "dd MMM yyyy")}
-                      </>
-                    ) : (
-                      format(dateRange.from, "dd MMM yyyy")
-                    )
-                  ) : (
-                    "Select dates"
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <CalendarComponent
-                  mode="range"
-                  selected={dateRange}
-                  onSelect={setDateRange}
-                  initialFocus
-                  numberOfMonths={2}
-                  disabled={(date) =>
-                    date < new Date(new Date().setHours(0, 0, 0, 0))
-                  }
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-
-          <div className="space-y-2">
-            <Label
-              htmlFor="travelers"
-              className="flex items-center gap-2 text-sm font-medium"
-            >
-              <Users className="h-4 w-4 text-primary" />
-              Number of Travellers
-            </Label>
-            <div className="flex items-center gap-2">
-              <Input
-                id="travelers"
-                type="number"
-                min="1"
-                value={travelers}
-                onChange={(e) =>
-                  setTravelers(Number.parseInt(e.target.value) || 1)
-                }
-                size="lg"
-                inputMode="numeric"
-                className="flex-1"
-              />
-              <Button
-                onClick={handleSearch}
-                size="icon"
-                className="h-12 w-12 bg-primary hover:bg-primary/90"
-              >
-                <Search className="h-5 w-5" />
-              </Button>
-            </div>
-          </div>
+          <Button
+            onClick={handleSearch}
+            disabled={!selectedPackage || loading}
+            size="default"
+            className="px-8 bg-primary hover:bg-primary/90 font-semibold text-base whitespace-nowrap sm:w-auto w-full"
+          >
+            <Search className="h-5 w-5 mr-2" />
+            Explore Safari
+          </Button>
         </div>
       </div>
     </div>

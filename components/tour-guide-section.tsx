@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { getImageSrc } from "@/lib/image-utils";
+import { TourGuideReadMoreModal } from "./tour-guide-read-more-modal";
 
 interface TourGuideSectionProps {
   data?: {
@@ -16,7 +17,7 @@ interface TourGuideSectionProps {
 }
 
 export function TourGuideSection({ data }: TourGuideSectionProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Default fallback data
   const sectionData = data || {
@@ -27,9 +28,9 @@ export function TourGuideSection({ data }: TourGuideSectionProps) {
     buttonText: "Read More",
   };
 
-  // Split description at first period for preview.
-  const firstSentence = sectionData.description.split(". ")[0] + ".";
-  const restOfDescription = sectionData.description.substring(firstSentence.length);
+  // Get first 2-3 sentences for preview
+  const sentences = sectionData.description.split(". ");
+  const previewText = sentences.slice(0, 2).join(". ") + ".";
 
   return (
     <section className="bg-muted/30">
@@ -53,20 +54,26 @@ export function TourGuideSection({ data }: TourGuideSectionProps) {
             </h2>
             <div className="w-20 h-1 bg-accent mb-6" />
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              {firstSentence}
-              {isExpanded && restOfDescription}
+              {previewText}
             </p>
             <Button
               size="lg"
               className="group"
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={() => setIsModalOpen(true)}
             >
-              {isExpanded ? "Read Less" : sectionData.buttonText}
+              {sectionData.buttonText}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Read More Modal */}
+      <TourGuideReadMoreModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        data={sectionData}
+      />
     </section>
   );
 }

@@ -78,6 +78,11 @@ const navigation = [
         icon: MessageSquare,
     },
     {
+        name: "Email Templates",
+        href: "/cms/email-templates",
+        icon: Mail,
+    },
+    {
         name: "FAQs",
         href: "/cms/faqs",
         icon: HelpCircle,

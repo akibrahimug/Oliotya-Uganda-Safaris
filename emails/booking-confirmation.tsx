@@ -6,6 +6,7 @@ import {
   Section,
   Heading,
   Text,
+  Hr,
 } from '@react-email/components';
 
 interface BookingConfirmationEmailProps {
@@ -16,6 +17,10 @@ interface BookingConfirmationEmailProps {
   travelDateFrom: string;
   travelDateTo: string;
   totalPrice: number;
+  companyName?: string;
+  contactEmail?: string;
+  primaryColor?: string;
+  accentColor?: string;
 }
 
 export default function BookingConfirmationEmail({
@@ -26,6 +31,10 @@ export default function BookingConfirmationEmail({
   travelDateFrom,
   travelDateTo,
   totalPrice,
+  companyName = 'Nambi Uganda Safaris',
+  contactEmail = 'info@nambiugandasafaris.com',
+  primaryColor = '#059669',
+  accentColor = '#3b82f6',
 }: BookingConfirmationEmailProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -36,22 +45,40 @@ export default function BookingConfirmationEmail({
     });
   };
 
+  // Create color-based styles
+  const h1Style = { ...h1, color: primaryColor };
+  const confirmationBoxStyle = {
+    ...confirmationBox,
+    backgroundColor: `${primaryColor}15`, // 15 is approx 8% opacity in hex
+    borderColor: primaryColor,
+  };
+  const confirmationNumberStyle = { ...confirmationNumber, color: primaryColor };
+  const priceValueStyle = { ...priceValue, color: primaryColor };
+  const infoBoxStyle = {
+    ...infoBox,
+    backgroundColor: `${accentColor}15`,
+    borderColor: accentColor,
+  };
+
   return (
     <Html>
-      <Head />
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+      </Head>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1}>Booking Confirmed!</Heading>
+          <Heading style={h1Style}>Booking Confirmed!</Heading>
 
           <Text style={greeting}>Dear {firstName},</Text>
 
           <Text style={paragraph}>
-            Thank you for booking with Fox Adventures! Your safari adventure is confirmed.
+            Thank you for booking with {companyName}! Your safari adventure is confirmed.
           </Text>
 
-          <Section style={confirmationBox}>
+          <Section style={confirmationBoxStyle}>
             <Text style={confirmationTitle}>Confirmation Number</Text>
-            <Text style={confirmationNumber}>{confirmationNumber}</Text>
+            <Text style={confirmationNumberStyle}>{confirmationNumber}</Text>
             <Text style={confirmationSubtext}>
               Please save this number for your records
             </Text>
@@ -60,48 +87,85 @@ export default function BookingConfirmationEmail({
           <Heading style={h2}>Your Booking Details</Heading>
 
           <Section style={detailsBox}>
-            <Text style={detailLabel}>Safari Package/Destination:</Text>
-            <Text style={detailValue}>{itemName}</Text>
-
-            <Text style={detailLabel}>Number of Travelers:</Text>
-            <Text style={detailValue}>{numberOfTravelers} {numberOfTravelers === 1 ? 'person' : 'people'}</Text>
-
-            <Text style={detailLabel}>Travel Dates:</Text>
-            <Text style={detailValue}>
-              {formatDate(travelDateFrom)}<br />
-              to<br />
-              {formatDate(travelDateTo)}
-            </Text>
-
-            <Text style={detailLabel}>Total Price:</Text>
-            <Text style={priceValue}>${totalPrice.toLocaleString()} USD</Text>
+            <table width="100%" cellPadding="0" cellSpacing="0" role="presentation">
+              <tr>
+                <td>
+                  <Text style={detailLabel}>Safari Package/Destination:</Text>
+                  <Text style={detailValue}>{itemName}</Text>
+                </td>
+              </tr>
+              <tr>
+                <td style={{ paddingTop: '12px' }}>
+                  <Text style={detailLabel}>Number of Travelers:</Text>
+                  <Text style={detailValue}>{numberOfTravelers} {numberOfTravelers === 1 ? 'person' : 'people'}</Text>
+                </td>
+              </tr>
+              <tr>
+                <td style={{ paddingTop: '12px' }}>
+                  <Text style={detailLabel}>Travel Dates:</Text>
+                  <Text style={detailValue}>
+                    {formatDate(travelDateFrom)} to {formatDate(travelDateTo)}
+                  </Text>
+                </td>
+              </tr>
+              <tr>
+                <td style={{ paddingTop: '12px' }}>
+                  <Text style={detailLabel}>Total Price:</Text>
+                  <Text style={priceValueStyle}>${totalPrice.toLocaleString()} USD</Text>
+                </td>
+              </tr>
+            </table>
           </Section>
 
-          <Section style={infoBox}>
+          <Section style={infoBoxStyle}>
             <Text style={infoTitle}>What Happens Next?</Text>
-            <Text style={infoText}>
-              1. Our team will review your booking details<br />
-              2. We'll send you a detailed itinerary within 48 hours<br />
-              3. You'll receive payment instructions<br />
-              4. We'll confirm final arrangements 2 weeks before departure
-            </Text>
+            <table width="100%" cellPadding="0" cellSpacing="0" role="presentation">
+              <tr>
+                <td style={infoText}>
+                  1. Our team will review your booking details
+                </td>
+              </tr>
+              <tr>
+                <td style={{ ...infoText, paddingTop: '8px' }}>
+                  2. We'll send you a detailed itinerary within 48 hours
+                </td>
+              </tr>
+              <tr>
+                <td style={{ ...infoText, paddingTop: '8px' }}>
+                  3. You'll receive payment instructions
+                </td>
+              </tr>
+              <tr>
+                <td style={{ ...infoText, paddingTop: '8px' }}>
+                  4. We'll confirm final arrangements 2 weeks before departure
+                </td>
+              </tr>
+            </table>
           </Section>
 
           <Text style={paragraph}>
             If you have any questions or need to make changes to your booking,
-            please contact us at info@foxadventures.com or reply to this email
+            please contact us at {contactEmail} or reply to this email
             with your confirmation number.
           </Text>
 
           <Text style={signature}>
-            We can't wait to welcome you on this incredible journey!<br /><br />
-            <strong>The Fox Adventures Team</strong>
+            We can't wait to welcome you on this incredible journey!
           </Text>
+          <Text style={signature}>
+            <strong>The {companyName} Team</strong>
+          </Text>
+
+          <Hr style={divider} />
 
           <Section style={footer}>
             <Text style={footerText}>
-              Fox Adventures - Unforgettable Safari Experiences<br />
-              Email: info@foxadventures.com<br />
+              {companyName} - Unforgettable Safari Experiences
+            </Text>
+            <Text style={footerText}>
+              Email: {contactEmail}
+            </Text>
+            <Text style={footerText}>
               Confirmation: {confirmationNumber}
             </Text>
           </Section>
@@ -111,9 +175,14 @@ export default function BookingConfirmationEmail({
   );
 }
 
+// Inline styles optimized for email clients
 const main = {
   backgroundColor: '#f6f9fc',
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+  WebkitFontSmoothing: 'antialiased' as const,
+  MozOsxFontSmoothing: 'grayscale' as const,
+  padding: '0',
+  margin: '0',
 };
 
 const container = {
@@ -122,6 +191,9 @@ const container = {
   padding: '20px 0 48px',
   marginBottom: '64px',
   maxWidth: '600px',
+  width: '100%',
+  border: '1px solid #e5e7eb',
+  borderRadius: '8px',
 };
 
 const h1 = {
@@ -241,20 +313,25 @@ const signature = {
   color: '#1a1a1a',
   fontSize: '16px',
   lineHeight: '24px',
-  margin: '32px 0 0 0',
+  margin: '16px 0 0 0',
   padding: '0 40px',
 };
 
+const divider = {
+  borderTop: '2px solid #e5e7eb',
+  margin: '32px 40px',
+  width: 'auto',
+};
+
 const footer = {
-  padding: '24px 40px',
-  marginTop: '32px',
-  borderTop: '1px solid #e5e7eb',
+  padding: '24px 40px 0px',
+  marginTop: '0px',
 };
 
 const footerText = {
   color: '#6b7280',
   fontSize: '14px',
-  lineHeight: '20px',
-  margin: 0,
+  lineHeight: '22px',
+  margin: '4px 0',
   textAlign: 'center' as const,
 };

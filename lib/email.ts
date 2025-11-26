@@ -1,7 +1,8 @@
 import { Resend } from 'resend';
 
 // Initialize Resend client
-export const resend = new Resend(process.env.RESEND_API_KEY);
+// Use a placeholder during build time, actual key will be used at runtime
+export const resend = new Resend(process.env.RESEND_API_KEY || 'build-time-placeholder');
 
 // Default sender email (should be verified in Resend)
 export const SENDER_EMAIL = process.env.EMAIL_FROM || 'onboarding@resend.dev';
@@ -22,6 +23,11 @@ export async function sendEmail({
   replyTo?: string;
 }) {
   try {
+    // Validate API key at runtime
+    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'build-time-placeholder') {
+      throw new Error('RESEND_API_KEY is not configured. Please add it to your environment variables.');
+    }
+
     const data = await resend.emails.send({
       from: SENDER_EMAIL,
       to,

@@ -9,13 +9,23 @@ describe('Database CRUD Operations', () => {
       where: { user: { email: { contains: 'test-' } } },
     });
     await prisma.booking.deleteMany({
-      where: { email: { contains: 'test-' } },
+      where: {
+        OR: [
+          { email: { contains: 'test-' } },
+          { email: 'test-transaction@example.com' }
+        ]
+      },
     });
     await prisma.user.deleteMany({
       where: { email: { contains: 'test-' } },
     });
     await prisma.destination.deleteMany({
-      where: { name: { contains: 'Test Destination' } },
+      where: {
+        OR: [
+          { name: { contains: 'Test Destination' } },
+          { name: 'Test Transaction Destination' }
+        ]
+      },
     });
     await prisma.contactInquiry.deleteMany({
       where: { email: { contains: 'test-' } },

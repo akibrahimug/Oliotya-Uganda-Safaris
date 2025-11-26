@@ -784,3 +784,27 @@ model BookingConfirmationGallery {
 
   @@map("booking_confirmation_gallery")
 }
+
+model EmailTemplate {
+  id             String   @id @default(cuid())
+  type           String   @unique // booking_confirmation, booking_notification, contact_confirmation, etc.
+  subject        String // Email subject line
+  companyName    String // Company name to use in template
+  heading        String // Main heading text
+  greeting       String // Greeting text (e.g., "Dear {firstName},")
+  introText      String   @db.Text // Introduction paragraph
+  nextStepsTitle String? // "What Happens Next?" title
+  nextStepsText  String?  @db.Text // Next steps content
+  signatureText  String   @db.Text // Signature/closing text
+  footerText     String   @db.Text // Footer text
+  contactEmail   String // Contact email to display
+  primaryColor   String   @default("#059669") // Primary brand color (hex)
+  accentColor    String   @default("#3b82f6") // Accent color (hex)
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([type])
+  @@index([active])
+  @@map("email_templates")
+}

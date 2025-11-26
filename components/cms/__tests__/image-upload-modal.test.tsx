@@ -126,8 +126,7 @@ describe("ImageUploadModal", () => {
       await imageClient.compressImageToWebp(mockFile);
 
       expect(imageClient.compressImageToWebp).toHaveBeenCalledWith(
-        mockFile,
-        undefined
+        mockFile
       );
     });
 

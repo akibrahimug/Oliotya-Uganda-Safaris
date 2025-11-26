@@ -10,7 +10,7 @@ async function DashboardStats() {
     await Promise.all([
       prisma.cMSImage.count(),
       prisma.package.count(),
-      prisma.cMSDestination.count(),
+      prisma.destination.count(),
       prisma.teamMember.count(),
     ]);
 

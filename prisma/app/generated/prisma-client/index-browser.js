@@ -664,6 +664,26 @@ exports.Prisma.BookingConfirmationGalleryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EmailTemplateScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  subject: 'subject',
+  companyName: 'companyName',
+  heading: 'heading',
+  greeting: 'greeting',
+  introText: 'introText',
+  nextStepsTitle: 'nextStepsTitle',
+  nextStepsText: 'nextStepsText',
+  signatureText: 'signatureText',
+  footerText: 'footerText',
+  contactEmail: 'contactEmail',
+  primaryColor: 'primaryColor',
+  accentColor: 'accentColor',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -779,7 +799,8 @@ exports.Prisma.ModelName = {
   BookingConfirmationStep: 'BookingConfirmationStep',
   BookingConfirmationContact: 'BookingConfirmationContact',
   BookingConfirmationSecurity: 'BookingConfirmationSecurity',
-  BookingConfirmationGallery: 'BookingConfirmationGallery'
+  BookingConfirmationGallery: 'BookingConfirmationGallery',
+  EmailTemplate: 'EmailTemplate'
 };
 
 /**
