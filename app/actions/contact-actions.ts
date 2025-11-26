@@ -14,7 +14,7 @@ import ContactConfirmationEmail from '@/emails/contact-confirmation';
 export async function submitContactForm(formData: FormData) {
   try {
     // Get client IP for rate limiting
-    const headersList = headers();
+    const headersList = await headers();
     const ip = getClientIp(headersList);
 
     // Check rate limit

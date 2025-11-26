@@ -130,9 +130,19 @@ export async function POST(request: NextRequest) {
 
     // Send email notifications (fire and forget)
     sendBookingEmails({
-      ...booking,
+      confirmationNumber: booking.confirmationNumber,
+      firstName: booking.firstName,
+      lastName: booking.lastName,
+      email: booking.email,
+      phone: booking.phone,
+      country: booking.country || '',
       itemName,
+      bookingType: booking.bookingType,
+      numberOfTravelers: booking.numberOfTravelers,
+      travelDateFrom: booking.travelDateFrom,
+      travelDateTo: booking.travelDateTo,
       totalPrice,
+      specialRequests: booking.specialRequests,
     }).catch((error) =>
         console.error("Error sending booking emails:", error)
     );

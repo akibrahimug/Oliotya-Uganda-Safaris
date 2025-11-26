@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/hooks/use-toast";
 import {
-  Loader2,
   CheckCircle2,
   Home,
   Mail,
@@ -21,96 +21,180 @@ import {
   MessageCircle,
   Shield,
   Info,
-  Calendar
+  Calendar,
+  AlertCircle
 } from "lucide-react";
 
 function BookingConfirmationContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const { toast } = useToast();
   const confirmationNumber = searchParams.get("ref");
   const [booking, setBooking] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // CMS content
+  const [cmsHero, setCmsHero] = useState<any>(null);
+  const [cmsSteps, setCmsSteps] = useState<any[]>([]);
+  const [cmsContact, setCmsContact] = useState<any>(null);
+  const [cmsGalleries, setCmsGalleries] = useState<any[]>([]);
+
   useEffect(() => {
     if (!confirmationNumber) {
       setError("No confirmation number provided");
       setLoading(false);
+      toast({
+        title: "❌ Missing Confirmation Number",
+        description: "No booking confirmation number was provided. Please check your email or try booking again.",
+        variant: "destructive",
+        duration: 7000,
+      });
       return;
     }
 
-    const fetchBooking = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(`/api/bookings/${confirmationNumber}`);
-        if (!response.ok) {
+        // Fetch booking and CMS content in parallel
+        const [bookingRes, heroRes, stepsRes, contactRes, galleryRes] = await Promise.all([
+          fetch(`/api/bookings/${confirmationNumber}`),
+          fetch("/api/cms/booking-confirmation-hero"),
+          fetch("/api/cms/booking-confirmation-steps"),
+          fetch("/api/cms/booking-confirmation-contact"),
+          fetch("/api/cms/booking-confirmation-gallery"),
+        ]);
+
+        if (!bookingRes.ok) {
           throw new Error("Booking not found");
         }
-        const data = await response.json();
-        setBooking(data.booking);
+
+        const bookingData = await bookingRes.json();
+        setBooking(bookingData.booking);
+
+        // Load CMS content (non-blocking)
+        if (heroRes.ok) {
+          const heroData = await heroRes.json();
+          setCmsHero(heroData.section);
+        }
+
+        if (stepsRes.ok) {
+          const stepsData = await stepsRes.json();
+          setCmsSteps(stepsData.steps || []);
+        }
+
+        if (contactRes.ok) {
+          const contactData = await contactRes.json();
+          setCmsContact(contactData.section);
+        }
+
+        if (galleryRes.ok) {
+          const galleryData = await galleryRes.json();
+          setCmsGalleries(galleryData.galleries || []);
+        }
       } catch (err) {
-        setError("Unable to retrieve booking details");
+        const errorMessage = "Unable to retrieve booking details";
+        setError(errorMessage);
+        toast({
+          title: "❌ Booking Not Found",
+          description: `${errorMessage}. Please check your confirmation number or contact support for assistance.`,
+          variant: "destructive",
+          duration: 7000,
+        });
       } finally {
         setLoading(false);
       }
     };
 
-    fetchBooking();
-  }, [confirmationNumber]);
+    fetchData();
+  }, [confirmationNumber, toast]);
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
       </div>
     );
   }
 
   if (error || !booking) {
     return (
-      <div className="max-w-2xl mx-auto text-center py-12">
-        <div className="bg-destructive/10 text-destructive rounded-lg p-6 mb-6">
-          <p className="font-semibold">{error || "Booking not found"}</p>
-        </div>
-        <Button asChild>
-          <Link href="/">
-            <Home className="mr-2 h-4 w-4" />
-            Return Home
-          </Link>
-        </Button>
+      <div className="max-w-3xl mx-auto py-12">
+        <Card className="border-destructive/50">
+          <CardContent className="pt-6">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <div className="w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center">
+                <AlertCircle className="h-8 w-8 text-destructive" />
+              </div>
+
+              <div className="space-y-2">
+                <h2 className="text-2xl font-bold">
+                  {error === "No confirmation number provided"
+                    ? "No Confirmation Number"
+                    : "Booking Not Found"}
+                </h2>
+                <p className="text-muted-foreground">
+                  {error === "No confirmation number provided"
+                    ? "It looks like you navigated to this page directly. You should receive a booking confirmation email with a link to view your booking details."
+                    : "We couldn't find a booking with this confirmation number. Please check your email for the correct link or contact our support team."}
+                </p>
+              </div>
+
+              {confirmationNumber && (
+                <div className="bg-muted p-4 rounded-lg">
+                  <p className="text-sm text-muted-foreground mb-1">Confirmation Number Searched:</p>
+                  <p className="font-mono font-semibold">{confirmationNumber}</p>
+                </div>
+              )}
+
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <Button asChild variant="default" size="lg">
+                  <Link href="/">
+                    <Home className="mr-2 h-4 w-4" />
+                    Return Home
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/contact">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Contact Support
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 text-left w-full">
+                <p className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                  💡 Need Help?
+                </p>
+                <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+                  <li>• Check your email for the booking confirmation</li>
+                  <li>• Look in your spam/junk folder</li>
+                  <li>• Contact us at {cmsContact?.email || "info@foxadventures.com"}</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      {/* Success Message */}
-      <div className="text-center bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-8 md:p-12 border-2 border-primary/20">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-primary rounded-full mb-6">
-          <CheckCircle2 className="h-10 w-10 text-primary-foreground" />
-        </div>
-        <Badge className="mb-4" variant="secondary">
-          Booking Received
-        </Badge>
-        <h1 className="font-serif text-3xl md:text-4xl font-bold mb-4">
-          Your Safari Adventure Awaits!
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Thank you for choosing Nambi Uganda Safaris. Your booking request has been
-          successfully received, and we're excited to help you create unforgettable memories!
-        </p>
-      </div>
-
       {/* Important Notice */}
-      <Card className="border-amber-200 bg-amber-50/50">
+      <Card className="border-amber-200 bg-amber-50/50 dark:bg-amber-900/20 dark:border-amber-800">
         <CardContent className="pt-6">
           <div className="flex gap-3">
-            <Info className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <Info className="h-5 w-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
             <div className="space-y-2">
-              <p className="font-semibold text-amber-900">Your Booking is Pending Payment</p>
-              <p className="text-sm text-amber-800">
-                Your reservation will be confirmed once we receive and verify your payment.
-                Please complete the payment within <strong>48 hours</strong> to secure your
-                booking at the current price.
+              <p className="font-semibold text-amber-900 dark:text-amber-100">Important</p>
+              <p className="text-sm text-amber-800 dark:text-amber-200">
+                {cmsHero?.importantNotice || "Your reservation will be confirmed once we receive and verify your payment. Please complete the payment within 48 hours to secure your booking at the current price."}
               </p>
+              {cmsHero?.paymentDeadline && (
+                <p className="text-sm text-amber-800 dark:text-amber-200">
+                  <strong>Payment deadline:</strong> {cmsHero.paymentDeadline}
+                </p>
+              )}
             </div>
           </div>
         </CardContent>
@@ -168,6 +252,31 @@ function BookingConfirmationContent() {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
+            {cmsSteps.length > 0 ? (
+              cmsSteps.map((step, index) => (
+                <div key={step.id}>
+                  {index > 0 && <Separator />}
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-primary font-bold">{step.stepNumber}</span>
+                    </div>
+                    <div className="flex-1 pt-1">
+                      <p className="font-semibold text-base mb-2">{step.title}</p>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        {step.description}
+                      </p>
+                      {step.extraInfo && (
+                        <p className="text-xs text-muted-foreground mt-2">
+                          {step.extraInfo}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              /* Fallback content if no CMS steps configured */
+              <div className="space-y-6">
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <span className="text-primary font-bold">1</span>
@@ -295,22 +404,55 @@ function BookingConfirmationContent() {
               </div>
             </div>
           </div>
+            )}
+          </div>
         </CardContent>
       </Card>
+
+      {/* Image Gallery */}
+      {cmsGalleries.length > 0 && (
+        <div className="space-y-8">
+          {cmsGalleries.map((gallery) => (
+            <Card key={gallery.id}>
+              <CardHeader>
+                <CardTitle>{gallery.title}</CardTitle>
+                {gallery.description && (
+                  <CardDescription>{gallery.description}</CardDescription>
+                )}
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {gallery.images.map((img: string, idx: number) => (
+                    <div key={idx} className="aspect-square overflow-hidden rounded-lg">
+                      <img
+                        src={img}
+                        alt={`${gallery.title} ${idx + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
 
       {/* Contact & Support */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Need Assistance?</CardTitle>
+            <CardTitle className="text-lg">
+              {cmsContact?.sectionTitle || "Need Assistance?"}
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              Our team is here to help with any questions about your booking
+              {cmsContact?.description || "Our team is here to help with any questions about your booking"}
             </p>
             <div className="space-y-3">
               <a
-                href="mailto:info@nambisafaris.com"
+                href={`mailto:${cmsContact?.email || "info@nambisafaris.com"}`}
                 className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
               >
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -318,11 +460,11 @@ function BookingConfirmationContent() {
                 </div>
                 <div>
                   <p className="font-medium">Email Us</p>
-                  <p className="text-xs text-muted-foreground">info@nambisafaris.com</p>
+                  <p className="text-xs text-muted-foreground">{cmsContact?.email || "info@nambisafaris.com"}</p>
                 </div>
               </a>
               <a
-                href="tel:+256123456789"
+                href={`tel:${cmsContact?.phone || "+256123456789"}`}
                 className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
               >
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -330,14 +472,30 @@ function BookingConfirmationContent() {
                 </div>
                 <div>
                   <p className="font-medium">Call Us</p>
-                  <p className="text-xs text-muted-foreground">+256 123 456 789</p>
+                  <p className="text-xs text-muted-foreground">{cmsContact?.phone || "+256 123 456 789"}</p>
                 </div>
               </a>
+              {cmsContact?.whatsapp && (
+                <a
+                  href={`https://wa.me/${cmsContact.whatsapp.replace(/[^0-9]/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
+                >
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <MessageCircle className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">WhatsApp</p>
+                    <p className="text-xs text-muted-foreground">{cmsContact.whatsapp}</p>
+                  </div>
+                </a>
+              )}
             </div>
             <Separator />
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <Clock className="h-4 w-4" />
-              <span>Response time: Within 2-4 hours</span>
+              <span>Response time: {cmsContact?.responseTime || "Within 2-4 hours"}</span>
             </div>
           </CardContent>
         </Card>
@@ -405,13 +563,29 @@ function BookingConfirmationContent() {
 
 export default function BookingConfirmationPage() {
   return (
-    <main className="min-h-screen bg-muted/30">
+    <main className="min-h-screen">
       <Header />
-      <div className="container mx-auto px-4 py-12 lg:py-16">
+
+      {/* Hero Section with Solid Green Background */}
+      <section className="bg-green-600 text-white py-16 md:py-24">
+        <div className="container mx-auto px-4 text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-6 backdrop-blur-sm">
+            <CheckCircle2 className="h-10 w-10 text-white" />
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            Booking Confirmed!
+          </h1>
+          <p className="text-lg md:text-xl text-green-50 max-w-2xl mx-auto">
+            Your safari adventure is one step closer. Check your email for booking details.
+          </p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12 lg:py-16 bg-muted/30">
         <Suspense
           fallback={
             <div className="flex items-center justify-center min-h-[400px]">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
             </div>
           }
         >

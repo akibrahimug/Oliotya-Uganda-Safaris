@@ -173,6 +173,31 @@ export type ContactInfo = $Result.DefaultSelection<Prisma.$ContactInfoPayload>
  * 
  */
 export type ContactResource = $Result.DefaultSelection<Prisma.$ContactResourcePayload>
+/**
+ * Model BookingConfirmationHero
+ * 
+ */
+export type BookingConfirmationHero = $Result.DefaultSelection<Prisma.$BookingConfirmationHeroPayload>
+/**
+ * Model BookingConfirmationStep
+ * 
+ */
+export type BookingConfirmationStep = $Result.DefaultSelection<Prisma.$BookingConfirmationStepPayload>
+/**
+ * Model BookingConfirmationContact
+ * 
+ */
+export type BookingConfirmationContact = $Result.DefaultSelection<Prisma.$BookingConfirmationContactPayload>
+/**
+ * Model BookingConfirmationSecurity
+ * 
+ */
+export type BookingConfirmationSecurity = $Result.DefaultSelection<Prisma.$BookingConfirmationSecurityPayload>
+/**
+ * Model BookingConfirmationGallery
+ * 
+ */
+export type BookingConfirmationGallery = $Result.DefaultSelection<Prisma.$BookingConfirmationGalleryPayload>
 
 /**
  * Enums
@@ -721,6 +746,56 @@ export class PrismaClient<
     * ```
     */
   get contactResource(): Prisma.ContactResourceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookingConfirmationHero`: Exposes CRUD operations for the **BookingConfirmationHero** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookingConfirmationHeroes
+    * const bookingConfirmationHeroes = await prisma.bookingConfirmationHero.findMany()
+    * ```
+    */
+  get bookingConfirmationHero(): Prisma.BookingConfirmationHeroDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookingConfirmationStep`: Exposes CRUD operations for the **BookingConfirmationStep** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookingConfirmationSteps
+    * const bookingConfirmationSteps = await prisma.bookingConfirmationStep.findMany()
+    * ```
+    */
+  get bookingConfirmationStep(): Prisma.BookingConfirmationStepDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookingConfirmationContact`: Exposes CRUD operations for the **BookingConfirmationContact** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookingConfirmationContacts
+    * const bookingConfirmationContacts = await prisma.bookingConfirmationContact.findMany()
+    * ```
+    */
+  get bookingConfirmationContact(): Prisma.BookingConfirmationContactDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookingConfirmationSecurity`: Exposes CRUD operations for the **BookingConfirmationSecurity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookingConfirmationSecurities
+    * const bookingConfirmationSecurities = await prisma.bookingConfirmationSecurity.findMany()
+    * ```
+    */
+  get bookingConfirmationSecurity(): Prisma.BookingConfirmationSecurityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookingConfirmationGallery`: Exposes CRUD operations for the **BookingConfirmationGallery** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookingConfirmationGalleries
+    * const bookingConfirmationGalleries = await prisma.bookingConfirmationGallery.findMany()
+    * ```
+    */
+  get bookingConfirmationGallery(): Prisma.BookingConfirmationGalleryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1193,7 +1268,12 @@ export namespace Prisma {
     AboutCTA: 'AboutCTA',
     ContactHero: 'ContactHero',
     ContactInfo: 'ContactInfo',
-    ContactResource: 'ContactResource'
+    ContactResource: 'ContactResource',
+    BookingConfirmationHero: 'BookingConfirmationHero',
+    BookingConfirmationStep: 'BookingConfirmationStep',
+    BookingConfirmationContact: 'BookingConfirmationContact',
+    BookingConfirmationSecurity: 'BookingConfirmationSecurity',
+    BookingConfirmationGallery: 'BookingConfirmationGallery'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1212,7 +1292,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection" | "packagesHero" | "destinationsHero" | "destinationsCTA" | "aboutStorySection" | "aboutCommunitySection" | "aboutStats" | "aboutValue" | "aboutHero" | "aboutCTA" | "contactHero" | "contactInfo" | "contactResource"
+      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection" | "packagesHero" | "destinationsHero" | "destinationsCTA" | "aboutStorySection" | "aboutCommunitySection" | "aboutStats" | "aboutValue" | "aboutHero" | "aboutCTA" | "contactHero" | "contactInfo" | "contactResource" | "bookingConfirmationHero" | "bookingConfirmationStep" | "bookingConfirmationContact" | "bookingConfirmationSecurity" | "bookingConfirmationGallery"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3584,6 +3664,376 @@ export namespace Prisma {
           }
         }
       }
+      BookingConfirmationHero: {
+        payload: Prisma.$BookingConfirmationHeroPayload<ExtArgs>
+        fields: Prisma.BookingConfirmationHeroFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingConfirmationHeroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingConfirmationHeroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingConfirmationHeroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingConfirmationHeroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>
+          }
+          findMany: {
+            args: Prisma.BookingConfirmationHeroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>[]
+          }
+          create: {
+            args: Prisma.BookingConfirmationHeroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>
+          }
+          createMany: {
+            args: Prisma.BookingConfirmationHeroCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookingConfirmationHeroCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>[]
+          }
+          delete: {
+            args: Prisma.BookingConfirmationHeroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>
+          }
+          update: {
+            args: Prisma.BookingConfirmationHeroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingConfirmationHeroDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingConfirmationHeroUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookingConfirmationHeroUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookingConfirmationHeroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationHeroPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingConfirmationHeroAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookingConfirmationHero>
+          }
+          groupBy: {
+            args: Prisma.BookingConfirmationHeroGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationHeroGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingConfirmationHeroCountArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationHeroCountAggregateOutputType> | number
+          }
+        }
+      }
+      BookingConfirmationStep: {
+        payload: Prisma.$BookingConfirmationStepPayload<ExtArgs>
+        fields: Prisma.BookingConfirmationStepFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingConfirmationStepFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingConfirmationStepFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingConfirmationStepFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingConfirmationStepFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>
+          }
+          findMany: {
+            args: Prisma.BookingConfirmationStepFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>[]
+          }
+          create: {
+            args: Prisma.BookingConfirmationStepCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>
+          }
+          createMany: {
+            args: Prisma.BookingConfirmationStepCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookingConfirmationStepCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>[]
+          }
+          delete: {
+            args: Prisma.BookingConfirmationStepDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>
+          }
+          update: {
+            args: Prisma.BookingConfirmationStepUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingConfirmationStepDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingConfirmationStepUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookingConfirmationStepUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookingConfirmationStepUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationStepPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingConfirmationStepAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookingConfirmationStep>
+          }
+          groupBy: {
+            args: Prisma.BookingConfirmationStepGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationStepGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingConfirmationStepCountArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationStepCountAggregateOutputType> | number
+          }
+        }
+      }
+      BookingConfirmationContact: {
+        payload: Prisma.$BookingConfirmationContactPayload<ExtArgs>
+        fields: Prisma.BookingConfirmationContactFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingConfirmationContactFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingConfirmationContactFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingConfirmationContactFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingConfirmationContactFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>
+          }
+          findMany: {
+            args: Prisma.BookingConfirmationContactFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>[]
+          }
+          create: {
+            args: Prisma.BookingConfirmationContactCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>
+          }
+          createMany: {
+            args: Prisma.BookingConfirmationContactCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookingConfirmationContactCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>[]
+          }
+          delete: {
+            args: Prisma.BookingConfirmationContactDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>
+          }
+          update: {
+            args: Prisma.BookingConfirmationContactUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingConfirmationContactDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingConfirmationContactUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookingConfirmationContactUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookingConfirmationContactUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationContactPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingConfirmationContactAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookingConfirmationContact>
+          }
+          groupBy: {
+            args: Prisma.BookingConfirmationContactGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationContactGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingConfirmationContactCountArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationContactCountAggregateOutputType> | number
+          }
+        }
+      }
+      BookingConfirmationSecurity: {
+        payload: Prisma.$BookingConfirmationSecurityPayload<ExtArgs>
+        fields: Prisma.BookingConfirmationSecurityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingConfirmationSecurityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingConfirmationSecurityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingConfirmationSecurityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingConfirmationSecurityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>
+          }
+          findMany: {
+            args: Prisma.BookingConfirmationSecurityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>[]
+          }
+          create: {
+            args: Prisma.BookingConfirmationSecurityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>
+          }
+          createMany: {
+            args: Prisma.BookingConfirmationSecurityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookingConfirmationSecurityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>[]
+          }
+          delete: {
+            args: Prisma.BookingConfirmationSecurityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>
+          }
+          update: {
+            args: Prisma.BookingConfirmationSecurityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingConfirmationSecurityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingConfirmationSecurityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookingConfirmationSecurityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookingConfirmationSecurityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationSecurityPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingConfirmationSecurityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookingConfirmationSecurity>
+          }
+          groupBy: {
+            args: Prisma.BookingConfirmationSecurityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationSecurityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingConfirmationSecurityCountArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationSecurityCountAggregateOutputType> | number
+          }
+        }
+      }
+      BookingConfirmationGallery: {
+        payload: Prisma.$BookingConfirmationGalleryPayload<ExtArgs>
+        fields: Prisma.BookingConfirmationGalleryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingConfirmationGalleryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingConfirmationGalleryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingConfirmationGalleryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingConfirmationGalleryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>
+          }
+          findMany: {
+            args: Prisma.BookingConfirmationGalleryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>[]
+          }
+          create: {
+            args: Prisma.BookingConfirmationGalleryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>
+          }
+          createMany: {
+            args: Prisma.BookingConfirmationGalleryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookingConfirmationGalleryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>[]
+          }
+          delete: {
+            args: Prisma.BookingConfirmationGalleryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>
+          }
+          update: {
+            args: Prisma.BookingConfirmationGalleryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingConfirmationGalleryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingConfirmationGalleryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookingConfirmationGalleryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookingConfirmationGalleryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationGalleryPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingConfirmationGalleryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookingConfirmationGallery>
+          }
+          groupBy: {
+            args: Prisma.BookingConfirmationGalleryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationGalleryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingConfirmationGalleryCountArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationGalleryCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3712,6 +4162,11 @@ export namespace Prisma {
     contactHero?: ContactHeroOmit
     contactInfo?: ContactInfoOmit
     contactResource?: ContactResourceOmit
+    bookingConfirmationHero?: BookingConfirmationHeroOmit
+    bookingConfirmationStep?: BookingConfirmationStepOmit
+    bookingConfirmationContact?: BookingConfirmationContactOmit
+    bookingConfirmationSecurity?: BookingConfirmationSecurityOmit
+    bookingConfirmationGallery?: BookingConfirmationGalleryOmit
   }
 
   /* Types for Logging */
@@ -40035,6 +40490,5352 @@ export namespace Prisma {
 
 
   /**
+   * Model BookingConfirmationHero
+   */
+
+  export type AggregateBookingConfirmationHero = {
+    _count: BookingConfirmationHeroCountAggregateOutputType | null
+    _min: BookingConfirmationHeroMinAggregateOutputType | null
+    _max: BookingConfirmationHeroMaxAggregateOutputType | null
+  }
+
+  export type BookingConfirmationHeroMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    badge: string | null
+    importantNotice: string | null
+    paymentDeadline: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationHeroMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    badge: string | null
+    importantNotice: string | null
+    paymentDeadline: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationHeroCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    badge: number
+    importantNotice: number
+    paymentDeadline: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookingConfirmationHeroMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    badge?: true
+    importantNotice?: true
+    paymentDeadline?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationHeroMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    badge?: true
+    importantNotice?: true
+    paymentDeadline?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationHeroCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    badge?: true
+    importantNotice?: true
+    paymentDeadline?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookingConfirmationHeroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationHero to aggregate.
+     */
+    where?: BookingConfirmationHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationHeroOrderByWithRelationInput | BookingConfirmationHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingConfirmationHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookingConfirmationHeroes
+    **/
+    _count?: true | BookingConfirmationHeroCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingConfirmationHeroMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingConfirmationHeroMaxAggregateInputType
+  }
+
+  export type GetBookingConfirmationHeroAggregateType<T extends BookingConfirmationHeroAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookingConfirmationHero]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookingConfirmationHero[P]>
+      : GetScalarType<T[P], AggregateBookingConfirmationHero[P]>
+  }
+
+
+
+
+  export type BookingConfirmationHeroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingConfirmationHeroWhereInput
+    orderBy?: BookingConfirmationHeroOrderByWithAggregationInput | BookingConfirmationHeroOrderByWithAggregationInput[]
+    by: BookingConfirmationHeroScalarFieldEnum[] | BookingConfirmationHeroScalarFieldEnum
+    having?: BookingConfirmationHeroScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingConfirmationHeroCountAggregateInputType | true
+    _min?: BookingConfirmationHeroMinAggregateInputType
+    _max?: BookingConfirmationHeroMaxAggregateInputType
+  }
+
+  export type BookingConfirmationHeroGroupByOutputType = {
+    id: string
+    title: string
+    description: string
+    badge: string
+    importantNotice: string
+    paymentDeadline: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: BookingConfirmationHeroCountAggregateOutputType | null
+    _min: BookingConfirmationHeroMinAggregateOutputType | null
+    _max: BookingConfirmationHeroMaxAggregateOutputType | null
+  }
+
+  type GetBookingConfirmationHeroGroupByPayload<T extends BookingConfirmationHeroGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingConfirmationHeroGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingConfirmationHeroGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingConfirmationHeroGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingConfirmationHeroGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingConfirmationHeroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    badge?: boolean
+    importantNotice?: boolean
+    paymentDeadline?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationHero"]>
+
+  export type BookingConfirmationHeroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    badge?: boolean
+    importantNotice?: boolean
+    paymentDeadline?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationHero"]>
+
+  export type BookingConfirmationHeroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    badge?: boolean
+    importantNotice?: boolean
+    paymentDeadline?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationHero"]>
+
+  export type BookingConfirmationHeroSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    badge?: boolean
+    importantNotice?: boolean
+    paymentDeadline?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookingConfirmationHeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "badge" | "importantNotice" | "paymentDeadline" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["bookingConfirmationHero"]>
+
+  export type $BookingConfirmationHeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookingConfirmationHero"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string
+      badge: string
+      importantNotice: string
+      paymentDeadline: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookingConfirmationHero"]>
+    composites: {}
+  }
+
+  type BookingConfirmationHeroGetPayload<S extends boolean | null | undefined | BookingConfirmationHeroDefaultArgs> = $Result.GetResult<Prisma.$BookingConfirmationHeroPayload, S>
+
+  type BookingConfirmationHeroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookingConfirmationHeroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookingConfirmationHeroCountAggregateInputType | true
+    }
+
+  export interface BookingConfirmationHeroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookingConfirmationHero'], meta: { name: 'BookingConfirmationHero' } }
+    /**
+     * Find zero or one BookingConfirmationHero that matches the filter.
+     * @param {BookingConfirmationHeroFindUniqueArgs} args - Arguments to find a BookingConfirmationHero
+     * @example
+     * // Get one BookingConfirmationHero
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookingConfirmationHeroFindUniqueArgs>(args: SelectSubset<T, BookingConfirmationHeroFindUniqueArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookingConfirmationHero that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookingConfirmationHeroFindUniqueOrThrowArgs} args - Arguments to find a BookingConfirmationHero
+     * @example
+     * // Get one BookingConfirmationHero
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookingConfirmationHeroFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingConfirmationHeroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationHero that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationHeroFindFirstArgs} args - Arguments to find a BookingConfirmationHero
+     * @example
+     * // Get one BookingConfirmationHero
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookingConfirmationHeroFindFirstArgs>(args?: SelectSubset<T, BookingConfirmationHeroFindFirstArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationHero that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationHeroFindFirstOrThrowArgs} args - Arguments to find a BookingConfirmationHero
+     * @example
+     * // Get one BookingConfirmationHero
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookingConfirmationHeroFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingConfirmationHeroFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookingConfirmationHeroes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationHeroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookingConfirmationHeroes
+     * const bookingConfirmationHeroes = await prisma.bookingConfirmationHero.findMany()
+     * 
+     * // Get first 10 BookingConfirmationHeroes
+     * const bookingConfirmationHeroes = await prisma.bookingConfirmationHero.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingConfirmationHeroWithIdOnly = await prisma.bookingConfirmationHero.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookingConfirmationHeroFindManyArgs>(args?: SelectSubset<T, BookingConfirmationHeroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookingConfirmationHero.
+     * @param {BookingConfirmationHeroCreateArgs} args - Arguments to create a BookingConfirmationHero.
+     * @example
+     * // Create one BookingConfirmationHero
+     * const BookingConfirmationHero = await prisma.bookingConfirmationHero.create({
+     *   data: {
+     *     // ... data to create a BookingConfirmationHero
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookingConfirmationHeroCreateArgs>(args: SelectSubset<T, BookingConfirmationHeroCreateArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookingConfirmationHeroes.
+     * @param {BookingConfirmationHeroCreateManyArgs} args - Arguments to create many BookingConfirmationHeroes.
+     * @example
+     * // Create many BookingConfirmationHeroes
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookingConfirmationHeroCreateManyArgs>(args?: SelectSubset<T, BookingConfirmationHeroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookingConfirmationHeroes and returns the data saved in the database.
+     * @param {BookingConfirmationHeroCreateManyAndReturnArgs} args - Arguments to create many BookingConfirmationHeroes.
+     * @example
+     * // Create many BookingConfirmationHeroes
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookingConfirmationHeroes and only return the `id`
+     * const bookingConfirmationHeroWithIdOnly = await prisma.bookingConfirmationHero.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookingConfirmationHeroCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingConfirmationHeroCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookingConfirmationHero.
+     * @param {BookingConfirmationHeroDeleteArgs} args - Arguments to delete one BookingConfirmationHero.
+     * @example
+     * // Delete one BookingConfirmationHero
+     * const BookingConfirmationHero = await prisma.bookingConfirmationHero.delete({
+     *   where: {
+     *     // ... filter to delete one BookingConfirmationHero
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookingConfirmationHeroDeleteArgs>(args: SelectSubset<T, BookingConfirmationHeroDeleteArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookingConfirmationHero.
+     * @param {BookingConfirmationHeroUpdateArgs} args - Arguments to update one BookingConfirmationHero.
+     * @example
+     * // Update one BookingConfirmationHero
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookingConfirmationHeroUpdateArgs>(args: SelectSubset<T, BookingConfirmationHeroUpdateArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookingConfirmationHeroes.
+     * @param {BookingConfirmationHeroDeleteManyArgs} args - Arguments to filter BookingConfirmationHeroes to delete.
+     * @example
+     * // Delete a few BookingConfirmationHeroes
+     * const { count } = await prisma.bookingConfirmationHero.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookingConfirmationHeroDeleteManyArgs>(args?: SelectSubset<T, BookingConfirmationHeroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationHeroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookingConfirmationHeroes
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookingConfirmationHeroUpdateManyArgs>(args: SelectSubset<T, BookingConfirmationHeroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationHeroes and returns the data updated in the database.
+     * @param {BookingConfirmationHeroUpdateManyAndReturnArgs} args - Arguments to update many BookingConfirmationHeroes.
+     * @example
+     * // Update many BookingConfirmationHeroes
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookingConfirmationHeroes and only return the `id`
+     * const bookingConfirmationHeroWithIdOnly = await prisma.bookingConfirmationHero.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookingConfirmationHeroUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingConfirmationHeroUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookingConfirmationHero.
+     * @param {BookingConfirmationHeroUpsertArgs} args - Arguments to update or create a BookingConfirmationHero.
+     * @example
+     * // Update or create a BookingConfirmationHero
+     * const bookingConfirmationHero = await prisma.bookingConfirmationHero.upsert({
+     *   create: {
+     *     // ... data to create a BookingConfirmationHero
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookingConfirmationHero we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookingConfirmationHeroUpsertArgs>(args: SelectSubset<T, BookingConfirmationHeroUpsertArgs<ExtArgs>>): Prisma__BookingConfirmationHeroClient<$Result.GetResult<Prisma.$BookingConfirmationHeroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookingConfirmationHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationHeroCountArgs} args - Arguments to filter BookingConfirmationHeroes to count.
+     * @example
+     * // Count the number of BookingConfirmationHeroes
+     * const count = await prisma.bookingConfirmationHero.count({
+     *   where: {
+     *     // ... the filter for the BookingConfirmationHeroes we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingConfirmationHeroCountArgs>(
+      args?: Subset<T, BookingConfirmationHeroCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingConfirmationHeroCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookingConfirmationHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationHeroAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingConfirmationHeroAggregateArgs>(args: Subset<T, BookingConfirmationHeroAggregateArgs>): Prisma.PrismaPromise<GetBookingConfirmationHeroAggregateType<T>>
+
+    /**
+     * Group by BookingConfirmationHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationHeroGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingConfirmationHeroGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingConfirmationHeroGroupByArgs['orderBy'] }
+        : { orderBy?: BookingConfirmationHeroGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingConfirmationHeroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingConfirmationHeroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookingConfirmationHero model
+   */
+  readonly fields: BookingConfirmationHeroFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookingConfirmationHero.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingConfirmationHeroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookingConfirmationHero model
+   */
+  interface BookingConfirmationHeroFieldRefs {
+    readonly id: FieldRef<"BookingConfirmationHero", 'String'>
+    readonly title: FieldRef<"BookingConfirmationHero", 'String'>
+    readonly description: FieldRef<"BookingConfirmationHero", 'String'>
+    readonly badge: FieldRef<"BookingConfirmationHero", 'String'>
+    readonly importantNotice: FieldRef<"BookingConfirmationHero", 'String'>
+    readonly paymentDeadline: FieldRef<"BookingConfirmationHero", 'String'>
+    readonly status: FieldRef<"BookingConfirmationHero", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"BookingConfirmationHero", 'DateTime'>
+    readonly createdAt: FieldRef<"BookingConfirmationHero", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookingConfirmationHero", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookingConfirmationHero findUnique
+   */
+  export type BookingConfirmationHeroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationHero to fetch.
+     */
+    where: BookingConfirmationHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationHero findUniqueOrThrow
+   */
+  export type BookingConfirmationHeroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationHero to fetch.
+     */
+    where: BookingConfirmationHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationHero findFirst
+   */
+  export type BookingConfirmationHeroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationHero to fetch.
+     */
+    where?: BookingConfirmationHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationHeroOrderByWithRelationInput | BookingConfirmationHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationHeroes.
+     */
+    cursor?: BookingConfirmationHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationHeroes.
+     */
+    distinct?: BookingConfirmationHeroScalarFieldEnum | BookingConfirmationHeroScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationHero findFirstOrThrow
+   */
+  export type BookingConfirmationHeroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationHero to fetch.
+     */
+    where?: BookingConfirmationHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationHeroOrderByWithRelationInput | BookingConfirmationHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationHeroes.
+     */
+    cursor?: BookingConfirmationHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationHeroes.
+     */
+    distinct?: BookingConfirmationHeroScalarFieldEnum | BookingConfirmationHeroScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationHero findMany
+   */
+  export type BookingConfirmationHeroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationHeroes to fetch.
+     */
+    where?: BookingConfirmationHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationHeroOrderByWithRelationInput | BookingConfirmationHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookingConfirmationHeroes.
+     */
+    cursor?: BookingConfirmationHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationHeroes.
+     */
+    skip?: number
+    distinct?: BookingConfirmationHeroScalarFieldEnum | BookingConfirmationHeroScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationHero create
+   */
+  export type BookingConfirmationHeroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BookingConfirmationHero.
+     */
+    data: XOR<BookingConfirmationHeroCreateInput, BookingConfirmationHeroUncheckedCreateInput>
+  }
+
+  /**
+   * BookingConfirmationHero createMany
+   */
+  export type BookingConfirmationHeroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookingConfirmationHeroes.
+     */
+    data: BookingConfirmationHeroCreateManyInput | BookingConfirmationHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationHero createManyAndReturn
+   */
+  export type BookingConfirmationHeroCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookingConfirmationHeroes.
+     */
+    data: BookingConfirmationHeroCreateManyInput | BookingConfirmationHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationHero update
+   */
+  export type BookingConfirmationHeroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BookingConfirmationHero.
+     */
+    data: XOR<BookingConfirmationHeroUpdateInput, BookingConfirmationHeroUncheckedUpdateInput>
+    /**
+     * Choose, which BookingConfirmationHero to update.
+     */
+    where: BookingConfirmationHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationHero updateMany
+   */
+  export type BookingConfirmationHeroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookingConfirmationHeroes.
+     */
+    data: XOR<BookingConfirmationHeroUpdateManyMutationInput, BookingConfirmationHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationHeroes to update
+     */
+    where?: BookingConfirmationHeroWhereInput
+    /**
+     * Limit how many BookingConfirmationHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationHero updateManyAndReturn
+   */
+  export type BookingConfirmationHeroUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * The data used to update BookingConfirmationHeroes.
+     */
+    data: XOR<BookingConfirmationHeroUpdateManyMutationInput, BookingConfirmationHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationHeroes to update
+     */
+    where?: BookingConfirmationHeroWhereInput
+    /**
+     * Limit how many BookingConfirmationHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationHero upsert
+   */
+  export type BookingConfirmationHeroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BookingConfirmationHero to update in case it exists.
+     */
+    where: BookingConfirmationHeroWhereUniqueInput
+    /**
+     * In case the BookingConfirmationHero found by the `where` argument doesn't exist, create a new BookingConfirmationHero with this data.
+     */
+    create: XOR<BookingConfirmationHeroCreateInput, BookingConfirmationHeroUncheckedCreateInput>
+    /**
+     * In case the BookingConfirmationHero was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingConfirmationHeroUpdateInput, BookingConfirmationHeroUncheckedUpdateInput>
+  }
+
+  /**
+   * BookingConfirmationHero delete
+   */
+  export type BookingConfirmationHeroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+    /**
+     * Filter which BookingConfirmationHero to delete.
+     */
+    where: BookingConfirmationHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationHero deleteMany
+   */
+  export type BookingConfirmationHeroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationHeroes to delete
+     */
+    where?: BookingConfirmationHeroWhereInput
+    /**
+     * Limit how many BookingConfirmationHeroes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationHero without action
+   */
+  export type BookingConfirmationHeroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationHero
+     */
+    select?: BookingConfirmationHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationHero
+     */
+    omit?: BookingConfirmationHeroOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BookingConfirmationStep
+   */
+
+  export type AggregateBookingConfirmationStep = {
+    _count: BookingConfirmationStepCountAggregateOutputType | null
+    _avg: BookingConfirmationStepAvgAggregateOutputType | null
+    _sum: BookingConfirmationStepSumAggregateOutputType | null
+    _min: BookingConfirmationStepMinAggregateOutputType | null
+    _max: BookingConfirmationStepMaxAggregateOutputType | null
+  }
+
+  export type BookingConfirmationStepAvgAggregateOutputType = {
+    stepNumber: number | null
+    displayOrder: number | null
+  }
+
+  export type BookingConfirmationStepSumAggregateOutputType = {
+    stepNumber: number | null
+    displayOrder: number | null
+  }
+
+  export type BookingConfirmationStepMinAggregateOutputType = {
+    id: string | null
+    stepNumber: number | null
+    title: string | null
+    description: string | null
+    icon: string | null
+    extraInfo: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationStepMaxAggregateOutputType = {
+    id: string | null
+    stepNumber: number | null
+    title: string | null
+    description: string | null
+    icon: string | null
+    extraInfo: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationStepCountAggregateOutputType = {
+    id: number
+    stepNumber: number
+    title: number
+    description: number
+    icon: number
+    extraInfo: number
+    displayOrder: number
+    active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookingConfirmationStepAvgAggregateInputType = {
+    stepNumber?: true
+    displayOrder?: true
+  }
+
+  export type BookingConfirmationStepSumAggregateInputType = {
+    stepNumber?: true
+    displayOrder?: true
+  }
+
+  export type BookingConfirmationStepMinAggregateInputType = {
+    id?: true
+    stepNumber?: true
+    title?: true
+    description?: true
+    icon?: true
+    extraInfo?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationStepMaxAggregateInputType = {
+    id?: true
+    stepNumber?: true
+    title?: true
+    description?: true
+    icon?: true
+    extraInfo?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationStepCountAggregateInputType = {
+    id?: true
+    stepNumber?: true
+    title?: true
+    description?: true
+    icon?: true
+    extraInfo?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookingConfirmationStepAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationStep to aggregate.
+     */
+    where?: BookingConfirmationStepWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSteps to fetch.
+     */
+    orderBy?: BookingConfirmationStepOrderByWithRelationInput | BookingConfirmationStepOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingConfirmationStepWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSteps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookingConfirmationSteps
+    **/
+    _count?: true | BookingConfirmationStepCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BookingConfirmationStepAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookingConfirmationStepSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingConfirmationStepMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingConfirmationStepMaxAggregateInputType
+  }
+
+  export type GetBookingConfirmationStepAggregateType<T extends BookingConfirmationStepAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookingConfirmationStep]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookingConfirmationStep[P]>
+      : GetScalarType<T[P], AggregateBookingConfirmationStep[P]>
+  }
+
+
+
+
+  export type BookingConfirmationStepGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingConfirmationStepWhereInput
+    orderBy?: BookingConfirmationStepOrderByWithAggregationInput | BookingConfirmationStepOrderByWithAggregationInput[]
+    by: BookingConfirmationStepScalarFieldEnum[] | BookingConfirmationStepScalarFieldEnum
+    having?: BookingConfirmationStepScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingConfirmationStepCountAggregateInputType | true
+    _avg?: BookingConfirmationStepAvgAggregateInputType
+    _sum?: BookingConfirmationStepSumAggregateInputType
+    _min?: BookingConfirmationStepMinAggregateInputType
+    _max?: BookingConfirmationStepMaxAggregateInputType
+  }
+
+  export type BookingConfirmationStepGroupByOutputType = {
+    id: string
+    stepNumber: number
+    title: string
+    description: string
+    icon: string
+    extraInfo: string | null
+    displayOrder: number
+    active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BookingConfirmationStepCountAggregateOutputType | null
+    _avg: BookingConfirmationStepAvgAggregateOutputType | null
+    _sum: BookingConfirmationStepSumAggregateOutputType | null
+    _min: BookingConfirmationStepMinAggregateOutputType | null
+    _max: BookingConfirmationStepMaxAggregateOutputType | null
+  }
+
+  type GetBookingConfirmationStepGroupByPayload<T extends BookingConfirmationStepGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingConfirmationStepGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingConfirmationStepGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingConfirmationStepGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingConfirmationStepGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingConfirmationStepSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stepNumber?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    extraInfo?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationStep"]>
+
+  export type BookingConfirmationStepSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stepNumber?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    extraInfo?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationStep"]>
+
+  export type BookingConfirmationStepSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stepNumber?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    extraInfo?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationStep"]>
+
+  export type BookingConfirmationStepSelectScalar = {
+    id?: boolean
+    stepNumber?: boolean
+    title?: boolean
+    description?: boolean
+    icon?: boolean
+    extraInfo?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookingConfirmationStepOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stepNumber" | "title" | "description" | "icon" | "extraInfo" | "displayOrder" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["bookingConfirmationStep"]>
+
+  export type $BookingConfirmationStepPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookingConfirmationStep"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      stepNumber: number
+      title: string
+      description: string
+      icon: string
+      extraInfo: string | null
+      displayOrder: number
+      active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookingConfirmationStep"]>
+    composites: {}
+  }
+
+  type BookingConfirmationStepGetPayload<S extends boolean | null | undefined | BookingConfirmationStepDefaultArgs> = $Result.GetResult<Prisma.$BookingConfirmationStepPayload, S>
+
+  type BookingConfirmationStepCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookingConfirmationStepFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookingConfirmationStepCountAggregateInputType | true
+    }
+
+  export interface BookingConfirmationStepDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookingConfirmationStep'], meta: { name: 'BookingConfirmationStep' } }
+    /**
+     * Find zero or one BookingConfirmationStep that matches the filter.
+     * @param {BookingConfirmationStepFindUniqueArgs} args - Arguments to find a BookingConfirmationStep
+     * @example
+     * // Get one BookingConfirmationStep
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookingConfirmationStepFindUniqueArgs>(args: SelectSubset<T, BookingConfirmationStepFindUniqueArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookingConfirmationStep that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookingConfirmationStepFindUniqueOrThrowArgs} args - Arguments to find a BookingConfirmationStep
+     * @example
+     * // Get one BookingConfirmationStep
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookingConfirmationStepFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingConfirmationStepFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationStep that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationStepFindFirstArgs} args - Arguments to find a BookingConfirmationStep
+     * @example
+     * // Get one BookingConfirmationStep
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookingConfirmationStepFindFirstArgs>(args?: SelectSubset<T, BookingConfirmationStepFindFirstArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationStep that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationStepFindFirstOrThrowArgs} args - Arguments to find a BookingConfirmationStep
+     * @example
+     * // Get one BookingConfirmationStep
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookingConfirmationStepFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingConfirmationStepFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookingConfirmationSteps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationStepFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookingConfirmationSteps
+     * const bookingConfirmationSteps = await prisma.bookingConfirmationStep.findMany()
+     * 
+     * // Get first 10 BookingConfirmationSteps
+     * const bookingConfirmationSteps = await prisma.bookingConfirmationStep.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingConfirmationStepWithIdOnly = await prisma.bookingConfirmationStep.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookingConfirmationStepFindManyArgs>(args?: SelectSubset<T, BookingConfirmationStepFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookingConfirmationStep.
+     * @param {BookingConfirmationStepCreateArgs} args - Arguments to create a BookingConfirmationStep.
+     * @example
+     * // Create one BookingConfirmationStep
+     * const BookingConfirmationStep = await prisma.bookingConfirmationStep.create({
+     *   data: {
+     *     // ... data to create a BookingConfirmationStep
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookingConfirmationStepCreateArgs>(args: SelectSubset<T, BookingConfirmationStepCreateArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookingConfirmationSteps.
+     * @param {BookingConfirmationStepCreateManyArgs} args - Arguments to create many BookingConfirmationSteps.
+     * @example
+     * // Create many BookingConfirmationSteps
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookingConfirmationStepCreateManyArgs>(args?: SelectSubset<T, BookingConfirmationStepCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookingConfirmationSteps and returns the data saved in the database.
+     * @param {BookingConfirmationStepCreateManyAndReturnArgs} args - Arguments to create many BookingConfirmationSteps.
+     * @example
+     * // Create many BookingConfirmationSteps
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookingConfirmationSteps and only return the `id`
+     * const bookingConfirmationStepWithIdOnly = await prisma.bookingConfirmationStep.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookingConfirmationStepCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingConfirmationStepCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookingConfirmationStep.
+     * @param {BookingConfirmationStepDeleteArgs} args - Arguments to delete one BookingConfirmationStep.
+     * @example
+     * // Delete one BookingConfirmationStep
+     * const BookingConfirmationStep = await prisma.bookingConfirmationStep.delete({
+     *   where: {
+     *     // ... filter to delete one BookingConfirmationStep
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookingConfirmationStepDeleteArgs>(args: SelectSubset<T, BookingConfirmationStepDeleteArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookingConfirmationStep.
+     * @param {BookingConfirmationStepUpdateArgs} args - Arguments to update one BookingConfirmationStep.
+     * @example
+     * // Update one BookingConfirmationStep
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookingConfirmationStepUpdateArgs>(args: SelectSubset<T, BookingConfirmationStepUpdateArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookingConfirmationSteps.
+     * @param {BookingConfirmationStepDeleteManyArgs} args - Arguments to filter BookingConfirmationSteps to delete.
+     * @example
+     * // Delete a few BookingConfirmationSteps
+     * const { count } = await prisma.bookingConfirmationStep.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookingConfirmationStepDeleteManyArgs>(args?: SelectSubset<T, BookingConfirmationStepDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationSteps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationStepUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookingConfirmationSteps
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookingConfirmationStepUpdateManyArgs>(args: SelectSubset<T, BookingConfirmationStepUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationSteps and returns the data updated in the database.
+     * @param {BookingConfirmationStepUpdateManyAndReturnArgs} args - Arguments to update many BookingConfirmationSteps.
+     * @example
+     * // Update many BookingConfirmationSteps
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookingConfirmationSteps and only return the `id`
+     * const bookingConfirmationStepWithIdOnly = await prisma.bookingConfirmationStep.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookingConfirmationStepUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingConfirmationStepUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookingConfirmationStep.
+     * @param {BookingConfirmationStepUpsertArgs} args - Arguments to update or create a BookingConfirmationStep.
+     * @example
+     * // Update or create a BookingConfirmationStep
+     * const bookingConfirmationStep = await prisma.bookingConfirmationStep.upsert({
+     *   create: {
+     *     // ... data to create a BookingConfirmationStep
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookingConfirmationStep we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookingConfirmationStepUpsertArgs>(args: SelectSubset<T, BookingConfirmationStepUpsertArgs<ExtArgs>>): Prisma__BookingConfirmationStepClient<$Result.GetResult<Prisma.$BookingConfirmationStepPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookingConfirmationSteps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationStepCountArgs} args - Arguments to filter BookingConfirmationSteps to count.
+     * @example
+     * // Count the number of BookingConfirmationSteps
+     * const count = await prisma.bookingConfirmationStep.count({
+     *   where: {
+     *     // ... the filter for the BookingConfirmationSteps we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingConfirmationStepCountArgs>(
+      args?: Subset<T, BookingConfirmationStepCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingConfirmationStepCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookingConfirmationStep.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationStepAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingConfirmationStepAggregateArgs>(args: Subset<T, BookingConfirmationStepAggregateArgs>): Prisma.PrismaPromise<GetBookingConfirmationStepAggregateType<T>>
+
+    /**
+     * Group by BookingConfirmationStep.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationStepGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingConfirmationStepGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingConfirmationStepGroupByArgs['orderBy'] }
+        : { orderBy?: BookingConfirmationStepGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingConfirmationStepGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingConfirmationStepGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookingConfirmationStep model
+   */
+  readonly fields: BookingConfirmationStepFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookingConfirmationStep.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingConfirmationStepClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookingConfirmationStep model
+   */
+  interface BookingConfirmationStepFieldRefs {
+    readonly id: FieldRef<"BookingConfirmationStep", 'String'>
+    readonly stepNumber: FieldRef<"BookingConfirmationStep", 'Int'>
+    readonly title: FieldRef<"BookingConfirmationStep", 'String'>
+    readonly description: FieldRef<"BookingConfirmationStep", 'String'>
+    readonly icon: FieldRef<"BookingConfirmationStep", 'String'>
+    readonly extraInfo: FieldRef<"BookingConfirmationStep", 'String'>
+    readonly displayOrder: FieldRef<"BookingConfirmationStep", 'Int'>
+    readonly active: FieldRef<"BookingConfirmationStep", 'Boolean'>
+    readonly createdAt: FieldRef<"BookingConfirmationStep", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookingConfirmationStep", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookingConfirmationStep findUnique
+   */
+  export type BookingConfirmationStepFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationStep to fetch.
+     */
+    where: BookingConfirmationStepWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationStep findUniqueOrThrow
+   */
+  export type BookingConfirmationStepFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationStep to fetch.
+     */
+    where: BookingConfirmationStepWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationStep findFirst
+   */
+  export type BookingConfirmationStepFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationStep to fetch.
+     */
+    where?: BookingConfirmationStepWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSteps to fetch.
+     */
+    orderBy?: BookingConfirmationStepOrderByWithRelationInput | BookingConfirmationStepOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationSteps.
+     */
+    cursor?: BookingConfirmationStepWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSteps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationSteps.
+     */
+    distinct?: BookingConfirmationStepScalarFieldEnum | BookingConfirmationStepScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationStep findFirstOrThrow
+   */
+  export type BookingConfirmationStepFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationStep to fetch.
+     */
+    where?: BookingConfirmationStepWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSteps to fetch.
+     */
+    orderBy?: BookingConfirmationStepOrderByWithRelationInput | BookingConfirmationStepOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationSteps.
+     */
+    cursor?: BookingConfirmationStepWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSteps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationSteps.
+     */
+    distinct?: BookingConfirmationStepScalarFieldEnum | BookingConfirmationStepScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationStep findMany
+   */
+  export type BookingConfirmationStepFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationSteps to fetch.
+     */
+    where?: BookingConfirmationStepWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSteps to fetch.
+     */
+    orderBy?: BookingConfirmationStepOrderByWithRelationInput | BookingConfirmationStepOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookingConfirmationSteps.
+     */
+    cursor?: BookingConfirmationStepWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSteps.
+     */
+    skip?: number
+    distinct?: BookingConfirmationStepScalarFieldEnum | BookingConfirmationStepScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationStep create
+   */
+  export type BookingConfirmationStepCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BookingConfirmationStep.
+     */
+    data: XOR<BookingConfirmationStepCreateInput, BookingConfirmationStepUncheckedCreateInput>
+  }
+
+  /**
+   * BookingConfirmationStep createMany
+   */
+  export type BookingConfirmationStepCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookingConfirmationSteps.
+     */
+    data: BookingConfirmationStepCreateManyInput | BookingConfirmationStepCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationStep createManyAndReturn
+   */
+  export type BookingConfirmationStepCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookingConfirmationSteps.
+     */
+    data: BookingConfirmationStepCreateManyInput | BookingConfirmationStepCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationStep update
+   */
+  export type BookingConfirmationStepUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BookingConfirmationStep.
+     */
+    data: XOR<BookingConfirmationStepUpdateInput, BookingConfirmationStepUncheckedUpdateInput>
+    /**
+     * Choose, which BookingConfirmationStep to update.
+     */
+    where: BookingConfirmationStepWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationStep updateMany
+   */
+  export type BookingConfirmationStepUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookingConfirmationSteps.
+     */
+    data: XOR<BookingConfirmationStepUpdateManyMutationInput, BookingConfirmationStepUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationSteps to update
+     */
+    where?: BookingConfirmationStepWhereInput
+    /**
+     * Limit how many BookingConfirmationSteps to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationStep updateManyAndReturn
+   */
+  export type BookingConfirmationStepUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * The data used to update BookingConfirmationSteps.
+     */
+    data: XOR<BookingConfirmationStepUpdateManyMutationInput, BookingConfirmationStepUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationSteps to update
+     */
+    where?: BookingConfirmationStepWhereInput
+    /**
+     * Limit how many BookingConfirmationSteps to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationStep upsert
+   */
+  export type BookingConfirmationStepUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BookingConfirmationStep to update in case it exists.
+     */
+    where: BookingConfirmationStepWhereUniqueInput
+    /**
+     * In case the BookingConfirmationStep found by the `where` argument doesn't exist, create a new BookingConfirmationStep with this data.
+     */
+    create: XOR<BookingConfirmationStepCreateInput, BookingConfirmationStepUncheckedCreateInput>
+    /**
+     * In case the BookingConfirmationStep was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingConfirmationStepUpdateInput, BookingConfirmationStepUncheckedUpdateInput>
+  }
+
+  /**
+   * BookingConfirmationStep delete
+   */
+  export type BookingConfirmationStepDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+    /**
+     * Filter which BookingConfirmationStep to delete.
+     */
+    where: BookingConfirmationStepWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationStep deleteMany
+   */
+  export type BookingConfirmationStepDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationSteps to delete
+     */
+    where?: BookingConfirmationStepWhereInput
+    /**
+     * Limit how many BookingConfirmationSteps to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationStep without action
+   */
+  export type BookingConfirmationStepDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationStep
+     */
+    select?: BookingConfirmationStepSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationStep
+     */
+    omit?: BookingConfirmationStepOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BookingConfirmationContact
+   */
+
+  export type AggregateBookingConfirmationContact = {
+    _count: BookingConfirmationContactCountAggregateOutputType | null
+    _min: BookingConfirmationContactMinAggregateOutputType | null
+    _max: BookingConfirmationContactMaxAggregateOutputType | null
+  }
+
+  export type BookingConfirmationContactMinAggregateOutputType = {
+    id: string | null
+    sectionTitle: string | null
+    description: string | null
+    email: string | null
+    phone: string | null
+    whatsapp: string | null
+    responseTime: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationContactMaxAggregateOutputType = {
+    id: string | null
+    sectionTitle: string | null
+    description: string | null
+    email: string | null
+    phone: string | null
+    whatsapp: string | null
+    responseTime: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationContactCountAggregateOutputType = {
+    id: number
+    sectionTitle: number
+    description: number
+    email: number
+    phone: number
+    whatsapp: number
+    responseTime: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookingConfirmationContactMinAggregateInputType = {
+    id?: true
+    sectionTitle?: true
+    description?: true
+    email?: true
+    phone?: true
+    whatsapp?: true
+    responseTime?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationContactMaxAggregateInputType = {
+    id?: true
+    sectionTitle?: true
+    description?: true
+    email?: true
+    phone?: true
+    whatsapp?: true
+    responseTime?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationContactCountAggregateInputType = {
+    id?: true
+    sectionTitle?: true
+    description?: true
+    email?: true
+    phone?: true
+    whatsapp?: true
+    responseTime?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookingConfirmationContactAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationContact to aggregate.
+     */
+    where?: BookingConfirmationContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationContacts to fetch.
+     */
+    orderBy?: BookingConfirmationContactOrderByWithRelationInput | BookingConfirmationContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingConfirmationContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationContacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookingConfirmationContacts
+    **/
+    _count?: true | BookingConfirmationContactCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingConfirmationContactMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingConfirmationContactMaxAggregateInputType
+  }
+
+  export type GetBookingConfirmationContactAggregateType<T extends BookingConfirmationContactAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookingConfirmationContact]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookingConfirmationContact[P]>
+      : GetScalarType<T[P], AggregateBookingConfirmationContact[P]>
+  }
+
+
+
+
+  export type BookingConfirmationContactGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingConfirmationContactWhereInput
+    orderBy?: BookingConfirmationContactOrderByWithAggregationInput | BookingConfirmationContactOrderByWithAggregationInput[]
+    by: BookingConfirmationContactScalarFieldEnum[] | BookingConfirmationContactScalarFieldEnum
+    having?: BookingConfirmationContactScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingConfirmationContactCountAggregateInputType | true
+    _min?: BookingConfirmationContactMinAggregateInputType
+    _max?: BookingConfirmationContactMaxAggregateInputType
+  }
+
+  export type BookingConfirmationContactGroupByOutputType = {
+    id: string
+    sectionTitle: string
+    description: string
+    email: string
+    phone: string
+    whatsapp: string | null
+    responseTime: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: BookingConfirmationContactCountAggregateOutputType | null
+    _min: BookingConfirmationContactMinAggregateOutputType | null
+    _max: BookingConfirmationContactMaxAggregateOutputType | null
+  }
+
+  type GetBookingConfirmationContactGroupByPayload<T extends BookingConfirmationContactGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingConfirmationContactGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingConfirmationContactGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingConfirmationContactGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingConfirmationContactGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingConfirmationContactSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sectionTitle?: boolean
+    description?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    responseTime?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationContact"]>
+
+  export type BookingConfirmationContactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sectionTitle?: boolean
+    description?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    responseTime?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationContact"]>
+
+  export type BookingConfirmationContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sectionTitle?: boolean
+    description?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    responseTime?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationContact"]>
+
+  export type BookingConfirmationContactSelectScalar = {
+    id?: boolean
+    sectionTitle?: boolean
+    description?: boolean
+    email?: boolean
+    phone?: boolean
+    whatsapp?: boolean
+    responseTime?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookingConfirmationContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sectionTitle" | "description" | "email" | "phone" | "whatsapp" | "responseTime" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["bookingConfirmationContact"]>
+
+  export type $BookingConfirmationContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookingConfirmationContact"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sectionTitle: string
+      description: string
+      email: string
+      phone: string
+      whatsapp: string | null
+      responseTime: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookingConfirmationContact"]>
+    composites: {}
+  }
+
+  type BookingConfirmationContactGetPayload<S extends boolean | null | undefined | BookingConfirmationContactDefaultArgs> = $Result.GetResult<Prisma.$BookingConfirmationContactPayload, S>
+
+  type BookingConfirmationContactCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookingConfirmationContactFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookingConfirmationContactCountAggregateInputType | true
+    }
+
+  export interface BookingConfirmationContactDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookingConfirmationContact'], meta: { name: 'BookingConfirmationContact' } }
+    /**
+     * Find zero or one BookingConfirmationContact that matches the filter.
+     * @param {BookingConfirmationContactFindUniqueArgs} args - Arguments to find a BookingConfirmationContact
+     * @example
+     * // Get one BookingConfirmationContact
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookingConfirmationContactFindUniqueArgs>(args: SelectSubset<T, BookingConfirmationContactFindUniqueArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookingConfirmationContact that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookingConfirmationContactFindUniqueOrThrowArgs} args - Arguments to find a BookingConfirmationContact
+     * @example
+     * // Get one BookingConfirmationContact
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookingConfirmationContactFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingConfirmationContactFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationContact that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationContactFindFirstArgs} args - Arguments to find a BookingConfirmationContact
+     * @example
+     * // Get one BookingConfirmationContact
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookingConfirmationContactFindFirstArgs>(args?: SelectSubset<T, BookingConfirmationContactFindFirstArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationContact that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationContactFindFirstOrThrowArgs} args - Arguments to find a BookingConfirmationContact
+     * @example
+     * // Get one BookingConfirmationContact
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookingConfirmationContactFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingConfirmationContactFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookingConfirmationContacts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationContactFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookingConfirmationContacts
+     * const bookingConfirmationContacts = await prisma.bookingConfirmationContact.findMany()
+     * 
+     * // Get first 10 BookingConfirmationContacts
+     * const bookingConfirmationContacts = await prisma.bookingConfirmationContact.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingConfirmationContactWithIdOnly = await prisma.bookingConfirmationContact.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookingConfirmationContactFindManyArgs>(args?: SelectSubset<T, BookingConfirmationContactFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookingConfirmationContact.
+     * @param {BookingConfirmationContactCreateArgs} args - Arguments to create a BookingConfirmationContact.
+     * @example
+     * // Create one BookingConfirmationContact
+     * const BookingConfirmationContact = await prisma.bookingConfirmationContact.create({
+     *   data: {
+     *     // ... data to create a BookingConfirmationContact
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookingConfirmationContactCreateArgs>(args: SelectSubset<T, BookingConfirmationContactCreateArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookingConfirmationContacts.
+     * @param {BookingConfirmationContactCreateManyArgs} args - Arguments to create many BookingConfirmationContacts.
+     * @example
+     * // Create many BookingConfirmationContacts
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookingConfirmationContactCreateManyArgs>(args?: SelectSubset<T, BookingConfirmationContactCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookingConfirmationContacts and returns the data saved in the database.
+     * @param {BookingConfirmationContactCreateManyAndReturnArgs} args - Arguments to create many BookingConfirmationContacts.
+     * @example
+     * // Create many BookingConfirmationContacts
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookingConfirmationContacts and only return the `id`
+     * const bookingConfirmationContactWithIdOnly = await prisma.bookingConfirmationContact.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookingConfirmationContactCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingConfirmationContactCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookingConfirmationContact.
+     * @param {BookingConfirmationContactDeleteArgs} args - Arguments to delete one BookingConfirmationContact.
+     * @example
+     * // Delete one BookingConfirmationContact
+     * const BookingConfirmationContact = await prisma.bookingConfirmationContact.delete({
+     *   where: {
+     *     // ... filter to delete one BookingConfirmationContact
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookingConfirmationContactDeleteArgs>(args: SelectSubset<T, BookingConfirmationContactDeleteArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookingConfirmationContact.
+     * @param {BookingConfirmationContactUpdateArgs} args - Arguments to update one BookingConfirmationContact.
+     * @example
+     * // Update one BookingConfirmationContact
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookingConfirmationContactUpdateArgs>(args: SelectSubset<T, BookingConfirmationContactUpdateArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookingConfirmationContacts.
+     * @param {BookingConfirmationContactDeleteManyArgs} args - Arguments to filter BookingConfirmationContacts to delete.
+     * @example
+     * // Delete a few BookingConfirmationContacts
+     * const { count } = await prisma.bookingConfirmationContact.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookingConfirmationContactDeleteManyArgs>(args?: SelectSubset<T, BookingConfirmationContactDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationContacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationContactUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookingConfirmationContacts
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookingConfirmationContactUpdateManyArgs>(args: SelectSubset<T, BookingConfirmationContactUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationContacts and returns the data updated in the database.
+     * @param {BookingConfirmationContactUpdateManyAndReturnArgs} args - Arguments to update many BookingConfirmationContacts.
+     * @example
+     * // Update many BookingConfirmationContacts
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookingConfirmationContacts and only return the `id`
+     * const bookingConfirmationContactWithIdOnly = await prisma.bookingConfirmationContact.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookingConfirmationContactUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingConfirmationContactUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookingConfirmationContact.
+     * @param {BookingConfirmationContactUpsertArgs} args - Arguments to update or create a BookingConfirmationContact.
+     * @example
+     * // Update or create a BookingConfirmationContact
+     * const bookingConfirmationContact = await prisma.bookingConfirmationContact.upsert({
+     *   create: {
+     *     // ... data to create a BookingConfirmationContact
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookingConfirmationContact we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookingConfirmationContactUpsertArgs>(args: SelectSubset<T, BookingConfirmationContactUpsertArgs<ExtArgs>>): Prisma__BookingConfirmationContactClient<$Result.GetResult<Prisma.$BookingConfirmationContactPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookingConfirmationContacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationContactCountArgs} args - Arguments to filter BookingConfirmationContacts to count.
+     * @example
+     * // Count the number of BookingConfirmationContacts
+     * const count = await prisma.bookingConfirmationContact.count({
+     *   where: {
+     *     // ... the filter for the BookingConfirmationContacts we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingConfirmationContactCountArgs>(
+      args?: Subset<T, BookingConfirmationContactCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingConfirmationContactCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookingConfirmationContact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationContactAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingConfirmationContactAggregateArgs>(args: Subset<T, BookingConfirmationContactAggregateArgs>): Prisma.PrismaPromise<GetBookingConfirmationContactAggregateType<T>>
+
+    /**
+     * Group by BookingConfirmationContact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationContactGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingConfirmationContactGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingConfirmationContactGroupByArgs['orderBy'] }
+        : { orderBy?: BookingConfirmationContactGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingConfirmationContactGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingConfirmationContactGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookingConfirmationContact model
+   */
+  readonly fields: BookingConfirmationContactFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookingConfirmationContact.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingConfirmationContactClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookingConfirmationContact model
+   */
+  interface BookingConfirmationContactFieldRefs {
+    readonly id: FieldRef<"BookingConfirmationContact", 'String'>
+    readonly sectionTitle: FieldRef<"BookingConfirmationContact", 'String'>
+    readonly description: FieldRef<"BookingConfirmationContact", 'String'>
+    readonly email: FieldRef<"BookingConfirmationContact", 'String'>
+    readonly phone: FieldRef<"BookingConfirmationContact", 'String'>
+    readonly whatsapp: FieldRef<"BookingConfirmationContact", 'String'>
+    readonly responseTime: FieldRef<"BookingConfirmationContact", 'String'>
+    readonly status: FieldRef<"BookingConfirmationContact", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"BookingConfirmationContact", 'DateTime'>
+    readonly createdAt: FieldRef<"BookingConfirmationContact", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookingConfirmationContact", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookingConfirmationContact findUnique
+   */
+  export type BookingConfirmationContactFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationContact to fetch.
+     */
+    where: BookingConfirmationContactWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationContact findUniqueOrThrow
+   */
+  export type BookingConfirmationContactFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationContact to fetch.
+     */
+    where: BookingConfirmationContactWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationContact findFirst
+   */
+  export type BookingConfirmationContactFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationContact to fetch.
+     */
+    where?: BookingConfirmationContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationContacts to fetch.
+     */
+    orderBy?: BookingConfirmationContactOrderByWithRelationInput | BookingConfirmationContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationContacts.
+     */
+    cursor?: BookingConfirmationContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationContacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationContacts.
+     */
+    distinct?: BookingConfirmationContactScalarFieldEnum | BookingConfirmationContactScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationContact findFirstOrThrow
+   */
+  export type BookingConfirmationContactFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationContact to fetch.
+     */
+    where?: BookingConfirmationContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationContacts to fetch.
+     */
+    orderBy?: BookingConfirmationContactOrderByWithRelationInput | BookingConfirmationContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationContacts.
+     */
+    cursor?: BookingConfirmationContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationContacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationContacts.
+     */
+    distinct?: BookingConfirmationContactScalarFieldEnum | BookingConfirmationContactScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationContact findMany
+   */
+  export type BookingConfirmationContactFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationContacts to fetch.
+     */
+    where?: BookingConfirmationContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationContacts to fetch.
+     */
+    orderBy?: BookingConfirmationContactOrderByWithRelationInput | BookingConfirmationContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookingConfirmationContacts.
+     */
+    cursor?: BookingConfirmationContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationContacts.
+     */
+    skip?: number
+    distinct?: BookingConfirmationContactScalarFieldEnum | BookingConfirmationContactScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationContact create
+   */
+  export type BookingConfirmationContactCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BookingConfirmationContact.
+     */
+    data: XOR<BookingConfirmationContactCreateInput, BookingConfirmationContactUncheckedCreateInput>
+  }
+
+  /**
+   * BookingConfirmationContact createMany
+   */
+  export type BookingConfirmationContactCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookingConfirmationContacts.
+     */
+    data: BookingConfirmationContactCreateManyInput | BookingConfirmationContactCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationContact createManyAndReturn
+   */
+  export type BookingConfirmationContactCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookingConfirmationContacts.
+     */
+    data: BookingConfirmationContactCreateManyInput | BookingConfirmationContactCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationContact update
+   */
+  export type BookingConfirmationContactUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BookingConfirmationContact.
+     */
+    data: XOR<BookingConfirmationContactUpdateInput, BookingConfirmationContactUncheckedUpdateInput>
+    /**
+     * Choose, which BookingConfirmationContact to update.
+     */
+    where: BookingConfirmationContactWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationContact updateMany
+   */
+  export type BookingConfirmationContactUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookingConfirmationContacts.
+     */
+    data: XOR<BookingConfirmationContactUpdateManyMutationInput, BookingConfirmationContactUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationContacts to update
+     */
+    where?: BookingConfirmationContactWhereInput
+    /**
+     * Limit how many BookingConfirmationContacts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationContact updateManyAndReturn
+   */
+  export type BookingConfirmationContactUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * The data used to update BookingConfirmationContacts.
+     */
+    data: XOR<BookingConfirmationContactUpdateManyMutationInput, BookingConfirmationContactUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationContacts to update
+     */
+    where?: BookingConfirmationContactWhereInput
+    /**
+     * Limit how many BookingConfirmationContacts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationContact upsert
+   */
+  export type BookingConfirmationContactUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BookingConfirmationContact to update in case it exists.
+     */
+    where: BookingConfirmationContactWhereUniqueInput
+    /**
+     * In case the BookingConfirmationContact found by the `where` argument doesn't exist, create a new BookingConfirmationContact with this data.
+     */
+    create: XOR<BookingConfirmationContactCreateInput, BookingConfirmationContactUncheckedCreateInput>
+    /**
+     * In case the BookingConfirmationContact was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingConfirmationContactUpdateInput, BookingConfirmationContactUncheckedUpdateInput>
+  }
+
+  /**
+   * BookingConfirmationContact delete
+   */
+  export type BookingConfirmationContactDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+    /**
+     * Filter which BookingConfirmationContact to delete.
+     */
+    where: BookingConfirmationContactWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationContact deleteMany
+   */
+  export type BookingConfirmationContactDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationContacts to delete
+     */
+    where?: BookingConfirmationContactWhereInput
+    /**
+     * Limit how many BookingConfirmationContacts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationContact without action
+   */
+  export type BookingConfirmationContactDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationContact
+     */
+    select?: BookingConfirmationContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationContact
+     */
+    omit?: BookingConfirmationContactOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BookingConfirmationSecurity
+   */
+
+  export type AggregateBookingConfirmationSecurity = {
+    _count: BookingConfirmationSecurityCountAggregateOutputType | null
+    _avg: BookingConfirmationSecurityAvgAggregateOutputType | null
+    _sum: BookingConfirmationSecuritySumAggregateOutputType | null
+    _min: BookingConfirmationSecurityMinAggregateOutputType | null
+    _max: BookingConfirmationSecurityMaxAggregateOutputType | null
+  }
+
+  export type BookingConfirmationSecurityAvgAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type BookingConfirmationSecuritySumAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type BookingConfirmationSecurityMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationSecurityMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationSecurityCountAggregateOutputType = {
+    id: number
+    title: number
+    points: number
+    displayOrder: number
+    active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookingConfirmationSecurityAvgAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type BookingConfirmationSecuritySumAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type BookingConfirmationSecurityMinAggregateInputType = {
+    id?: true
+    title?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationSecurityMaxAggregateInputType = {
+    id?: true
+    title?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationSecurityCountAggregateInputType = {
+    id?: true
+    title?: true
+    points?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookingConfirmationSecurityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationSecurity to aggregate.
+     */
+    where?: BookingConfirmationSecurityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSecurities to fetch.
+     */
+    orderBy?: BookingConfirmationSecurityOrderByWithRelationInput | BookingConfirmationSecurityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingConfirmationSecurityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSecurities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSecurities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookingConfirmationSecurities
+    **/
+    _count?: true | BookingConfirmationSecurityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BookingConfirmationSecurityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookingConfirmationSecuritySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingConfirmationSecurityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingConfirmationSecurityMaxAggregateInputType
+  }
+
+  export type GetBookingConfirmationSecurityAggregateType<T extends BookingConfirmationSecurityAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookingConfirmationSecurity]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookingConfirmationSecurity[P]>
+      : GetScalarType<T[P], AggregateBookingConfirmationSecurity[P]>
+  }
+
+
+
+
+  export type BookingConfirmationSecurityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingConfirmationSecurityWhereInput
+    orderBy?: BookingConfirmationSecurityOrderByWithAggregationInput | BookingConfirmationSecurityOrderByWithAggregationInput[]
+    by: BookingConfirmationSecurityScalarFieldEnum[] | BookingConfirmationSecurityScalarFieldEnum
+    having?: BookingConfirmationSecurityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingConfirmationSecurityCountAggregateInputType | true
+    _avg?: BookingConfirmationSecurityAvgAggregateInputType
+    _sum?: BookingConfirmationSecuritySumAggregateInputType
+    _min?: BookingConfirmationSecurityMinAggregateInputType
+    _max?: BookingConfirmationSecurityMaxAggregateInputType
+  }
+
+  export type BookingConfirmationSecurityGroupByOutputType = {
+    id: string
+    title: string
+    points: string[]
+    displayOrder: number
+    active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BookingConfirmationSecurityCountAggregateOutputType | null
+    _avg: BookingConfirmationSecurityAvgAggregateOutputType | null
+    _sum: BookingConfirmationSecuritySumAggregateOutputType | null
+    _min: BookingConfirmationSecurityMinAggregateOutputType | null
+    _max: BookingConfirmationSecurityMaxAggregateOutputType | null
+  }
+
+  type GetBookingConfirmationSecurityGroupByPayload<T extends BookingConfirmationSecurityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingConfirmationSecurityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingConfirmationSecurityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingConfirmationSecurityGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingConfirmationSecurityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingConfirmationSecuritySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    points?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationSecurity"]>
+
+  export type BookingConfirmationSecuritySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    points?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationSecurity"]>
+
+  export type BookingConfirmationSecuritySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    points?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationSecurity"]>
+
+  export type BookingConfirmationSecuritySelectScalar = {
+    id?: boolean
+    title?: boolean
+    points?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookingConfirmationSecurityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "points" | "displayOrder" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["bookingConfirmationSecurity"]>
+
+  export type $BookingConfirmationSecurityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookingConfirmationSecurity"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      points: string[]
+      displayOrder: number
+      active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookingConfirmationSecurity"]>
+    composites: {}
+  }
+
+  type BookingConfirmationSecurityGetPayload<S extends boolean | null | undefined | BookingConfirmationSecurityDefaultArgs> = $Result.GetResult<Prisma.$BookingConfirmationSecurityPayload, S>
+
+  type BookingConfirmationSecurityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookingConfirmationSecurityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookingConfirmationSecurityCountAggregateInputType | true
+    }
+
+  export interface BookingConfirmationSecurityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookingConfirmationSecurity'], meta: { name: 'BookingConfirmationSecurity' } }
+    /**
+     * Find zero or one BookingConfirmationSecurity that matches the filter.
+     * @param {BookingConfirmationSecurityFindUniqueArgs} args - Arguments to find a BookingConfirmationSecurity
+     * @example
+     * // Get one BookingConfirmationSecurity
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookingConfirmationSecurityFindUniqueArgs>(args: SelectSubset<T, BookingConfirmationSecurityFindUniqueArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookingConfirmationSecurity that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookingConfirmationSecurityFindUniqueOrThrowArgs} args - Arguments to find a BookingConfirmationSecurity
+     * @example
+     * // Get one BookingConfirmationSecurity
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookingConfirmationSecurityFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingConfirmationSecurityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationSecurity that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationSecurityFindFirstArgs} args - Arguments to find a BookingConfirmationSecurity
+     * @example
+     * // Get one BookingConfirmationSecurity
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookingConfirmationSecurityFindFirstArgs>(args?: SelectSubset<T, BookingConfirmationSecurityFindFirstArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationSecurity that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationSecurityFindFirstOrThrowArgs} args - Arguments to find a BookingConfirmationSecurity
+     * @example
+     * // Get one BookingConfirmationSecurity
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookingConfirmationSecurityFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingConfirmationSecurityFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookingConfirmationSecurities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationSecurityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookingConfirmationSecurities
+     * const bookingConfirmationSecurities = await prisma.bookingConfirmationSecurity.findMany()
+     * 
+     * // Get first 10 BookingConfirmationSecurities
+     * const bookingConfirmationSecurities = await prisma.bookingConfirmationSecurity.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingConfirmationSecurityWithIdOnly = await prisma.bookingConfirmationSecurity.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookingConfirmationSecurityFindManyArgs>(args?: SelectSubset<T, BookingConfirmationSecurityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookingConfirmationSecurity.
+     * @param {BookingConfirmationSecurityCreateArgs} args - Arguments to create a BookingConfirmationSecurity.
+     * @example
+     * // Create one BookingConfirmationSecurity
+     * const BookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.create({
+     *   data: {
+     *     // ... data to create a BookingConfirmationSecurity
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookingConfirmationSecurityCreateArgs>(args: SelectSubset<T, BookingConfirmationSecurityCreateArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookingConfirmationSecurities.
+     * @param {BookingConfirmationSecurityCreateManyArgs} args - Arguments to create many BookingConfirmationSecurities.
+     * @example
+     * // Create many BookingConfirmationSecurities
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookingConfirmationSecurityCreateManyArgs>(args?: SelectSubset<T, BookingConfirmationSecurityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookingConfirmationSecurities and returns the data saved in the database.
+     * @param {BookingConfirmationSecurityCreateManyAndReturnArgs} args - Arguments to create many BookingConfirmationSecurities.
+     * @example
+     * // Create many BookingConfirmationSecurities
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookingConfirmationSecurities and only return the `id`
+     * const bookingConfirmationSecurityWithIdOnly = await prisma.bookingConfirmationSecurity.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookingConfirmationSecurityCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingConfirmationSecurityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookingConfirmationSecurity.
+     * @param {BookingConfirmationSecurityDeleteArgs} args - Arguments to delete one BookingConfirmationSecurity.
+     * @example
+     * // Delete one BookingConfirmationSecurity
+     * const BookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.delete({
+     *   where: {
+     *     // ... filter to delete one BookingConfirmationSecurity
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookingConfirmationSecurityDeleteArgs>(args: SelectSubset<T, BookingConfirmationSecurityDeleteArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookingConfirmationSecurity.
+     * @param {BookingConfirmationSecurityUpdateArgs} args - Arguments to update one BookingConfirmationSecurity.
+     * @example
+     * // Update one BookingConfirmationSecurity
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookingConfirmationSecurityUpdateArgs>(args: SelectSubset<T, BookingConfirmationSecurityUpdateArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookingConfirmationSecurities.
+     * @param {BookingConfirmationSecurityDeleteManyArgs} args - Arguments to filter BookingConfirmationSecurities to delete.
+     * @example
+     * // Delete a few BookingConfirmationSecurities
+     * const { count } = await prisma.bookingConfirmationSecurity.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookingConfirmationSecurityDeleteManyArgs>(args?: SelectSubset<T, BookingConfirmationSecurityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationSecurities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationSecurityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookingConfirmationSecurities
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookingConfirmationSecurityUpdateManyArgs>(args: SelectSubset<T, BookingConfirmationSecurityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationSecurities and returns the data updated in the database.
+     * @param {BookingConfirmationSecurityUpdateManyAndReturnArgs} args - Arguments to update many BookingConfirmationSecurities.
+     * @example
+     * // Update many BookingConfirmationSecurities
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookingConfirmationSecurities and only return the `id`
+     * const bookingConfirmationSecurityWithIdOnly = await prisma.bookingConfirmationSecurity.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookingConfirmationSecurityUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingConfirmationSecurityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookingConfirmationSecurity.
+     * @param {BookingConfirmationSecurityUpsertArgs} args - Arguments to update or create a BookingConfirmationSecurity.
+     * @example
+     * // Update or create a BookingConfirmationSecurity
+     * const bookingConfirmationSecurity = await prisma.bookingConfirmationSecurity.upsert({
+     *   create: {
+     *     // ... data to create a BookingConfirmationSecurity
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookingConfirmationSecurity we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookingConfirmationSecurityUpsertArgs>(args: SelectSubset<T, BookingConfirmationSecurityUpsertArgs<ExtArgs>>): Prisma__BookingConfirmationSecurityClient<$Result.GetResult<Prisma.$BookingConfirmationSecurityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookingConfirmationSecurities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationSecurityCountArgs} args - Arguments to filter BookingConfirmationSecurities to count.
+     * @example
+     * // Count the number of BookingConfirmationSecurities
+     * const count = await prisma.bookingConfirmationSecurity.count({
+     *   where: {
+     *     // ... the filter for the BookingConfirmationSecurities we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingConfirmationSecurityCountArgs>(
+      args?: Subset<T, BookingConfirmationSecurityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingConfirmationSecurityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookingConfirmationSecurity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationSecurityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingConfirmationSecurityAggregateArgs>(args: Subset<T, BookingConfirmationSecurityAggregateArgs>): Prisma.PrismaPromise<GetBookingConfirmationSecurityAggregateType<T>>
+
+    /**
+     * Group by BookingConfirmationSecurity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationSecurityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingConfirmationSecurityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingConfirmationSecurityGroupByArgs['orderBy'] }
+        : { orderBy?: BookingConfirmationSecurityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingConfirmationSecurityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingConfirmationSecurityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookingConfirmationSecurity model
+   */
+  readonly fields: BookingConfirmationSecurityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookingConfirmationSecurity.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingConfirmationSecurityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookingConfirmationSecurity model
+   */
+  interface BookingConfirmationSecurityFieldRefs {
+    readonly id: FieldRef<"BookingConfirmationSecurity", 'String'>
+    readonly title: FieldRef<"BookingConfirmationSecurity", 'String'>
+    readonly points: FieldRef<"BookingConfirmationSecurity", 'String[]'>
+    readonly displayOrder: FieldRef<"BookingConfirmationSecurity", 'Int'>
+    readonly active: FieldRef<"BookingConfirmationSecurity", 'Boolean'>
+    readonly createdAt: FieldRef<"BookingConfirmationSecurity", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookingConfirmationSecurity", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookingConfirmationSecurity findUnique
+   */
+  export type BookingConfirmationSecurityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationSecurity to fetch.
+     */
+    where: BookingConfirmationSecurityWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationSecurity findUniqueOrThrow
+   */
+  export type BookingConfirmationSecurityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationSecurity to fetch.
+     */
+    where: BookingConfirmationSecurityWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationSecurity findFirst
+   */
+  export type BookingConfirmationSecurityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationSecurity to fetch.
+     */
+    where?: BookingConfirmationSecurityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSecurities to fetch.
+     */
+    orderBy?: BookingConfirmationSecurityOrderByWithRelationInput | BookingConfirmationSecurityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationSecurities.
+     */
+    cursor?: BookingConfirmationSecurityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSecurities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSecurities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationSecurities.
+     */
+    distinct?: BookingConfirmationSecurityScalarFieldEnum | BookingConfirmationSecurityScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationSecurity findFirstOrThrow
+   */
+  export type BookingConfirmationSecurityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationSecurity to fetch.
+     */
+    where?: BookingConfirmationSecurityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSecurities to fetch.
+     */
+    orderBy?: BookingConfirmationSecurityOrderByWithRelationInput | BookingConfirmationSecurityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationSecurities.
+     */
+    cursor?: BookingConfirmationSecurityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSecurities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSecurities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationSecurities.
+     */
+    distinct?: BookingConfirmationSecurityScalarFieldEnum | BookingConfirmationSecurityScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationSecurity findMany
+   */
+  export type BookingConfirmationSecurityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationSecurities to fetch.
+     */
+    where?: BookingConfirmationSecurityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationSecurities to fetch.
+     */
+    orderBy?: BookingConfirmationSecurityOrderByWithRelationInput | BookingConfirmationSecurityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookingConfirmationSecurities.
+     */
+    cursor?: BookingConfirmationSecurityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationSecurities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationSecurities.
+     */
+    skip?: number
+    distinct?: BookingConfirmationSecurityScalarFieldEnum | BookingConfirmationSecurityScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationSecurity create
+   */
+  export type BookingConfirmationSecurityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BookingConfirmationSecurity.
+     */
+    data: XOR<BookingConfirmationSecurityCreateInput, BookingConfirmationSecurityUncheckedCreateInput>
+  }
+
+  /**
+   * BookingConfirmationSecurity createMany
+   */
+  export type BookingConfirmationSecurityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookingConfirmationSecurities.
+     */
+    data: BookingConfirmationSecurityCreateManyInput | BookingConfirmationSecurityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationSecurity createManyAndReturn
+   */
+  export type BookingConfirmationSecurityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookingConfirmationSecurities.
+     */
+    data: BookingConfirmationSecurityCreateManyInput | BookingConfirmationSecurityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationSecurity update
+   */
+  export type BookingConfirmationSecurityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BookingConfirmationSecurity.
+     */
+    data: XOR<BookingConfirmationSecurityUpdateInput, BookingConfirmationSecurityUncheckedUpdateInput>
+    /**
+     * Choose, which BookingConfirmationSecurity to update.
+     */
+    where: BookingConfirmationSecurityWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationSecurity updateMany
+   */
+  export type BookingConfirmationSecurityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookingConfirmationSecurities.
+     */
+    data: XOR<BookingConfirmationSecurityUpdateManyMutationInput, BookingConfirmationSecurityUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationSecurities to update
+     */
+    where?: BookingConfirmationSecurityWhereInput
+    /**
+     * Limit how many BookingConfirmationSecurities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationSecurity updateManyAndReturn
+   */
+  export type BookingConfirmationSecurityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * The data used to update BookingConfirmationSecurities.
+     */
+    data: XOR<BookingConfirmationSecurityUpdateManyMutationInput, BookingConfirmationSecurityUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationSecurities to update
+     */
+    where?: BookingConfirmationSecurityWhereInput
+    /**
+     * Limit how many BookingConfirmationSecurities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationSecurity upsert
+   */
+  export type BookingConfirmationSecurityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BookingConfirmationSecurity to update in case it exists.
+     */
+    where: BookingConfirmationSecurityWhereUniqueInput
+    /**
+     * In case the BookingConfirmationSecurity found by the `where` argument doesn't exist, create a new BookingConfirmationSecurity with this data.
+     */
+    create: XOR<BookingConfirmationSecurityCreateInput, BookingConfirmationSecurityUncheckedCreateInput>
+    /**
+     * In case the BookingConfirmationSecurity was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingConfirmationSecurityUpdateInput, BookingConfirmationSecurityUncheckedUpdateInput>
+  }
+
+  /**
+   * BookingConfirmationSecurity delete
+   */
+  export type BookingConfirmationSecurityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+    /**
+     * Filter which BookingConfirmationSecurity to delete.
+     */
+    where: BookingConfirmationSecurityWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationSecurity deleteMany
+   */
+  export type BookingConfirmationSecurityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationSecurities to delete
+     */
+    where?: BookingConfirmationSecurityWhereInput
+    /**
+     * Limit how many BookingConfirmationSecurities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationSecurity without action
+   */
+  export type BookingConfirmationSecurityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationSecurity
+     */
+    select?: BookingConfirmationSecuritySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationSecurity
+     */
+    omit?: BookingConfirmationSecurityOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BookingConfirmationGallery
+   */
+
+  export type AggregateBookingConfirmationGallery = {
+    _count: BookingConfirmationGalleryCountAggregateOutputType | null
+    _avg: BookingConfirmationGalleryAvgAggregateOutputType | null
+    _sum: BookingConfirmationGallerySumAggregateOutputType | null
+    _min: BookingConfirmationGalleryMinAggregateOutputType | null
+    _max: BookingConfirmationGalleryMaxAggregateOutputType | null
+  }
+
+  export type BookingConfirmationGalleryAvgAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type BookingConfirmationGallerySumAggregateOutputType = {
+    displayOrder: number | null
+  }
+
+  export type BookingConfirmationGalleryMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationGalleryMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    displayOrder: number | null
+    active: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationGalleryCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    images: number
+    displayOrder: number
+    active: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookingConfirmationGalleryAvgAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type BookingConfirmationGallerySumAggregateInputType = {
+    displayOrder?: true
+  }
+
+  export type BookingConfirmationGalleryMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationGalleryMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationGalleryCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    images?: true
+    displayOrder?: true
+    active?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookingConfirmationGalleryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationGallery to aggregate.
+     */
+    where?: BookingConfirmationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationGalleries to fetch.
+     */
+    orderBy?: BookingConfirmationGalleryOrderByWithRelationInput | BookingConfirmationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingConfirmationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationGalleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookingConfirmationGalleries
+    **/
+    _count?: true | BookingConfirmationGalleryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BookingConfirmationGalleryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookingConfirmationGallerySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingConfirmationGalleryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingConfirmationGalleryMaxAggregateInputType
+  }
+
+  export type GetBookingConfirmationGalleryAggregateType<T extends BookingConfirmationGalleryAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookingConfirmationGallery]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookingConfirmationGallery[P]>
+      : GetScalarType<T[P], AggregateBookingConfirmationGallery[P]>
+  }
+
+
+
+
+  export type BookingConfirmationGalleryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingConfirmationGalleryWhereInput
+    orderBy?: BookingConfirmationGalleryOrderByWithAggregationInput | BookingConfirmationGalleryOrderByWithAggregationInput[]
+    by: BookingConfirmationGalleryScalarFieldEnum[] | BookingConfirmationGalleryScalarFieldEnum
+    having?: BookingConfirmationGalleryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingConfirmationGalleryCountAggregateInputType | true
+    _avg?: BookingConfirmationGalleryAvgAggregateInputType
+    _sum?: BookingConfirmationGallerySumAggregateInputType
+    _min?: BookingConfirmationGalleryMinAggregateInputType
+    _max?: BookingConfirmationGalleryMaxAggregateInputType
+  }
+
+  export type BookingConfirmationGalleryGroupByOutputType = {
+    id: string
+    title: string
+    description: string | null
+    images: string[]
+    displayOrder: number
+    active: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BookingConfirmationGalleryCountAggregateOutputType | null
+    _avg: BookingConfirmationGalleryAvgAggregateOutputType | null
+    _sum: BookingConfirmationGallerySumAggregateOutputType | null
+    _min: BookingConfirmationGalleryMinAggregateOutputType | null
+    _max: BookingConfirmationGalleryMaxAggregateOutputType | null
+  }
+
+  type GetBookingConfirmationGalleryGroupByPayload<T extends BookingConfirmationGalleryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingConfirmationGalleryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingConfirmationGalleryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingConfirmationGalleryGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingConfirmationGalleryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingConfirmationGallerySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    images?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationGallery"]>
+
+  export type BookingConfirmationGallerySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    images?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationGallery"]>
+
+  export type BookingConfirmationGallerySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    images?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationGallery"]>
+
+  export type BookingConfirmationGallerySelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    images?: boolean
+    displayOrder?: boolean
+    active?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookingConfirmationGalleryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "images" | "displayOrder" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["bookingConfirmationGallery"]>
+
+  export type $BookingConfirmationGalleryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookingConfirmationGallery"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string | null
+      images: string[]
+      displayOrder: number
+      active: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookingConfirmationGallery"]>
+    composites: {}
+  }
+
+  type BookingConfirmationGalleryGetPayload<S extends boolean | null | undefined | BookingConfirmationGalleryDefaultArgs> = $Result.GetResult<Prisma.$BookingConfirmationGalleryPayload, S>
+
+  type BookingConfirmationGalleryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookingConfirmationGalleryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookingConfirmationGalleryCountAggregateInputType | true
+    }
+
+  export interface BookingConfirmationGalleryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookingConfirmationGallery'], meta: { name: 'BookingConfirmationGallery' } }
+    /**
+     * Find zero or one BookingConfirmationGallery that matches the filter.
+     * @param {BookingConfirmationGalleryFindUniqueArgs} args - Arguments to find a BookingConfirmationGallery
+     * @example
+     * // Get one BookingConfirmationGallery
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookingConfirmationGalleryFindUniqueArgs>(args: SelectSubset<T, BookingConfirmationGalleryFindUniqueArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookingConfirmationGallery that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookingConfirmationGalleryFindUniqueOrThrowArgs} args - Arguments to find a BookingConfirmationGallery
+     * @example
+     * // Get one BookingConfirmationGallery
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookingConfirmationGalleryFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingConfirmationGalleryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationGallery that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationGalleryFindFirstArgs} args - Arguments to find a BookingConfirmationGallery
+     * @example
+     * // Get one BookingConfirmationGallery
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookingConfirmationGalleryFindFirstArgs>(args?: SelectSubset<T, BookingConfirmationGalleryFindFirstArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationGallery that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationGalleryFindFirstOrThrowArgs} args - Arguments to find a BookingConfirmationGallery
+     * @example
+     * // Get one BookingConfirmationGallery
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookingConfirmationGalleryFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingConfirmationGalleryFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookingConfirmationGalleries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationGalleryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookingConfirmationGalleries
+     * const bookingConfirmationGalleries = await prisma.bookingConfirmationGallery.findMany()
+     * 
+     * // Get first 10 BookingConfirmationGalleries
+     * const bookingConfirmationGalleries = await prisma.bookingConfirmationGallery.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingConfirmationGalleryWithIdOnly = await prisma.bookingConfirmationGallery.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookingConfirmationGalleryFindManyArgs>(args?: SelectSubset<T, BookingConfirmationGalleryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookingConfirmationGallery.
+     * @param {BookingConfirmationGalleryCreateArgs} args - Arguments to create a BookingConfirmationGallery.
+     * @example
+     * // Create one BookingConfirmationGallery
+     * const BookingConfirmationGallery = await prisma.bookingConfirmationGallery.create({
+     *   data: {
+     *     // ... data to create a BookingConfirmationGallery
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookingConfirmationGalleryCreateArgs>(args: SelectSubset<T, BookingConfirmationGalleryCreateArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookingConfirmationGalleries.
+     * @param {BookingConfirmationGalleryCreateManyArgs} args - Arguments to create many BookingConfirmationGalleries.
+     * @example
+     * // Create many BookingConfirmationGalleries
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookingConfirmationGalleryCreateManyArgs>(args?: SelectSubset<T, BookingConfirmationGalleryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookingConfirmationGalleries and returns the data saved in the database.
+     * @param {BookingConfirmationGalleryCreateManyAndReturnArgs} args - Arguments to create many BookingConfirmationGalleries.
+     * @example
+     * // Create many BookingConfirmationGalleries
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookingConfirmationGalleries and only return the `id`
+     * const bookingConfirmationGalleryWithIdOnly = await prisma.bookingConfirmationGallery.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookingConfirmationGalleryCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingConfirmationGalleryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookingConfirmationGallery.
+     * @param {BookingConfirmationGalleryDeleteArgs} args - Arguments to delete one BookingConfirmationGallery.
+     * @example
+     * // Delete one BookingConfirmationGallery
+     * const BookingConfirmationGallery = await prisma.bookingConfirmationGallery.delete({
+     *   where: {
+     *     // ... filter to delete one BookingConfirmationGallery
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookingConfirmationGalleryDeleteArgs>(args: SelectSubset<T, BookingConfirmationGalleryDeleteArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookingConfirmationGallery.
+     * @param {BookingConfirmationGalleryUpdateArgs} args - Arguments to update one BookingConfirmationGallery.
+     * @example
+     * // Update one BookingConfirmationGallery
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookingConfirmationGalleryUpdateArgs>(args: SelectSubset<T, BookingConfirmationGalleryUpdateArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookingConfirmationGalleries.
+     * @param {BookingConfirmationGalleryDeleteManyArgs} args - Arguments to filter BookingConfirmationGalleries to delete.
+     * @example
+     * // Delete a few BookingConfirmationGalleries
+     * const { count } = await prisma.bookingConfirmationGallery.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookingConfirmationGalleryDeleteManyArgs>(args?: SelectSubset<T, BookingConfirmationGalleryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationGalleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationGalleryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookingConfirmationGalleries
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookingConfirmationGalleryUpdateManyArgs>(args: SelectSubset<T, BookingConfirmationGalleryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationGalleries and returns the data updated in the database.
+     * @param {BookingConfirmationGalleryUpdateManyAndReturnArgs} args - Arguments to update many BookingConfirmationGalleries.
+     * @example
+     * // Update many BookingConfirmationGalleries
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookingConfirmationGalleries and only return the `id`
+     * const bookingConfirmationGalleryWithIdOnly = await prisma.bookingConfirmationGallery.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookingConfirmationGalleryUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingConfirmationGalleryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookingConfirmationGallery.
+     * @param {BookingConfirmationGalleryUpsertArgs} args - Arguments to update or create a BookingConfirmationGallery.
+     * @example
+     * // Update or create a BookingConfirmationGallery
+     * const bookingConfirmationGallery = await prisma.bookingConfirmationGallery.upsert({
+     *   create: {
+     *     // ... data to create a BookingConfirmationGallery
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookingConfirmationGallery we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookingConfirmationGalleryUpsertArgs>(args: SelectSubset<T, BookingConfirmationGalleryUpsertArgs<ExtArgs>>): Prisma__BookingConfirmationGalleryClient<$Result.GetResult<Prisma.$BookingConfirmationGalleryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookingConfirmationGalleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationGalleryCountArgs} args - Arguments to filter BookingConfirmationGalleries to count.
+     * @example
+     * // Count the number of BookingConfirmationGalleries
+     * const count = await prisma.bookingConfirmationGallery.count({
+     *   where: {
+     *     // ... the filter for the BookingConfirmationGalleries we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingConfirmationGalleryCountArgs>(
+      args?: Subset<T, BookingConfirmationGalleryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingConfirmationGalleryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookingConfirmationGallery.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationGalleryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingConfirmationGalleryAggregateArgs>(args: Subset<T, BookingConfirmationGalleryAggregateArgs>): Prisma.PrismaPromise<GetBookingConfirmationGalleryAggregateType<T>>
+
+    /**
+     * Group by BookingConfirmationGallery.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationGalleryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingConfirmationGalleryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingConfirmationGalleryGroupByArgs['orderBy'] }
+        : { orderBy?: BookingConfirmationGalleryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingConfirmationGalleryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingConfirmationGalleryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookingConfirmationGallery model
+   */
+  readonly fields: BookingConfirmationGalleryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookingConfirmationGallery.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingConfirmationGalleryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookingConfirmationGallery model
+   */
+  interface BookingConfirmationGalleryFieldRefs {
+    readonly id: FieldRef<"BookingConfirmationGallery", 'String'>
+    readonly title: FieldRef<"BookingConfirmationGallery", 'String'>
+    readonly description: FieldRef<"BookingConfirmationGallery", 'String'>
+    readonly images: FieldRef<"BookingConfirmationGallery", 'String[]'>
+    readonly displayOrder: FieldRef<"BookingConfirmationGallery", 'Int'>
+    readonly active: FieldRef<"BookingConfirmationGallery", 'Boolean'>
+    readonly createdAt: FieldRef<"BookingConfirmationGallery", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookingConfirmationGallery", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookingConfirmationGallery findUnique
+   */
+  export type BookingConfirmationGalleryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationGallery to fetch.
+     */
+    where: BookingConfirmationGalleryWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationGallery findUniqueOrThrow
+   */
+  export type BookingConfirmationGalleryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationGallery to fetch.
+     */
+    where: BookingConfirmationGalleryWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationGallery findFirst
+   */
+  export type BookingConfirmationGalleryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationGallery to fetch.
+     */
+    where?: BookingConfirmationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationGalleries to fetch.
+     */
+    orderBy?: BookingConfirmationGalleryOrderByWithRelationInput | BookingConfirmationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationGalleries.
+     */
+    cursor?: BookingConfirmationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationGalleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationGalleries.
+     */
+    distinct?: BookingConfirmationGalleryScalarFieldEnum | BookingConfirmationGalleryScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationGallery findFirstOrThrow
+   */
+  export type BookingConfirmationGalleryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationGallery to fetch.
+     */
+    where?: BookingConfirmationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationGalleries to fetch.
+     */
+    orderBy?: BookingConfirmationGalleryOrderByWithRelationInput | BookingConfirmationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationGalleries.
+     */
+    cursor?: BookingConfirmationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationGalleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationGalleries.
+     */
+    distinct?: BookingConfirmationGalleryScalarFieldEnum | BookingConfirmationGalleryScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationGallery findMany
+   */
+  export type BookingConfirmationGalleryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationGalleries to fetch.
+     */
+    where?: BookingConfirmationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationGalleries to fetch.
+     */
+    orderBy?: BookingConfirmationGalleryOrderByWithRelationInput | BookingConfirmationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookingConfirmationGalleries.
+     */
+    cursor?: BookingConfirmationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationGalleries.
+     */
+    skip?: number
+    distinct?: BookingConfirmationGalleryScalarFieldEnum | BookingConfirmationGalleryScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationGallery create
+   */
+  export type BookingConfirmationGalleryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BookingConfirmationGallery.
+     */
+    data: XOR<BookingConfirmationGalleryCreateInput, BookingConfirmationGalleryUncheckedCreateInput>
+  }
+
+  /**
+   * BookingConfirmationGallery createMany
+   */
+  export type BookingConfirmationGalleryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookingConfirmationGalleries.
+     */
+    data: BookingConfirmationGalleryCreateManyInput | BookingConfirmationGalleryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationGallery createManyAndReturn
+   */
+  export type BookingConfirmationGalleryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookingConfirmationGalleries.
+     */
+    data: BookingConfirmationGalleryCreateManyInput | BookingConfirmationGalleryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationGallery update
+   */
+  export type BookingConfirmationGalleryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BookingConfirmationGallery.
+     */
+    data: XOR<BookingConfirmationGalleryUpdateInput, BookingConfirmationGalleryUncheckedUpdateInput>
+    /**
+     * Choose, which BookingConfirmationGallery to update.
+     */
+    where: BookingConfirmationGalleryWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationGallery updateMany
+   */
+  export type BookingConfirmationGalleryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookingConfirmationGalleries.
+     */
+    data: XOR<BookingConfirmationGalleryUpdateManyMutationInput, BookingConfirmationGalleryUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationGalleries to update
+     */
+    where?: BookingConfirmationGalleryWhereInput
+    /**
+     * Limit how many BookingConfirmationGalleries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationGallery updateManyAndReturn
+   */
+  export type BookingConfirmationGalleryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * The data used to update BookingConfirmationGalleries.
+     */
+    data: XOR<BookingConfirmationGalleryUpdateManyMutationInput, BookingConfirmationGalleryUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationGalleries to update
+     */
+    where?: BookingConfirmationGalleryWhereInput
+    /**
+     * Limit how many BookingConfirmationGalleries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationGallery upsert
+   */
+  export type BookingConfirmationGalleryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BookingConfirmationGallery to update in case it exists.
+     */
+    where: BookingConfirmationGalleryWhereUniqueInput
+    /**
+     * In case the BookingConfirmationGallery found by the `where` argument doesn't exist, create a new BookingConfirmationGallery with this data.
+     */
+    create: XOR<BookingConfirmationGalleryCreateInput, BookingConfirmationGalleryUncheckedCreateInput>
+    /**
+     * In case the BookingConfirmationGallery was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingConfirmationGalleryUpdateInput, BookingConfirmationGalleryUncheckedUpdateInput>
+  }
+
+  /**
+   * BookingConfirmationGallery delete
+   */
+  export type BookingConfirmationGalleryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+    /**
+     * Filter which BookingConfirmationGallery to delete.
+     */
+    where: BookingConfirmationGalleryWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationGallery deleteMany
+   */
+  export type BookingConfirmationGalleryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationGalleries to delete
+     */
+    where?: BookingConfirmationGalleryWhereInput
+    /**
+     * Limit how many BookingConfirmationGalleries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationGallery without action
+   */
+  export type BookingConfirmationGalleryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationGallery
+     */
+    select?: BookingConfirmationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationGallery
+     */
+    omit?: BookingConfirmationGalleryOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -40625,6 +46426,82 @@ export namespace Prisma {
   };
 
   export type ContactResourceScalarFieldEnum = (typeof ContactResourceScalarFieldEnum)[keyof typeof ContactResourceScalarFieldEnum]
+
+
+  export const BookingConfirmationHeroScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    badge: 'badge',
+    importantNotice: 'importantNotice',
+    paymentDeadline: 'paymentDeadline',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookingConfirmationHeroScalarFieldEnum = (typeof BookingConfirmationHeroScalarFieldEnum)[keyof typeof BookingConfirmationHeroScalarFieldEnum]
+
+
+  export const BookingConfirmationStepScalarFieldEnum: {
+    id: 'id',
+    stepNumber: 'stepNumber',
+    title: 'title',
+    description: 'description',
+    icon: 'icon',
+    extraInfo: 'extraInfo',
+    displayOrder: 'displayOrder',
+    active: 'active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookingConfirmationStepScalarFieldEnum = (typeof BookingConfirmationStepScalarFieldEnum)[keyof typeof BookingConfirmationStepScalarFieldEnum]
+
+
+  export const BookingConfirmationContactScalarFieldEnum: {
+    id: 'id',
+    sectionTitle: 'sectionTitle',
+    description: 'description',
+    email: 'email',
+    phone: 'phone',
+    whatsapp: 'whatsapp',
+    responseTime: 'responseTime',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookingConfirmationContactScalarFieldEnum = (typeof BookingConfirmationContactScalarFieldEnum)[keyof typeof BookingConfirmationContactScalarFieldEnum]
+
+
+  export const BookingConfirmationSecurityScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    points: 'points',
+    displayOrder: 'displayOrder',
+    active: 'active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookingConfirmationSecurityScalarFieldEnum = (typeof BookingConfirmationSecurityScalarFieldEnum)[keyof typeof BookingConfirmationSecurityScalarFieldEnum]
+
+
+  export const BookingConfirmationGalleryScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    images: 'images',
+    displayOrder: 'displayOrder',
+    active: 'active',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookingConfirmationGalleryScalarFieldEnum = (typeof BookingConfirmationGalleryScalarFieldEnum)[keyof typeof BookingConfirmationGalleryScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -43765,6 +49642,377 @@ export namespace Prisma {
     active?: BoolWithAggregatesFilter<"ContactResource"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"ContactResource"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ContactResource"> | Date | string
+  }
+
+  export type BookingConfirmationHeroWhereInput = {
+    AND?: BookingConfirmationHeroWhereInput | BookingConfirmationHeroWhereInput[]
+    OR?: BookingConfirmationHeroWhereInput[]
+    NOT?: BookingConfirmationHeroWhereInput | BookingConfirmationHeroWhereInput[]
+    id?: StringFilter<"BookingConfirmationHero"> | string
+    title?: StringFilter<"BookingConfirmationHero"> | string
+    description?: StringFilter<"BookingConfirmationHero"> | string
+    badge?: StringFilter<"BookingConfirmationHero"> | string
+    importantNotice?: StringFilter<"BookingConfirmationHero"> | string
+    paymentDeadline?: StringFilter<"BookingConfirmationHero"> | string
+    status?: EnumContentStatusFilter<"BookingConfirmationHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationHero"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationHero"> | Date | string
+  }
+
+  export type BookingConfirmationHeroOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    badge?: SortOrder
+    importantNotice?: SortOrder
+    paymentDeadline?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationHeroWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookingConfirmationHeroWhereInput | BookingConfirmationHeroWhereInput[]
+    OR?: BookingConfirmationHeroWhereInput[]
+    NOT?: BookingConfirmationHeroWhereInput | BookingConfirmationHeroWhereInput[]
+    title?: StringFilter<"BookingConfirmationHero"> | string
+    description?: StringFilter<"BookingConfirmationHero"> | string
+    badge?: StringFilter<"BookingConfirmationHero"> | string
+    importantNotice?: StringFilter<"BookingConfirmationHero"> | string
+    paymentDeadline?: StringFilter<"BookingConfirmationHero"> | string
+    status?: EnumContentStatusFilter<"BookingConfirmationHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationHero"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationHero"> | Date | string
+  }, "id">
+
+  export type BookingConfirmationHeroOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    badge?: SortOrder
+    importantNotice?: SortOrder
+    paymentDeadline?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookingConfirmationHeroCountOrderByAggregateInput
+    _max?: BookingConfirmationHeroMaxOrderByAggregateInput
+    _min?: BookingConfirmationHeroMinOrderByAggregateInput
+  }
+
+  export type BookingConfirmationHeroScalarWhereWithAggregatesInput = {
+    AND?: BookingConfirmationHeroScalarWhereWithAggregatesInput | BookingConfirmationHeroScalarWhereWithAggregatesInput[]
+    OR?: BookingConfirmationHeroScalarWhereWithAggregatesInput[]
+    NOT?: BookingConfirmationHeroScalarWhereWithAggregatesInput | BookingConfirmationHeroScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookingConfirmationHero"> | string
+    title?: StringWithAggregatesFilter<"BookingConfirmationHero"> | string
+    description?: StringWithAggregatesFilter<"BookingConfirmationHero"> | string
+    badge?: StringWithAggregatesFilter<"BookingConfirmationHero"> | string
+    importantNotice?: StringWithAggregatesFilter<"BookingConfirmationHero"> | string
+    paymentDeadline?: StringWithAggregatesFilter<"BookingConfirmationHero"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"BookingConfirmationHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"BookingConfirmationHero"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationHero"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationHero"> | Date | string
+  }
+
+  export type BookingConfirmationStepWhereInput = {
+    AND?: BookingConfirmationStepWhereInput | BookingConfirmationStepWhereInput[]
+    OR?: BookingConfirmationStepWhereInput[]
+    NOT?: BookingConfirmationStepWhereInput | BookingConfirmationStepWhereInput[]
+    id?: StringFilter<"BookingConfirmationStep"> | string
+    stepNumber?: IntFilter<"BookingConfirmationStep"> | number
+    title?: StringFilter<"BookingConfirmationStep"> | string
+    description?: StringFilter<"BookingConfirmationStep"> | string
+    icon?: StringFilter<"BookingConfirmationStep"> | string
+    extraInfo?: StringNullableFilter<"BookingConfirmationStep"> | string | null
+    displayOrder?: IntFilter<"BookingConfirmationStep"> | number
+    active?: BoolFilter<"BookingConfirmationStep"> | boolean
+    createdAt?: DateTimeFilter<"BookingConfirmationStep"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationStep"> | Date | string
+  }
+
+  export type BookingConfirmationStepOrderByWithRelationInput = {
+    id?: SortOrder
+    stepNumber?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    extraInfo?: SortOrderInput | SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationStepWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookingConfirmationStepWhereInput | BookingConfirmationStepWhereInput[]
+    OR?: BookingConfirmationStepWhereInput[]
+    NOT?: BookingConfirmationStepWhereInput | BookingConfirmationStepWhereInput[]
+    stepNumber?: IntFilter<"BookingConfirmationStep"> | number
+    title?: StringFilter<"BookingConfirmationStep"> | string
+    description?: StringFilter<"BookingConfirmationStep"> | string
+    icon?: StringFilter<"BookingConfirmationStep"> | string
+    extraInfo?: StringNullableFilter<"BookingConfirmationStep"> | string | null
+    displayOrder?: IntFilter<"BookingConfirmationStep"> | number
+    active?: BoolFilter<"BookingConfirmationStep"> | boolean
+    createdAt?: DateTimeFilter<"BookingConfirmationStep"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationStep"> | Date | string
+  }, "id">
+
+  export type BookingConfirmationStepOrderByWithAggregationInput = {
+    id?: SortOrder
+    stepNumber?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    extraInfo?: SortOrderInput | SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookingConfirmationStepCountOrderByAggregateInput
+    _avg?: BookingConfirmationStepAvgOrderByAggregateInput
+    _max?: BookingConfirmationStepMaxOrderByAggregateInput
+    _min?: BookingConfirmationStepMinOrderByAggregateInput
+    _sum?: BookingConfirmationStepSumOrderByAggregateInput
+  }
+
+  export type BookingConfirmationStepScalarWhereWithAggregatesInput = {
+    AND?: BookingConfirmationStepScalarWhereWithAggregatesInput | BookingConfirmationStepScalarWhereWithAggregatesInput[]
+    OR?: BookingConfirmationStepScalarWhereWithAggregatesInput[]
+    NOT?: BookingConfirmationStepScalarWhereWithAggregatesInput | BookingConfirmationStepScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookingConfirmationStep"> | string
+    stepNumber?: IntWithAggregatesFilter<"BookingConfirmationStep"> | number
+    title?: StringWithAggregatesFilter<"BookingConfirmationStep"> | string
+    description?: StringWithAggregatesFilter<"BookingConfirmationStep"> | string
+    icon?: StringWithAggregatesFilter<"BookingConfirmationStep"> | string
+    extraInfo?: StringNullableWithAggregatesFilter<"BookingConfirmationStep"> | string | null
+    displayOrder?: IntWithAggregatesFilter<"BookingConfirmationStep"> | number
+    active?: BoolWithAggregatesFilter<"BookingConfirmationStep"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationStep"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationStep"> | Date | string
+  }
+
+  export type BookingConfirmationContactWhereInput = {
+    AND?: BookingConfirmationContactWhereInput | BookingConfirmationContactWhereInput[]
+    OR?: BookingConfirmationContactWhereInput[]
+    NOT?: BookingConfirmationContactWhereInput | BookingConfirmationContactWhereInput[]
+    id?: StringFilter<"BookingConfirmationContact"> | string
+    sectionTitle?: StringFilter<"BookingConfirmationContact"> | string
+    description?: StringFilter<"BookingConfirmationContact"> | string
+    email?: StringFilter<"BookingConfirmationContact"> | string
+    phone?: StringFilter<"BookingConfirmationContact"> | string
+    whatsapp?: StringNullableFilter<"BookingConfirmationContact"> | string | null
+    responseTime?: StringFilter<"BookingConfirmationContact"> | string
+    status?: EnumContentStatusFilter<"BookingConfirmationContact"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationContact"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationContact"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationContact"> | Date | string
+  }
+
+  export type BookingConfirmationContactOrderByWithRelationInput = {
+    id?: SortOrder
+    sectionTitle?: SortOrder
+    description?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrderInput | SortOrder
+    responseTime?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationContactWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookingConfirmationContactWhereInput | BookingConfirmationContactWhereInput[]
+    OR?: BookingConfirmationContactWhereInput[]
+    NOT?: BookingConfirmationContactWhereInput | BookingConfirmationContactWhereInput[]
+    sectionTitle?: StringFilter<"BookingConfirmationContact"> | string
+    description?: StringFilter<"BookingConfirmationContact"> | string
+    email?: StringFilter<"BookingConfirmationContact"> | string
+    phone?: StringFilter<"BookingConfirmationContact"> | string
+    whatsapp?: StringNullableFilter<"BookingConfirmationContact"> | string | null
+    responseTime?: StringFilter<"BookingConfirmationContact"> | string
+    status?: EnumContentStatusFilter<"BookingConfirmationContact"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationContact"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationContact"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationContact"> | Date | string
+  }, "id">
+
+  export type BookingConfirmationContactOrderByWithAggregationInput = {
+    id?: SortOrder
+    sectionTitle?: SortOrder
+    description?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrderInput | SortOrder
+    responseTime?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookingConfirmationContactCountOrderByAggregateInput
+    _max?: BookingConfirmationContactMaxOrderByAggregateInput
+    _min?: BookingConfirmationContactMinOrderByAggregateInput
+  }
+
+  export type BookingConfirmationContactScalarWhereWithAggregatesInput = {
+    AND?: BookingConfirmationContactScalarWhereWithAggregatesInput | BookingConfirmationContactScalarWhereWithAggregatesInput[]
+    OR?: BookingConfirmationContactScalarWhereWithAggregatesInput[]
+    NOT?: BookingConfirmationContactScalarWhereWithAggregatesInput | BookingConfirmationContactScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookingConfirmationContact"> | string
+    sectionTitle?: StringWithAggregatesFilter<"BookingConfirmationContact"> | string
+    description?: StringWithAggregatesFilter<"BookingConfirmationContact"> | string
+    email?: StringWithAggregatesFilter<"BookingConfirmationContact"> | string
+    phone?: StringWithAggregatesFilter<"BookingConfirmationContact"> | string
+    whatsapp?: StringNullableWithAggregatesFilter<"BookingConfirmationContact"> | string | null
+    responseTime?: StringWithAggregatesFilter<"BookingConfirmationContact"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"BookingConfirmationContact"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"BookingConfirmationContact"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationContact"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationContact"> | Date | string
+  }
+
+  export type BookingConfirmationSecurityWhereInput = {
+    AND?: BookingConfirmationSecurityWhereInput | BookingConfirmationSecurityWhereInput[]
+    OR?: BookingConfirmationSecurityWhereInput[]
+    NOT?: BookingConfirmationSecurityWhereInput | BookingConfirmationSecurityWhereInput[]
+    id?: StringFilter<"BookingConfirmationSecurity"> | string
+    title?: StringFilter<"BookingConfirmationSecurity"> | string
+    points?: StringNullableListFilter<"BookingConfirmationSecurity">
+    displayOrder?: IntFilter<"BookingConfirmationSecurity"> | number
+    active?: BoolFilter<"BookingConfirmationSecurity"> | boolean
+    createdAt?: DateTimeFilter<"BookingConfirmationSecurity"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationSecurity"> | Date | string
+  }
+
+  export type BookingConfirmationSecurityOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    points?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationSecurityWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookingConfirmationSecurityWhereInput | BookingConfirmationSecurityWhereInput[]
+    OR?: BookingConfirmationSecurityWhereInput[]
+    NOT?: BookingConfirmationSecurityWhereInput | BookingConfirmationSecurityWhereInput[]
+    title?: StringFilter<"BookingConfirmationSecurity"> | string
+    points?: StringNullableListFilter<"BookingConfirmationSecurity">
+    displayOrder?: IntFilter<"BookingConfirmationSecurity"> | number
+    active?: BoolFilter<"BookingConfirmationSecurity"> | boolean
+    createdAt?: DateTimeFilter<"BookingConfirmationSecurity"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationSecurity"> | Date | string
+  }, "id">
+
+  export type BookingConfirmationSecurityOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    points?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookingConfirmationSecurityCountOrderByAggregateInput
+    _avg?: BookingConfirmationSecurityAvgOrderByAggregateInput
+    _max?: BookingConfirmationSecurityMaxOrderByAggregateInput
+    _min?: BookingConfirmationSecurityMinOrderByAggregateInput
+    _sum?: BookingConfirmationSecuritySumOrderByAggregateInput
+  }
+
+  export type BookingConfirmationSecurityScalarWhereWithAggregatesInput = {
+    AND?: BookingConfirmationSecurityScalarWhereWithAggregatesInput | BookingConfirmationSecurityScalarWhereWithAggregatesInput[]
+    OR?: BookingConfirmationSecurityScalarWhereWithAggregatesInput[]
+    NOT?: BookingConfirmationSecurityScalarWhereWithAggregatesInput | BookingConfirmationSecurityScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookingConfirmationSecurity"> | string
+    title?: StringWithAggregatesFilter<"BookingConfirmationSecurity"> | string
+    points?: StringNullableListFilter<"BookingConfirmationSecurity">
+    displayOrder?: IntWithAggregatesFilter<"BookingConfirmationSecurity"> | number
+    active?: BoolWithAggregatesFilter<"BookingConfirmationSecurity"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationSecurity"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationSecurity"> | Date | string
+  }
+
+  export type BookingConfirmationGalleryWhereInput = {
+    AND?: BookingConfirmationGalleryWhereInput | BookingConfirmationGalleryWhereInput[]
+    OR?: BookingConfirmationGalleryWhereInput[]
+    NOT?: BookingConfirmationGalleryWhereInput | BookingConfirmationGalleryWhereInput[]
+    id?: StringFilter<"BookingConfirmationGallery"> | string
+    title?: StringFilter<"BookingConfirmationGallery"> | string
+    description?: StringNullableFilter<"BookingConfirmationGallery"> | string | null
+    images?: StringNullableListFilter<"BookingConfirmationGallery">
+    displayOrder?: IntFilter<"BookingConfirmationGallery"> | number
+    active?: BoolFilter<"BookingConfirmationGallery"> | boolean
+    createdAt?: DateTimeFilter<"BookingConfirmationGallery"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationGallery"> | Date | string
+  }
+
+  export type BookingConfirmationGalleryOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    images?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationGalleryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookingConfirmationGalleryWhereInput | BookingConfirmationGalleryWhereInput[]
+    OR?: BookingConfirmationGalleryWhereInput[]
+    NOT?: BookingConfirmationGalleryWhereInput | BookingConfirmationGalleryWhereInput[]
+    title?: StringFilter<"BookingConfirmationGallery"> | string
+    description?: StringNullableFilter<"BookingConfirmationGallery"> | string | null
+    images?: StringNullableListFilter<"BookingConfirmationGallery">
+    displayOrder?: IntFilter<"BookingConfirmationGallery"> | number
+    active?: BoolFilter<"BookingConfirmationGallery"> | boolean
+    createdAt?: DateTimeFilter<"BookingConfirmationGallery"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationGallery"> | Date | string
+  }, "id">
+
+  export type BookingConfirmationGalleryOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    images?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookingConfirmationGalleryCountOrderByAggregateInput
+    _avg?: BookingConfirmationGalleryAvgOrderByAggregateInput
+    _max?: BookingConfirmationGalleryMaxOrderByAggregateInput
+    _min?: BookingConfirmationGalleryMinOrderByAggregateInput
+    _sum?: BookingConfirmationGallerySumOrderByAggregateInput
+  }
+
+  export type BookingConfirmationGalleryScalarWhereWithAggregatesInput = {
+    AND?: BookingConfirmationGalleryScalarWhereWithAggregatesInput | BookingConfirmationGalleryScalarWhereWithAggregatesInput[]
+    OR?: BookingConfirmationGalleryScalarWhereWithAggregatesInput[]
+    NOT?: BookingConfirmationGalleryScalarWhereWithAggregatesInput | BookingConfirmationGalleryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookingConfirmationGallery"> | string
+    title?: StringWithAggregatesFilter<"BookingConfirmationGallery"> | string
+    description?: StringNullableWithAggregatesFilter<"BookingConfirmationGallery"> | string | null
+    images?: StringNullableListFilter<"BookingConfirmationGallery">
+    displayOrder?: IntWithAggregatesFilter<"BookingConfirmationGallery"> | number
+    active?: BoolWithAggregatesFilter<"BookingConfirmationGallery"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationGallery"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationGallery"> | Date | string
   }
 
   export type DestinationCreateInput = {
@@ -47145,6 +53393,433 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BookingConfirmationHeroCreateInput = {
+    id?: string
+    title: string
+    description: string
+    badge: string
+    importantNotice: string
+    paymentDeadline: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationHeroUncheckedCreateInput = {
+    id?: string
+    title: string
+    description: string
+    badge: string
+    importantNotice: string
+    paymentDeadline: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationHeroUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    importantNotice?: StringFieldUpdateOperationsInput | string
+    paymentDeadline?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationHeroUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    importantNotice?: StringFieldUpdateOperationsInput | string
+    paymentDeadline?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationHeroCreateManyInput = {
+    id?: string
+    title: string
+    description: string
+    badge: string
+    importantNotice: string
+    paymentDeadline: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationHeroUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    importantNotice?: StringFieldUpdateOperationsInput | string
+    paymentDeadline?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationHeroUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    badge?: StringFieldUpdateOperationsInput | string
+    importantNotice?: StringFieldUpdateOperationsInput | string
+    paymentDeadline?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationStepCreateInput = {
+    id?: string
+    stepNumber: number
+    title: string
+    description: string
+    icon: string
+    extraInfo?: string | null
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationStepUncheckedCreateInput = {
+    id?: string
+    stepNumber: number
+    title: string
+    description: string
+    icon: string
+    extraInfo?: string | null
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationStepUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNumber?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    extraInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationStepUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNumber?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    extraInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationStepCreateManyInput = {
+    id?: string
+    stepNumber: number
+    title: string
+    description: string
+    icon: string
+    extraInfo?: string | null
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationStepUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNumber?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    extraInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationStepUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNumber?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    extraInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationContactCreateInput = {
+    id?: string
+    sectionTitle: string
+    description: string
+    email: string
+    phone: string
+    whatsapp?: string | null
+    responseTime: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationContactUncheckedCreateInput = {
+    id?: string
+    sectionTitle: string
+    description: string
+    email: string
+    phone: string
+    whatsapp?: string | null
+    responseTime: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationContactUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sectionTitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationContactUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sectionTitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationContactCreateManyInput = {
+    id?: string
+    sectionTitle: string
+    description: string
+    email: string
+    phone: string
+    whatsapp?: string | null
+    responseTime: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationContactUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sectionTitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationContactUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sectionTitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationSecurityCreateInput = {
+    id?: string
+    title: string
+    points?: BookingConfirmationSecurityCreatepointsInput | string[]
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationSecurityUncheckedCreateInput = {
+    id?: string
+    title: string
+    points?: BookingConfirmationSecurityCreatepointsInput | string[]
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationSecurityUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    points?: BookingConfirmationSecurityUpdatepointsInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationSecurityUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    points?: BookingConfirmationSecurityUpdatepointsInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationSecurityCreateManyInput = {
+    id?: string
+    title: string
+    points?: BookingConfirmationSecurityCreatepointsInput | string[]
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationSecurityUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    points?: BookingConfirmationSecurityUpdatepointsInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationSecurityUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    points?: BookingConfirmationSecurityUpdatepointsInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationGalleryCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    images?: BookingConfirmationGalleryCreateimagesInput | string[]
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationGalleryUncheckedCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    images?: BookingConfirmationGalleryCreateimagesInput | string[]
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationGalleryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: BookingConfirmationGalleryUpdateimagesInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationGalleryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: BookingConfirmationGalleryUpdateimagesInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationGalleryCreateManyInput = {
+    id?: string
+    title: string
+    description?: string | null
+    images?: BookingConfirmationGalleryCreateimagesInput | string[]
+    displayOrder?: number
+    active?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationGalleryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: BookingConfirmationGalleryUpdateimagesInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationGalleryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: BookingConfirmationGalleryUpdateimagesInput | string[]
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -49298,6 +55973,211 @@ export namespace Prisma {
     displayOrder?: SortOrder
   }
 
+  export type BookingConfirmationHeroCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    badge?: SortOrder
+    importantNotice?: SortOrder
+    paymentDeadline?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationHeroMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    badge?: SortOrder
+    importantNotice?: SortOrder
+    paymentDeadline?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationHeroMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    badge?: SortOrder
+    importantNotice?: SortOrder
+    paymentDeadline?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationStepCountOrderByAggregateInput = {
+    id?: SortOrder
+    stepNumber?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    extraInfo?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationStepAvgOrderByAggregateInput = {
+    stepNumber?: SortOrder
+    displayOrder?: SortOrder
+  }
+
+  export type BookingConfirmationStepMaxOrderByAggregateInput = {
+    id?: SortOrder
+    stepNumber?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    extraInfo?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationStepMinOrderByAggregateInput = {
+    id?: SortOrder
+    stepNumber?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    extraInfo?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationStepSumOrderByAggregateInput = {
+    stepNumber?: SortOrder
+    displayOrder?: SortOrder
+  }
+
+  export type BookingConfirmationContactCountOrderByAggregateInput = {
+    id?: SortOrder
+    sectionTitle?: SortOrder
+    description?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    responseTime?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationContactMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sectionTitle?: SortOrder
+    description?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    responseTime?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationContactMinOrderByAggregateInput = {
+    id?: SortOrder
+    sectionTitle?: SortOrder
+    description?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    whatsapp?: SortOrder
+    responseTime?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationSecurityCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    points?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationSecurityAvgOrderByAggregateInput = {
+    displayOrder?: SortOrder
+  }
+
+  export type BookingConfirmationSecurityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationSecurityMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationSecuritySumOrderByAggregateInput = {
+    displayOrder?: SortOrder
+  }
+
+  export type BookingConfirmationGalleryCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    images?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationGalleryAvgOrderByAggregateInput = {
+    displayOrder?: SortOrder
+  }
+
+  export type BookingConfirmationGalleryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationGalleryMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    displayOrder?: SortOrder
+    active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationGallerySumOrderByAggregateInput = {
+    displayOrder?: SortOrder
+  }
+
   export type DestinationCreateimagesInput = {
     set: string[]
   }
@@ -49940,6 +56820,24 @@ export namespace Prisma {
 
   export type EnumContentStatusFieldUpdateOperationsInput = {
     set?: $Enums.ContentStatus
+  }
+
+  export type BookingConfirmationSecurityCreatepointsInput = {
+    set: string[]
+  }
+
+  export type BookingConfirmationSecurityUpdatepointsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type BookingConfirmationGalleryCreateimagesInput = {
+    set: string[]
+  }
+
+  export type BookingConfirmationGalleryUpdateimagesInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {

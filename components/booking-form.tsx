@@ -214,24 +214,30 @@ export function BookingForm({
       }
 
       toast({
-        title: "Booking Submitted!",
-        description: `Your confirmation number is ${data.booking.confirmationNumber}. We'll contact you soon!`,
+        title: "✅ Booking Successfully Submitted!",
+        description: `Confirmation #${data.booking.confirmationNumber} - Check your email for payment instructions. You'll be redirected to your booking details shortly.`,
+        duration: 5000,
       });
 
-      if (onSuccess) {
-        onSuccess(data.booking.confirmationNumber);
-      } else {
-        router.push(`/booking-confirmation?ref=${data.booking.confirmationNumber}`);
-      }
+      // Redirect after a brief delay to let user see the toast
+      setTimeout(() => {
+        if (onSuccess) {
+          onSuccess(data.booking.confirmationNumber);
+        } else {
+          router.push(`/booking-confirmation?ref=${data.booking.confirmationNumber}`);
+        }
+      }, 1500);
+
     } catch (error) {
       console.error("Booking error:", error);
+      const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
+
       toast({
-        title: "Booking Failed",
-        description:
-          error instanceof Error ? error.message : "Please try again later",
+        title: "❌ Booking Failed",
+        description: `${errorMessage}. Please check your information and try again, or contact us for assistance.`,
         variant: "destructive",
+        duration: 7000,
       });
-    } finally {
       setLoading(false);
     }
   };

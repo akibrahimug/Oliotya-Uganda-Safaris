@@ -31,21 +31,35 @@ interface Destination {
   image: string;
   images: string[];
   gallery2Images: string[];
-  historyTitle: string | null;
-  historyContent: string[];
-  geographyDescription: string | null;
-  geographyClimate: string | null;
-  wildlifeDescription: string | null;
-  wildlifeMammals: string[];
-  wildlifeBirds: string[];
-  wildlifeFlora: string[];
-  cultureDescription: string | null;
-  cultureExperiences: string[];
-  bestTimeDescription: string | null;
-  drySeasonTitle: string | null;
-  drySeasonDescription: string | null;
-  wetSeasonTitle: string | null;
-  wetSeasonDescription: string | null;
+  history: {
+    title: string;
+    content: string[];
+  } | null;
+  geography: {
+    description: string;
+    climate: string;
+  } | null;
+  wildlife: {
+    description: string;
+    mammals: string[];
+    birds: string[];
+    flora: string[];
+  } | null;
+  culture: {
+    description: string;
+    experiences: string[];
+  } | null;
+  bestTimeToVisit: {
+    description: string;
+    drySeason: {
+      title: string;
+      description: string;
+    };
+    wetSeason: {
+      title: string;
+      description: string;
+    };
+  } | null;
 }
 
 export default function DestinationPage() {

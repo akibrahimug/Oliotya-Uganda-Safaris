@@ -28,7 +28,6 @@ export async function GET(
     const transformedDestination = {
       id: destination.id,
       name: destination.name,
-      slug: destination.slug,
       category: destination.category,
       country: destination.country,
       region: destination.region,

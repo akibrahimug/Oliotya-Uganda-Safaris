@@ -603,6 +603,67 @@ exports.Prisma.ContactResourceScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BookingConfirmationHeroScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  badge: 'badge',
+  importantNotice: 'importantNotice',
+  paymentDeadline: 'paymentDeadline',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingConfirmationStepScalarFieldEnum = {
+  id: 'id',
+  stepNumber: 'stepNumber',
+  title: 'title',
+  description: 'description',
+  icon: 'icon',
+  extraInfo: 'extraInfo',
+  displayOrder: 'displayOrder',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingConfirmationContactScalarFieldEnum = {
+  id: 'id',
+  sectionTitle: 'sectionTitle',
+  description: 'description',
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  responseTime: 'responseTime',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingConfirmationSecurityScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  points: 'points',
+  displayOrder: 'displayOrder',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingConfirmationGalleryScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  images: 'images',
+  displayOrder: 'displayOrder',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -713,7 +774,12 @@ exports.Prisma.ModelName = {
   AboutCTA: 'AboutCTA',
   ContactHero: 'ContactHero',
   ContactInfo: 'ContactInfo',
-  ContactResource: 'ContactResource'
+  ContactResource: 'ContactResource',
+  BookingConfirmationHero: 'BookingConfirmationHero',
+  BookingConfirmationStep: 'BookingConfirmationStep',
+  BookingConfirmationContact: 'BookingConfirmationContact',
+  BookingConfirmationSecurity: 'BookingConfirmationSecurity',
+  BookingConfirmationGallery: 'BookingConfirmationGallery'
 };
 
 /**

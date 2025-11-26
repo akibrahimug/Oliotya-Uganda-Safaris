@@ -706,3 +706,81 @@ model ContactResource {
   @@index([displayOrder])
   @@index([active])
 }
+
+// ============================================
+// BOOKING CONFIRMATION PAGE CONTENT MODELS
+// ============================================
+
+model BookingConfirmationHero {
+  id                String        @id @default(cuid())
+  title             String // "Your Safari Adventure Awaits!"
+  description       String        @db.Text
+  badge             String // "Booking Received"
+  importantNotice   String        @db.Text // Payment pending notice
+  paymentDeadline   String // "48 hours"
+  status            ContentStatus @default(DRAFT)
+  publishedAt       DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@map("booking_confirmation_hero")
+}
+
+model BookingConfirmationStep {
+  id           String   @id @default(cuid())
+  stepNumber   Int // 1, 2, 3, 4
+  title        String // "Check Your Email"
+  description  String   @db.Text
+  icon         String // Icon name: "Mail", "CreditCard", "MessageCircle", "CheckCircle2"
+  extraInfo    String?  @db.Text // Additional info/tips
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([stepNumber])
+  @@index([displayOrder])
+  @@index([active])
+  @@map("booking_confirmation_steps")
+}
+
+model BookingConfirmationContact {
+  id             String        @id @default(cuid())
+  sectionTitle   String // "Need Assistance?"
+  description    String        @db.Text
+  email          String
+  phone          String
+  whatsapp       String?
+  responseTime   String // "Within 2-4 hours"
+  status         ContentStatus @default(DRAFT)
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@map("booking_confirmation_contact")
+}
+
+model BookingConfirmationSecurity {
+  id          String   @id @default(cuid())
+  title       String // "Your Booking is Secure"
+  points      String[] // Security/trust points
+  displayOrder Int     @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("booking_confirmation_security")
+}
+
+model BookingConfirmationGallery {
+  id           String   @id @default(cuid())
+  title        String // "Your Safari Awaits"
+  description  String?  @db.Text
+  images       String[] // Array of image URLs
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("booking_confirmation_gallery")
+}

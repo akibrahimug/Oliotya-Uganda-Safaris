@@ -32,9 +32,9 @@ export async function GET() {
     // Check admin status
     const isAdminViaMetadata = user.publicMetadata?.role === "admin";
     const isAdminViaOrg =
-      Array.isArray(user.organizationMemberships) &&
-      user.organizationMemberships.some(
-        (org) =>
+      Array.isArray((user as any).organizationMemberships) &&
+      (user as any).organizationMemberships.some(
+        (org: any) =>
           org.role === "org:admin" ||
           (Array.isArray(org.permissions) &&
             org.permissions.includes("org:sys_memberships:manage"))
@@ -58,8 +58,8 @@ export async function GET() {
         publicMetadataRole: user.publicMetadata?.role || "not set",
       },
       organizations: {
-        count: user.organizationMemberships?.length || 0,
-        memberships: user.organizationMemberships?.map((org) => ({
+        count: (user as any).organizationMemberships?.length || 0,
+        memberships: (user as any).organizationMemberships?.map((org: any) => ({
           id: org.id,
           role: org.role,
           hasPermissions: Array.isArray(org.permissions),

@@ -12,7 +12,7 @@ export const revalidate = 0;
 
 export default async function ContactPage() {
   // Fetch all Contact page sections from database
-  const [heroSection, infoSection, faqs, resources] = await Promise.all([
+  const [heroSection, infoSectionRaw, faqsRaw, resources] = await Promise.all([
     prisma.contactHero.findFirst({
       where: { status: "PUBLISHED" },
       orderBy: { publishedAt: "desc" },
@@ -30,6 +30,23 @@ export default async function ContactPage() {
       orderBy: { displayOrder: "asc" },
     }),
   ]);
+
+  // Transform the data to match component prop types
+  const infoSection = infoSectionRaw ? {
+    email: infoSectionRaw.email,
+    phone: infoSectionRaw.phone,
+    whatsapp: infoSectionRaw.whatsapp,
+    office: infoSectionRaw.office,
+    businessHours: infoSectionRaw.businessHours as { monFri: string; sat: string; sun: string },
+    quickResponse: infoSectionRaw.quickResponse,
+  } : null;
+
+  const faqs = faqsRaw.map(faq => ({
+    id: faq.id,
+    question: faq.question,
+    answer: faq.answer,
+    category: faq.category || undefined,
+  }));
 
   return (
     <main className="min-h-screen">

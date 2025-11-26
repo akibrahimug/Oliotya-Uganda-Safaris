@@ -5,7 +5,6 @@ import { useToast } from "@/hooks/use-toast";
 import { EditableWrapper } from "@/components/cms/editable-wrapper";
 import { CMSLoader, CMSSectionLoader } from "@/components/cms/cms-loader";
 import { ContactHeroSection } from "@/components/contact-hero-section";
-import { ContactInfoSection } from "@/components/contact-info-section";
 import { ContactFAQSection } from "@/components/contact-faq-section";
 import { ContactResourcesSection } from "@/components/contact-resources-section";
 import { ContactHeroModal } from "@/components/cms/contact-hero-modal";
@@ -222,27 +221,51 @@ export default function CMSContactPageInline() {
 
           {/* Contact Form & Info Section */}
           <section className="py-16 container mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              {/* Contact Form - Not Editable (Functional) */}
-              <div className="lg:col-span-2">
-                <div className="bg-muted/30 rounded-lg p-8 text-center">
-                  <p className="text-sm text-muted-foreground">
-                    Contact Form
-                    <br />
-                    (Functional - not editable in CMS)
-                  </p>
+            <EditableWrapper onEdit={() => setInfoModalOpen(true)} label="Contact Form & Info Section">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                {/* Contact Info Preview */}
+                <div className="lg:col-span-1 space-y-6">
+                  {infoSection ? (
+                    <div className="bg-background border rounded-lg p-6 space-y-4">
+                      <h3 className="font-semibold text-lg">Contact Information</h3>
+                      <div className="text-sm space-y-2 text-muted-foreground">
+                        <p><strong>Email:</strong> {infoSection.email}</p>
+                        <p><strong>Phone:</strong> {infoSection.phone}</p>
+                        <p><strong>WhatsApp:</strong> {infoSection.whatsapp}</p>
+                        <p><strong>Office:</strong> {infoSection.office}</p>
+                        <div className="pt-2 border-t">
+                          <p className="font-semibold text-foreground mb-1">Business Hours:</p>
+                          <p>{infoSection.businessHours.monFri}</p>
+                          <p>{infoSection.businessHours.sat}</p>
+                          <p>{infoSection.businessHours.sun}</p>
+                        </div>
+                        <div className="pt-2 border-t">
+                          <p className="font-semibold text-foreground mb-1">Quick Response:</p>
+                          <p>{infoSection.quickResponse}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <CMSSectionLoader />
+                  )}
+                </div>
+
+                {/* Contact Form - Not Editable (Functional) */}
+                <div className="lg:col-span-2">
+                  <div className="bg-muted/30 rounded-lg p-8 text-center">
+                    <p className="text-sm text-muted-foreground">
+                      Contact Form
+                      <br />
+                      (Functional - not editable in CMS)
+                      <br />
+                      <span className="text-xs mt-2 block">
+                        Contact info from the sidebar is displayed alongside the form on the live site
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </div>
-
-              {/* Contact Info - Editable */}
-              <EditableWrapper onEdit={() => setInfoModalOpen(true)} label="Contact Information">
-                {infoSection ? (
-                  <ContactInfoSection data={infoSection} />
-                ) : (
-                  <CMSSectionLoader />
-                )}
-              </EditableWrapper>
-            </div>
+            </EditableWrapper>
           </section>
 
           {/* FAQ Section - Editable */}

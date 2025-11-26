@@ -50,9 +50,9 @@ export default async function CMSLayout({
   try {
     const isAdminViaMetadata = user.publicMetadata?.role === "admin";
     const isAdminViaOrg =
-      Array.isArray(user.organizationMemberships) &&
-      user.organizationMemberships.some(
-        (org) =>
+      Array.isArray((user as any).organizationMemberships) &&
+      (user as any).organizationMemberships.some(
+        (org: any) =>
           org.role === "org:admin" ||
           (Array.isArray(org.permissions) && org.permissions.includes("org:sys_memberships:manage"))
       );
@@ -65,14 +65,14 @@ export default async function CMSLayout({
       isAdminViaOrg,
       isAdmin,
       publicMetadataRole: user.publicMetadata?.role,
-      orgMembershipsCount: user.organizationMemberships?.length || 0,
+      orgMembershipsCount: (user as any).organizationMemberships?.length || 0,
     });
   } catch (error) {
     console.error("Error checking admin permissions:", error);
     console.error("User data:", {
       id: user.id,
       hasPublicMetadata: !!user.publicMetadata,
-      hasOrgMemberships: !!user.organizationMemberships,
+      hasOrgMemberships: !!(user as any).organizationMemberships,
     });
   }
 

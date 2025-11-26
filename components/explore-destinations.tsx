@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollIndicator } from "@/components/scroll-indicator"
 import { MapPin } from "lucide-react"
 import Link from "next/link"
-import type { SearchFilters } from "@/app/page"
+import type { SearchFilters } from "@/lib/types"
 
 interface ExploreDestinationsProps {
   filters: SearchFilters | null
@@ -61,12 +61,12 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
 
     const filtered = allDestinations.filter((dest) => {
       const matchesDestination =
-        dest.name.toLowerCase().includes(filters.destination.toLowerCase()) ||
-        dest.category.toLowerCase().includes(filters.destination.toLowerCase())
+        dest.name.toLowerCase().includes(filters.destination?.toLowerCase() || '') ||
+        dest.category.toLowerCase().includes(filters.destination?.toLowerCase() || '')
 
       const matchesTravelers =
-        (!dest.minTravelers || filters.travelers >= dest.minTravelers) &&
-        (!dest.maxTravelers || filters.travelers <= dest.maxTravelers)
+        (!dest.minTravelers || (filters.travelers || 1) >= dest.minTravelers) &&
+        (!dest.maxTravelers || (filters.travelers || 1) <= dest.maxTravelers)
 
       return matchesDestination && matchesTravelers
     })

@@ -7,15 +7,7 @@ import { VideoSection } from "@/components/video-section";
 import { PopularPlaces } from "@/components/popular-places";
 import { ExploreDestinations } from "@/components/explore-destinations";
 import { ExperienceSection } from "@/components/experience-section";
-
-export interface SearchFilters {
-  destination: string;
-  dateRange?: {
-    from: Date;
-    to?: Date;
-  };
-  travelers: number;
-}
+import type { SearchFilters } from "@/lib/types";
 
 interface HomePageContentProps {
   experienceData: {

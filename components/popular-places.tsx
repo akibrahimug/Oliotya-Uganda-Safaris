@@ -6,7 +6,7 @@ import { PackageCard } from "@/components/package-card";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
-import type { SearchFilters } from "@/app/page";
+import type { SearchFilters } from "@/lib/types";
 
 interface PopularPlacesProps {
   filters: SearchFilters | null;
@@ -62,15 +62,15 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
     const filtered = allPackages.filter((pkg) => {
       // Filter by package name or category (case-insensitive partial match)
       const matchesDestination =
-        pkg.name.toLowerCase().includes(filters.destination.toLowerCase()) ||
+        pkg.name.toLowerCase().includes(filters.destination?.toLowerCase() || '') ||
         pkg.category
           .toLowerCase()
-          .includes(filters.destination.toLowerCase());
+          .includes(filters.destination?.toLowerCase() || '');
 
       // Filter by number of travelers
       const matchesTravelers =
-        filters.travelers >= pkg.minTravelers &&
-        filters.travelers <= pkg.maxTravelers;
+        (filters.travelers || 1) >= pkg.minTravelers &&
+        (filters.travelers || 1) <= pkg.maxTravelers;
 
       return matchesDestination && matchesTravelers;
     });
@@ -118,10 +118,10 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             {filters ? (
               <>
-                Showing packages for {filters.travelers} traveler
-                {filters.travelers > 1 ? "s" : ""} to{" "}
+                Showing packages for {filters.travelers || 1} traveler
+                {(filters.travelers || 1) > 1 ? "s" : ""} to{" "}
                 <span className="font-semibold text-foreground">
-                  {filters.destination}
+                  {filters.destination || ''}
                 </span>
                 {filters.dateRange?.from && (
                   <>
@@ -174,7 +174,7 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
                       duration={pkg.duration}
                       maxTravelers={pkg.maxTravelers}
                       image={pkg.image}
-                      difficulty={pkg.difficulty}
+                      difficulty={pkg.difficulty as import("@/lib/types").DifficultyLevel}
                       animationDelay={index * 100}
                     />
                   </div>

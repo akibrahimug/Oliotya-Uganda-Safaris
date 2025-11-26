@@ -27,7 +27,6 @@ export const metadata: Metadata = {
   title: "Nambi Uganda Safaris - Discover Uganda",
   description:
     "Experience the Pearl of Africa with Nambi Uganda Safaris. Explore Uganda's wildlife, mountains, and natural wonders.",
-  generator: "v0.app",
   icons: {
     icon: "/fox_logo.jpg",
   },

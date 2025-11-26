@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/popover";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import type { SearchFilters } from "@/app/page";
+import type { SearchFilters } from "@/lib/types";
 
 interface SearchFormProps {
   onSearch: (filters: SearchFilters) => void;
