@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 
-// GET - Fetch all team members
+// GET - Fetch team section and team members
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -12,20 +12,26 @@ export async function GET(request: NextRequest) {
     // For public mode, show only active members
     const where = mode === "cms" ? {} : { active: true };
 
-    const teamMembers = await prisma.teamMember.findMany({
-      where,
-      orderBy: { displayOrder: "asc" },
-    });
+    const [teamSection, teamMembers] = await Promise.all([
+      prisma.teamSection.findFirst({
+        orderBy: { createdAt: "desc" },
+      }),
+      prisma.teamMember.findMany({
+        where,
+        orderBy: { displayOrder: "asc" },
+      }),
+    ]);
 
-    return NextResponse.json({ teamMembers });
+    return NextResponse.json({ teamSection, teamMembers });
   } catch (error) {
-    console.error("Error fetching team members:", error);
+    console.error("Error fetching team data:", error);
     return NextResponse.json(
-      { error: "Failed to fetch team members" },
+      { error: "Failed to fetch team data" },
       { status: 500 }
     );
   }
 }
+
 
 // POST - Create new team member
 export async function POST(request: NextRequest) {
@@ -154,6 +160,65 @@ export async function DELETE(request: NextRequest) {
     console.error("Error deleting team member:", error);
     return NextResponse.json(
       { error: "Failed to delete team member" },
+      { status: 500 }
+    );
+  }
+}
+
+// PUT - Update team section content
+export async function PUT(request: NextRequest) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const { heading, title, description, publish } = body;
+
+    // Find existing section or create new one
+    const existingSection = await prisma.teamSection.findFirst();
+
+    let teamSection;
+    if (existingSection) {
+      teamSection = await prisma.teamSection.update({
+        where: { id: existingSection.id },
+        data: {
+          heading,
+          title,
+          description,
+          status: publish ? "PUBLISHED" : "DRAFT",
+          publishedAt: publish ? new Date() : undefined,
+        },
+      });
+    } else {
+      teamSection = await prisma.teamSection.create({
+        data: {
+          heading,
+          title,
+          description,
+          status: publish ? "PUBLISHED" : "DRAFT",
+          publishedAt: publish ? new Date() : undefined,
+        },
+      });
+    }
+
+    // Create audit log
+    await prisma.cMSAuditLog.create({
+      data: {
+        action: existingSection ? "UPDATE" : "CREATE",
+        entityType: "team_section",
+        entityId: teamSection.id,
+        userId,
+        userName: "Admin User",
+      },
+    });
+
+    return NextResponse.json({ teamSection });
+  } catch (error) {
+    console.error("Error updating team section:", error);
+    return NextResponse.json(
+      { error: "Failed to update team section" },
       { status: 500 }
     );
   }

@@ -61,8 +61,16 @@ export default function ImagesPage() {
       setLoading(true);
       const params = new URLSearchParams();
       if (searchQuery) params.append("search", searchQuery);
-      if (categoryFilter !== "all") params.append("category", categoryFilter);
+      if (categoryFilter !== "all") {
+        if (categoryFilter === "uncategorized") {
+          params.append("category", "null");
+        } else {
+          params.append("category", categoryFilter);
+        }
+      }
 
+      // Load all images for the gallery (no pagination limit)
+      params.append("limit", "1000");
       const response = await fetch(`/api/cms/images?${params.toString()}`);
       if (!response.ok) throw new Error("Failed to fetch images");
 
@@ -158,6 +166,7 @@ export default function ImagesPage() {
             <SelectItem value="gallery">Gallery</SelectItem>
             <SelectItem value="about">About</SelectItem>
             <SelectItem value="other">Other</SelectItem>
+            <SelectItem value="uncategorized">Uncategorized</SelectItem>
           </SelectContent>
         </Select>
       </div>

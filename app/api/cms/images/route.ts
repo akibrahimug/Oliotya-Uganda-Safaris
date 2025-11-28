@@ -36,7 +36,11 @@ export async function GET(request: NextRequest) {
     // Build where clause
     const where: any = {};
     if (category) {
-      where.category = category;
+      if (category === "null") {
+        where.category = null;
+      } else {
+        where.category = category;
+      }
     }
     if (search) {
       where.OR = [

@@ -108,7 +108,7 @@ export function TourGuideSectionModal({
                   alt="Preview"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/60 opacity-100 md:opacity-0 md:hover:opacity-100 transition-opacity flex items-center justify-center">
                   <Button
                     type="button"
                     variant="secondary"

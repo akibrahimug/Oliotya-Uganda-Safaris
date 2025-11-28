@@ -367,6 +367,17 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TeamSectionScalarFieldEnum = {
+  id: 'id',
+  heading: 'heading',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.FAQScalarFieldEnum = {
   id: 'id',
   question: 'question',
@@ -778,6 +789,7 @@ exports.Prisma.ModelName = {
   CMSDestination: 'CMSDestination',
   SiteSettings: 'SiteSettings',
   TeamMember: 'TeamMember',
+  TeamSection: 'TeamSection',
   FAQ: 'FAQ',
   CMSAuditLog: 'CMSAuditLog',
   ExperienceSection: 'ExperienceSection',

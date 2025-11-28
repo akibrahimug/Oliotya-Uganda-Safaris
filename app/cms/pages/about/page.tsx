@@ -117,6 +117,7 @@ export default function CMSAboutPageInline() {
   const [communitySection, setCommunitySection] = useState<CommunitySection | null>(null);
   const [statsSection, setStatsSection] = useState<StatsSection | null>(null);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [teamSection, setTeamSection] = useState<any>(null);
   const [ctaSection, setCTASection] = useState<CTASection | null>(null);
   const [values, setValues] = useState<Value[]>([]);
 
@@ -167,6 +168,7 @@ export default function CMSAboutPageInline() {
       if (teamRes.ok) {
         const data = await teamRes.json();
         setTeamMembers(data.teamMembers || []);
+        setTeamSection(data.teamSection);
       }
 
       if (ctaRes.ok) {
@@ -424,7 +426,7 @@ export default function CMSAboutPageInline() {
 
           {/* Team Section - Editable */}
           <EditableWrapper onEdit={() => setTeamModalOpen(true)} label="Team Members">
-            <AboutTeamSection data={teamMembers.filter(m => m.active)} />
+            <AboutTeamSection data={teamMembers.filter(m => m.active)} sectionData={teamSection} />
           </EditableWrapper>
 
           {/* CTA Section - Editable */}
@@ -480,14 +482,12 @@ export default function CMSAboutPageInline() {
         />
       )}
 
-      {teamMembers && (
-        <AboutTeamModal
-          open={teamModalOpen}
-          onClose={() => setTeamModalOpen(false)}
-          onRefresh={fetchSections}
-          initialTeamMembers={teamMembers}
-        />
-      )}
+      <AboutTeamModal
+        open={teamModalOpen}
+        onClose={() => setTeamModalOpen(false)}
+        onRefresh={fetchSections}
+        initialTeamMembers={teamMembers || []}
+      />
 
       {ctaSection && (
         <AboutCTAModal

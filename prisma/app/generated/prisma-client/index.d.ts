@@ -89,6 +89,11 @@ export type SiteSettings = $Result.DefaultSelection<Prisma.$SiteSettingsPayload>
  */
 export type TeamMember = $Result.DefaultSelection<Prisma.$TeamMemberPayload>
 /**
+ * Model TeamSection
+ * 
+ */
+export type TeamSection = $Result.DefaultSelection<Prisma.$TeamSectionPayload>
+/**
  * Model FAQ
  * 
  */
@@ -581,6 +586,16 @@ export class PrismaClient<
     * ```
     */
   get teamMember(): Prisma.TeamMemberDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.teamSection`: Exposes CRUD operations for the **TeamSection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TeamSections
+    * const teamSections = await prisma.teamSection.findMany()
+    * ```
+    */
+  get teamSection(): Prisma.TeamSectionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.fAQ`: Exposes CRUD operations for the **FAQ** model.
@@ -1267,6 +1282,7 @@ export namespace Prisma {
     CMSDestination: 'CMSDestination',
     SiteSettings: 'SiteSettings',
     TeamMember: 'TeamMember',
+    TeamSection: 'TeamSection',
     FAQ: 'FAQ',
     CMSAuditLog: 'CMSAuditLog',
     ExperienceSection: 'ExperienceSection',
@@ -1308,7 +1324,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection" | "packagesHero" | "destinationsHero" | "destinationsCTA" | "aboutStorySection" | "aboutCommunitySection" | "aboutStats" | "aboutValue" | "aboutHero" | "aboutCTA" | "contactHero" | "contactInfo" | "contactResource" | "bookingConfirmationHero" | "bookingConfirmationStep" | "bookingConfirmationContact" | "bookingConfirmationSecurity" | "bookingConfirmationGallery" | "emailTemplate"
+      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "teamSection" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection" | "packagesHero" | "destinationsHero" | "destinationsCTA" | "aboutStorySection" | "aboutCommunitySection" | "aboutStats" | "aboutValue" | "aboutHero" | "aboutCTA" | "contactHero" | "contactInfo" | "contactResource" | "bookingConfirmationHero" | "bookingConfirmationStep" | "bookingConfirmationContact" | "bookingConfirmationSecurity" | "bookingConfirmationGallery" | "emailTemplate"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2419,6 +2435,80 @@ export namespace Prisma {
           count: {
             args: Prisma.TeamMemberCountArgs<ExtArgs>
             result: $Utils.Optional<TeamMemberCountAggregateOutputType> | number
+          }
+        }
+      }
+      TeamSection: {
+        payload: Prisma.$TeamSectionPayload<ExtArgs>
+        fields: Prisma.TeamSectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TeamSectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TeamSectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>
+          }
+          findFirst: {
+            args: Prisma.TeamSectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TeamSectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>
+          }
+          findMany: {
+            args: Prisma.TeamSectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>[]
+          }
+          create: {
+            args: Prisma.TeamSectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>
+          }
+          createMany: {
+            args: Prisma.TeamSectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TeamSectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>[]
+          }
+          delete: {
+            args: Prisma.TeamSectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>
+          }
+          update: {
+            args: Prisma.TeamSectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.TeamSectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TeamSectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TeamSectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.TeamSectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TeamSectionPayload>
+          }
+          aggregate: {
+            args: Prisma.TeamSectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTeamSection>
+          }
+          groupBy: {
+            args: Prisma.TeamSectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TeamSectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TeamSectionCountArgs<ExtArgs>
+            result: $Utils.Optional<TeamSectionCountAggregateOutputType> | number
           }
         }
       }
@@ -4235,6 +4325,7 @@ export namespace Prisma {
     cMSDestination?: CMSDestinationOmit
     siteSettings?: SiteSettingsOmit
     teamMember?: TeamMemberOmit
+    teamSection?: TeamSectionOmit
     fAQ?: FAQOmit
     cMSAuditLog?: CMSAuditLogOmit
     experienceSection?: ExperienceSectionOmit
@@ -22268,6 +22359,1040 @@ export namespace Prisma {
      * Omit specific fields from the TeamMember
      */
     omit?: TeamMemberOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TeamSection
+   */
+
+  export type AggregateTeamSection = {
+    _count: TeamSectionCountAggregateOutputType | null
+    _min: TeamSectionMinAggregateOutputType | null
+    _max: TeamSectionMaxAggregateOutputType | null
+  }
+
+  export type TeamSectionMinAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TeamSectionMaxAggregateOutputType = {
+    id: string | null
+    heading: string | null
+    title: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TeamSectionCountAggregateOutputType = {
+    id: number
+    heading: number
+    title: number
+    description: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TeamSectionMinAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TeamSectionMaxAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TeamSectionCountAggregateInputType = {
+    id?: true
+    heading?: true
+    title?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TeamSectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TeamSection to aggregate.
+     */
+    where?: TeamSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TeamSections to fetch.
+     */
+    orderBy?: TeamSectionOrderByWithRelationInput | TeamSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TeamSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TeamSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TeamSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TeamSections
+    **/
+    _count?: true | TeamSectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TeamSectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TeamSectionMaxAggregateInputType
+  }
+
+  export type GetTeamSectionAggregateType<T extends TeamSectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTeamSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTeamSection[P]>
+      : GetScalarType<T[P], AggregateTeamSection[P]>
+  }
+
+
+
+
+  export type TeamSectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TeamSectionWhereInput
+    orderBy?: TeamSectionOrderByWithAggregationInput | TeamSectionOrderByWithAggregationInput[]
+    by: TeamSectionScalarFieldEnum[] | TeamSectionScalarFieldEnum
+    having?: TeamSectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TeamSectionCountAggregateInputType | true
+    _min?: TeamSectionMinAggregateInputType
+    _max?: TeamSectionMaxAggregateInputType
+  }
+
+  export type TeamSectionGroupByOutputType = {
+    id: string
+    heading: string
+    title: string
+    description: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TeamSectionCountAggregateOutputType | null
+    _min: TeamSectionMinAggregateOutputType | null
+    _max: TeamSectionMaxAggregateOutputType | null
+  }
+
+  type GetTeamSectionGroupByPayload<T extends TeamSectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TeamSectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TeamSectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TeamSectionGroupByOutputType[P]>
+            : GetScalarType<T[P], TeamSectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TeamSectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["teamSection"]>
+
+  export type TeamSectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["teamSection"]>
+
+  export type TeamSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["teamSection"]>
+
+  export type TeamSectionSelectScalar = {
+    id?: boolean
+    heading?: boolean
+    title?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TeamSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heading" | "title" | "description" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["teamSection"]>
+
+  export type $TeamSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TeamSection"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      heading: string
+      title: string
+      description: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["teamSection"]>
+    composites: {}
+  }
+
+  type TeamSectionGetPayload<S extends boolean | null | undefined | TeamSectionDefaultArgs> = $Result.GetResult<Prisma.$TeamSectionPayload, S>
+
+  type TeamSectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TeamSectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TeamSectionCountAggregateInputType | true
+    }
+
+  export interface TeamSectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TeamSection'], meta: { name: 'TeamSection' } }
+    /**
+     * Find zero or one TeamSection that matches the filter.
+     * @param {TeamSectionFindUniqueArgs} args - Arguments to find a TeamSection
+     * @example
+     * // Get one TeamSection
+     * const teamSection = await prisma.teamSection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TeamSectionFindUniqueArgs>(args: SelectSubset<T, TeamSectionFindUniqueArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TeamSection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TeamSectionFindUniqueOrThrowArgs} args - Arguments to find a TeamSection
+     * @example
+     * // Get one TeamSection
+     * const teamSection = await prisma.teamSection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TeamSectionFindUniqueOrThrowArgs>(args: SelectSubset<T, TeamSectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TeamSection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TeamSectionFindFirstArgs} args - Arguments to find a TeamSection
+     * @example
+     * // Get one TeamSection
+     * const teamSection = await prisma.teamSection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TeamSectionFindFirstArgs>(args?: SelectSubset<T, TeamSectionFindFirstArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TeamSection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TeamSectionFindFirstOrThrowArgs} args - Arguments to find a TeamSection
+     * @example
+     * // Get one TeamSection
+     * const teamSection = await prisma.teamSection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TeamSectionFindFirstOrThrowArgs>(args?: SelectSubset<T, TeamSectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TeamSections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TeamSectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TeamSections
+     * const teamSections = await prisma.teamSection.findMany()
+     * 
+     * // Get first 10 TeamSections
+     * const teamSections = await prisma.teamSection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const teamSectionWithIdOnly = await prisma.teamSection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TeamSectionFindManyArgs>(args?: SelectSubset<T, TeamSectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TeamSection.
+     * @param {TeamSectionCreateArgs} args - Arguments to create a TeamSection.
+     * @example
+     * // Create one TeamSection
+     * const TeamSection = await prisma.teamSection.create({
+     *   data: {
+     *     // ... data to create a TeamSection
+     *   }
+     * })
+     * 
+     */
+    create<T extends TeamSectionCreateArgs>(args: SelectSubset<T, TeamSectionCreateArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TeamSections.
+     * @param {TeamSectionCreateManyArgs} args - Arguments to create many TeamSections.
+     * @example
+     * // Create many TeamSections
+     * const teamSection = await prisma.teamSection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TeamSectionCreateManyArgs>(args?: SelectSubset<T, TeamSectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TeamSections and returns the data saved in the database.
+     * @param {TeamSectionCreateManyAndReturnArgs} args - Arguments to create many TeamSections.
+     * @example
+     * // Create many TeamSections
+     * const teamSection = await prisma.teamSection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TeamSections and only return the `id`
+     * const teamSectionWithIdOnly = await prisma.teamSection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TeamSectionCreateManyAndReturnArgs>(args?: SelectSubset<T, TeamSectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TeamSection.
+     * @param {TeamSectionDeleteArgs} args - Arguments to delete one TeamSection.
+     * @example
+     * // Delete one TeamSection
+     * const TeamSection = await prisma.teamSection.delete({
+     *   where: {
+     *     // ... filter to delete one TeamSection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TeamSectionDeleteArgs>(args: SelectSubset<T, TeamSectionDeleteArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TeamSection.
+     * @param {TeamSectionUpdateArgs} args - Arguments to update one TeamSection.
+     * @example
+     * // Update one TeamSection
+     * const teamSection = await prisma.teamSection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TeamSectionUpdateArgs>(args: SelectSubset<T, TeamSectionUpdateArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TeamSections.
+     * @param {TeamSectionDeleteManyArgs} args - Arguments to filter TeamSections to delete.
+     * @example
+     * // Delete a few TeamSections
+     * const { count } = await prisma.teamSection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TeamSectionDeleteManyArgs>(args?: SelectSubset<T, TeamSectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TeamSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TeamSectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TeamSections
+     * const teamSection = await prisma.teamSection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TeamSectionUpdateManyArgs>(args: SelectSubset<T, TeamSectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TeamSections and returns the data updated in the database.
+     * @param {TeamSectionUpdateManyAndReturnArgs} args - Arguments to update many TeamSections.
+     * @example
+     * // Update many TeamSections
+     * const teamSection = await prisma.teamSection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TeamSections and only return the `id`
+     * const teamSectionWithIdOnly = await prisma.teamSection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TeamSectionUpdateManyAndReturnArgs>(args: SelectSubset<T, TeamSectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TeamSection.
+     * @param {TeamSectionUpsertArgs} args - Arguments to update or create a TeamSection.
+     * @example
+     * // Update or create a TeamSection
+     * const teamSection = await prisma.teamSection.upsert({
+     *   create: {
+     *     // ... data to create a TeamSection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TeamSection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TeamSectionUpsertArgs>(args: SelectSubset<T, TeamSectionUpsertArgs<ExtArgs>>): Prisma__TeamSectionClient<$Result.GetResult<Prisma.$TeamSectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TeamSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TeamSectionCountArgs} args - Arguments to filter TeamSections to count.
+     * @example
+     * // Count the number of TeamSections
+     * const count = await prisma.teamSection.count({
+     *   where: {
+     *     // ... the filter for the TeamSections we want to count
+     *   }
+     * })
+    **/
+    count<T extends TeamSectionCountArgs>(
+      args?: Subset<T, TeamSectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TeamSectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TeamSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TeamSectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TeamSectionAggregateArgs>(args: Subset<T, TeamSectionAggregateArgs>): Prisma.PrismaPromise<GetTeamSectionAggregateType<T>>
+
+    /**
+     * Group by TeamSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TeamSectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TeamSectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TeamSectionGroupByArgs['orderBy'] }
+        : { orderBy?: TeamSectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TeamSectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTeamSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TeamSection model
+   */
+  readonly fields: TeamSectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TeamSection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TeamSectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TeamSection model
+   */
+  interface TeamSectionFieldRefs {
+    readonly id: FieldRef<"TeamSection", 'String'>
+    readonly heading: FieldRef<"TeamSection", 'String'>
+    readonly title: FieldRef<"TeamSection", 'String'>
+    readonly description: FieldRef<"TeamSection", 'String'>
+    readonly status: FieldRef<"TeamSection", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"TeamSection", 'DateTime'>
+    readonly createdAt: FieldRef<"TeamSection", 'DateTime'>
+    readonly updatedAt: FieldRef<"TeamSection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TeamSection findUnique
+   */
+  export type TeamSectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TeamSection to fetch.
+     */
+    where: TeamSectionWhereUniqueInput
+  }
+
+  /**
+   * TeamSection findUniqueOrThrow
+   */
+  export type TeamSectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TeamSection to fetch.
+     */
+    where: TeamSectionWhereUniqueInput
+  }
+
+  /**
+   * TeamSection findFirst
+   */
+  export type TeamSectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TeamSection to fetch.
+     */
+    where?: TeamSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TeamSections to fetch.
+     */
+    orderBy?: TeamSectionOrderByWithRelationInput | TeamSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TeamSections.
+     */
+    cursor?: TeamSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TeamSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TeamSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TeamSections.
+     */
+    distinct?: TeamSectionScalarFieldEnum | TeamSectionScalarFieldEnum[]
+  }
+
+  /**
+   * TeamSection findFirstOrThrow
+   */
+  export type TeamSectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TeamSection to fetch.
+     */
+    where?: TeamSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TeamSections to fetch.
+     */
+    orderBy?: TeamSectionOrderByWithRelationInput | TeamSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TeamSections.
+     */
+    cursor?: TeamSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TeamSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TeamSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TeamSections.
+     */
+    distinct?: TeamSectionScalarFieldEnum | TeamSectionScalarFieldEnum[]
+  }
+
+  /**
+   * TeamSection findMany
+   */
+  export type TeamSectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * Filter, which TeamSections to fetch.
+     */
+    where?: TeamSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TeamSections to fetch.
+     */
+    orderBy?: TeamSectionOrderByWithRelationInput | TeamSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TeamSections.
+     */
+    cursor?: TeamSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TeamSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TeamSections.
+     */
+    skip?: number
+    distinct?: TeamSectionScalarFieldEnum | TeamSectionScalarFieldEnum[]
+  }
+
+  /**
+   * TeamSection create
+   */
+  export type TeamSectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TeamSection.
+     */
+    data: XOR<TeamSectionCreateInput, TeamSectionUncheckedCreateInput>
+  }
+
+  /**
+   * TeamSection createMany
+   */
+  export type TeamSectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TeamSections.
+     */
+    data: TeamSectionCreateManyInput | TeamSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TeamSection createManyAndReturn
+   */
+  export type TeamSectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many TeamSections.
+     */
+    data: TeamSectionCreateManyInput | TeamSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TeamSection update
+   */
+  export type TeamSectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TeamSection.
+     */
+    data: XOR<TeamSectionUpdateInput, TeamSectionUncheckedUpdateInput>
+    /**
+     * Choose, which TeamSection to update.
+     */
+    where: TeamSectionWhereUniqueInput
+  }
+
+  /**
+   * TeamSection updateMany
+   */
+  export type TeamSectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TeamSections.
+     */
+    data: XOR<TeamSectionUpdateManyMutationInput, TeamSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which TeamSections to update
+     */
+    where?: TeamSectionWhereInput
+    /**
+     * Limit how many TeamSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TeamSection updateManyAndReturn
+   */
+  export type TeamSectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * The data used to update TeamSections.
+     */
+    data: XOR<TeamSectionUpdateManyMutationInput, TeamSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which TeamSections to update
+     */
+    where?: TeamSectionWhereInput
+    /**
+     * Limit how many TeamSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TeamSection upsert
+   */
+  export type TeamSectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TeamSection to update in case it exists.
+     */
+    where: TeamSectionWhereUniqueInput
+    /**
+     * In case the TeamSection found by the `where` argument doesn't exist, create a new TeamSection with this data.
+     */
+    create: XOR<TeamSectionCreateInput, TeamSectionUncheckedCreateInput>
+    /**
+     * In case the TeamSection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TeamSectionUpdateInput, TeamSectionUncheckedUpdateInput>
+  }
+
+  /**
+   * TeamSection delete
+   */
+  export type TeamSectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
+    /**
+     * Filter which TeamSection to delete.
+     */
+    where: TeamSectionWhereUniqueInput
+  }
+
+  /**
+   * TeamSection deleteMany
+   */
+  export type TeamSectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TeamSections to delete
+     */
+    where?: TeamSectionWhereInput
+    /**
+     * Limit how many TeamSections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TeamSection without action
+   */
+  export type TeamSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeamSection
+     */
+    select?: TeamSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeamSection
+     */
+    omit?: TeamSectionOmit<ExtArgs> | null
   }
 
 
@@ -47383,6 +48508,20 @@ export namespace Prisma {
   export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
 
 
+  export const TeamSectionScalarFieldEnum: {
+    id: 'id',
+    heading: 'heading',
+    title: 'title',
+    description: 'description',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TeamSectionScalarFieldEnum = (typeof TeamSectionScalarFieldEnum)[keyof typeof TeamSectionScalarFieldEnum]
+
+
   export const FAQScalarFieldEnum: {
     id: 'id',
     question: 'question',
@@ -49517,6 +50656,73 @@ export namespace Prisma {
     active?: BoolWithAggregatesFilter<"TeamMember"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"TeamMember"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TeamMember"> | Date | string
+  }
+
+  export type TeamSectionWhereInput = {
+    AND?: TeamSectionWhereInput | TeamSectionWhereInput[]
+    OR?: TeamSectionWhereInput[]
+    NOT?: TeamSectionWhereInput | TeamSectionWhereInput[]
+    id?: StringFilter<"TeamSection"> | string
+    heading?: StringFilter<"TeamSection"> | string
+    title?: StringFilter<"TeamSection"> | string
+    description?: StringFilter<"TeamSection"> | string
+    status?: EnumContentStatusFilter<"TeamSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"TeamSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"TeamSection"> | Date | string
+    updatedAt?: DateTimeFilter<"TeamSection"> | Date | string
+  }
+
+  export type TeamSectionOrderByWithRelationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TeamSectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TeamSectionWhereInput | TeamSectionWhereInput[]
+    OR?: TeamSectionWhereInput[]
+    NOT?: TeamSectionWhereInput | TeamSectionWhereInput[]
+    heading?: StringFilter<"TeamSection"> | string
+    title?: StringFilter<"TeamSection"> | string
+    description?: StringFilter<"TeamSection"> | string
+    status?: EnumContentStatusFilter<"TeamSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"TeamSection"> | Date | string | null
+    createdAt?: DateTimeFilter<"TeamSection"> | Date | string
+    updatedAt?: DateTimeFilter<"TeamSection"> | Date | string
+  }, "id">
+
+  export type TeamSectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TeamSectionCountOrderByAggregateInput
+    _max?: TeamSectionMaxOrderByAggregateInput
+    _min?: TeamSectionMinOrderByAggregateInput
+  }
+
+  export type TeamSectionScalarWhereWithAggregatesInput = {
+    AND?: TeamSectionScalarWhereWithAggregatesInput | TeamSectionScalarWhereWithAggregatesInput[]
+    OR?: TeamSectionScalarWhereWithAggregatesInput[]
+    NOT?: TeamSectionScalarWhereWithAggregatesInput | TeamSectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TeamSection"> | string
+    heading?: StringWithAggregatesFilter<"TeamSection"> | string
+    title?: StringWithAggregatesFilter<"TeamSection"> | string
+    description?: StringWithAggregatesFilter<"TeamSection"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"TeamSection"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"TeamSection"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TeamSection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TeamSection"> | Date | string
   }
 
   export type FAQWhereInput = {
@@ -53114,6 +54320,83 @@ export namespace Prisma {
     specialties?: JsonNullValueInput | InputJsonValue
     displayOrder?: IntFieldUpdateOperationsInput | number
     active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TeamSectionCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TeamSectionUncheckedCreateInput = {
+    id?: string
+    heading: string
+    title: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TeamSectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TeamSectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TeamSectionCreateManyInput = {
+    id?: string
+    heading: string
+    title: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TeamSectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TeamSectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    heading?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -56745,6 +58028,56 @@ export namespace Prisma {
     displayOrder?: SortOrder
   }
 
+  export type EnumContentStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContentStatusFilter<$PrismaModel> | $Enums.ContentStatus
+  }
+
+  export type TeamSectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TeamSectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TeamSectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    heading?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumContentStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContentStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContentStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContentStatusFilter<$PrismaModel>
+    _max?: NestedEnumContentStatusFilter<$PrismaModel>
+  }
+
   export type FAQCountOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
@@ -56823,13 +58156,6 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type EnumContentStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContentStatusFilter<$PrismaModel> | $Enums.ContentStatus
-  }
-
   export type ExperienceSectionCountOrderByAggregateInput = {
     id?: SortOrder
     heading?: SortOrder
@@ -56882,16 +58208,6 @@ export namespace Prisma {
     publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type EnumContentStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContentStatus | EnumContentStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContentStatus[] | ListEnumContentStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContentStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContentStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumContentStatusFilter<$PrismaModel>
-    _max?: NestedEnumContentStatusFilter<$PrismaModel>
   }
 
   export type TourGuideSectionCountOrderByAggregateInput = {
