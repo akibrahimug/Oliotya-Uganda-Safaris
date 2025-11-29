@@ -47,6 +47,8 @@ export default function BookingPage() {
   const dateToParam = searchParams.get("dateTo");
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
     firstName: "",
     lastName: "",
@@ -90,13 +92,27 @@ export default function BookingPage() {
       personalInfo.lastName.trim() !== "" &&
       personalInfo.email.trim() !== "" &&
       personalInfo.phone.trim() !== "" &&
-      personalInfo.numberOfTravelers >= 1
+      personalInfo.numberOfTravelers >= 1 &&
+      personalInfo.numberOfTravelers <= 32 &&
+      !errors.numberOfTravelers
     );
   };
 
   const handleNext = () => {
     if (currentStep === 1 && !validatePersonalInfo()) {
-      alert("Please fill in all required fields before proceeding.");
+      // Add general validation errors if needed
+      if (!personalInfo.firstName.trim()) {
+        setErrors(prev => ({ ...prev, firstName: "First name is required" }));
+      }
+      if (!personalInfo.lastName.trim()) {
+        setErrors(prev => ({ ...prev, lastName: "Last name is required" }));
+      }
+      if (!personalInfo.email.trim()) {
+        setErrors(prev => ({ ...prev, email: "Email is required" }));
+      }
+      if (!personalInfo.phone.trim()) {
+        setErrors(prev => ({ ...prev, phone: "Phone number is required" }));
+      }
       return;
     }
     if (currentStep < 2) {
@@ -115,6 +131,81 @@ export default function BookingPage() {
     value: string | number
   ) => {
     setPersonalInfo((prev) => ({ ...prev, [field]: value }));
+
+    // Clear field-specific errors when user starts typing
+    if (errors[field]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+
+    // Validate number of travelers
+    if (field === "numberOfTravelers") {
+      const numTravelers = typeof value === "string" ? Number.parseInt(value) || 0 : value;
+
+      if (numTravelers > 32) {
+        setErrors(prev => ({
+          ...prev,
+          numberOfTravelers: "This exceeds the maximum number of travelers for this package. Please request a custom package instead."
+        }));
+      } else if (numTravelers < 1) {
+        setErrors(prev => ({
+          ...prev,
+          numberOfTravelers: "Number of travelers must be at least 1."
+        }));
+      } else {
+        setErrors(prev => {
+          const newErrors = { ...prev };
+          delete newErrors.numberOfTravelers;
+          return newErrors;
+        });
+      }
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!validatePersonalInfo()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const bookingData = {
+        firstName: personalInfo.firstName,
+        lastName: personalInfo.lastName,
+        email: personalInfo.email,
+        phone: personalInfo.phone,
+        numberOfTravelers: personalInfo.numberOfTravelers,
+        specialRequests: personalInfo.specialRequests,
+        tripId: trip.id,
+        tripName: trip.name,
+        totalPrice,
+        travelDateFrom: travelDates?.from?.toISOString(),
+        travelDateTo: travelDates?.to?.toISOString(),
+      };
+
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookingData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        router.push(`/booking-confirmation?ref=${result.booking.confirmationNumber}`);
+      } else {
+        alert(result.error || "Failed to create booking. Please try again.");
+      }
+    } catch (error) {
+      console.error("Booking submission error:", error);
+      alert("An error occurred while submitting your booking. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const totalPrice = trip.price * personalInfo.numberOfTravelers;
@@ -347,7 +438,7 @@ export default function BookingPage() {
                           id="travelers"
                           type="number"
                           min="1"
-                          max={trip.groupSize}
+                          max="32"
                           value={personalInfo.numberOfTravelers}
                           onChange={(e) =>
                             handleInputChange(
@@ -358,10 +449,17 @@ export default function BookingPage() {
                           required
                           size="lg"
                           inputMode="numeric"
+                          className={errors.numberOfTravelers ? "border-destructive" : ""}
                         />
-                        <p className="text-sm text-muted-foreground">
-                          Maximum {trip.groupSize} travelers per group
-                        </p>
+                        {errors.numberOfTravelers ? (
+                          <p className="text-sm text-destructive">
+                            {errors.numberOfTravelers}
+                          </p>
+                        ) : (
+                          <p className="text-sm text-muted-foreground">
+                            Maximum 32 travelers per booking. For larger groups, please request a custom package.
+                          </p>
+                        )}
                       </div>
 
                       <div className="space-y-2">
@@ -506,9 +604,23 @@ export default function BookingPage() {
                   </Button>
                 )}
                 {currentStep === 2 && (
-                  <Button size="lg" className="gap-2">
-                    Complete Booking
-                    <ChevronRight className="h-5 w-5" />
+                  <Button
+                    size="lg"
+                    className="gap-2"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        Processing...
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                      </>
+                    ) : (
+                      <>
+                        Complete Booking
+                        <ChevronRight className="h-5 w-5" />
+                      </>
+                    )}
                   </Button>
                 )}
               </div>

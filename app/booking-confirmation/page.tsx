@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, Suspense } from "react";
+export const dynamic = 'force-dynamic';
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/header";
@@ -35,6 +36,7 @@ function BookingConfirmationContent() {
   const [error, setError] = useState("");
 
   // CMS content
+  const [cmsMainHero, setCmsMainHero] = useState<any>(null);
   const [cmsHero, setCmsHero] = useState<any>(null);
   const [cmsSteps, setCmsSteps] = useState<any[]>([]);
   const [cmsContact, setCmsContact] = useState<any>(null);
@@ -56,8 +58,9 @@ function BookingConfirmationContent() {
     const fetchData = async () => {
       try {
         // Fetch booking and CMS content in parallel
-        const [bookingRes, heroRes, stepsRes, contactRes, galleryRes] = await Promise.all([
+        const [bookingRes, mainHeroRes, heroRes, stepsRes, contactRes, galleryRes] = await Promise.all([
           fetch(`/api/bookings/${confirmationNumber}`),
+          fetch("/api/cms/booking-confirmation-main-hero"),
           fetch("/api/cms/booking-confirmation-hero"),
           fetch("/api/cms/booking-confirmation-steps"),
           fetch("/api/cms/booking-confirmation-contact"),
@@ -72,6 +75,11 @@ function BookingConfirmationContent() {
         setBooking(bookingData.booking);
 
         // Load CMS content (non-blocking)
+        if (mainHeroRes.ok) {
+          const mainHeroData = await mainHeroRes.json();
+          setCmsMainHero(mainHeroData.section);
+        }
+
         if (heroRes.ok) {
           const heroData = await heroRes.json();
           setCmsHero(heroData.section);

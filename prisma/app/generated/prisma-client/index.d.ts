@@ -179,6 +179,11 @@ export type ContactInfo = $Result.DefaultSelection<Prisma.$ContactInfoPayload>
  */
 export type ContactResource = $Result.DefaultSelection<Prisma.$ContactResourcePayload>
 /**
+ * Model BookingConfirmationMainHero
+ * 
+ */
+export type BookingConfirmationMainHero = $Result.DefaultSelection<Prisma.$BookingConfirmationMainHeroPayload>
+/**
  * Model BookingConfirmationHero
  * 
  */
@@ -194,6 +199,11 @@ export type BookingConfirmationStep = $Result.DefaultSelection<Prisma.$BookingCo
  */
 export type BookingConfirmationContact = $Result.DefaultSelection<Prisma.$BookingConfirmationContactPayload>
 /**
+ * Model BookingConfirmationNextSteps
+ * 
+ */
+export type BookingConfirmationNextSteps = $Result.DefaultSelection<Prisma.$BookingConfirmationNextStepsPayload>
+/**
  * Model BookingConfirmationSecurity
  * 
  */
@@ -208,6 +218,16 @@ export type BookingConfirmationGallery = $Result.DefaultSelection<Prisma.$Bookin
  * 
  */
 export type EmailTemplate = $Result.DefaultSelection<Prisma.$EmailTemplatePayload>
+/**
+ * Model CustomPackageHero
+ * 
+ */
+export type CustomPackageHero = $Result.DefaultSelection<Prisma.$CustomPackageHeroPayload>
+/**
+ * Model CustomPackageContent
+ * 
+ */
+export type CustomPackageContent = $Result.DefaultSelection<Prisma.$CustomPackageContentPayload>
 
 /**
  * Enums
@@ -768,6 +788,16 @@ export class PrismaClient<
   get contactResource(): Prisma.ContactResourceDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.bookingConfirmationMainHero`: Exposes CRUD operations for the **BookingConfirmationMainHero** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookingConfirmationMainHeroes
+    * const bookingConfirmationMainHeroes = await prisma.bookingConfirmationMainHero.findMany()
+    * ```
+    */
+  get bookingConfirmationMainHero(): Prisma.BookingConfirmationMainHeroDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.bookingConfirmationHero`: Exposes CRUD operations for the **BookingConfirmationHero** model.
     * Example usage:
     * ```ts
@@ -798,6 +828,16 @@ export class PrismaClient<
   get bookingConfirmationContact(): Prisma.BookingConfirmationContactDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.bookingConfirmationNextSteps`: Exposes CRUD operations for the **BookingConfirmationNextSteps** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookingConfirmationNextSteps
+    * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.findMany()
+    * ```
+    */
+  get bookingConfirmationNextSteps(): Prisma.BookingConfirmationNextStepsDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.bookingConfirmationSecurity`: Exposes CRUD operations for the **BookingConfirmationSecurity** model.
     * Example usage:
     * ```ts
@@ -826,6 +866,26 @@ export class PrismaClient<
     * ```
     */
   get emailTemplate(): Prisma.EmailTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.customPackageHero`: Exposes CRUD operations for the **CustomPackageHero** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CustomPackageHeroes
+    * const customPackageHeroes = await prisma.customPackageHero.findMany()
+    * ```
+    */
+  get customPackageHero(): Prisma.CustomPackageHeroDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.customPackageContent`: Exposes CRUD operations for the **CustomPackageContent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CustomPackageContents
+    * const customPackageContents = await prisma.customPackageContent.findMany()
+    * ```
+    */
+  get customPackageContent(): Prisma.CustomPackageContentDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -884,8 +944,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.18.0
-   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
+   * Prisma Client JS version: 6.19.0
+   * Query Engine version: 2ba551f319ab1df4bc874a89965d8b3641056773
    */
   export type PrismaVersion = {
     client: string
@@ -1300,12 +1360,16 @@ export namespace Prisma {
     ContactHero: 'ContactHero',
     ContactInfo: 'ContactInfo',
     ContactResource: 'ContactResource',
+    BookingConfirmationMainHero: 'BookingConfirmationMainHero',
     BookingConfirmationHero: 'BookingConfirmationHero',
     BookingConfirmationStep: 'BookingConfirmationStep',
     BookingConfirmationContact: 'BookingConfirmationContact',
+    BookingConfirmationNextSteps: 'BookingConfirmationNextSteps',
     BookingConfirmationSecurity: 'BookingConfirmationSecurity',
     BookingConfirmationGallery: 'BookingConfirmationGallery',
-    EmailTemplate: 'EmailTemplate'
+    EmailTemplate: 'EmailTemplate',
+    CustomPackageHero: 'CustomPackageHero',
+    CustomPackageContent: 'CustomPackageContent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1324,7 +1388,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "teamSection" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection" | "packagesHero" | "destinationsHero" | "destinationsCTA" | "aboutStorySection" | "aboutCommunitySection" | "aboutStats" | "aboutValue" | "aboutHero" | "aboutCTA" | "contactHero" | "contactInfo" | "contactResource" | "bookingConfirmationHero" | "bookingConfirmationStep" | "bookingConfirmationContact" | "bookingConfirmationSecurity" | "bookingConfirmationGallery" | "emailTemplate"
+      modelProps: "destination" | "booking" | "contactInquiry" | "newsletterSubscription" | "user" | "userFavorite" | "package" | "customPackage" | "packageBundle" | "packageBundleItem" | "cMSImage" | "heroSlide" | "cMSDestination" | "siteSettings" | "teamMember" | "teamSection" | "fAQ" | "cMSAuditLog" | "experienceSection" | "tourGuideSection" | "videoSection" | "packagesHero" | "destinationsHero" | "destinationsCTA" | "aboutStorySection" | "aboutCommunitySection" | "aboutStats" | "aboutValue" | "aboutHero" | "aboutCTA" | "contactHero" | "contactInfo" | "contactResource" | "bookingConfirmationMainHero" | "bookingConfirmationHero" | "bookingConfirmationStep" | "bookingConfirmationContact" | "bookingConfirmationNextSteps" | "bookingConfirmationSecurity" | "bookingConfirmationGallery" | "emailTemplate" | "customPackageHero" | "customPackageContent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3770,6 +3834,80 @@ export namespace Prisma {
           }
         }
       }
+      BookingConfirmationMainHero: {
+        payload: Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>
+        fields: Prisma.BookingConfirmationMainHeroFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingConfirmationMainHeroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingConfirmationMainHeroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingConfirmationMainHeroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingConfirmationMainHeroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>
+          }
+          findMany: {
+            args: Prisma.BookingConfirmationMainHeroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>[]
+          }
+          create: {
+            args: Prisma.BookingConfirmationMainHeroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>
+          }
+          createMany: {
+            args: Prisma.BookingConfirmationMainHeroCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookingConfirmationMainHeroCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>[]
+          }
+          delete: {
+            args: Prisma.BookingConfirmationMainHeroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>
+          }
+          update: {
+            args: Prisma.BookingConfirmationMainHeroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingConfirmationMainHeroDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingConfirmationMainHeroUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookingConfirmationMainHeroUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookingConfirmationMainHeroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationMainHeroPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingConfirmationMainHeroAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookingConfirmationMainHero>
+          }
+          groupBy: {
+            args: Prisma.BookingConfirmationMainHeroGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationMainHeroGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingConfirmationMainHeroCountArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationMainHeroCountAggregateOutputType> | number
+          }
+        }
+      }
       BookingConfirmationHero: {
         payload: Prisma.$BookingConfirmationHeroPayload<ExtArgs>
         fields: Prisma.BookingConfirmationHeroFieldRefs
@@ -3989,6 +4127,80 @@ export namespace Prisma {
           count: {
             args: Prisma.BookingConfirmationContactCountArgs<ExtArgs>
             result: $Utils.Optional<BookingConfirmationContactCountAggregateOutputType> | number
+          }
+        }
+      }
+      BookingConfirmationNextSteps: {
+        payload: Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>
+        fields: Prisma.BookingConfirmationNextStepsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookingConfirmationNextStepsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookingConfirmationNextStepsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>
+          }
+          findFirst: {
+            args: Prisma.BookingConfirmationNextStepsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookingConfirmationNextStepsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>
+          }
+          findMany: {
+            args: Prisma.BookingConfirmationNextStepsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>[]
+          }
+          create: {
+            args: Prisma.BookingConfirmationNextStepsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>
+          }
+          createMany: {
+            args: Prisma.BookingConfirmationNextStepsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookingConfirmationNextStepsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>[]
+          }
+          delete: {
+            args: Prisma.BookingConfirmationNextStepsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>
+          }
+          update: {
+            args: Prisma.BookingConfirmationNextStepsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookingConfirmationNextStepsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookingConfirmationNextStepsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookingConfirmationNextStepsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookingConfirmationNextStepsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookingConfirmationNextStepsPayload>
+          }
+          aggregate: {
+            args: Prisma.BookingConfirmationNextStepsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookingConfirmationNextSteps>
+          }
+          groupBy: {
+            args: Prisma.BookingConfirmationNextStepsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationNextStepsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookingConfirmationNextStepsCountArgs<ExtArgs>
+            result: $Utils.Optional<BookingConfirmationNextStepsCountAggregateOutputType> | number
           }
         }
       }
@@ -4214,6 +4426,154 @@ export namespace Prisma {
           }
         }
       }
+      CustomPackageHero: {
+        payload: Prisma.$CustomPackageHeroPayload<ExtArgs>
+        fields: Prisma.CustomPackageHeroFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CustomPackageHeroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CustomPackageHeroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>
+          }
+          findFirst: {
+            args: Prisma.CustomPackageHeroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CustomPackageHeroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>
+          }
+          findMany: {
+            args: Prisma.CustomPackageHeroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>[]
+          }
+          create: {
+            args: Prisma.CustomPackageHeroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>
+          }
+          createMany: {
+            args: Prisma.CustomPackageHeroCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CustomPackageHeroCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>[]
+          }
+          delete: {
+            args: Prisma.CustomPackageHeroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>
+          }
+          update: {
+            args: Prisma.CustomPackageHeroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>
+          }
+          deleteMany: {
+            args: Prisma.CustomPackageHeroDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CustomPackageHeroUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CustomPackageHeroUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>[]
+          }
+          upsert: {
+            args: Prisma.CustomPackageHeroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageHeroPayload>
+          }
+          aggregate: {
+            args: Prisma.CustomPackageHeroAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCustomPackageHero>
+          }
+          groupBy: {
+            args: Prisma.CustomPackageHeroGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CustomPackageHeroGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CustomPackageHeroCountArgs<ExtArgs>
+            result: $Utils.Optional<CustomPackageHeroCountAggregateOutputType> | number
+          }
+        }
+      }
+      CustomPackageContent: {
+        payload: Prisma.$CustomPackageContentPayload<ExtArgs>
+        fields: Prisma.CustomPackageContentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CustomPackageContentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CustomPackageContentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>
+          }
+          findFirst: {
+            args: Prisma.CustomPackageContentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CustomPackageContentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>
+          }
+          findMany: {
+            args: Prisma.CustomPackageContentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>[]
+          }
+          create: {
+            args: Prisma.CustomPackageContentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>
+          }
+          createMany: {
+            args: Prisma.CustomPackageContentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CustomPackageContentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>[]
+          }
+          delete: {
+            args: Prisma.CustomPackageContentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>
+          }
+          update: {
+            args: Prisma.CustomPackageContentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>
+          }
+          deleteMany: {
+            args: Prisma.CustomPackageContentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CustomPackageContentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CustomPackageContentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>[]
+          }
+          upsert: {
+            args: Prisma.CustomPackageContentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CustomPackageContentPayload>
+          }
+          aggregate: {
+            args: Prisma.CustomPackageContentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCustomPackageContent>
+          }
+          groupBy: {
+            args: Prisma.CustomPackageContentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CustomPackageContentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CustomPackageContentCountArgs<ExtArgs>
+            result: $Utils.Optional<CustomPackageContentCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4343,12 +4703,16 @@ export namespace Prisma {
     contactHero?: ContactHeroOmit
     contactInfo?: ContactInfoOmit
     contactResource?: ContactResourceOmit
+    bookingConfirmationMainHero?: BookingConfirmationMainHeroOmit
     bookingConfirmationHero?: BookingConfirmationHeroOmit
     bookingConfirmationStep?: BookingConfirmationStepOmit
     bookingConfirmationContact?: BookingConfirmationContactOmit
+    bookingConfirmationNextSteps?: BookingConfirmationNextStepsOmit
     bookingConfirmationSecurity?: BookingConfirmationSecurityOmit
     bookingConfirmationGallery?: BookingConfirmationGalleryOmit
     emailTemplate?: EmailTemplateOmit
+    customPackageHero?: CustomPackageHeroOmit
+    customPackageContent?: CustomPackageContentOmit
   }
 
   /* Types for Logging */
@@ -41706,6 +42070,1027 @@ export namespace Prisma {
 
 
   /**
+   * Model BookingConfirmationMainHero
+   */
+
+  export type AggregateBookingConfirmationMainHero = {
+    _count: BookingConfirmationMainHeroCountAggregateOutputType | null
+    _min: BookingConfirmationMainHeroMinAggregateOutputType | null
+    _max: BookingConfirmationMainHeroMaxAggregateOutputType | null
+  }
+
+  export type BookingConfirmationMainHeroMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationMainHeroMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationMainHeroCountAggregateOutputType = {
+    id: number
+    title: number
+    subtitle: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookingConfirmationMainHeroMinAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationMainHeroMaxAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationMainHeroCountAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookingConfirmationMainHeroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationMainHero to aggregate.
+     */
+    where?: BookingConfirmationMainHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationMainHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationMainHeroOrderByWithRelationInput | BookingConfirmationMainHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingConfirmationMainHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationMainHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationMainHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookingConfirmationMainHeroes
+    **/
+    _count?: true | BookingConfirmationMainHeroCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingConfirmationMainHeroMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingConfirmationMainHeroMaxAggregateInputType
+  }
+
+  export type GetBookingConfirmationMainHeroAggregateType<T extends BookingConfirmationMainHeroAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookingConfirmationMainHero]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookingConfirmationMainHero[P]>
+      : GetScalarType<T[P], AggregateBookingConfirmationMainHero[P]>
+  }
+
+
+
+
+  export type BookingConfirmationMainHeroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingConfirmationMainHeroWhereInput
+    orderBy?: BookingConfirmationMainHeroOrderByWithAggregationInput | BookingConfirmationMainHeroOrderByWithAggregationInput[]
+    by: BookingConfirmationMainHeroScalarFieldEnum[] | BookingConfirmationMainHeroScalarFieldEnum
+    having?: BookingConfirmationMainHeroScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingConfirmationMainHeroCountAggregateInputType | true
+    _min?: BookingConfirmationMainHeroMinAggregateInputType
+    _max?: BookingConfirmationMainHeroMaxAggregateInputType
+  }
+
+  export type BookingConfirmationMainHeroGroupByOutputType = {
+    id: string
+    title: string
+    subtitle: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: BookingConfirmationMainHeroCountAggregateOutputType | null
+    _min: BookingConfirmationMainHeroMinAggregateOutputType | null
+    _max: BookingConfirmationMainHeroMaxAggregateOutputType | null
+  }
+
+  type GetBookingConfirmationMainHeroGroupByPayload<T extends BookingConfirmationMainHeroGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingConfirmationMainHeroGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingConfirmationMainHeroGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingConfirmationMainHeroGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingConfirmationMainHeroGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingConfirmationMainHeroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationMainHero"]>
+
+  export type BookingConfirmationMainHeroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationMainHero"]>
+
+  export type BookingConfirmationMainHeroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationMainHero"]>
+
+  export type BookingConfirmationMainHeroSelectScalar = {
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookingConfirmationMainHeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subtitle" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["bookingConfirmationMainHero"]>
+
+  export type $BookingConfirmationMainHeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookingConfirmationMainHero"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      subtitle: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookingConfirmationMainHero"]>
+    composites: {}
+  }
+
+  type BookingConfirmationMainHeroGetPayload<S extends boolean | null | undefined | BookingConfirmationMainHeroDefaultArgs> = $Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload, S>
+
+  type BookingConfirmationMainHeroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookingConfirmationMainHeroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookingConfirmationMainHeroCountAggregateInputType | true
+    }
+
+  export interface BookingConfirmationMainHeroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookingConfirmationMainHero'], meta: { name: 'BookingConfirmationMainHero' } }
+    /**
+     * Find zero or one BookingConfirmationMainHero that matches the filter.
+     * @param {BookingConfirmationMainHeroFindUniqueArgs} args - Arguments to find a BookingConfirmationMainHero
+     * @example
+     * // Get one BookingConfirmationMainHero
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookingConfirmationMainHeroFindUniqueArgs>(args: SelectSubset<T, BookingConfirmationMainHeroFindUniqueArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookingConfirmationMainHero that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookingConfirmationMainHeroFindUniqueOrThrowArgs} args - Arguments to find a BookingConfirmationMainHero
+     * @example
+     * // Get one BookingConfirmationMainHero
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookingConfirmationMainHeroFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingConfirmationMainHeroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationMainHero that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationMainHeroFindFirstArgs} args - Arguments to find a BookingConfirmationMainHero
+     * @example
+     * // Get one BookingConfirmationMainHero
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookingConfirmationMainHeroFindFirstArgs>(args?: SelectSubset<T, BookingConfirmationMainHeroFindFirstArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationMainHero that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationMainHeroFindFirstOrThrowArgs} args - Arguments to find a BookingConfirmationMainHero
+     * @example
+     * // Get one BookingConfirmationMainHero
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookingConfirmationMainHeroFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingConfirmationMainHeroFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookingConfirmationMainHeroes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationMainHeroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookingConfirmationMainHeroes
+     * const bookingConfirmationMainHeroes = await prisma.bookingConfirmationMainHero.findMany()
+     * 
+     * // Get first 10 BookingConfirmationMainHeroes
+     * const bookingConfirmationMainHeroes = await prisma.bookingConfirmationMainHero.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingConfirmationMainHeroWithIdOnly = await prisma.bookingConfirmationMainHero.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookingConfirmationMainHeroFindManyArgs>(args?: SelectSubset<T, BookingConfirmationMainHeroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookingConfirmationMainHero.
+     * @param {BookingConfirmationMainHeroCreateArgs} args - Arguments to create a BookingConfirmationMainHero.
+     * @example
+     * // Create one BookingConfirmationMainHero
+     * const BookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.create({
+     *   data: {
+     *     // ... data to create a BookingConfirmationMainHero
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookingConfirmationMainHeroCreateArgs>(args: SelectSubset<T, BookingConfirmationMainHeroCreateArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookingConfirmationMainHeroes.
+     * @param {BookingConfirmationMainHeroCreateManyArgs} args - Arguments to create many BookingConfirmationMainHeroes.
+     * @example
+     * // Create many BookingConfirmationMainHeroes
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookingConfirmationMainHeroCreateManyArgs>(args?: SelectSubset<T, BookingConfirmationMainHeroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookingConfirmationMainHeroes and returns the data saved in the database.
+     * @param {BookingConfirmationMainHeroCreateManyAndReturnArgs} args - Arguments to create many BookingConfirmationMainHeroes.
+     * @example
+     * // Create many BookingConfirmationMainHeroes
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookingConfirmationMainHeroes and only return the `id`
+     * const bookingConfirmationMainHeroWithIdOnly = await prisma.bookingConfirmationMainHero.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookingConfirmationMainHeroCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingConfirmationMainHeroCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookingConfirmationMainHero.
+     * @param {BookingConfirmationMainHeroDeleteArgs} args - Arguments to delete one BookingConfirmationMainHero.
+     * @example
+     * // Delete one BookingConfirmationMainHero
+     * const BookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.delete({
+     *   where: {
+     *     // ... filter to delete one BookingConfirmationMainHero
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookingConfirmationMainHeroDeleteArgs>(args: SelectSubset<T, BookingConfirmationMainHeroDeleteArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookingConfirmationMainHero.
+     * @param {BookingConfirmationMainHeroUpdateArgs} args - Arguments to update one BookingConfirmationMainHero.
+     * @example
+     * // Update one BookingConfirmationMainHero
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookingConfirmationMainHeroUpdateArgs>(args: SelectSubset<T, BookingConfirmationMainHeroUpdateArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookingConfirmationMainHeroes.
+     * @param {BookingConfirmationMainHeroDeleteManyArgs} args - Arguments to filter BookingConfirmationMainHeroes to delete.
+     * @example
+     * // Delete a few BookingConfirmationMainHeroes
+     * const { count } = await prisma.bookingConfirmationMainHero.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookingConfirmationMainHeroDeleteManyArgs>(args?: SelectSubset<T, BookingConfirmationMainHeroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationMainHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationMainHeroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookingConfirmationMainHeroes
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookingConfirmationMainHeroUpdateManyArgs>(args: SelectSubset<T, BookingConfirmationMainHeroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationMainHeroes and returns the data updated in the database.
+     * @param {BookingConfirmationMainHeroUpdateManyAndReturnArgs} args - Arguments to update many BookingConfirmationMainHeroes.
+     * @example
+     * // Update many BookingConfirmationMainHeroes
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookingConfirmationMainHeroes and only return the `id`
+     * const bookingConfirmationMainHeroWithIdOnly = await prisma.bookingConfirmationMainHero.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookingConfirmationMainHeroUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingConfirmationMainHeroUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookingConfirmationMainHero.
+     * @param {BookingConfirmationMainHeroUpsertArgs} args - Arguments to update or create a BookingConfirmationMainHero.
+     * @example
+     * // Update or create a BookingConfirmationMainHero
+     * const bookingConfirmationMainHero = await prisma.bookingConfirmationMainHero.upsert({
+     *   create: {
+     *     // ... data to create a BookingConfirmationMainHero
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookingConfirmationMainHero we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookingConfirmationMainHeroUpsertArgs>(args: SelectSubset<T, BookingConfirmationMainHeroUpsertArgs<ExtArgs>>): Prisma__BookingConfirmationMainHeroClient<$Result.GetResult<Prisma.$BookingConfirmationMainHeroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookingConfirmationMainHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationMainHeroCountArgs} args - Arguments to filter BookingConfirmationMainHeroes to count.
+     * @example
+     * // Count the number of BookingConfirmationMainHeroes
+     * const count = await prisma.bookingConfirmationMainHero.count({
+     *   where: {
+     *     // ... the filter for the BookingConfirmationMainHeroes we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingConfirmationMainHeroCountArgs>(
+      args?: Subset<T, BookingConfirmationMainHeroCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingConfirmationMainHeroCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookingConfirmationMainHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationMainHeroAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingConfirmationMainHeroAggregateArgs>(args: Subset<T, BookingConfirmationMainHeroAggregateArgs>): Prisma.PrismaPromise<GetBookingConfirmationMainHeroAggregateType<T>>
+
+    /**
+     * Group by BookingConfirmationMainHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationMainHeroGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingConfirmationMainHeroGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingConfirmationMainHeroGroupByArgs['orderBy'] }
+        : { orderBy?: BookingConfirmationMainHeroGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingConfirmationMainHeroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingConfirmationMainHeroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookingConfirmationMainHero model
+   */
+  readonly fields: BookingConfirmationMainHeroFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookingConfirmationMainHero.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingConfirmationMainHeroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookingConfirmationMainHero model
+   */
+  interface BookingConfirmationMainHeroFieldRefs {
+    readonly id: FieldRef<"BookingConfirmationMainHero", 'String'>
+    readonly title: FieldRef<"BookingConfirmationMainHero", 'String'>
+    readonly subtitle: FieldRef<"BookingConfirmationMainHero", 'String'>
+    readonly status: FieldRef<"BookingConfirmationMainHero", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"BookingConfirmationMainHero", 'DateTime'>
+    readonly createdAt: FieldRef<"BookingConfirmationMainHero", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookingConfirmationMainHero", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookingConfirmationMainHero findUnique
+   */
+  export type BookingConfirmationMainHeroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationMainHero to fetch.
+     */
+    where: BookingConfirmationMainHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationMainHero findUniqueOrThrow
+   */
+  export type BookingConfirmationMainHeroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationMainHero to fetch.
+     */
+    where: BookingConfirmationMainHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationMainHero findFirst
+   */
+  export type BookingConfirmationMainHeroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationMainHero to fetch.
+     */
+    where?: BookingConfirmationMainHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationMainHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationMainHeroOrderByWithRelationInput | BookingConfirmationMainHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationMainHeroes.
+     */
+    cursor?: BookingConfirmationMainHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationMainHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationMainHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationMainHeroes.
+     */
+    distinct?: BookingConfirmationMainHeroScalarFieldEnum | BookingConfirmationMainHeroScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationMainHero findFirstOrThrow
+   */
+  export type BookingConfirmationMainHeroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationMainHero to fetch.
+     */
+    where?: BookingConfirmationMainHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationMainHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationMainHeroOrderByWithRelationInput | BookingConfirmationMainHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationMainHeroes.
+     */
+    cursor?: BookingConfirmationMainHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationMainHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationMainHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationMainHeroes.
+     */
+    distinct?: BookingConfirmationMainHeroScalarFieldEnum | BookingConfirmationMainHeroScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationMainHero findMany
+   */
+  export type BookingConfirmationMainHeroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationMainHeroes to fetch.
+     */
+    where?: BookingConfirmationMainHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationMainHeroes to fetch.
+     */
+    orderBy?: BookingConfirmationMainHeroOrderByWithRelationInput | BookingConfirmationMainHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookingConfirmationMainHeroes.
+     */
+    cursor?: BookingConfirmationMainHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationMainHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationMainHeroes.
+     */
+    skip?: number
+    distinct?: BookingConfirmationMainHeroScalarFieldEnum | BookingConfirmationMainHeroScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationMainHero create
+   */
+  export type BookingConfirmationMainHeroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BookingConfirmationMainHero.
+     */
+    data: XOR<BookingConfirmationMainHeroCreateInput, BookingConfirmationMainHeroUncheckedCreateInput>
+  }
+
+  /**
+   * BookingConfirmationMainHero createMany
+   */
+  export type BookingConfirmationMainHeroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookingConfirmationMainHeroes.
+     */
+    data: BookingConfirmationMainHeroCreateManyInput | BookingConfirmationMainHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationMainHero createManyAndReturn
+   */
+  export type BookingConfirmationMainHeroCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookingConfirmationMainHeroes.
+     */
+    data: BookingConfirmationMainHeroCreateManyInput | BookingConfirmationMainHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationMainHero update
+   */
+  export type BookingConfirmationMainHeroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BookingConfirmationMainHero.
+     */
+    data: XOR<BookingConfirmationMainHeroUpdateInput, BookingConfirmationMainHeroUncheckedUpdateInput>
+    /**
+     * Choose, which BookingConfirmationMainHero to update.
+     */
+    where: BookingConfirmationMainHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationMainHero updateMany
+   */
+  export type BookingConfirmationMainHeroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookingConfirmationMainHeroes.
+     */
+    data: XOR<BookingConfirmationMainHeroUpdateManyMutationInput, BookingConfirmationMainHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationMainHeroes to update
+     */
+    where?: BookingConfirmationMainHeroWhereInput
+    /**
+     * Limit how many BookingConfirmationMainHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationMainHero updateManyAndReturn
+   */
+  export type BookingConfirmationMainHeroUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * The data used to update BookingConfirmationMainHeroes.
+     */
+    data: XOR<BookingConfirmationMainHeroUpdateManyMutationInput, BookingConfirmationMainHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationMainHeroes to update
+     */
+    where?: BookingConfirmationMainHeroWhereInput
+    /**
+     * Limit how many BookingConfirmationMainHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationMainHero upsert
+   */
+  export type BookingConfirmationMainHeroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BookingConfirmationMainHero to update in case it exists.
+     */
+    where: BookingConfirmationMainHeroWhereUniqueInput
+    /**
+     * In case the BookingConfirmationMainHero found by the `where` argument doesn't exist, create a new BookingConfirmationMainHero with this data.
+     */
+    create: XOR<BookingConfirmationMainHeroCreateInput, BookingConfirmationMainHeroUncheckedCreateInput>
+    /**
+     * In case the BookingConfirmationMainHero was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingConfirmationMainHeroUpdateInput, BookingConfirmationMainHeroUncheckedUpdateInput>
+  }
+
+  /**
+   * BookingConfirmationMainHero delete
+   */
+  export type BookingConfirmationMainHeroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+    /**
+     * Filter which BookingConfirmationMainHero to delete.
+     */
+    where: BookingConfirmationMainHeroWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationMainHero deleteMany
+   */
+  export type BookingConfirmationMainHeroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationMainHeroes to delete
+     */
+    where?: BookingConfirmationMainHeroWhereInput
+    /**
+     * Limit how many BookingConfirmationMainHeroes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationMainHero without action
+   */
+  export type BookingConfirmationMainHeroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationMainHero
+     */
+    select?: BookingConfirmationMainHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationMainHero
+     */
+    omit?: BookingConfirmationMainHeroOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model BookingConfirmationHero
    */
 
@@ -44933,6 +46318,1063 @@ export namespace Prisma {
      * Omit specific fields from the BookingConfirmationContact
      */
     omit?: BookingConfirmationContactOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BookingConfirmationNextSteps
+   */
+
+  export type AggregateBookingConfirmationNextSteps = {
+    _count: BookingConfirmationNextStepsCountAggregateOutputType | null
+    _min: BookingConfirmationNextStepsMinAggregateOutputType | null
+    _max: BookingConfirmationNextStepsMaxAggregateOutputType | null
+  }
+
+  export type BookingConfirmationNextStepsMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationNextStepsMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookingConfirmationNextStepsCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    emailStep: number
+    paymentStep: number
+    contactStep: number
+    confirmStep: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookingConfirmationNextStepsMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationNextStepsMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookingConfirmationNextStepsCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    emailStep?: true
+    paymentStep?: true
+    contactStep?: true
+    confirmStep?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookingConfirmationNextStepsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationNextSteps to aggregate.
+     */
+    where?: BookingConfirmationNextStepsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationNextSteps to fetch.
+     */
+    orderBy?: BookingConfirmationNextStepsOrderByWithRelationInput | BookingConfirmationNextStepsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookingConfirmationNextStepsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationNextSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationNextSteps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookingConfirmationNextSteps
+    **/
+    _count?: true | BookingConfirmationNextStepsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookingConfirmationNextStepsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookingConfirmationNextStepsMaxAggregateInputType
+  }
+
+  export type GetBookingConfirmationNextStepsAggregateType<T extends BookingConfirmationNextStepsAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookingConfirmationNextSteps]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookingConfirmationNextSteps[P]>
+      : GetScalarType<T[P], AggregateBookingConfirmationNextSteps[P]>
+  }
+
+
+
+
+  export type BookingConfirmationNextStepsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingConfirmationNextStepsWhereInput
+    orderBy?: BookingConfirmationNextStepsOrderByWithAggregationInput | BookingConfirmationNextStepsOrderByWithAggregationInput[]
+    by: BookingConfirmationNextStepsScalarFieldEnum[] | BookingConfirmationNextStepsScalarFieldEnum
+    having?: BookingConfirmationNextStepsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookingConfirmationNextStepsCountAggregateInputType | true
+    _min?: BookingConfirmationNextStepsMinAggregateInputType
+    _max?: BookingConfirmationNextStepsMaxAggregateInputType
+  }
+
+  export type BookingConfirmationNextStepsGroupByOutputType = {
+    id: string
+    title: string
+    description: string
+    emailStep: JsonValue
+    paymentStep: JsonValue
+    contactStep: JsonValue
+    confirmStep: JsonValue
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: BookingConfirmationNextStepsCountAggregateOutputType | null
+    _min: BookingConfirmationNextStepsMinAggregateOutputType | null
+    _max: BookingConfirmationNextStepsMaxAggregateOutputType | null
+  }
+
+  type GetBookingConfirmationNextStepsGroupByPayload<T extends BookingConfirmationNextStepsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookingConfirmationNextStepsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookingConfirmationNextStepsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookingConfirmationNextStepsGroupByOutputType[P]>
+            : GetScalarType<T[P], BookingConfirmationNextStepsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookingConfirmationNextStepsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    emailStep?: boolean
+    paymentStep?: boolean
+    contactStep?: boolean
+    confirmStep?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationNextSteps"]>
+
+  export type BookingConfirmationNextStepsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    emailStep?: boolean
+    paymentStep?: boolean
+    contactStep?: boolean
+    confirmStep?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationNextSteps"]>
+
+  export type BookingConfirmationNextStepsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    emailStep?: boolean
+    paymentStep?: boolean
+    contactStep?: boolean
+    confirmStep?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bookingConfirmationNextSteps"]>
+
+  export type BookingConfirmationNextStepsSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    emailStep?: boolean
+    paymentStep?: boolean
+    contactStep?: boolean
+    confirmStep?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookingConfirmationNextStepsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "emailStep" | "paymentStep" | "contactStep" | "confirmStep" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["bookingConfirmationNextSteps"]>
+
+  export type $BookingConfirmationNextStepsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookingConfirmationNextSteps"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string
+      emailStep: Prisma.JsonValue
+      paymentStep: Prisma.JsonValue
+      contactStep: Prisma.JsonValue
+      confirmStep: Prisma.JsonValue
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookingConfirmationNextSteps"]>
+    composites: {}
+  }
+
+  type BookingConfirmationNextStepsGetPayload<S extends boolean | null | undefined | BookingConfirmationNextStepsDefaultArgs> = $Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload, S>
+
+  type BookingConfirmationNextStepsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookingConfirmationNextStepsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookingConfirmationNextStepsCountAggregateInputType | true
+    }
+
+  export interface BookingConfirmationNextStepsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookingConfirmationNextSteps'], meta: { name: 'BookingConfirmationNextSteps' } }
+    /**
+     * Find zero or one BookingConfirmationNextSteps that matches the filter.
+     * @param {BookingConfirmationNextStepsFindUniqueArgs} args - Arguments to find a BookingConfirmationNextSteps
+     * @example
+     * // Get one BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookingConfirmationNextStepsFindUniqueArgs>(args: SelectSubset<T, BookingConfirmationNextStepsFindUniqueArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookingConfirmationNextSteps that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookingConfirmationNextStepsFindUniqueOrThrowArgs} args - Arguments to find a BookingConfirmationNextSteps
+     * @example
+     * // Get one BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookingConfirmationNextStepsFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingConfirmationNextStepsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationNextSteps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationNextStepsFindFirstArgs} args - Arguments to find a BookingConfirmationNextSteps
+     * @example
+     * // Get one BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookingConfirmationNextStepsFindFirstArgs>(args?: SelectSubset<T, BookingConfirmationNextStepsFindFirstArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookingConfirmationNextSteps that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationNextStepsFindFirstOrThrowArgs} args - Arguments to find a BookingConfirmationNextSteps
+     * @example
+     * // Get one BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookingConfirmationNextStepsFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingConfirmationNextStepsFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookingConfirmationNextSteps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationNextStepsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.findMany()
+     * 
+     * // Get first 10 BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookingConfirmationNextStepsWithIdOnly = await prisma.bookingConfirmationNextSteps.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookingConfirmationNextStepsFindManyArgs>(args?: SelectSubset<T, BookingConfirmationNextStepsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookingConfirmationNextSteps.
+     * @param {BookingConfirmationNextStepsCreateArgs} args - Arguments to create a BookingConfirmationNextSteps.
+     * @example
+     * // Create one BookingConfirmationNextSteps
+     * const BookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.create({
+     *   data: {
+     *     // ... data to create a BookingConfirmationNextSteps
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookingConfirmationNextStepsCreateArgs>(args: SelectSubset<T, BookingConfirmationNextStepsCreateArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookingConfirmationNextSteps.
+     * @param {BookingConfirmationNextStepsCreateManyArgs} args - Arguments to create many BookingConfirmationNextSteps.
+     * @example
+     * // Create many BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookingConfirmationNextStepsCreateManyArgs>(args?: SelectSubset<T, BookingConfirmationNextStepsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookingConfirmationNextSteps and returns the data saved in the database.
+     * @param {BookingConfirmationNextStepsCreateManyAndReturnArgs} args - Arguments to create many BookingConfirmationNextSteps.
+     * @example
+     * // Create many BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookingConfirmationNextSteps and only return the `id`
+     * const bookingConfirmationNextStepsWithIdOnly = await prisma.bookingConfirmationNextSteps.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookingConfirmationNextStepsCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingConfirmationNextStepsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookingConfirmationNextSteps.
+     * @param {BookingConfirmationNextStepsDeleteArgs} args - Arguments to delete one BookingConfirmationNextSteps.
+     * @example
+     * // Delete one BookingConfirmationNextSteps
+     * const BookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.delete({
+     *   where: {
+     *     // ... filter to delete one BookingConfirmationNextSteps
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookingConfirmationNextStepsDeleteArgs>(args: SelectSubset<T, BookingConfirmationNextStepsDeleteArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookingConfirmationNextSteps.
+     * @param {BookingConfirmationNextStepsUpdateArgs} args - Arguments to update one BookingConfirmationNextSteps.
+     * @example
+     * // Update one BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookingConfirmationNextStepsUpdateArgs>(args: SelectSubset<T, BookingConfirmationNextStepsUpdateArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookingConfirmationNextSteps.
+     * @param {BookingConfirmationNextStepsDeleteManyArgs} args - Arguments to filter BookingConfirmationNextSteps to delete.
+     * @example
+     * // Delete a few BookingConfirmationNextSteps
+     * const { count } = await prisma.bookingConfirmationNextSteps.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookingConfirmationNextStepsDeleteManyArgs>(args?: SelectSubset<T, BookingConfirmationNextStepsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationNextSteps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationNextStepsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookingConfirmationNextStepsUpdateManyArgs>(args: SelectSubset<T, BookingConfirmationNextStepsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookingConfirmationNextSteps and returns the data updated in the database.
+     * @param {BookingConfirmationNextStepsUpdateManyAndReturnArgs} args - Arguments to update many BookingConfirmationNextSteps.
+     * @example
+     * // Update many BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookingConfirmationNextSteps and only return the `id`
+     * const bookingConfirmationNextStepsWithIdOnly = await prisma.bookingConfirmationNextSteps.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookingConfirmationNextStepsUpdateManyAndReturnArgs>(args: SelectSubset<T, BookingConfirmationNextStepsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookingConfirmationNextSteps.
+     * @param {BookingConfirmationNextStepsUpsertArgs} args - Arguments to update or create a BookingConfirmationNextSteps.
+     * @example
+     * // Update or create a BookingConfirmationNextSteps
+     * const bookingConfirmationNextSteps = await prisma.bookingConfirmationNextSteps.upsert({
+     *   create: {
+     *     // ... data to create a BookingConfirmationNextSteps
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookingConfirmationNextSteps we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookingConfirmationNextStepsUpsertArgs>(args: SelectSubset<T, BookingConfirmationNextStepsUpsertArgs<ExtArgs>>): Prisma__BookingConfirmationNextStepsClient<$Result.GetResult<Prisma.$BookingConfirmationNextStepsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookingConfirmationNextSteps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationNextStepsCountArgs} args - Arguments to filter BookingConfirmationNextSteps to count.
+     * @example
+     * // Count the number of BookingConfirmationNextSteps
+     * const count = await prisma.bookingConfirmationNextSteps.count({
+     *   where: {
+     *     // ... the filter for the BookingConfirmationNextSteps we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookingConfirmationNextStepsCountArgs>(
+      args?: Subset<T, BookingConfirmationNextStepsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookingConfirmationNextStepsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookingConfirmationNextSteps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationNextStepsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookingConfirmationNextStepsAggregateArgs>(args: Subset<T, BookingConfirmationNextStepsAggregateArgs>): Prisma.PrismaPromise<GetBookingConfirmationNextStepsAggregateType<T>>
+
+    /**
+     * Group by BookingConfirmationNextSteps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookingConfirmationNextStepsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookingConfirmationNextStepsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookingConfirmationNextStepsGroupByArgs['orderBy'] }
+        : { orderBy?: BookingConfirmationNextStepsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookingConfirmationNextStepsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingConfirmationNextStepsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookingConfirmationNextSteps model
+   */
+  readonly fields: BookingConfirmationNextStepsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookingConfirmationNextSteps.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookingConfirmationNextStepsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookingConfirmationNextSteps model
+   */
+  interface BookingConfirmationNextStepsFieldRefs {
+    readonly id: FieldRef<"BookingConfirmationNextSteps", 'String'>
+    readonly title: FieldRef<"BookingConfirmationNextSteps", 'String'>
+    readonly description: FieldRef<"BookingConfirmationNextSteps", 'String'>
+    readonly emailStep: FieldRef<"BookingConfirmationNextSteps", 'Json'>
+    readonly paymentStep: FieldRef<"BookingConfirmationNextSteps", 'Json'>
+    readonly contactStep: FieldRef<"BookingConfirmationNextSteps", 'Json'>
+    readonly confirmStep: FieldRef<"BookingConfirmationNextSteps", 'Json'>
+    readonly status: FieldRef<"BookingConfirmationNextSteps", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"BookingConfirmationNextSteps", 'DateTime'>
+    readonly createdAt: FieldRef<"BookingConfirmationNextSteps", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookingConfirmationNextSteps", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookingConfirmationNextSteps findUnique
+   */
+  export type BookingConfirmationNextStepsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationNextSteps to fetch.
+     */
+    where: BookingConfirmationNextStepsWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationNextSteps findUniqueOrThrow
+   */
+  export type BookingConfirmationNextStepsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationNextSteps to fetch.
+     */
+    where: BookingConfirmationNextStepsWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationNextSteps findFirst
+   */
+  export type BookingConfirmationNextStepsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationNextSteps to fetch.
+     */
+    where?: BookingConfirmationNextStepsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationNextSteps to fetch.
+     */
+    orderBy?: BookingConfirmationNextStepsOrderByWithRelationInput | BookingConfirmationNextStepsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationNextSteps.
+     */
+    cursor?: BookingConfirmationNextStepsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationNextSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationNextSteps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationNextSteps.
+     */
+    distinct?: BookingConfirmationNextStepsScalarFieldEnum | BookingConfirmationNextStepsScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationNextSteps findFirstOrThrow
+   */
+  export type BookingConfirmationNextStepsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationNextSteps to fetch.
+     */
+    where?: BookingConfirmationNextStepsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationNextSteps to fetch.
+     */
+    orderBy?: BookingConfirmationNextStepsOrderByWithRelationInput | BookingConfirmationNextStepsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookingConfirmationNextSteps.
+     */
+    cursor?: BookingConfirmationNextStepsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationNextSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationNextSteps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookingConfirmationNextSteps.
+     */
+    distinct?: BookingConfirmationNextStepsScalarFieldEnum | BookingConfirmationNextStepsScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationNextSteps findMany
+   */
+  export type BookingConfirmationNextStepsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * Filter, which BookingConfirmationNextSteps to fetch.
+     */
+    where?: BookingConfirmationNextStepsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookingConfirmationNextSteps to fetch.
+     */
+    orderBy?: BookingConfirmationNextStepsOrderByWithRelationInput | BookingConfirmationNextStepsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookingConfirmationNextSteps.
+     */
+    cursor?: BookingConfirmationNextStepsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookingConfirmationNextSteps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookingConfirmationNextSteps.
+     */
+    skip?: number
+    distinct?: BookingConfirmationNextStepsScalarFieldEnum | BookingConfirmationNextStepsScalarFieldEnum[]
+  }
+
+  /**
+   * BookingConfirmationNextSteps create
+   */
+  export type BookingConfirmationNextStepsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BookingConfirmationNextSteps.
+     */
+    data: XOR<BookingConfirmationNextStepsCreateInput, BookingConfirmationNextStepsUncheckedCreateInput>
+  }
+
+  /**
+   * BookingConfirmationNextSteps createMany
+   */
+  export type BookingConfirmationNextStepsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookingConfirmationNextSteps.
+     */
+    data: BookingConfirmationNextStepsCreateManyInput | BookingConfirmationNextStepsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationNextSteps createManyAndReturn
+   */
+  export type BookingConfirmationNextStepsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookingConfirmationNextSteps.
+     */
+    data: BookingConfirmationNextStepsCreateManyInput | BookingConfirmationNextStepsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookingConfirmationNextSteps update
+   */
+  export type BookingConfirmationNextStepsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BookingConfirmationNextSteps.
+     */
+    data: XOR<BookingConfirmationNextStepsUpdateInput, BookingConfirmationNextStepsUncheckedUpdateInput>
+    /**
+     * Choose, which BookingConfirmationNextSteps to update.
+     */
+    where: BookingConfirmationNextStepsWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationNextSteps updateMany
+   */
+  export type BookingConfirmationNextStepsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookingConfirmationNextSteps.
+     */
+    data: XOR<BookingConfirmationNextStepsUpdateManyMutationInput, BookingConfirmationNextStepsUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationNextSteps to update
+     */
+    where?: BookingConfirmationNextStepsWhereInput
+    /**
+     * Limit how many BookingConfirmationNextSteps to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationNextSteps updateManyAndReturn
+   */
+  export type BookingConfirmationNextStepsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * The data used to update BookingConfirmationNextSteps.
+     */
+    data: XOR<BookingConfirmationNextStepsUpdateManyMutationInput, BookingConfirmationNextStepsUncheckedUpdateManyInput>
+    /**
+     * Filter which BookingConfirmationNextSteps to update
+     */
+    where?: BookingConfirmationNextStepsWhereInput
+    /**
+     * Limit how many BookingConfirmationNextSteps to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationNextSteps upsert
+   */
+  export type BookingConfirmationNextStepsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BookingConfirmationNextSteps to update in case it exists.
+     */
+    where: BookingConfirmationNextStepsWhereUniqueInput
+    /**
+     * In case the BookingConfirmationNextSteps found by the `where` argument doesn't exist, create a new BookingConfirmationNextSteps with this data.
+     */
+    create: XOR<BookingConfirmationNextStepsCreateInput, BookingConfirmationNextStepsUncheckedCreateInput>
+    /**
+     * In case the BookingConfirmationNextSteps was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookingConfirmationNextStepsUpdateInput, BookingConfirmationNextStepsUncheckedUpdateInput>
+  }
+
+  /**
+   * BookingConfirmationNextSteps delete
+   */
+  export type BookingConfirmationNextStepsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
+    /**
+     * Filter which BookingConfirmationNextSteps to delete.
+     */
+    where: BookingConfirmationNextStepsWhereUniqueInput
+  }
+
+  /**
+   * BookingConfirmationNextSteps deleteMany
+   */
+  export type BookingConfirmationNextStepsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookingConfirmationNextSteps to delete
+     */
+    where?: BookingConfirmationNextStepsWhereInput
+    /**
+     * Limit how many BookingConfirmationNextSteps to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookingConfirmationNextSteps without action
+   */
+  export type BookingConfirmationNextStepsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookingConfirmationNextSteps
+     */
+    select?: BookingConfirmationNextStepsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookingConfirmationNextSteps
+     */
+    omit?: BookingConfirmationNextStepsOmit<ExtArgs> | null
   }
 
 
@@ -48203,6 +50645,2087 @@ export namespace Prisma {
 
 
   /**
+   * Model CustomPackageHero
+   */
+
+  export type AggregateCustomPackageHero = {
+    _count: CustomPackageHeroCountAggregateOutputType | null
+    _min: CustomPackageHeroMinAggregateOutputType | null
+    _max: CustomPackageHeroMaxAggregateOutputType | null
+  }
+
+  export type CustomPackageHeroMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    image: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CustomPackageHeroMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    image: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CustomPackageHeroCountAggregateOutputType = {
+    id: number
+    title: number
+    subtitle: number
+    description: number
+    image: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CustomPackageHeroMinAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    image?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CustomPackageHeroMaxAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    image?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CustomPackageHeroCountAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    image?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CustomPackageHeroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomPackageHero to aggregate.
+     */
+    where?: CustomPackageHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageHeroes to fetch.
+     */
+    orderBy?: CustomPackageHeroOrderByWithRelationInput | CustomPackageHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CustomPackageHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CustomPackageHeroes
+    **/
+    _count?: true | CustomPackageHeroCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CustomPackageHeroMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CustomPackageHeroMaxAggregateInputType
+  }
+
+  export type GetCustomPackageHeroAggregateType<T extends CustomPackageHeroAggregateArgs> = {
+        [P in keyof T & keyof AggregateCustomPackageHero]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCustomPackageHero[P]>
+      : GetScalarType<T[P], AggregateCustomPackageHero[P]>
+  }
+
+
+
+
+  export type CustomPackageHeroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CustomPackageHeroWhereInput
+    orderBy?: CustomPackageHeroOrderByWithAggregationInput | CustomPackageHeroOrderByWithAggregationInput[]
+    by: CustomPackageHeroScalarFieldEnum[] | CustomPackageHeroScalarFieldEnum
+    having?: CustomPackageHeroScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CustomPackageHeroCountAggregateInputType | true
+    _min?: CustomPackageHeroMinAggregateInputType
+    _max?: CustomPackageHeroMaxAggregateInputType
+  }
+
+  export type CustomPackageHeroGroupByOutputType = {
+    id: string
+    title: string
+    subtitle: string
+    description: string
+    image: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CustomPackageHeroCountAggregateOutputType | null
+    _min: CustomPackageHeroMinAggregateOutputType | null
+    _max: CustomPackageHeroMaxAggregateOutputType | null
+  }
+
+  type GetCustomPackageHeroGroupByPayload<T extends CustomPackageHeroGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CustomPackageHeroGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CustomPackageHeroGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CustomPackageHeroGroupByOutputType[P]>
+            : GetScalarType<T[P], CustomPackageHeroGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CustomPackageHeroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["customPackageHero"]>
+
+  export type CustomPackageHeroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["customPackageHero"]>
+
+  export type CustomPackageHeroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["customPackageHero"]>
+
+  export type CustomPackageHeroSelectScalar = {
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    image?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CustomPackageHeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subtitle" | "description" | "image" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["customPackageHero"]>
+
+  export type $CustomPackageHeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CustomPackageHero"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      subtitle: string
+      description: string
+      image: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["customPackageHero"]>
+    composites: {}
+  }
+
+  type CustomPackageHeroGetPayload<S extends boolean | null | undefined | CustomPackageHeroDefaultArgs> = $Result.GetResult<Prisma.$CustomPackageHeroPayload, S>
+
+  type CustomPackageHeroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CustomPackageHeroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CustomPackageHeroCountAggregateInputType | true
+    }
+
+  export interface CustomPackageHeroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CustomPackageHero'], meta: { name: 'CustomPackageHero' } }
+    /**
+     * Find zero or one CustomPackageHero that matches the filter.
+     * @param {CustomPackageHeroFindUniqueArgs} args - Arguments to find a CustomPackageHero
+     * @example
+     * // Get one CustomPackageHero
+     * const customPackageHero = await prisma.customPackageHero.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CustomPackageHeroFindUniqueArgs>(args: SelectSubset<T, CustomPackageHeroFindUniqueArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CustomPackageHero that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CustomPackageHeroFindUniqueOrThrowArgs} args - Arguments to find a CustomPackageHero
+     * @example
+     * // Get one CustomPackageHero
+     * const customPackageHero = await prisma.customPackageHero.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CustomPackageHeroFindUniqueOrThrowArgs>(args: SelectSubset<T, CustomPackageHeroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomPackageHero that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageHeroFindFirstArgs} args - Arguments to find a CustomPackageHero
+     * @example
+     * // Get one CustomPackageHero
+     * const customPackageHero = await prisma.customPackageHero.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CustomPackageHeroFindFirstArgs>(args?: SelectSubset<T, CustomPackageHeroFindFirstArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomPackageHero that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageHeroFindFirstOrThrowArgs} args - Arguments to find a CustomPackageHero
+     * @example
+     * // Get one CustomPackageHero
+     * const customPackageHero = await prisma.customPackageHero.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CustomPackageHeroFindFirstOrThrowArgs>(args?: SelectSubset<T, CustomPackageHeroFindFirstOrThrowArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CustomPackageHeroes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageHeroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CustomPackageHeroes
+     * const customPackageHeroes = await prisma.customPackageHero.findMany()
+     * 
+     * // Get first 10 CustomPackageHeroes
+     * const customPackageHeroes = await prisma.customPackageHero.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const customPackageHeroWithIdOnly = await prisma.customPackageHero.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CustomPackageHeroFindManyArgs>(args?: SelectSubset<T, CustomPackageHeroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CustomPackageHero.
+     * @param {CustomPackageHeroCreateArgs} args - Arguments to create a CustomPackageHero.
+     * @example
+     * // Create one CustomPackageHero
+     * const CustomPackageHero = await prisma.customPackageHero.create({
+     *   data: {
+     *     // ... data to create a CustomPackageHero
+     *   }
+     * })
+     * 
+     */
+    create<T extends CustomPackageHeroCreateArgs>(args: SelectSubset<T, CustomPackageHeroCreateArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CustomPackageHeroes.
+     * @param {CustomPackageHeroCreateManyArgs} args - Arguments to create many CustomPackageHeroes.
+     * @example
+     * // Create many CustomPackageHeroes
+     * const customPackageHero = await prisma.customPackageHero.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CustomPackageHeroCreateManyArgs>(args?: SelectSubset<T, CustomPackageHeroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CustomPackageHeroes and returns the data saved in the database.
+     * @param {CustomPackageHeroCreateManyAndReturnArgs} args - Arguments to create many CustomPackageHeroes.
+     * @example
+     * // Create many CustomPackageHeroes
+     * const customPackageHero = await prisma.customPackageHero.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CustomPackageHeroes and only return the `id`
+     * const customPackageHeroWithIdOnly = await prisma.customPackageHero.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CustomPackageHeroCreateManyAndReturnArgs>(args?: SelectSubset<T, CustomPackageHeroCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CustomPackageHero.
+     * @param {CustomPackageHeroDeleteArgs} args - Arguments to delete one CustomPackageHero.
+     * @example
+     * // Delete one CustomPackageHero
+     * const CustomPackageHero = await prisma.customPackageHero.delete({
+     *   where: {
+     *     // ... filter to delete one CustomPackageHero
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CustomPackageHeroDeleteArgs>(args: SelectSubset<T, CustomPackageHeroDeleteArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CustomPackageHero.
+     * @param {CustomPackageHeroUpdateArgs} args - Arguments to update one CustomPackageHero.
+     * @example
+     * // Update one CustomPackageHero
+     * const customPackageHero = await prisma.customPackageHero.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CustomPackageHeroUpdateArgs>(args: SelectSubset<T, CustomPackageHeroUpdateArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CustomPackageHeroes.
+     * @param {CustomPackageHeroDeleteManyArgs} args - Arguments to filter CustomPackageHeroes to delete.
+     * @example
+     * // Delete a few CustomPackageHeroes
+     * const { count } = await prisma.customPackageHero.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CustomPackageHeroDeleteManyArgs>(args?: SelectSubset<T, CustomPackageHeroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CustomPackageHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageHeroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CustomPackageHeroes
+     * const customPackageHero = await prisma.customPackageHero.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CustomPackageHeroUpdateManyArgs>(args: SelectSubset<T, CustomPackageHeroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CustomPackageHeroes and returns the data updated in the database.
+     * @param {CustomPackageHeroUpdateManyAndReturnArgs} args - Arguments to update many CustomPackageHeroes.
+     * @example
+     * // Update many CustomPackageHeroes
+     * const customPackageHero = await prisma.customPackageHero.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CustomPackageHeroes and only return the `id`
+     * const customPackageHeroWithIdOnly = await prisma.customPackageHero.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CustomPackageHeroUpdateManyAndReturnArgs>(args: SelectSubset<T, CustomPackageHeroUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CustomPackageHero.
+     * @param {CustomPackageHeroUpsertArgs} args - Arguments to update or create a CustomPackageHero.
+     * @example
+     * // Update or create a CustomPackageHero
+     * const customPackageHero = await prisma.customPackageHero.upsert({
+     *   create: {
+     *     // ... data to create a CustomPackageHero
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CustomPackageHero we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CustomPackageHeroUpsertArgs>(args: SelectSubset<T, CustomPackageHeroUpsertArgs<ExtArgs>>): Prisma__CustomPackageHeroClient<$Result.GetResult<Prisma.$CustomPackageHeroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CustomPackageHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageHeroCountArgs} args - Arguments to filter CustomPackageHeroes to count.
+     * @example
+     * // Count the number of CustomPackageHeroes
+     * const count = await prisma.customPackageHero.count({
+     *   where: {
+     *     // ... the filter for the CustomPackageHeroes we want to count
+     *   }
+     * })
+    **/
+    count<T extends CustomPackageHeroCountArgs>(
+      args?: Subset<T, CustomPackageHeroCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CustomPackageHeroCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CustomPackageHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageHeroAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CustomPackageHeroAggregateArgs>(args: Subset<T, CustomPackageHeroAggregateArgs>): Prisma.PrismaPromise<GetCustomPackageHeroAggregateType<T>>
+
+    /**
+     * Group by CustomPackageHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageHeroGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CustomPackageHeroGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CustomPackageHeroGroupByArgs['orderBy'] }
+        : { orderBy?: CustomPackageHeroGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CustomPackageHeroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCustomPackageHeroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CustomPackageHero model
+   */
+  readonly fields: CustomPackageHeroFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CustomPackageHero.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CustomPackageHeroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CustomPackageHero model
+   */
+  interface CustomPackageHeroFieldRefs {
+    readonly id: FieldRef<"CustomPackageHero", 'String'>
+    readonly title: FieldRef<"CustomPackageHero", 'String'>
+    readonly subtitle: FieldRef<"CustomPackageHero", 'String'>
+    readonly description: FieldRef<"CustomPackageHero", 'String'>
+    readonly image: FieldRef<"CustomPackageHero", 'String'>
+    readonly status: FieldRef<"CustomPackageHero", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"CustomPackageHero", 'DateTime'>
+    readonly createdAt: FieldRef<"CustomPackageHero", 'DateTime'>
+    readonly updatedAt: FieldRef<"CustomPackageHero", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CustomPackageHero findUnique
+   */
+  export type CustomPackageHeroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageHero to fetch.
+     */
+    where: CustomPackageHeroWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageHero findUniqueOrThrow
+   */
+  export type CustomPackageHeroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageHero to fetch.
+     */
+    where: CustomPackageHeroWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageHero findFirst
+   */
+  export type CustomPackageHeroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageHero to fetch.
+     */
+    where?: CustomPackageHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageHeroes to fetch.
+     */
+    orderBy?: CustomPackageHeroOrderByWithRelationInput | CustomPackageHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomPackageHeroes.
+     */
+    cursor?: CustomPackageHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomPackageHeroes.
+     */
+    distinct?: CustomPackageHeroScalarFieldEnum | CustomPackageHeroScalarFieldEnum[]
+  }
+
+  /**
+   * CustomPackageHero findFirstOrThrow
+   */
+  export type CustomPackageHeroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageHero to fetch.
+     */
+    where?: CustomPackageHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageHeroes to fetch.
+     */
+    orderBy?: CustomPackageHeroOrderByWithRelationInput | CustomPackageHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomPackageHeroes.
+     */
+    cursor?: CustomPackageHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomPackageHeroes.
+     */
+    distinct?: CustomPackageHeroScalarFieldEnum | CustomPackageHeroScalarFieldEnum[]
+  }
+
+  /**
+   * CustomPackageHero findMany
+   */
+  export type CustomPackageHeroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageHeroes to fetch.
+     */
+    where?: CustomPackageHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageHeroes to fetch.
+     */
+    orderBy?: CustomPackageHeroOrderByWithRelationInput | CustomPackageHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CustomPackageHeroes.
+     */
+    cursor?: CustomPackageHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageHeroes.
+     */
+    skip?: number
+    distinct?: CustomPackageHeroScalarFieldEnum | CustomPackageHeroScalarFieldEnum[]
+  }
+
+  /**
+   * CustomPackageHero create
+   */
+  export type CustomPackageHeroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CustomPackageHero.
+     */
+    data: XOR<CustomPackageHeroCreateInput, CustomPackageHeroUncheckedCreateInput>
+  }
+
+  /**
+   * CustomPackageHero createMany
+   */
+  export type CustomPackageHeroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CustomPackageHeroes.
+     */
+    data: CustomPackageHeroCreateManyInput | CustomPackageHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CustomPackageHero createManyAndReturn
+   */
+  export type CustomPackageHeroCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * The data used to create many CustomPackageHeroes.
+     */
+    data: CustomPackageHeroCreateManyInput | CustomPackageHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CustomPackageHero update
+   */
+  export type CustomPackageHeroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CustomPackageHero.
+     */
+    data: XOR<CustomPackageHeroUpdateInput, CustomPackageHeroUncheckedUpdateInput>
+    /**
+     * Choose, which CustomPackageHero to update.
+     */
+    where: CustomPackageHeroWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageHero updateMany
+   */
+  export type CustomPackageHeroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CustomPackageHeroes.
+     */
+    data: XOR<CustomPackageHeroUpdateManyMutationInput, CustomPackageHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which CustomPackageHeroes to update
+     */
+    where?: CustomPackageHeroWhereInput
+    /**
+     * Limit how many CustomPackageHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomPackageHero updateManyAndReturn
+   */
+  export type CustomPackageHeroUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * The data used to update CustomPackageHeroes.
+     */
+    data: XOR<CustomPackageHeroUpdateManyMutationInput, CustomPackageHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which CustomPackageHeroes to update
+     */
+    where?: CustomPackageHeroWhereInput
+    /**
+     * Limit how many CustomPackageHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomPackageHero upsert
+   */
+  export type CustomPackageHeroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CustomPackageHero to update in case it exists.
+     */
+    where: CustomPackageHeroWhereUniqueInput
+    /**
+     * In case the CustomPackageHero found by the `where` argument doesn't exist, create a new CustomPackageHero with this data.
+     */
+    create: XOR<CustomPackageHeroCreateInput, CustomPackageHeroUncheckedCreateInput>
+    /**
+     * In case the CustomPackageHero was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CustomPackageHeroUpdateInput, CustomPackageHeroUncheckedUpdateInput>
+  }
+
+  /**
+   * CustomPackageHero delete
+   */
+  export type CustomPackageHeroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+    /**
+     * Filter which CustomPackageHero to delete.
+     */
+    where: CustomPackageHeroWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageHero deleteMany
+   */
+  export type CustomPackageHeroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomPackageHeroes to delete
+     */
+    where?: CustomPackageHeroWhereInput
+    /**
+     * Limit how many CustomPackageHeroes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomPackageHero without action
+   */
+  export type CustomPackageHeroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageHero
+     */
+    select?: CustomPackageHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageHero
+     */
+    omit?: CustomPackageHeroOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CustomPackageContent
+   */
+
+  export type AggregateCustomPackageContent = {
+    _count: CustomPackageContentCountAggregateOutputType | null
+    _min: CustomPackageContentMinAggregateOutputType | null
+    _max: CustomPackageContentMaxAggregateOutputType | null
+  }
+
+  export type CustomPackageContentMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CustomPackageContentMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    status: $Enums.ContentStatus | null
+    publishedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CustomPackageContentCountAggregateOutputType = {
+    id: number
+    title: number
+    subtitle: number
+    description: number
+    status: number
+    publishedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CustomPackageContentMinAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CustomPackageContentMaxAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CustomPackageContentCountAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    status?: true
+    publishedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CustomPackageContentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomPackageContent to aggregate.
+     */
+    where?: CustomPackageContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageContents to fetch.
+     */
+    orderBy?: CustomPackageContentOrderByWithRelationInput | CustomPackageContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CustomPackageContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CustomPackageContents
+    **/
+    _count?: true | CustomPackageContentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CustomPackageContentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CustomPackageContentMaxAggregateInputType
+  }
+
+  export type GetCustomPackageContentAggregateType<T extends CustomPackageContentAggregateArgs> = {
+        [P in keyof T & keyof AggregateCustomPackageContent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCustomPackageContent[P]>
+      : GetScalarType<T[P], AggregateCustomPackageContent[P]>
+  }
+
+
+
+
+  export type CustomPackageContentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CustomPackageContentWhereInput
+    orderBy?: CustomPackageContentOrderByWithAggregationInput | CustomPackageContentOrderByWithAggregationInput[]
+    by: CustomPackageContentScalarFieldEnum[] | CustomPackageContentScalarFieldEnum
+    having?: CustomPackageContentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CustomPackageContentCountAggregateInputType | true
+    _min?: CustomPackageContentMinAggregateInputType
+    _max?: CustomPackageContentMaxAggregateInputType
+  }
+
+  export type CustomPackageContentGroupByOutputType = {
+    id: string
+    title: string
+    subtitle: string
+    description: string
+    status: $Enums.ContentStatus
+    publishedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CustomPackageContentCountAggregateOutputType | null
+    _min: CustomPackageContentMinAggregateOutputType | null
+    _max: CustomPackageContentMaxAggregateOutputType | null
+  }
+
+  type GetCustomPackageContentGroupByPayload<T extends CustomPackageContentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CustomPackageContentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CustomPackageContentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CustomPackageContentGroupByOutputType[P]>
+            : GetScalarType<T[P], CustomPackageContentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CustomPackageContentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["customPackageContent"]>
+
+  export type CustomPackageContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["customPackageContent"]>
+
+  export type CustomPackageContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["customPackageContent"]>
+
+  export type CustomPackageContentSelectScalar = {
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    status?: boolean
+    publishedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CustomPackageContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "subtitle" | "description" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["customPackageContent"]>
+
+  export type $CustomPackageContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CustomPackageContent"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      subtitle: string
+      description: string
+      status: $Enums.ContentStatus
+      publishedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["customPackageContent"]>
+    composites: {}
+  }
+
+  type CustomPackageContentGetPayload<S extends boolean | null | undefined | CustomPackageContentDefaultArgs> = $Result.GetResult<Prisma.$CustomPackageContentPayload, S>
+
+  type CustomPackageContentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CustomPackageContentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CustomPackageContentCountAggregateInputType | true
+    }
+
+  export interface CustomPackageContentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CustomPackageContent'], meta: { name: 'CustomPackageContent' } }
+    /**
+     * Find zero or one CustomPackageContent that matches the filter.
+     * @param {CustomPackageContentFindUniqueArgs} args - Arguments to find a CustomPackageContent
+     * @example
+     * // Get one CustomPackageContent
+     * const customPackageContent = await prisma.customPackageContent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CustomPackageContentFindUniqueArgs>(args: SelectSubset<T, CustomPackageContentFindUniqueArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CustomPackageContent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CustomPackageContentFindUniqueOrThrowArgs} args - Arguments to find a CustomPackageContent
+     * @example
+     * // Get one CustomPackageContent
+     * const customPackageContent = await prisma.customPackageContent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CustomPackageContentFindUniqueOrThrowArgs>(args: SelectSubset<T, CustomPackageContentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomPackageContent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageContentFindFirstArgs} args - Arguments to find a CustomPackageContent
+     * @example
+     * // Get one CustomPackageContent
+     * const customPackageContent = await prisma.customPackageContent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CustomPackageContentFindFirstArgs>(args?: SelectSubset<T, CustomPackageContentFindFirstArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CustomPackageContent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageContentFindFirstOrThrowArgs} args - Arguments to find a CustomPackageContent
+     * @example
+     * // Get one CustomPackageContent
+     * const customPackageContent = await prisma.customPackageContent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CustomPackageContentFindFirstOrThrowArgs>(args?: SelectSubset<T, CustomPackageContentFindFirstOrThrowArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CustomPackageContents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageContentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CustomPackageContents
+     * const customPackageContents = await prisma.customPackageContent.findMany()
+     * 
+     * // Get first 10 CustomPackageContents
+     * const customPackageContents = await prisma.customPackageContent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const customPackageContentWithIdOnly = await prisma.customPackageContent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CustomPackageContentFindManyArgs>(args?: SelectSubset<T, CustomPackageContentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CustomPackageContent.
+     * @param {CustomPackageContentCreateArgs} args - Arguments to create a CustomPackageContent.
+     * @example
+     * // Create one CustomPackageContent
+     * const CustomPackageContent = await prisma.customPackageContent.create({
+     *   data: {
+     *     // ... data to create a CustomPackageContent
+     *   }
+     * })
+     * 
+     */
+    create<T extends CustomPackageContentCreateArgs>(args: SelectSubset<T, CustomPackageContentCreateArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CustomPackageContents.
+     * @param {CustomPackageContentCreateManyArgs} args - Arguments to create many CustomPackageContents.
+     * @example
+     * // Create many CustomPackageContents
+     * const customPackageContent = await prisma.customPackageContent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CustomPackageContentCreateManyArgs>(args?: SelectSubset<T, CustomPackageContentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CustomPackageContents and returns the data saved in the database.
+     * @param {CustomPackageContentCreateManyAndReturnArgs} args - Arguments to create many CustomPackageContents.
+     * @example
+     * // Create many CustomPackageContents
+     * const customPackageContent = await prisma.customPackageContent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CustomPackageContents and only return the `id`
+     * const customPackageContentWithIdOnly = await prisma.customPackageContent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CustomPackageContentCreateManyAndReturnArgs>(args?: SelectSubset<T, CustomPackageContentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CustomPackageContent.
+     * @param {CustomPackageContentDeleteArgs} args - Arguments to delete one CustomPackageContent.
+     * @example
+     * // Delete one CustomPackageContent
+     * const CustomPackageContent = await prisma.customPackageContent.delete({
+     *   where: {
+     *     // ... filter to delete one CustomPackageContent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CustomPackageContentDeleteArgs>(args: SelectSubset<T, CustomPackageContentDeleteArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CustomPackageContent.
+     * @param {CustomPackageContentUpdateArgs} args - Arguments to update one CustomPackageContent.
+     * @example
+     * // Update one CustomPackageContent
+     * const customPackageContent = await prisma.customPackageContent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CustomPackageContentUpdateArgs>(args: SelectSubset<T, CustomPackageContentUpdateArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CustomPackageContents.
+     * @param {CustomPackageContentDeleteManyArgs} args - Arguments to filter CustomPackageContents to delete.
+     * @example
+     * // Delete a few CustomPackageContents
+     * const { count } = await prisma.customPackageContent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CustomPackageContentDeleteManyArgs>(args?: SelectSubset<T, CustomPackageContentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CustomPackageContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageContentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CustomPackageContents
+     * const customPackageContent = await prisma.customPackageContent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CustomPackageContentUpdateManyArgs>(args: SelectSubset<T, CustomPackageContentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CustomPackageContents and returns the data updated in the database.
+     * @param {CustomPackageContentUpdateManyAndReturnArgs} args - Arguments to update many CustomPackageContents.
+     * @example
+     * // Update many CustomPackageContents
+     * const customPackageContent = await prisma.customPackageContent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CustomPackageContents and only return the `id`
+     * const customPackageContentWithIdOnly = await prisma.customPackageContent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CustomPackageContentUpdateManyAndReturnArgs>(args: SelectSubset<T, CustomPackageContentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CustomPackageContent.
+     * @param {CustomPackageContentUpsertArgs} args - Arguments to update or create a CustomPackageContent.
+     * @example
+     * // Update or create a CustomPackageContent
+     * const customPackageContent = await prisma.customPackageContent.upsert({
+     *   create: {
+     *     // ... data to create a CustomPackageContent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CustomPackageContent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CustomPackageContentUpsertArgs>(args: SelectSubset<T, CustomPackageContentUpsertArgs<ExtArgs>>): Prisma__CustomPackageContentClient<$Result.GetResult<Prisma.$CustomPackageContentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CustomPackageContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageContentCountArgs} args - Arguments to filter CustomPackageContents to count.
+     * @example
+     * // Count the number of CustomPackageContents
+     * const count = await prisma.customPackageContent.count({
+     *   where: {
+     *     // ... the filter for the CustomPackageContents we want to count
+     *   }
+     * })
+    **/
+    count<T extends CustomPackageContentCountArgs>(
+      args?: Subset<T, CustomPackageContentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CustomPackageContentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CustomPackageContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageContentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CustomPackageContentAggregateArgs>(args: Subset<T, CustomPackageContentAggregateArgs>): Prisma.PrismaPromise<GetCustomPackageContentAggregateType<T>>
+
+    /**
+     * Group by CustomPackageContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CustomPackageContentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CustomPackageContentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CustomPackageContentGroupByArgs['orderBy'] }
+        : { orderBy?: CustomPackageContentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CustomPackageContentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCustomPackageContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CustomPackageContent model
+   */
+  readonly fields: CustomPackageContentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CustomPackageContent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CustomPackageContentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CustomPackageContent model
+   */
+  interface CustomPackageContentFieldRefs {
+    readonly id: FieldRef<"CustomPackageContent", 'String'>
+    readonly title: FieldRef<"CustomPackageContent", 'String'>
+    readonly subtitle: FieldRef<"CustomPackageContent", 'String'>
+    readonly description: FieldRef<"CustomPackageContent", 'String'>
+    readonly status: FieldRef<"CustomPackageContent", 'ContentStatus'>
+    readonly publishedAt: FieldRef<"CustomPackageContent", 'DateTime'>
+    readonly createdAt: FieldRef<"CustomPackageContent", 'DateTime'>
+    readonly updatedAt: FieldRef<"CustomPackageContent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CustomPackageContent findUnique
+   */
+  export type CustomPackageContentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageContent to fetch.
+     */
+    where: CustomPackageContentWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageContent findUniqueOrThrow
+   */
+  export type CustomPackageContentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageContent to fetch.
+     */
+    where: CustomPackageContentWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageContent findFirst
+   */
+  export type CustomPackageContentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageContent to fetch.
+     */
+    where?: CustomPackageContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageContents to fetch.
+     */
+    orderBy?: CustomPackageContentOrderByWithRelationInput | CustomPackageContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomPackageContents.
+     */
+    cursor?: CustomPackageContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomPackageContents.
+     */
+    distinct?: CustomPackageContentScalarFieldEnum | CustomPackageContentScalarFieldEnum[]
+  }
+
+  /**
+   * CustomPackageContent findFirstOrThrow
+   */
+  export type CustomPackageContentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageContent to fetch.
+     */
+    where?: CustomPackageContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageContents to fetch.
+     */
+    orderBy?: CustomPackageContentOrderByWithRelationInput | CustomPackageContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CustomPackageContents.
+     */
+    cursor?: CustomPackageContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CustomPackageContents.
+     */
+    distinct?: CustomPackageContentScalarFieldEnum | CustomPackageContentScalarFieldEnum[]
+  }
+
+  /**
+   * CustomPackageContent findMany
+   */
+  export type CustomPackageContentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * Filter, which CustomPackageContents to fetch.
+     */
+    where?: CustomPackageContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CustomPackageContents to fetch.
+     */
+    orderBy?: CustomPackageContentOrderByWithRelationInput | CustomPackageContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CustomPackageContents.
+     */
+    cursor?: CustomPackageContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CustomPackageContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CustomPackageContents.
+     */
+    skip?: number
+    distinct?: CustomPackageContentScalarFieldEnum | CustomPackageContentScalarFieldEnum[]
+  }
+
+  /**
+   * CustomPackageContent create
+   */
+  export type CustomPackageContentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CustomPackageContent.
+     */
+    data: XOR<CustomPackageContentCreateInput, CustomPackageContentUncheckedCreateInput>
+  }
+
+  /**
+   * CustomPackageContent createMany
+   */
+  export type CustomPackageContentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CustomPackageContents.
+     */
+    data: CustomPackageContentCreateManyInput | CustomPackageContentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CustomPackageContent createManyAndReturn
+   */
+  export type CustomPackageContentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * The data used to create many CustomPackageContents.
+     */
+    data: CustomPackageContentCreateManyInput | CustomPackageContentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CustomPackageContent update
+   */
+  export type CustomPackageContentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CustomPackageContent.
+     */
+    data: XOR<CustomPackageContentUpdateInput, CustomPackageContentUncheckedUpdateInput>
+    /**
+     * Choose, which CustomPackageContent to update.
+     */
+    where: CustomPackageContentWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageContent updateMany
+   */
+  export type CustomPackageContentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CustomPackageContents.
+     */
+    data: XOR<CustomPackageContentUpdateManyMutationInput, CustomPackageContentUncheckedUpdateManyInput>
+    /**
+     * Filter which CustomPackageContents to update
+     */
+    where?: CustomPackageContentWhereInput
+    /**
+     * Limit how many CustomPackageContents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomPackageContent updateManyAndReturn
+   */
+  export type CustomPackageContentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * The data used to update CustomPackageContents.
+     */
+    data: XOR<CustomPackageContentUpdateManyMutationInput, CustomPackageContentUncheckedUpdateManyInput>
+    /**
+     * Filter which CustomPackageContents to update
+     */
+    where?: CustomPackageContentWhereInput
+    /**
+     * Limit how many CustomPackageContents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomPackageContent upsert
+   */
+  export type CustomPackageContentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CustomPackageContent to update in case it exists.
+     */
+    where: CustomPackageContentWhereUniqueInput
+    /**
+     * In case the CustomPackageContent found by the `where` argument doesn't exist, create a new CustomPackageContent with this data.
+     */
+    create: XOR<CustomPackageContentCreateInput, CustomPackageContentUncheckedCreateInput>
+    /**
+     * In case the CustomPackageContent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CustomPackageContentUpdateInput, CustomPackageContentUncheckedUpdateInput>
+  }
+
+  /**
+   * CustomPackageContent delete
+   */
+  export type CustomPackageContentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+    /**
+     * Filter which CustomPackageContent to delete.
+     */
+    where: CustomPackageContentWhereUniqueInput
+  }
+
+  /**
+   * CustomPackageContent deleteMany
+   */
+  export type CustomPackageContentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CustomPackageContents to delete
+     */
+    where?: CustomPackageContentWhereInput
+    /**
+     * Limit how many CustomPackageContents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CustomPackageContent without action
+   */
+  export type CustomPackageContentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CustomPackageContent
+     */
+    select?: CustomPackageContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CustomPackageContent
+     */
+    omit?: CustomPackageContentOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -48809,6 +53332,19 @@ export namespace Prisma {
   export type ContactResourceScalarFieldEnum = (typeof ContactResourceScalarFieldEnum)[keyof typeof ContactResourceScalarFieldEnum]
 
 
+  export const BookingConfirmationMainHeroScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    subtitle: 'subtitle',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookingConfirmationMainHeroScalarFieldEnum = (typeof BookingConfirmationMainHeroScalarFieldEnum)[keyof typeof BookingConfirmationMainHeroScalarFieldEnum]
+
+
   export const BookingConfirmationHeroScalarFieldEnum: {
     id: 'id',
     title: 'title',
@@ -48856,6 +53392,23 @@ export namespace Prisma {
   };
 
   export type BookingConfirmationContactScalarFieldEnum = (typeof BookingConfirmationContactScalarFieldEnum)[keyof typeof BookingConfirmationContactScalarFieldEnum]
+
+
+  export const BookingConfirmationNextStepsScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    emailStep: 'emailStep',
+    paymentStep: 'paymentStep',
+    contactStep: 'contactStep',
+    confirmStep: 'confirmStep',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookingConfirmationNextStepsScalarFieldEnum = (typeof BookingConfirmationNextStepsScalarFieldEnum)[keyof typeof BookingConfirmationNextStepsScalarFieldEnum]
 
 
   export const BookingConfirmationSecurityScalarFieldEnum: {
@@ -48906,6 +53459,35 @@ export namespace Prisma {
   };
 
   export type EmailTemplateScalarFieldEnum = (typeof EmailTemplateScalarFieldEnum)[keyof typeof EmailTemplateScalarFieldEnum]
+
+
+  export const CustomPackageHeroScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    image: 'image',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CustomPackageHeroScalarFieldEnum = (typeof CustomPackageHeroScalarFieldEnum)[keyof typeof CustomPackageHeroScalarFieldEnum]
+
+
+  export const CustomPackageContentScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    status: 'status',
+    publishedAt: 'publishedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CustomPackageContentScalarFieldEnum = (typeof CustomPackageContentScalarFieldEnum)[keyof typeof CustomPackageContentScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -52115,6 +56697,68 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"ContactResource"> | Date | string
   }
 
+  export type BookingConfirmationMainHeroWhereInput = {
+    AND?: BookingConfirmationMainHeroWhereInput | BookingConfirmationMainHeroWhereInput[]
+    OR?: BookingConfirmationMainHeroWhereInput[]
+    NOT?: BookingConfirmationMainHeroWhereInput | BookingConfirmationMainHeroWhereInput[]
+    id?: StringFilter<"BookingConfirmationMainHero"> | string
+    title?: StringFilter<"BookingConfirmationMainHero"> | string
+    subtitle?: StringFilter<"BookingConfirmationMainHero"> | string
+    status?: EnumContentStatusFilter<"BookingConfirmationMainHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationMainHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationMainHero"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationMainHero"> | Date | string
+  }
+
+  export type BookingConfirmationMainHeroOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationMainHeroWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookingConfirmationMainHeroWhereInput | BookingConfirmationMainHeroWhereInput[]
+    OR?: BookingConfirmationMainHeroWhereInput[]
+    NOT?: BookingConfirmationMainHeroWhereInput | BookingConfirmationMainHeroWhereInput[]
+    title?: StringFilter<"BookingConfirmationMainHero"> | string
+    subtitle?: StringFilter<"BookingConfirmationMainHero"> | string
+    status?: EnumContentStatusFilter<"BookingConfirmationMainHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationMainHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationMainHero"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationMainHero"> | Date | string
+  }, "id">
+
+  export type BookingConfirmationMainHeroOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookingConfirmationMainHeroCountOrderByAggregateInput
+    _max?: BookingConfirmationMainHeroMaxOrderByAggregateInput
+    _min?: BookingConfirmationMainHeroMinOrderByAggregateInput
+  }
+
+  export type BookingConfirmationMainHeroScalarWhereWithAggregatesInput = {
+    AND?: BookingConfirmationMainHeroScalarWhereWithAggregatesInput | BookingConfirmationMainHeroScalarWhereWithAggregatesInput[]
+    OR?: BookingConfirmationMainHeroScalarWhereWithAggregatesInput[]
+    NOT?: BookingConfirmationMainHeroScalarWhereWithAggregatesInput | BookingConfirmationMainHeroScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookingConfirmationMainHero"> | string
+    title?: StringWithAggregatesFilter<"BookingConfirmationMainHero"> | string
+    subtitle?: StringWithAggregatesFilter<"BookingConfirmationMainHero"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"BookingConfirmationMainHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"BookingConfirmationMainHero"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationMainHero"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationMainHero"> | Date | string
+  }
+
   export type BookingConfirmationHeroWhereInput = {
     AND?: BookingConfirmationHeroWhereInput | BookingConfirmationHeroWhereInput[]
     OR?: BookingConfirmationHeroWhereInput[]
@@ -52351,6 +56995,88 @@ export namespace Prisma {
     publishedAt?: DateTimeNullableWithAggregatesFilter<"BookingConfirmationContact"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationContact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationContact"> | Date | string
+  }
+
+  export type BookingConfirmationNextStepsWhereInput = {
+    AND?: BookingConfirmationNextStepsWhereInput | BookingConfirmationNextStepsWhereInput[]
+    OR?: BookingConfirmationNextStepsWhereInput[]
+    NOT?: BookingConfirmationNextStepsWhereInput | BookingConfirmationNextStepsWhereInput[]
+    id?: StringFilter<"BookingConfirmationNextSteps"> | string
+    title?: StringFilter<"BookingConfirmationNextSteps"> | string
+    description?: StringFilter<"BookingConfirmationNextSteps"> | string
+    emailStep?: JsonFilter<"BookingConfirmationNextSteps">
+    paymentStep?: JsonFilter<"BookingConfirmationNextSteps">
+    contactStep?: JsonFilter<"BookingConfirmationNextSteps">
+    confirmStep?: JsonFilter<"BookingConfirmationNextSteps">
+    status?: EnumContentStatusFilter<"BookingConfirmationNextSteps"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationNextSteps"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationNextSteps"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationNextSteps"> | Date | string
+  }
+
+  export type BookingConfirmationNextStepsOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    emailStep?: SortOrder
+    paymentStep?: SortOrder
+    contactStep?: SortOrder
+    confirmStep?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationNextStepsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookingConfirmationNextStepsWhereInput | BookingConfirmationNextStepsWhereInput[]
+    OR?: BookingConfirmationNextStepsWhereInput[]
+    NOT?: BookingConfirmationNextStepsWhereInput | BookingConfirmationNextStepsWhereInput[]
+    title?: StringFilter<"BookingConfirmationNextSteps"> | string
+    description?: StringFilter<"BookingConfirmationNextSteps"> | string
+    emailStep?: JsonFilter<"BookingConfirmationNextSteps">
+    paymentStep?: JsonFilter<"BookingConfirmationNextSteps">
+    contactStep?: JsonFilter<"BookingConfirmationNextSteps">
+    confirmStep?: JsonFilter<"BookingConfirmationNextSteps">
+    status?: EnumContentStatusFilter<"BookingConfirmationNextSteps"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"BookingConfirmationNextSteps"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookingConfirmationNextSteps"> | Date | string
+    updatedAt?: DateTimeFilter<"BookingConfirmationNextSteps"> | Date | string
+  }, "id">
+
+  export type BookingConfirmationNextStepsOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    emailStep?: SortOrder
+    paymentStep?: SortOrder
+    contactStep?: SortOrder
+    confirmStep?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookingConfirmationNextStepsCountOrderByAggregateInput
+    _max?: BookingConfirmationNextStepsMaxOrderByAggregateInput
+    _min?: BookingConfirmationNextStepsMinOrderByAggregateInput
+  }
+
+  export type BookingConfirmationNextStepsScalarWhereWithAggregatesInput = {
+    AND?: BookingConfirmationNextStepsScalarWhereWithAggregatesInput | BookingConfirmationNextStepsScalarWhereWithAggregatesInput[]
+    OR?: BookingConfirmationNextStepsScalarWhereWithAggregatesInput[]
+    NOT?: BookingConfirmationNextStepsScalarWhereWithAggregatesInput | BookingConfirmationNextStepsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookingConfirmationNextSteps"> | string
+    title?: StringWithAggregatesFilter<"BookingConfirmationNextSteps"> | string
+    description?: StringWithAggregatesFilter<"BookingConfirmationNextSteps"> | string
+    emailStep?: JsonWithAggregatesFilter<"BookingConfirmationNextSteps">
+    paymentStep?: JsonWithAggregatesFilter<"BookingConfirmationNextSteps">
+    contactStep?: JsonWithAggregatesFilter<"BookingConfirmationNextSteps">
+    confirmStep?: JsonWithAggregatesFilter<"BookingConfirmationNextSteps">
+    status?: EnumContentStatusWithAggregatesFilter<"BookingConfirmationNextSteps"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"BookingConfirmationNextSteps"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BookingConfirmationNextSteps"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookingConfirmationNextSteps"> | Date | string
   }
 
   export type BookingConfirmationSecurityWhereInput = {
@@ -52596,6 +57322,145 @@ export namespace Prisma {
     active?: BoolWithAggregatesFilter<"EmailTemplate"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"EmailTemplate"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EmailTemplate"> | Date | string
+  }
+
+  export type CustomPackageHeroWhereInput = {
+    AND?: CustomPackageHeroWhereInput | CustomPackageHeroWhereInput[]
+    OR?: CustomPackageHeroWhereInput[]
+    NOT?: CustomPackageHeroWhereInput | CustomPackageHeroWhereInput[]
+    id?: StringFilter<"CustomPackageHero"> | string
+    title?: StringFilter<"CustomPackageHero"> | string
+    subtitle?: StringFilter<"CustomPackageHero"> | string
+    description?: StringFilter<"CustomPackageHero"> | string
+    image?: StringFilter<"CustomPackageHero"> | string
+    status?: EnumContentStatusFilter<"CustomPackageHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"CustomPackageHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"CustomPackageHero"> | Date | string
+    updatedAt?: DateTimeFilter<"CustomPackageHero"> | Date | string
+  }
+
+  export type CustomPackageHeroOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageHeroWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CustomPackageHeroWhereInput | CustomPackageHeroWhereInput[]
+    OR?: CustomPackageHeroWhereInput[]
+    NOT?: CustomPackageHeroWhereInput | CustomPackageHeroWhereInput[]
+    title?: StringFilter<"CustomPackageHero"> | string
+    subtitle?: StringFilter<"CustomPackageHero"> | string
+    description?: StringFilter<"CustomPackageHero"> | string
+    image?: StringFilter<"CustomPackageHero"> | string
+    status?: EnumContentStatusFilter<"CustomPackageHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"CustomPackageHero"> | Date | string | null
+    createdAt?: DateTimeFilter<"CustomPackageHero"> | Date | string
+    updatedAt?: DateTimeFilter<"CustomPackageHero"> | Date | string
+  }, "id">
+
+  export type CustomPackageHeroOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CustomPackageHeroCountOrderByAggregateInput
+    _max?: CustomPackageHeroMaxOrderByAggregateInput
+    _min?: CustomPackageHeroMinOrderByAggregateInput
+  }
+
+  export type CustomPackageHeroScalarWhereWithAggregatesInput = {
+    AND?: CustomPackageHeroScalarWhereWithAggregatesInput | CustomPackageHeroScalarWhereWithAggregatesInput[]
+    OR?: CustomPackageHeroScalarWhereWithAggregatesInput[]
+    NOT?: CustomPackageHeroScalarWhereWithAggregatesInput | CustomPackageHeroScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CustomPackageHero"> | string
+    title?: StringWithAggregatesFilter<"CustomPackageHero"> | string
+    subtitle?: StringWithAggregatesFilter<"CustomPackageHero"> | string
+    description?: StringWithAggregatesFilter<"CustomPackageHero"> | string
+    image?: StringWithAggregatesFilter<"CustomPackageHero"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"CustomPackageHero"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"CustomPackageHero"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CustomPackageHero"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CustomPackageHero"> | Date | string
+  }
+
+  export type CustomPackageContentWhereInput = {
+    AND?: CustomPackageContentWhereInput | CustomPackageContentWhereInput[]
+    OR?: CustomPackageContentWhereInput[]
+    NOT?: CustomPackageContentWhereInput | CustomPackageContentWhereInput[]
+    id?: StringFilter<"CustomPackageContent"> | string
+    title?: StringFilter<"CustomPackageContent"> | string
+    subtitle?: StringFilter<"CustomPackageContent"> | string
+    description?: StringFilter<"CustomPackageContent"> | string
+    status?: EnumContentStatusFilter<"CustomPackageContent"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"CustomPackageContent"> | Date | string | null
+    createdAt?: DateTimeFilter<"CustomPackageContent"> | Date | string
+    updatedAt?: DateTimeFilter<"CustomPackageContent"> | Date | string
+  }
+
+  export type CustomPackageContentOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageContentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CustomPackageContentWhereInput | CustomPackageContentWhereInput[]
+    OR?: CustomPackageContentWhereInput[]
+    NOT?: CustomPackageContentWhereInput | CustomPackageContentWhereInput[]
+    title?: StringFilter<"CustomPackageContent"> | string
+    subtitle?: StringFilter<"CustomPackageContent"> | string
+    description?: StringFilter<"CustomPackageContent"> | string
+    status?: EnumContentStatusFilter<"CustomPackageContent"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableFilter<"CustomPackageContent"> | Date | string | null
+    createdAt?: DateTimeFilter<"CustomPackageContent"> | Date | string
+    updatedAt?: DateTimeFilter<"CustomPackageContent"> | Date | string
+  }, "id">
+
+  export type CustomPackageContentOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CustomPackageContentCountOrderByAggregateInput
+    _max?: CustomPackageContentMaxOrderByAggregateInput
+    _min?: CustomPackageContentMinOrderByAggregateInput
+  }
+
+  export type CustomPackageContentScalarWhereWithAggregatesInput = {
+    AND?: CustomPackageContentScalarWhereWithAggregatesInput | CustomPackageContentScalarWhereWithAggregatesInput[]
+    OR?: CustomPackageContentScalarWhereWithAggregatesInput[]
+    NOT?: CustomPackageContentScalarWhereWithAggregatesInput | CustomPackageContentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CustomPackageContent"> | string
+    title?: StringWithAggregatesFilter<"CustomPackageContent"> | string
+    subtitle?: StringWithAggregatesFilter<"CustomPackageContent"> | string
+    description?: StringWithAggregatesFilter<"CustomPackageContent"> | string
+    status?: EnumContentStatusWithAggregatesFilter<"CustomPackageContent"> | $Enums.ContentStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"CustomPackageContent"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CustomPackageContent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CustomPackageContent"> | Date | string
   }
 
   export type DestinationCreateInput = {
@@ -56053,6 +60918,76 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BookingConfirmationMainHeroCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationMainHeroUncheckedCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationMainHeroUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationMainHeroUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationMainHeroCreateManyInput = {
+    id?: string
+    title: string
+    subtitle: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationMainHeroUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationMainHeroUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type BookingConfirmationHeroCreateInput = {
     id?: string
     title: string
@@ -56327,6 +61262,104 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
     responseTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationNextStepsCreateInput = {
+    id?: string
+    title: string
+    description: string
+    emailStep: JsonNullValueInput | InputJsonValue
+    paymentStep: JsonNullValueInput | InputJsonValue
+    contactStep: JsonNullValueInput | InputJsonValue
+    confirmStep: JsonNullValueInput | InputJsonValue
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationNextStepsUncheckedCreateInput = {
+    id?: string
+    title: string
+    description: string
+    emailStep: JsonNullValueInput | InputJsonValue
+    paymentStep: JsonNullValueInput | InputJsonValue
+    contactStep: JsonNullValueInput | InputJsonValue
+    confirmStep: JsonNullValueInput | InputJsonValue
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationNextStepsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    emailStep?: JsonNullValueInput | InputJsonValue
+    paymentStep?: JsonNullValueInput | InputJsonValue
+    contactStep?: JsonNullValueInput | InputJsonValue
+    confirmStep?: JsonNullValueInput | InputJsonValue
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationNextStepsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    emailStep?: JsonNullValueInput | InputJsonValue
+    paymentStep?: JsonNullValueInput | InputJsonValue
+    contactStep?: JsonNullValueInput | InputJsonValue
+    confirmStep?: JsonNullValueInput | InputJsonValue
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationNextStepsCreateManyInput = {
+    id?: string
+    title: string
+    description: string
+    emailStep: JsonNullValueInput | InputJsonValue
+    paymentStep: JsonNullValueInput | InputJsonValue
+    contactStep: JsonNullValueInput | InputJsonValue
+    confirmStep: JsonNullValueInput | InputJsonValue
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookingConfirmationNextStepsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    emailStep?: JsonNullValueInput | InputJsonValue
+    paymentStep?: JsonNullValueInput | InputJsonValue
+    contactStep?: JsonNullValueInput | InputJsonValue
+    confirmStep?: JsonNullValueInput | InputJsonValue
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingConfirmationNextStepsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    emailStep?: JsonNullValueInput | InputJsonValue
+    paymentStep?: JsonNullValueInput | InputJsonValue
+    contactStep?: JsonNullValueInput | InputJsonValue
+    confirmStep?: JsonNullValueInput | InputJsonValue
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -56616,6 +61649,167 @@ export namespace Prisma {
     primaryColor?: StringFieldUpdateOperationsInput | string
     accentColor?: StringFieldUpdateOperationsInput | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageHeroCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    image: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomPackageHeroUncheckedCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    image: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomPackageHeroUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageHeroUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageHeroCreateManyInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    image: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomPackageHeroUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageHeroUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageContentCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomPackageContentUncheckedCreateInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomPackageContentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageContentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageContentCreateManyInput = {
+    id?: string
+    title: string
+    subtitle: string
+    description: string
+    status?: $Enums.ContentStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CustomPackageContentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CustomPackageContentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -58806,6 +64000,36 @@ export namespace Prisma {
     displayOrder?: SortOrder
   }
 
+  export type BookingConfirmationMainHeroCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationMainHeroMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationMainHeroMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type BookingConfirmationHeroCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
@@ -58930,6 +64154,40 @@ export namespace Prisma {
     phone?: SortOrder
     whatsapp?: SortOrder
     responseTime?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationNextStepsCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    emailStep?: SortOrder
+    paymentStep?: SortOrder
+    contactStep?: SortOrder
+    confirmStep?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationNextStepsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookingConfirmationNextStepsMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     status?: SortOrder
     publishedAt?: SortOrder
     createdAt?: SortOrder
@@ -59067,6 +64325,75 @@ export namespace Prisma {
     primaryColor?: SortOrder
     accentColor?: SortOrder
     active?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageHeroCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageHeroMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageHeroMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageContentCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageContentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CustomPackageContentMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }

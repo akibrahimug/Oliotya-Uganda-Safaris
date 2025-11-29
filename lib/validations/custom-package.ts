@@ -73,17 +73,19 @@ export const customPackageSchema = z
       .max(50, "Maximum 50 people allowed"),
 
     travelDate: z
-      .string()
-      .datetime({ message: "Invalid date format" })
+      .union([z.string(), z.null()])
       .optional()
-      .nullable()
       .refine(
         (date) => {
-          if (!date) return true;
-          const selectedDate = new Date(date);
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          return selectedDate >= today;
+          if (!date || date === "") return true;
+          try {
+            const selectedDate = new Date(date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return selectedDate >= today;
+          } catch {
+            return false;
+          }
         },
         { message: "Travel date cannot be in the past" }
       ),

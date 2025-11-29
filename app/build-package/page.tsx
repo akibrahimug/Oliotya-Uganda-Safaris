@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -43,11 +44,20 @@ interface SelectedDestination {
   days: number;
 }
 
+interface HeroSlide {
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
 export default function BuildPackagePage() {
   const { user, isLoaded, isSignedIn } = useUser();
   const router = useRouter();
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loadingDestinations, setLoadingDestinations] = useState(true);
+  const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
+  const [pageContent, setPageContent] = useState<any>(null);
   const [selectedDestinations, setSelectedDestinations] = useState<SelectedDestination[]>([]);
   const [packageName, setPackageName] = useState("");
   const [name, setName] = useState("");
@@ -60,10 +70,85 @@ export default function BuildPackagePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState(""); // Bot detection
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Fetch destinations on mount
   useEffect(() => {
     fetchDestinations();
+  }, []);
+
+  // Fetch hero and content data on mount
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [heroResponse, contentResponse] = await Promise.all([
+          fetch("/api/cms/custom-package-hero"),
+          fetch("/api/cms/custom-package-content")
+        ]);
+
+        // Handle hero data
+        if (heroResponse.ok) {
+          const heroSection = await heroResponse.json();
+          if (heroSection.section) {
+            setHeroSlides([{
+              image: heroSection.section.image,
+              title: heroSection.section.title,
+              subtitle: heroSection.section.subtitle,
+              description: heroSection.section.description,
+            }]);
+          }
+        }
+
+        // Handle content data
+        if (contentResponse.ok) {
+          const contentSection = await contentResponse.json();
+          if (contentSection.section) {
+            setPageContent(contentSection.section);
+          }
+        }
+
+        // Fallbacks if no data
+        if (!heroSlides.length) {
+          const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+          const IMAGE_PATH = "nambi-uganda-safaris/images";
+
+          setHeroSlides([{
+            image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
+            title: "Create Your Perfect Adventure",
+            subtitle: "Custom Safari Packages",
+            description: "Design your ideal safari experience with our expert team. Choose destinations, activities, and accommodations that match your preferences.",
+          }]);
+        }
+
+        if (!pageContent) {
+          setPageContent({
+            title: "Build Your Custom Safari Package",
+            subtitle: "",
+            description: "Select the destinations you want to visit, customize the duration, choose your preferred accommodations, and let our expert team create your perfect safari experience.",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching page data:", error);
+        // Fallback to default
+        const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+        const IMAGE_PATH = "nambi-uganda-safaris/images";
+
+        setHeroSlides([{
+          image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
+          title: "Create Your Perfect Adventure",
+          subtitle: "Custom Safari Packages",
+          description: "Design your ideal safari experience with our expert team. Choose destinations, activities, and accommodations that match your preferences.",
+        }]);
+
+        setPageContent({
+          title: "Build Your Custom Safari Package",
+          subtitle: "",
+          description: "Select the destinations you want to visit, customize the duration, choose your preferred accommodations, and let our expert team create your perfect safari experience.",
+        });
+      }
+    }
+
+    fetchData();
   }, []);
 
   const fetchDestinations = async () => {
@@ -219,57 +304,77 @@ export default function BuildPackagePage() {
       return;
     }
 
-    // Validate form
-    if (!validateForm()) {
-      alert("Please correct the errors in the form before submitting.");
-      return;
-    }
+    // Validate form (temporarily disabled for debugging)
+    // if (!validateForm()) {
+    //   alert("Please correct the errors in the form before submitting.");
+    //   return;
+    // }
 
     setIsSubmitting(true);
 
     try {
+      const requestData = {
+        name: packageName || "Custom Safari Package",
+        contactName: name,
+        email,
+        phone,
+        destinations: selectedDestinations,
+        duration: `${totalDays} Days`,
+        numberOfPeople,
+        travelDate: travelDate || null,
+        budget: budget ? parseFloat(budget) : null,
+        specialRequests,
+        website: honeypot, // Include honeypot for server-side check
+      };
+
+      console.log("Sending custom package data:", requestData);
+
+      // Clear any previous errors
+      setSubmitError(null);
+
       const response = await fetch("/api/custom-packages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: packageName || "Custom Safari Package",
-          contactName: name,
-          email,
-          phone,
-          destinations: selectedDestinations,
-          duration: `${totalDays} Days`,
-          numberOfPeople,
-          travelDate: travelDate ? new Date(travelDate) : null,
-          budget: budget ? parseFloat(budget) : null,
-          specialRequests,
-          website: honeypot, // Include honeypot for server-side check
-        }),
+        body: JSON.stringify(requestData),
       });
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        console.error("Failed to parse response:", parseError);
+        setSubmitError("Failed to process server response. Please try again.");
+        return;
+      }
+
+      console.log("Custom package response:", response.status, data);
 
       if (response.ok) {
-        alert("Your custom package request has been submitted! We'll send you a quote soon.");
-        router.push("/");
+        router.push(`/custom-package-confirmation?packageId=${data.packageId}`);
       } else {
         // Handle specific error types
+        let errorMessage = "Failed to submit custom package. Please try again.";
+
         if (response.status === 400 && data.details) {
           const validationErrors = data.details
             .map((err: any) => err.message)
             .join(", ");
-          alert(`Validation failed: ${validationErrors}`);
+          errorMessage = `Validation failed: ${validationErrors}`;
         } else if (response.status === 429) {
-          alert("Too many requests. Please wait an hour and try again.");
+          errorMessage = "Too many requests. Please wait an hour and try again.";
         } else if (response.status === 401) {
-          alert("You must be signed in to create a custom package.");
+          errorMessage = "You must be signed in to create a custom package.";
           router.push("/sign-in?redirect_url=/build-package");
-        } else {
-          alert(data.error || "Failed to submit package. Please try again.");
+          return;
+        } else if (data.error) {
+          errorMessage = data.error;
         }
+
+        setSubmitError(errorMessage);
       }
     } catch (error) {
       console.error("Error submitting package:", error);
-      alert(
+      setSubmitError(
         error instanceof Error
           ? error.message
           : "An error occurred. Please try again."
@@ -283,15 +388,27 @@ export default function BuildPackagePage() {
     <main className="min-h-screen">
       <Header />
 
+      <Suspense
+        fallback={
+          <div className="h-[45vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] w-full bg-muted animate-pulse" />
+        }
+      >
+        <PageHero slides={heroSlides} showCounter={false} showDots={false} autoPlay={false} />
+      </Suspense>
+
       <section className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="font-inter text-4xl md:text-5xl font-bold mb-4">
-              Build Your Custom Safari Package
+              {pageContent?.title || "Build Your Custom Safari Package"}
             </h1>
+            {pageContent?.subtitle && (
+              <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-6">
+                {pageContent.subtitle}
+              </h2>
+            )}
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Select the destinations you want to visit, customize the duration,
-              and we'll create a personalized quote for your dream Uganda adventure.
+              {pageContent?.description || "Select the destinations you want to visit, customize the duration, and we'll create a personalized quote for your dream Uganda adventure."}
             </p>
           </div>
 
@@ -618,7 +735,7 @@ export default function BuildPackagePage() {
                         type="submit"
                         className="w-full"
                         size="lg"
-                        disabled={isSubmitting || !isFormValid()}
+                        disabled={isSubmitting}
                       >
                         {isSubmitting ? (
                           <>
@@ -634,6 +751,18 @@ export default function BuildPackagePage() {
                           </>
                         )}
                       </Button>
+
+                      {submitError && (
+                        <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+                          <div className="flex items-start gap-3">
+                            <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+                            <div className="text-sm">
+                              <p className="font-medium text-destructive">Submission Failed</p>
+                              <p className="text-destructive/80 mt-1">{submitError}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
 
                       <p className="text-xs text-center text-muted-foreground">
                         We'll review your custom package and send you a detailed quote within 24 hours

@@ -32,8 +32,17 @@ interface ImageToSync {
 async function listR2Images(): Promise<ImageToSync[]> {
   console.log(`Listing objects from bucket: ${BUCKET_NAME}`);
 
-  // Try both possible prefixes
-  const prefixes = [`${BUCKET_NAME}/images/`, "images/", ""];
+  // Try multiple possible prefixes and collect all images
+  const prefixes = [
+    `${BUCKET_NAME}/images/`,
+    `${BUCKET_NAME}/cms-images/`,
+    "images/",
+    "cms-images/",
+    `${BUCKET_NAME}/`,
+    ""
+  ];
+
+  const allImages: ImageToSync[] = [];
 
   for (const prefix of prefixes) {
     console.log(`Trying prefix: "${prefix}"`);
@@ -50,13 +59,16 @@ async function listR2Images(): Promise<ImageToSync[]> {
       if (response.Contents && response.Contents.length > 0) {
         console.log(`✅ Found ${response.Contents.length} objects with prefix "${prefix}"`);
 
-        const images: ImageToSync[] = [];
-
         for (const object of response.Contents) {
           if (object.Key && !object.Key.endsWith("/")) {
             // Extract just the filename from the full key path
             const filename = object.Key.split("/").pop() || object.Key;
             const url = `${PUBLIC_URL}/${object.Key}`;
+
+            // Skip if we already have this filename
+            if (allImages.some(img => img.filename === filename)) {
+              continue;
+            }
 
             // Infer category from filename
             let category = "other";
@@ -69,20 +81,22 @@ async function listR2Images(): Promise<ImageToSync[]> {
             else if (lowerFilename.includes("murchison") || lowerFilename.includes("falls")) category = "destination";
             else if (lowerFilename.includes("uganda") || lowerFilename.includes("kampala")) category = "destination";
             else if (lowerFilename.includes("safari") || lowerFilename.includes("park")) category = "destination";
+            else if (lowerFilename.includes("cha-") || lowerFilename.includes("dsc-") || lowerFilename.includes("img-")) category = "destination";
 
-            images.push({ filename, url, category });
+            allImages.push({ filename, url, category });
           }
         }
 
-        return images;
+        // If we found images with this prefix, continue to check other prefixes
+        // but don't return early - collect from all prefixes
       }
     } catch (error: any) {
       console.log(`  Error with prefix "${prefix}": ${error.message}`);
     }
   }
 
-  console.log("❌ No images found with any prefix");
-  return [];
+  console.log(`✅ Total unique images found across all prefixes: ${allImages.length}`);
+  return allImages;
 }
 
 async function getImageMetadata(url: string): Promise<{ width: number; height: number; format: string; fileSize: number }> {

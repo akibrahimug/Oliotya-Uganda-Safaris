@@ -17,15 +17,41 @@ export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
+    console.log("Custom package API called");
+
     // Authentication check
     const { userId } = await auth();
     if (!userId) {
+      console.log("No user ID found - unauthorized");
       throw new APIError(401, "Unauthorized", "AUTH_REQUIRED");
+    }
+
+    // Ensure user exists in database (create if missing)
+    try {
+      const existingUser = await prisma.user.findUnique({
+        where: { id: userId },
+      });
+
+      if (!existingUser) {
+        console.log(`User ${userId} not found in database, creating...`);
+        // Create user record (we'll update with full details from webhook later)
+        await prisma.user.create({
+          data: {
+            id: userId,
+            email: "temp@example.com", // Will be updated by webhook
+          },
+        });
+        console.log(`✅ User ${userId} created in database`);
+      }
+    } catch (userError) {
+      console.error("Error ensuring user exists:", userError);
+      // Continue anyway - the user creation might succeed
     }
 
     // Rate limiting
     const { success } = await customPackageRateLimit.limit(userId);
     if (!success) {
+      console.log("Rate limit exceeded");
       throw new APIError(
         429,
         "Too many custom package requests. Please try again in an hour.",
@@ -35,6 +61,7 @@ export async function POST(req: Request) {
 
     // Parse request body
     const body = await req.json();
+    console.log("Received body:", body);
 
     // Honeypot check
     if (body.website) {
@@ -42,7 +69,9 @@ export async function POST(req: Request) {
     }
 
     // Validate data with Zod (provides sanitization through trimming and regex validation)
+    console.log("Validating data...");
     const validatedData = customPackageSchema.parse(body);
+    console.log("Validation passed:", validatedData);
 
     // Calculate total duration from destinations
     const totalDays = validatedData.destinations.reduce(

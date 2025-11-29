@@ -20,8 +20,14 @@ import {
     ArrowLeft,
     ChevronLeft,
     ChevronRight,
+    ChevronDown,
+    ChevronUp,
     Calendar,
     MessageSquare,
+    CheckCircle2,
+    Users,
+    Briefcase,
+    Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -32,9 +38,15 @@ const navigation = [
         icon: LayoutDashboard,
     },
     {
-        name: "Images",
-        href: "/cms/images",
+        name: "Content",
         icon: Image,
+        children: [
+            {
+                name: "Images",
+                href: "/cms/images",
+                icon: Image,
+            },
+        ],
     },
     {
         name: "Pages",
@@ -55,42 +67,75 @@ const navigation = [
                 href: "/cms/pages/contact",
                 icon: Mail,
             },
+            {
+                name: "Booking Confirmation",
+                href: "/cms/pages/booking-confirmation",
+                icon: CheckCircle2,
+            },
+            {
+                name: "Custom Package",
+                href: "/cms/custom-package",
+                icon: Package,
+            },
         ],
     },
     {
-        name: "Packages",
-        href: "/cms/packages",
-        icon: Package,
+        name: "Business",
+        icon: Briefcase,
+        children: [
+            {
+                name: "Packages",
+                href: "/cms/packages",
+                icon: Package,
+            },
+            {
+                name: "Destinations",
+                href: "/cms/destinations",
+                icon: MapPin,
+            },
+        ],
     },
     {
-        name: "Destinations",
-        href: "/cms/destinations",
-        icon: MapPin,
+        name: "Operations",
+        icon: Users,
+        children: [
+            {
+                name: "Bookings",
+                href: "/cms/bookings",
+                icon: Calendar,
+            },
+            {
+                name: "Inquiries",
+                href: "/cms/inquiries",
+                icon: MessageSquare,
+            },
+            {
+                name: "Email Templates",
+                href: "/cms/email-templates",
+                icon: Mail,
+            },
+            {
+                name: "Team",
+                href: "/cms/team",
+                icon: Users,
+            },
+        ],
     },
     {
-        name: "Bookings",
-        href: "/cms/bookings",
-        icon: Calendar,
-    },
-    {
-        name: "Inquiries",
-        href: "/cms/inquiries",
-        icon: MessageSquare,
-    },
-    {
-        name: "Email Templates",
-        href: "/cms/email-templates",
-        icon: Mail,
-    },
-    {
-        name: "FAQs",
-        href: "/cms/faqs",
-        icon: HelpCircle,
-    },
-    {
-        name: "Settings",
-        href: "/cms/settings",
-        icon: Settings,
+        name: "Support",
+        icon: Shield,
+        children: [
+            {
+                name: "FAQs",
+                href: "/cms/faqs",
+                icon: HelpCircle,
+            },
+            {
+                name: "Settings",
+                href: "/cms/settings",
+                icon: Settings,
+            },
+        ],
     },
 ];
 
@@ -99,6 +144,8 @@ interface SidebarContentProps {
     isCollapsed: boolean;
     onToggleCollapse: () => void;
     onItemClick: () => void;
+    expandedSections: Record<string, boolean>;
+    onToggleSection: (sectionName: string) => void;
 }
 
 function SidebarContent({
@@ -106,6 +153,8 @@ function SidebarContent({
                             isCollapsed,
                             onToggleCollapse,
                             onItemClick,
+                            expandedSections,
+                            onToggleSection,
                         }: SidebarContentProps) {
     return (
         <>
@@ -147,34 +196,49 @@ function SidebarContent({
                     <div key={item.name}>
                         {item.children ? (
                             <div>
-                                <div
+                                {/* Section Header - Clickable */}
+                                <button
+                                    onClick={() => onToggleSection(item.name)}
                                     className={cn(
-                                        "flex items-center gap-2 px-3 py-2 text-sm font-medium text-muted-foreground",
+                                        "flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors",
                                         isCollapsed && "justify-center"
                                     )}
                                 >
-                                    <item.icon className="h-4 w-4" />
-                                    {!isCollapsed && <span>{item.name}</span>}
-                                </div>
-                                <div className={cn("space-y-1", !isCollapsed && "ml-6")}>
-                                    {item.children.map((child) => (
-                                        <Link
-                                            key={child.href}
-                                            href={child.href}
-                                            onClick={onItemClick}
-                                            className={cn(
-                                                "flex items-center gap-2 px-3 py-2 text-sm rounded-md transition-colors",
-                                                isCollapsed && "justify-center",
-                                                pathname === child.href
-                                                    ? "bg-primary text-primary-foreground"
-                                                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                                            )}
-                                        >
-                                            <child.icon className="h-4 w-4" />
-                                            {!isCollapsed && <span>{child.name}</span>}
-                                        </Link>
-                                    ))}
-                                </div>
+                                    <div className="flex items-center gap-2">
+                                        <item.icon className="h-4 w-4" />
+                                        {!isCollapsed && <span>{item.name}</span>}
+                                    </div>
+                                    {!isCollapsed && (
+                                        expandedSections[item.name] ? (
+                                            <ChevronUp className="h-4 w-4" />
+                                        ) : (
+                                            <ChevronDown className="h-4 w-4" />
+                                        )
+                                    )}
+                                </button>
+
+                                {/* Section Content - Collapsible */}
+                                {expandedSections[item.name] && (
+                                    <div className={cn("space-y-1", !isCollapsed && "ml-4")}>
+                                        {item.children.map((child) => (
+                                            <Link
+                                                key={child.href}
+                                                href={child.href}
+                                                onClick={onItemClick}
+                                                className={cn(
+                                                    "flex items-center gap-2 px-3 py-1 text-sm rounded-md transition-colors",
+                                                    isCollapsed && "justify-center",
+                                                    pathname === child.href
+                                                        ? "bg-primary text-primary-foreground"
+                                                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                                                )}
+                                            >
+                                                <child.icon className="h-4 w-4" />
+                                                {!isCollapsed && <span>{child.name}</span>}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <Link
@@ -218,6 +282,21 @@ export function CMSSidebar() {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+        // Default expanded sections
+        "Content": true,
+        "Pages": true,
+        "Business": false,
+        "Operations": false,
+        "Support": false,
+    });
+
+    const handleToggleSection = (sectionName: string) => {
+        setExpandedSections(prev => ({
+            ...prev,
+            [sectionName]: !prev[sectionName]
+        }));
+    };
 
     return (
         <>
@@ -263,6 +342,8 @@ export function CMSSidebar() {
                     onItemClick={() => {
                         /* no-op on desktop */
                     }}
+                    expandedSections={expandedSections}
+                    onToggleSection={handleToggleSection}
                 />
             </aside>
 
@@ -280,6 +361,8 @@ export function CMSSidebar() {
                         /* no-op on mobile */
                     }}
                     onItemClick={() => setIsMobileMenuOpen(false)}
+                    expandedSections={expandedSections}
+                    onToggleSection={handleToggleSection}
                 />
             </aside>
         </>

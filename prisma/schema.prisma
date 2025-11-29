@@ -724,6 +724,18 @@ model ContactResource {
 // BOOKING CONFIRMATION PAGE CONTENT MODELS
 // ============================================
 
+model BookingConfirmationMainHero {
+  id          String        @id @default(cuid())
+  title       String // "Booking Confirmed!"
+  subtitle    String        @db.Text // "Your safari adventure is one step closer. Check your email for booking details."
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("booking_confirmation_main_hero")
+}
+
 model BookingConfirmationHero {
   id                String        @id @default(cuid())
   title             String // "Your Safari Adventure Awaits!"
@@ -773,6 +785,22 @@ model BookingConfirmationContact {
   @@map("booking_confirmation_contact")
 }
 
+model BookingConfirmationNextSteps {
+  id          String        @id @default(cuid())
+  title       String // "What Happens Next"
+  description String        @db.Text // Introductory text
+  emailStep   Json // Email step content
+  paymentStep Json // Payment step content
+  contactStep Json // Contact step content
+  confirmStep Json // Confirmation step content
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("booking_confirmation_next_steps")
+}
+
 model BookingConfirmationSecurity {
   id          String   @id @default(cuid())
   title       String // "Your Booking is Secure"
@@ -820,4 +848,31 @@ model EmailTemplate {
   @@index([type])
   @@index([active])
   @@map("email_templates")
+}
+
+model CustomPackageHero {
+  id          String        @id @default(cuid())
+  title       String
+  subtitle    String
+  description String        @db.Text
+  image       String
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("custom_package_hero")
+}
+
+model CustomPackageContent {
+  id          String        @id @default(cuid())
+  title       String
+  subtitle    String
+  description String        @db.Text
+  status      ContentStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("custom_package_content")
 }
