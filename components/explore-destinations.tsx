@@ -35,12 +35,11 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await fetch("/api/cms/destinations")
+        const response = await fetch("/api/destinations?featured=true")
         if (!response.ok) throw new Error("Failed to fetch destinations")
         const data = await response.json()
-        const featuredDests = data.destinations.filter((dest: any) => dest.featured === true)
-        setAllDestinations(featuredDests)
-        setFilteredDestinations(featuredDests.slice(0, 3))
+        setAllDestinations(data.destinations)
+        setFilteredDestinations(data.destinations.slice(0, 3))
       } catch (error) {
         console.error("Error fetching destinations:", error)
       } finally {

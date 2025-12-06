@@ -35,7 +35,7 @@ describe('BookingForm Validation', () => {
     );
 
     // Check that submit button is disabled when form is empty
-    const submitButton = screen.getByRole('button', { name: /please complete all required fields/i });
+    const submitButton = screen.getByRole('button', { name: /complete all required fields/i });
     expect(submitButton).toBeDisabled();
   });
 
@@ -56,7 +56,7 @@ describe('BookingForm Validation', () => {
 
     // Submit button should still be disabled because phone, country, and dates are missing
     await waitFor(() => {
-      const submitButton = screen.getByRole('button', { name: /please complete all required fields/i });
+      const submitButton = screen.getByRole('button', { name: /complete all required fields/i });
       expect(submitButton).toBeDisabled();
     });
   });

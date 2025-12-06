@@ -126,7 +126,7 @@ export default function CMSHomePage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome to Nambi Uganda Safaris CMS. Manage your content from here.
+          Welcome to Oliotya Safaris CMS. Manage your content from here.
         </p>
       </div>
 

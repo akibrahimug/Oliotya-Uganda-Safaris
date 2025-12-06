@@ -1,7 +1,7 @@
-# Nambi Uganda Safaris - Database Setup Guide
+# Oliotya Safaris - Database Setup Guide
 
 ## Overview
-This guide will help you set up the PostgreSQL database for Nambi Uganda Safaris using Vercel Postgres (recommended) or a local PostgreSQL instance.
+This guide will help you set up the PostgreSQL database for Oliotya Safaris using Vercel Postgres (recommended) or a local PostgreSQL instance.
 
 ## What's Been Configured
 
@@ -54,7 +54,7 @@ This guide will help you set up the PostgreSQL database for Nambi Uganda Safaris
    - Go to "Storage" tab
    - Click "Create Database"
    - Select "Postgres"
-   - Choose a name (e.g., "nambi-uganda-safaris-db")
+   - Choose a name (e.g., "oliotya-safaris-safaris-db")
    - Click "Create"
 
 4. **Get your database credentials**:

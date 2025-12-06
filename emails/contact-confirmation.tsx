@@ -21,8 +21,8 @@ interface ContactConfirmationEmailProps {
 export default function ContactConfirmationEmail({
   name,
   subject,
-  companyName = 'Nambi Uganda Safaris',
-  contactEmail = 'info@nambiugandasafaris.com',
+  companyName = 'Oliotya Safaris',
+  contactEmail = 'info@oliotyasafaris.com',
   primaryColor = '#059669',
   accentColor = '#86efac',
 }: ContactConfirmationEmailProps) {

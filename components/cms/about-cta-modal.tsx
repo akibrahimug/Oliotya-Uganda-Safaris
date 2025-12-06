@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -73,7 +78,9 @@ export function AboutCTAModal({
             <Input
               id="badge"
               value={formData.badge}
-              onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, badge: e.target.value })
+              }
               placeholder="Join Thousands of Happy Travelers"
             />
           </div>
@@ -84,16 +91,22 @@ export function AboutCTAModal({
               <Input
                 id="heading"
                 value={formData.heading}
-                onChange={(e) => setFormData({ ...formData, heading: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, heading: e.target.value })
+                }
                 placeholder="Ready to Start Your"
               />
             </div>
             <div>
-              <Label htmlFor="headingHighlight">Heading Highlight (colored)</Label>
+              <Label htmlFor="headingHighlight">
+                Heading Highlight (colored)
+              </Label>
               <Input
                 id="headingHighlight"
                 value={formData.headingHighlight}
-                onChange={(e) => setFormData({ ...formData, headingHighlight: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, headingHighlight: e.target.value })
+                }
                 placeholder="Uganda Adventure"
               />
             </div>
@@ -105,7 +118,9 @@ export function AboutCTAModal({
               id="description"
               rows={3}
               value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
               placeholder="Let our expert team craft a personalized safari experience..."
             />
           </div>
@@ -118,7 +133,9 @@ export function AboutCTAModal({
                 <Input
                   id="button1Text"
                   value={formData.button1Text}
-                  onChange={(e) => setFormData({ ...formData, button1Text: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, button1Text: e.target.value })
+                  }
                   placeholder="Explore Our Destinations"
                 />
               </div>
@@ -127,7 +144,9 @@ export function AboutCTAModal({
                 <Input
                   id="button1Link"
                   value={formData.button1Link}
-                  onChange={(e) => setFormData({ ...formData, button1Link: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, button1Link: e.target.value })
+                  }
                   placeholder="/destinations"
                 />
               </div>
@@ -142,8 +161,10 @@ export function AboutCTAModal({
                 <Input
                   id="button2Text"
                   value={formData.button2Text}
-                  onChange={(e) => setFormData({ ...formData, button2Text: e.target.value })}
-                  placeholder="Get Custom Itinerary"
+                  onChange={(e) =>
+                    setFormData({ ...formData, button2Text: e.target.value })
+                  }
+                  placeholder="Request Custom Itinerary"
                 />
               </div>
               <div>
@@ -151,8 +172,10 @@ export function AboutCTAModal({
                 <Input
                   id="button2Link"
                   value={formData.button2Link}
-                  onChange={(e) => setFormData({ ...formData, button2Link: e.target.value })}
-                  placeholder="/contact"
+                  onChange={(e) =>
+                    setFormData({ ...formData, button2Link: e.target.value })
+                  }
+                  placeholder="/build-package"
                 />
               </div>
             </div>
@@ -163,7 +186,9 @@ export function AboutCTAModal({
             <Input
               id="footerText"
               value={formData.footerText}
-              onChange={(e) => setFormData({ ...formData, footerText: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, footerText: e.target.value })
+              }
               placeholder="🌟 98% Customer Satisfaction • 🏆 Award-Winning Service"
             />
           </div>

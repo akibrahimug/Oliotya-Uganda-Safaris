@@ -4,7 +4,7 @@ import { CMSSidebar } from "@/components/cms/cms-sidebar";
 import { CMSHeader } from "@/components/cms/cms-header";
 
 export const metadata = {
-  title: "CMS - Nambi Uganda Safaris",
+  title: "CMS - Oliotya Safaris",
   description: "Content Management System",
 };
 

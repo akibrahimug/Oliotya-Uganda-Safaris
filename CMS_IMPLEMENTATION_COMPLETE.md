@@ -13,7 +13,7 @@ const heroSlides = [
   {
     image: "https://...",
     title: "Your trusted partner in",
-    subtitle: "About Nambi Uganda Safaris",
+    subtitle: "About Oliotya Safaris",
     description: "Discovering the Pearl of Africa...",
   },
 ];
@@ -38,7 +38,7 @@ export default async function AboutPage() {
 ```
 
 Now when you want to change content:
-1. Go to CMS: `https://fox-adventures.vercel.app/cms`
+1. Go to CMS: `https://oliotya-safaris.vercel.app/cms`
 2. Edit the content
 3. Click "Save & Publish"
 4. **Content updates IMMEDIATELY** (no rebuild needed!)
@@ -288,7 +288,7 @@ The `ƒ` symbol means "Dynamic" (server-rendered on demand).
 ## How to Use the CMS
 
 ### 1. Access the CMS
-Visit: `https://fox-adventures.vercel.app/cms`
+Visit: `https://oliotya-safaris.vercel.app/cms`
 
 Make sure you:
 - Are logged in with your Clerk account

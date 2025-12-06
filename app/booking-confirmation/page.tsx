@@ -30,7 +30,7 @@ function BookingConfirmationContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { toast } = useToast();
-  const confirmationNumber = searchParams.get("ref");
+  const confirmationNumber = searchParams.get("ref") || searchParams.get("confirmation") || searchParams.get("confirm");
   const [booking, setBooking] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -43,7 +43,18 @@ function BookingConfirmationContent() {
   const [cmsGalleries, setCmsGalleries] = useState<any[]>([]);
 
   useEffect(() => {
-    if (!confirmationNumber) {
+    // Check for confirmation number with fallback logic
+    const checkConfirmationNumber = () => {
+      const ref = searchParams.get("ref");
+      const confirmation = searchParams.get("confirmation");
+      const confirm = searchParams.get("confirm");
+
+      return ref || confirmation || confirm;
+    };
+
+    const currentConfirmationNumber = checkConfirmationNumber();
+
+    if (!currentConfirmationNumber) {
       setError("No confirmation number provided");
       setLoading(false);
       toast({
@@ -55,11 +66,11 @@ function BookingConfirmationContent() {
       return;
     }
 
-    const fetchData = async () => {
+    const fetchData = async (currentConfirmationNumber: string) => {
       try {
         // Fetch booking and CMS content in parallel
         const [bookingRes, mainHeroRes, heroRes, stepsRes, contactRes, galleryRes] = await Promise.all([
-          fetch(`/api/bookings/${confirmationNumber}`),
+          fetch(`/api/bookings/${currentConfirmationNumber}`),
           fetch("/api/cms/booking-confirmation-main-hero"),
           fetch("/api/cms/booking-confirmation-hero"),
           fetch("/api/cms/booking-confirmation-steps"),
@@ -113,8 +124,18 @@ function BookingConfirmationContent() {
       }
     };
 
-    fetchData();
-  }, [confirmationNumber, toast]);
+    // Add a timeout to re-check searchParams in case of hydration timing issues
+    const timeoutId = setTimeout(() => {
+      const newConfirmationNumber = checkConfirmationNumber();
+      if (newConfirmationNumber && !currentConfirmationNumber) {
+        fetchData(newConfirmationNumber);
+      }
+    }, 1000);
+
+    fetchData(currentConfirmationNumber);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchParams, toast]);
 
   if (loading) {
     return (
@@ -147,10 +168,10 @@ function BookingConfirmationContent() {
                 </p>
               </div>
 
-              {confirmationNumber && (
+              {(searchParams.get("ref") || searchParams.get("confirmation") || searchParams.get("confirm")) && (
                 <div className="bg-muted p-4 rounded-lg">
                   <p className="text-sm text-muted-foreground mb-1">Confirmation Number Searched:</p>
-                  <p className="font-mono font-semibold">{confirmationNumber}</p>
+                  <p className="font-mono font-semibold">{searchParams.get("ref") || searchParams.get("confirmation") || searchParams.get("confirm")}</p>
                 </div>
               )}
 

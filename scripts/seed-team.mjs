@@ -3,7 +3,7 @@ import { PrismaClient } from "../prisma/app/generated/prisma-client/index.js";
 const prisma = new PrismaClient();
 
 const R2_BASE = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-const IMAGE_PATH = "nambi-uganda-safaris";
+const IMAGE_PATH = "oliotya-safaris-safaris";
 
 async function main() {
   console.log("Seeding team members...");
@@ -16,7 +16,7 @@ async function main() {
       id: "team-1",
       name: "Sarah Nambi",
       role: "Founder & CEO",
-      bio: "With over 15 years of experience in the tourism industry, Sarah founded Nambi Uganda Safaris to share the beauty of Uganda with the world. Her passion for conservation and community development drives everything we do.",
+      bio: "With over 15 years of experience in the tourism industry, Sarah founded Oliotya Safaris to share the beauty of Uganda with the world. Her passion for conservation and community development drives everything we do.",
       image: `${R2_BASE}/${IMAGE_PATH}/team-placeholder-1.jpg`,
       years: "15+ Years",
       specialties: ["Wildlife Conservation", "Sustainable Tourism", "Community Development"],

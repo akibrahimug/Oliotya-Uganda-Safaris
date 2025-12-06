@@ -19,7 +19,7 @@ The complete email templates system with CMS management is now live and ready to
 
 Every template now has:
 - ✅ Fixed inline styles (table-based layouts)
-- ✅ Dynamic company name ("Nambi Uganda Safaris")
+- ✅ Dynamic company name ("Oliotya Safaris")
 - ✅ Dynamic contact email
 - ✅ Dynamic brand colors
 - ✅ Professional design
@@ -164,8 +164,8 @@ Use these placeholders in your email content:
 
 All templates are seeded with:
 
-- **Company Name**: "Nambi Uganda Safaris"
-- **Contact Email**: "info@nambiugandasafaris.com"
+- **Company Name**: "Oliotya Safaris"
+- **Contact Email**: "info@oliotyasafaris.com"
 - **Primary Color**: #059669 (green)
 - **Accent Color**: Varies by template
 - **Active**: true

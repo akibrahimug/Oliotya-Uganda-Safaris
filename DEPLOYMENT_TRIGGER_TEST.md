@@ -17,14 +17,14 @@ Now we need to test if the deploy hook URL actually triggers a deployment.
 Visit this URL in your production site (while logged into CMS):
 
 ```
-https://fox-adventures.vercel.app/api/test-deploy-hook
+https://oliotya-safaris.vercel.app/api/test-deploy-hook
 ```
 
 **Make a POST request** to this endpoint. You can use:
 
 1. **Browser Console** (easiest):
    ```javascript
-   fetch('https://fox-adventures.vercel.app/api/test-deploy-hook', {
+   fetch('https://oliotya-safaris.vercel.app/api/test-deploy-hook', {
      method: 'POST',
      credentials: 'include'
    })
@@ -34,7 +34,7 @@ https://fox-adventures.vercel.app/api/test-deploy-hook
 
 2. **Or use curl**:
    ```bash
-   curl -X POST https://fox-adventures.vercel.app/api/test-deploy-hook \
+   curl -X POST https://oliotya-safaris.vercel.app/api/test-deploy-hook \
      -H "Cookie: YOUR_CLERK_SESSION_COOKIE"
    ```
 
@@ -68,7 +68,7 @@ https://fox-adventures.vercel.app/api/test-deploy-hook
 
 ### Option 2: Test by Publishing CMS Content
 
-1. Go to your CMS in production: `https://fox-adventures.vercel.app/cms`
+1. Go to your CMS in production: `https://oliotya-safaris.vercel.app/cms`
 2. Edit any content (e.g., contact page hero)
 3. Click "Save & Publish"
 4. Immediately go to Vercel Dashboard → Deployments

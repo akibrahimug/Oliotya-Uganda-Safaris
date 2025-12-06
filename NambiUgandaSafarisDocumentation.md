@@ -1,5 +1,5 @@
 
-# Nambi Uganda Safaris
+# Oliotya Safaris
 
 A modern web application for a Uganda safari tour company, built with Next.js, React, and TypeScript. This full-stack application features a complete content management system, database integration, and cloud storage capabilities.
 
@@ -50,7 +50,7 @@ A modern web application for a Uganda safari tour company, built with Next.js, R
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd nambi-uganda-safaris
+   cd oliotya-safaris-safaris
    ```
 
 2. **Install dependencies**

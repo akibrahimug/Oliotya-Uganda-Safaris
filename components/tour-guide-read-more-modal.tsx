@@ -30,7 +30,7 @@ export function TourGuideReadMoreModal({ open, onClose, data }: TourGuideReadMor
                   {data.subtitle}
                 </span>
               </DialogTitle>
-              <div className="w-24 sm:w-28 md:w-32 lg:w-40 h-1.5 lg:h-2 bg-gradient-to-r from-accent to-primary rounded-full" />
+              <div className="w-24 sm:w-28 md:w-32 lg:w-40 h-1.5 lg:h-2 bg-linear-to-r from-accent to-primary rounded-full" />
             </DialogHeader>
           </div>
 
@@ -52,20 +52,6 @@ export function TourGuideReadMoreModal({ open, onClose, data }: TourGuideReadMor
                 }
                 return null;
               })}
-            </div>
-
-            {/* Call to action footer */}
-            <div className="mt-10 lg:mt-12 xl:mt-14 pt-8 lg:pt-10 border-t border-border/50">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 lg:p-8 xl:p-10 rounded-lg bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/10">
-                <div>
-                  <p className="font-semibold text-lg md:text-xl lg:text-2xl text-foreground mb-1 lg:mb-2">
-                    Ready for an unforgettable adventure?
-                  </p>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground">
-                    Experience the extraordinary with Nambi Uganda Safaris
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

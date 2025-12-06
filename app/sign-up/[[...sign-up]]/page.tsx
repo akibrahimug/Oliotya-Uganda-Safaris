@@ -6,7 +6,7 @@ export default function SignUpPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="font-inter text-3xl font-bold mb-2">
-            Join Nambi Uganda Safaris
+            Join Oliotya Safaris
           </h1>
           <p className="text-muted-foreground">
             Create an account to start booking amazing trips

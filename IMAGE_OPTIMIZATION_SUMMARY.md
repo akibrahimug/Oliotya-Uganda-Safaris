@@ -2,7 +2,7 @@
 
 ## What Was Implemented
 
-Your Nambi Uganda Safaris project now has a complete, production-ready image optimization system using:
+Your Oliotya Safaris project now has a complete, production-ready image optimization system using:
 - **Cloudflare R2** for cost-effective global storage ($0 egress fees)
 - **Next.js Image component** for automatic optimization
 - **Vercel CDN** for fast worldwide delivery

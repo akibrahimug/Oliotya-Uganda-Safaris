@@ -1,6 +1,6 @@
-# Nambi Uganda Safaris
+# Oliotya Safaris
 
-A modern, full-stack safari booking and content management platform for Nambi Uganda Safaris. This platform provides a comprehensive solution for showcasing safari packages, managing bookings, and administering website content.
+A modern, full-stack safari booking and content management platform for Oliotya Safaris. This platform provides a comprehensive solution for showcasing safari packages, managing bookings, and administering website content.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.1.3-black?style=flat&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)
@@ -208,7 +208,7 @@ A modern, full-stack safari booking and content management platform for Nambi Ug
 ### Project Structure
 
 ```
-fox-adventures/
+oliotya-safaris/
 ├── app/                          # Next.js App Router
 │   ├── (routes)/                # Public routes
 │   │   ├── page.tsx            # Homepage
@@ -288,8 +288,8 @@ The application uses a PostgreSQL database managed by Prisma ORM with the follow
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/fox-adventures.git
-cd fox-adventures
+git clone https://github.com/yourusername/oliotya-safaris.git
+cd oliotya-safaris
 ```
 
 2. **Install dependencies**
@@ -766,12 +766,12 @@ This project is proprietary and confidential. Unauthorized copying, distribution
 ## 👥 Team
 
 - **Developer**: Kasoma Ibrahim
-- **Client**: Nambi Uganda Safaris
+- **Client**: Oliotya Safaris
 - **Project Manager**: Kasoma Ibrahim
 
 ## 📞 Support
 
-For support, email [support@nambiuganda.com](mailto:support@nambiuganda.com) or visit our [support page](https://nambiuganda.com/contact).
+For support, email [support@oliotyasafaris.com](mailto:support@oliotyasafaris.com) or visit our [support page](https://oliotyasafaris.com/contact).
 
 ## 🙏 Acknowledgments
 
@@ -785,6 +785,6 @@ For support, email [support@nambiuganda.com](mailto:support@nambiuganda.com) or 
 
 ---
 
-**Built with ❤️ for Nambi Uganda Safaris**
+**Built with ❤️ for Oliotya Safaris**
 
 *Last updated: January 2025*

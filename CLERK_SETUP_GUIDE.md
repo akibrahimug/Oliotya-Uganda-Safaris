@@ -1,7 +1,7 @@
 # Clerk Authentication Setup Guide
 
 ## Overview
-Clerk authentication has been **fully integrated** into the Nambi Uganda Safaris application. User data syncs automatically between Clerk and your database via webhooks.
+Clerk authentication has been **fully integrated** into the Oliotya Safaris application. User data syncs automatically between Clerk and your database via webhooks.
 
 ## ✅ What's Already Done
 

@@ -8,10 +8,10 @@ export default clerkMiddleware(async (auth, req) => {
   // Only protect CMS routes - require authentication
   if (isCMSRoute(req)) {
     // Require authentication (admin check happens in layout)
-    // Note: auth.protect() is synchronous in Clerk v5+
-    auth.protect();
+    await auth.protect();
   }
   // All other routes are public - no authentication required
+  return NextResponse.next();
 });
 
 export const config = {

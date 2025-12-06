@@ -1,8 +1,8 @@
-# Nambi Uganda Safaris CMS - Summary & Quick Start
+# Oliotya Safaris CMS - Summary & Quick Start
 
 ## What We've Analyzed
 
-I've completed a comprehensive analysis of your Nambi Uganda Safaris application and created a complete CMS plan. Here's what was discovered:
+I've completed a comprehensive analysis of your Oliotya Safaris application and created a complete CMS plan. Here's what was discovered:
 
 ### Content Inventory
 

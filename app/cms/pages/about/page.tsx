@@ -426,7 +426,7 @@ export default function CMSAboutPageInline() {
 
           {/* Team Section - Editable */}
           <EditableWrapper onEdit={() => setTeamModalOpen(true)} label="Team Members">
-            <AboutTeamSection data={teamMembers.filter(m => m.active)} sectionData={teamSection} />
+            <AboutTeamSection members={teamMembers.filter(m => m.active)} sectionData={teamSection} />
           </EditableWrapper>
 
           {/* CTA Section - Editable */}

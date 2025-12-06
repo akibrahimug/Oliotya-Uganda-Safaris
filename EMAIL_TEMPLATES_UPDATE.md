@@ -4,7 +4,7 @@
 
 Fixing email templates to:
 1. **Fix broken inline styles** for better email client compatibility
-2. **Replace "Fox Adventures"** with dynamic company name "Nambi Uganda Safaris"
+2. **Replace "Oliotya Safaris"** with dynamic company name "Oliotya Safaris"
 3. **Add CMS editor** for managing email templates without code changes
 
 ---
@@ -18,11 +18,11 @@ Fixing email templates to:
    - Supports dynamic content and branding
 
 2. **booking-confirmation.tsx** - Customer confirmation email
-   - ✅ Added dynamic `companyName` prop (default: "Nambi Uganda Safaris")
-   - ✅ Added dynamic `contactEmail` prop (default: "info@nambiugandasafaris.com")
+   - ✅ Added dynamic `companyName` prop (default: "Oliotya Safaris")
+   - ✅ Added dynamic `contactEmail` prop (default: "info@oliotyasafaris.com")
    - ✅ Added dynamic `primaryColor` and `accentColor` for branding
    - ✅ Fixed inline styles using tables for better email client compatibility
-   - ✅ Replaced all "Fox Adventures" references with dynamic `{companyName}`
+   - ✅ Replaced all "Oliotya Safaris" references with dynamic `{companyName}`
    - ✅ Added viewport meta tag and proper HTML structure
    - ✅ Improved layout with HTML tables (email-safe)
 
@@ -89,9 +89,9 @@ export default function BookingConfirmationEmail({
   return (
     <Html>
       <Body>
-        <Text>Thank you for booking with Fox Adventures!</Text>
+        <Text>Thank you for booking with Oliotya Safaris!</Text>
         <Text>Email: info@foxadventures.com</Text>
-        <Text>The Fox Adventures Team</Text>
+        <Text>The Oliotya Safaris Team</Text>
       </Body>
     </Html>
   );
@@ -103,8 +103,8 @@ export default function BookingConfirmationEmail({
 export default function BookingConfirmationEmail({
   firstName,
   confirmationNumber,
-  companyName = 'Nambi Uganda Safaris',
-  contactEmail = 'info@nambiugandasafaris.com',
+  companyName = 'Oliotya Safaris',
+  contactEmail = 'info@oliotyasafaris.com',
   primaryColor = '#059669',
   accentColor = '#3b82f6',
   // ... other props
@@ -143,7 +143,7 @@ export default function BookingConfirmationEmail({
 Apply the same pattern to all 5 remaining templates:
 
 1. Add props: `companyName`, `contactEmail`, `primaryColor`, `accentColor`
-2. Replace hardcoded "Fox Adventures" with `{companyName}`
+2. Replace hardcoded "Oliotya Safaris" with `{companyName}`
 3. Replace hardcoded "info@foxadventures.com" with `{contactEmail}`
 4. Fix inline styles using HTML tables
 5. Add proper meta tags
@@ -230,30 +230,30 @@ npx prisma migrate dev --name add_email_templates
 
 1. **booking_confirmation**
    - Subject: "Booking Confirmed! - {confirmationNumber}"
-   - Company: "Nambi Uganda Safaris"
-   - Contact: "info@nambiugandasafaris.com"
+   - Company: "Oliotya Safaris"
+   - Contact: "info@oliotyasafaris.com"
    - Primary Color: #059669 (green)
    - Accent Color: #3b82f6 (blue)
 
 2. **booking_notification** (Admin)
    - Subject: "New Booking Received - {confirmationNumber}"
-   - Company: "Nambi Uganda Safaris"
+   - Company: "Oliotya Safaris"
 
 3. **contact_confirmation**
    - Subject: "We Received Your Message"
-   - Company: "Nambi Uganda Safaris"
+   - Company: "Oliotya Safaris"
 
 4. **contact_notification** (Admin)
    - Subject: "New Contact Form Submission"
-   - Company: "Nambi Uganda Safaris"
+   - Company: "Oliotya Safaris"
 
 5. **custom_package_confirmation**
    - Subject: "Custom Package Request Received"
-   - Company: "Nambi Uganda Safaris"
+   - Company: "Oliotya Safaris"
 
 6. **custom_package_notification** (Admin)
    - Subject: "New Custom Package Request"
-   - Company: "Nambi Uganda Safaris"
+   - Company: "Oliotya Safaris"
 
 ---
 
@@ -263,7 +263,7 @@ npx prisma migrate dev --name add_email_templates
 - ✅ Consistent branding across all emails
 - ✅ Professional email design
 - ✅ Emails display correctly in Gmail, Outlook, Apple Mail, etc.
-- ✅ Correct company name ("Nambi Uganda Safaris")
+- ✅ Correct company name ("Oliotya Safaris")
 
 ### For Administrators
 - ✅ Edit email content without touching code

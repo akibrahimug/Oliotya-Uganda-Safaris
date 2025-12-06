@@ -153,7 +153,7 @@ export default function BuildPackagePage() {
 
   const fetchDestinations = async () => {
     try {
-      const response = await fetch('/api/cms/destinations');
+      const response = await fetch('/api/destinations');
       if (!response.ok) throw new Error('Failed to fetch destinations');
       const data = await response.json();
       setDestinations(data.destinations || []);
@@ -743,7 +743,7 @@ export default function BuildPackagePage() {
                             Submitting...
                           </>
                         ) : !isFormValid() ? (
-                          "Please Complete All Required Fields"
+                          "Complete All Required Fields"
                         ) : (
                           <>
                             <Send className="mr-2 h-4 w-4" />

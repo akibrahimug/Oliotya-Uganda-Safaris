@@ -32,7 +32,7 @@ export function AboutTeamSection({ members, sectionData }: AboutTeamSectionProps
             {sectionData?.heading || "OUR TEAM"}
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6 text-balance">
-            {sectionData?.title || "Meet the Nambi Uganda Safaris Family"}
+            {sectionData?.title || "Meet the Oliotya Safaris Family"}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             {sectionData?.description || "Our passionate team of travel experts and local guides are dedicated to creating your perfect Ugandan adventure"}

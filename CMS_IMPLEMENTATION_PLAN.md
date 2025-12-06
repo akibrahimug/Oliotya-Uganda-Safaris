@@ -1,4 +1,4 @@
-# Nambi Uganda Safaris CMS - Implementation Plan
+# Oliotya Safaris CMS - Implementation Plan
 
 ## MVP Scope (Start Small)
 
@@ -330,7 +330,7 @@ Similar structure to Packages but with destination-specific fields:
 │  ┌─ Company Information ─────────────────────────────────┐  │
 │  │                                                         │  │
 │  │ Company Name:                                          │  │
-│  │ [Nambi Uganda Safaris Africa_____________________]           │  │
+│  │ [Oliotya Safaris Africa_____________________]           │  │
 │  │                                                         │  │
 │  │ Tagline:                                               │  │
 │  │ [Experience the Pearl of Africa_____________]          │  │

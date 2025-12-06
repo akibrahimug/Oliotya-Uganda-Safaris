@@ -179,7 +179,7 @@ export default function CMSSettingsPage() {
                   id="siteName"
                   value={settings.brand.siteName}
                   onChange={(e) => updateSetting("brand", "siteName", e.target.value)}
-                  placeholder="Nambi Uganda Safaris"
+                  placeholder="Oliotya Safaris"
                 />
               </div>
 
@@ -279,7 +279,7 @@ export default function CMSSettingsPage() {
                   type="email"
                   value={settings.contact.email}
                   onChange={(e) => updateSetting("contact", "email", e.target.value)}
-                  placeholder="info@nambiuganda.com"
+                  placeholder="info@oliotyasafaris.com"
                 />
               </div>
 
@@ -463,7 +463,7 @@ export default function CMSSettingsPage() {
                   id="copyright"
                   value={settings.footer.copyright}
                   onChange={(e) => updateSetting("footer", "copyright", e.target.value)}
-                  placeholder="© 2025 Nambi Uganda Safaris. All rights reserved."
+                  placeholder="© 2025 Oliotya Safaris. All rights reserved."
                 />
               </div>
 

@@ -166,7 +166,7 @@ function SidebarContent({
                     ) : (
                         <div className="truncate">
                             <h1 className="font-bold text-base lg:text-lg truncate">
-                                Nambi Uganda Safaris
+                                Oliotya Safaris
                             </h1>
                             <p className="text-xs text-muted-foreground">CMS</p>
                         </div>
@@ -304,7 +304,7 @@ export function CMSSidebar() {
             <div className="lg:hidden fixed top-0 left-0 right-0 z-[100] bg-card border-b border-border">
                 <div className="flex items-center justify-between p-4">
                     <Link href="/cms">
-                        <h1 className="font-bold text-base">Nambi Uganda Safaris</h1>
+                        <h1 className="font-bold text-base">Oliotya Safaris</h1>
                     </Link>
                     <Button
                         variant="ghost"

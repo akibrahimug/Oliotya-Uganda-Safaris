@@ -1,9 +1,9 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { ClerkProvider } from "@clerk/nextjs"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { ClerkProvider } from "@clerk/nextjs";
+import "./globals.css";
 
 // Inter - A crisp, modern font optimized for screen readability
 // Works excellently across all browsers with built-in fallbacks
@@ -21,21 +21,21 @@ const inter = Inter({
     "Arial",
     "sans-serif",
   ],
-})
+});
 
 export const metadata: Metadata = {
-  title: "Nambi Uganda Safaris - Discover Uganda",
+  title: "Oliotya Safaris - Discover Uganda",
   description:
-    "Experience the Pearl of Africa with Nambi Uganda Safaris. Explore Uganda's wildlife, mountains, and natural wonders.",
+    "Experience the Pearl of Africa with Oliotya Safaris. Explore Uganda's wildlife, mountains, and natural wonders.",
   icons: {
-    icon: "/fox_logo.jpg",
+    icon: "/fox_logo.webp",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <ClerkProvider>
@@ -46,5 +46,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

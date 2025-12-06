@@ -625,7 +625,7 @@ export function BookingForm({
             Submitting...
           </>
         ) : !isFormValid() ? (
-          "Please Complete All Required Fields"
+          "Complete All Required Fields"
         ) : (
           "Submit Booking Request"
         )}

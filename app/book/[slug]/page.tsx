@@ -49,7 +49,7 @@ export default function BookingPage() {
 
   const fetchPackage = async () => {
     try {
-      const response = await fetch("/api/cms/packages");
+      const response = await fetch("/api/packages");
       if (!response.ok) throw new Error("Failed to fetch packages");
 
       const data = await response.json();

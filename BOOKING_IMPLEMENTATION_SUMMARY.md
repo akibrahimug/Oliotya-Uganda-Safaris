@@ -174,13 +174,13 @@ Add to `.env.local`:
 ```env
 # Email Configuration
 RESEND_API_KEY=your_resend_api_key_here
-ADMIN_EMAIL=info@nambiuganda.com
-FROM_EMAIL=noreply@nambiuganda.com
-SUPPORT_EMAIL=support@nambiuganda.com
+ADMIN_EMAIL=info@oliotyasafaris.com
+FROM_EMAIL=noreply@oliotyasafaris.com
+SUPPORT_EMAIL=support@oliotyasafaris.com
 
 # Bank Details (for payment instructions)
 BANK_NAME=Your Bank Name
-BANK_ACCOUNT_NAME=Nambi Uganda Safaris Ltd
+BANK_ACCOUNT_NAME=Oliotya Safaris Ltd
 BANK_ACCOUNT_NUMBER=1234567890
 BANK_BRANCH=Kampala Main Branch
 BANK_SWIFT_CODE=XXXXUGKAXXX

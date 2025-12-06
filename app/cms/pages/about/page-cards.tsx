@@ -207,7 +207,7 @@ export default function AboutPageCMS() {
               <div>
                 <CardTitle>Our Story Section</CardTitle>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Main narrative about Nambi Uganda Safaris
+                  Main narrative about Oliotya Safaris
                 </p>
               </div>
             </div>

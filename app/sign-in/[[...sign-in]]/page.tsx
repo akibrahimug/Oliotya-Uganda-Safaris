@@ -7,7 +7,7 @@ export default function SignInPage() {
         <div className="text-center mb-8">
           <h1 className="font-inter text-3xl font-bold mb-2">Welcome Back</h1>
           <p className="text-muted-foreground">
-            Sign in to your Nambi Uganda Safaris account
+            Sign in to your Oliotya Safaris account
           </p>
         </div>
         <SignIn

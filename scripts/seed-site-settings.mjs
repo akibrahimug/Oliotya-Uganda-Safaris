@@ -10,8 +10,8 @@ async function main() {
     where: { key: 'brand' },
     update: {
       value: {
-        siteName: 'Nambi Uganda Safaris',
-        logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + '/nambi-uganda-safaris/images/fox_logo.webp',
+        siteName: 'Oliotya Safaris',
+        logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + '/oliotya-safaris-safaris/images/fox_logo.webp',
         tagline: 'Experience the Pearl of Africa',
       },
       category: 'brand',
@@ -19,8 +19,8 @@ async function main() {
     create: {
       key: 'brand',
       value: {
-        siteName: 'Nambi Uganda Safaris',
-        logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + '/nambi-uganda-safaris/images/fox_logo.webp',
+        siteName: 'Oliotya Safaris',
+        logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + '/oliotya-safaris-safaris/images/fox_logo.webp',
         tagline: 'Experience the Pearl of Africa',
       },
       category: 'brand',
@@ -33,7 +33,7 @@ async function main() {
     update: {
       value: {
         phone: '+256 788048210',
-        email: 'info@nambiuganda.com',
+        email: 'info@oliotyasafaris.com',
         address: 'Kampala, Uganda',
         whatsapp: '+256 788048210',
       },
@@ -43,7 +43,7 @@ async function main() {
       key: 'contact',
       value: {
         phone: '+256 788048210',
-        email: 'info@nambiuganda.com',
+        email: 'info@oliotyasafaris.com',
         address: 'Kampala, Uganda',
         whatsapp: '+256 788048210',
       },
@@ -103,7 +103,7 @@ async function main() {
     update: {
       value: {
         description: 'Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.',
-        copyright: '© 2025 Nambi Uganda Safaris. All rights reserved.',
+        copyright: '© 2025 Oliotya Safaris. All rights reserved.',
       },
       category: 'footer',
     },
@@ -111,7 +111,7 @@ async function main() {
       key: 'footer',
       value: {
         description: 'Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.',
-        copyright: '© 2025 Nambi Uganda Safaris. All rights reserved.',
+        copyright: '© 2025 Oliotya Safaris. All rights reserved.',
       },
       category: 'footer',
     },

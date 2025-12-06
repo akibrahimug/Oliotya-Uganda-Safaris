@@ -1,6 +1,6 @@
 # Email Integration Setup Guide
 
-This guide will help you set up email notifications for your Fox Adventures website using Resend.
+This guide will help you set up email notifications for your Oliotya Safaris website using Resend.
 
 ## Overview
 
@@ -40,7 +40,7 @@ Your website now sends professional email notifications for:
 
 1. In Resend dashboard, go to **API Keys**
 2. Click **Create API Key**
-3. Name it: "Fox Adventures Production" (or "Development")
+3. Name it: "Oliotya Safaris Production" (or "Development")
 4. Copy the API key (starts with `re_`)
 
 ### 4. Configure Environment Variables
@@ -109,7 +109,7 @@ Example customization:
 const primaryColor = '#059669';  // Your brand color
 
 // Update company name
-<Text>Thank you for contacting Fox Adventures</Text>
+<Text>Thank you for contacting Oliotya Safaris</Text>
 
 // Modify content
 <Text>We'll get back to you within 24 hours.</Text>

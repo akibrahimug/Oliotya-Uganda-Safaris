@@ -2,7 +2,7 @@
 
 ## Overview
 
-The complete booking and contact management system has been successfully implemented for Nambi Uganda Safaris. This system allows users to book safari packages and destinations, submit contact inquiries, and enables admins to manage everything through the CMS.
+The complete booking and contact management system has been successfully implemented for Oliotya Safaris. This system allows users to book safari packages and destinations, submit contact inquiries, and enables admins to manage everything through the CMS.
 
 ## 🎉 What's Been Completed
 
@@ -330,7 +330,7 @@ SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_USER=...
 SMTP_PASS=...
-FROM_EMAIL=bookings@nambiuganda.com
+FROM_EMAIL=bookings@oliotyasafaris.com
 ```
 
 ### Rate Limiting

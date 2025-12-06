@@ -38,7 +38,7 @@ Wait for Vercel to deploy (~2-5 minutes).
 After deployment, visit this URL in production **while logged in**:
 
 ```
-https://fox-adventures.vercel.app/api/check-admin
+https://oliotya-safaris.vercel.app/api/check-admin
 ```
 
 **Expected Response if You're Admin**:
@@ -90,9 +90,9 @@ After setting the admin role:
 
 1. **Sign out** of your production site
 2. **Sign back in** (this refreshes your user session)
-3. Visit: `https://fox-adventures.vercel.app/api/check-admin`
+3. Visit: `https://oliotya-safaris.vercel.app/api/check-admin`
 4. Verify it shows `"isAdmin": true`
-5. Try accessing the CMS: `https://fox-adventures.vercel.app/cms`
+5. Try accessing the CMS: `https://oliotya-safaris.vercel.app/cms`
 
 ### Step 5: Check Vercel Function Logs
 

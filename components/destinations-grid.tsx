@@ -35,7 +35,7 @@ export function DestinationsGrid({ editable = false, onDestinationClick, onDesti
   const fetchDestinations = async () => {
     try {
       setError(null);
-      const response = await fetch('/api/cms/destinations');
+      const response = await fetch('/api/destinations');
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Failed to fetch destinations' }));

@@ -368,12 +368,12 @@ export default function DestinationPage() {
             <div className="flex items-center justify-center gap-4">
               <Link href="/packages">
                 <Button size="lg" className="shadow-lg hover:shadow-xl">
-                  View Safari Packages
+                  Browse Safari Packages
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="/build-package">
                 <Button size="lg" variant="outline">
-                  Plan Your Trip
+                  Request Custom Itinerary
                 </Button>
               </Link>
             </div>

@@ -71,7 +71,7 @@ Wait for Vercel to deploy the changes (~2-5 minutes).
 
 After deployment completes, test publishing content in production:
 
-1. Go to your production CMS: `https://fox-adventures.vercel.app/cms`
+1. Go to your production CMS: `https://oliotya-safaris.vercel.app/cms`
 2. Edit the **Contact Hero** section (this is a good test case)
 3. Make a small change (e.g., add a period to the description)
 4. Click **"Save & Publish"**

@@ -1,7 +1,7 @@
-# Testing Summary - Nambi Uganda Safaris
+# Testing Summary - Oliotya Safaris
 
 ## Overview
-Comprehensive unit tests have been implemented for the main components and utilities of the Nambi Uganda Safaris tour booking application. All tests are passing with **100% coverage** for tested modules.
+Comprehensive unit tests have been implemented for the main components and utilities of the Oliotya Safaris tour booking application. All tests are passing with **100% coverage** for tested modules.
 
 ## Test Statistics
 

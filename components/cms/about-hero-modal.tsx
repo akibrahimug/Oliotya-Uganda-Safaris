@@ -82,7 +82,7 @@ export function AboutHeroModal({
                 id="subtitle"
                 value={formData.subtitle}
                 onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                placeholder="About Nambi Uganda Safaris"
+                placeholder="About Oliotya Safaris"
               />
             </div>
 

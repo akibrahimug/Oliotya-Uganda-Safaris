@@ -3,7 +3,7 @@ import { PrismaClient } from '../prisma/app/generated/prisma-client/index.js';
 const prisma = new PrismaClient();
 
 const R2_BASE = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-const IMAGE_PATH = "nambi-uganda-safaris/images";
+const IMAGE_PATH = "oliotya-safaris-safaris/images";
 
 async function main() {
   console.log('Seeding about page sections...');
@@ -17,7 +17,7 @@ async function main() {
       heading: 'OUR STORY',
       title: 'Crafting Unforgettable',
       titleHighlight: 'African Adventures',
-      paragraph1: 'We are Nambi Uganda Safaris, a safari company founded out of a passion for the people, extraordinary landscape, and wildlife of Uganda. Our company arranges a variety of tours and we can, of course, customize the experience to fit the customers\' interests.',
+      paragraph1: 'We are Oliotya Safaris, a safari company founded out of a passion for the people, extraordinary landscape, and wildlife of Uganda. Our company arranges a variety of tours and we can, of course, customize the experience to fit the customers\' interests.',
       paragraph2: 'This means a combination of cultural experiences together with wildlife tours, hiking tours, and of course special location tours like an escape to celebrate your honeymoon, Volunteering trips, tourism internships, and social work internships. We take care of everything from the pickup and drop off at the airport to the booking of the customers\' hotels.',
       buttonText: 'Explore Our Tours',
       buttonLink: '/destinations',
@@ -38,7 +38,7 @@ async function main() {
       heading: 'COMMUNITY IMPACT',
       title: 'Giving Back Through',
       titleHighlight: 'Akaana Foundation',
-      paragraph1: 'At Nambi Uganda Safaris, we believe in making a positive impact beyond tourism. We\'re proud partners of Akaana Foundation Africa, a nonprofit organization dedicated to supporting street children in Kampala.',
+      paragraph1: 'At Oliotya Safaris, we believe in making a positive impact beyond tourism. We\'re proud partners of Akaana Foundation Africa, a nonprofit organization dedicated to supporting street children in Kampala.',
       paragraph2: 'Through this partnership, a portion of every tour helps fund education, shelter, and rehabilitation programs for vulnerable children, creating lasting change in our community.',
       buttonText: 'Learn More About Akaana',
       buttonLink: 'https://www.akaanafoundation.nl',

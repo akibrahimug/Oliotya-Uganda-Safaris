@@ -2,7 +2,7 @@
 
 ## 🎉 Summary
 
-The booking and contact system has been successfully integrated into your Nambi Uganda Safaris website! Users can now book safaris directly from package pages, and the contact form is fully functional.
+The booking and contact system has been successfully integrated into your Oliotya Safaris website! Users can now book safaris directly from package pages, and the contact form is fully functional.
 
 ## 📍 What Was Integrated
 

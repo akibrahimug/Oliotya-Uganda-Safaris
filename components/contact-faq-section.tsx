@@ -61,25 +61,6 @@ export function ContactFAQSection({ data }: ContactFAQSectionProps) {
             ))}
           </Accordion>
         </div>
-
-        {/* CTA Below FAQ */}
-        <div className="max-w-4xl mx-auto mt-16 text-center animate-fade-in-up">
-          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-8">
-            <h3 className="font-inter text-2xl font-bold mb-3">
-              Still Have Questions?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Our team is here to help you plan the perfect safari adventure.
-              Reach out and we'll get back to you within 24 hours.
-            </p>
-            <a
-              href="#contact-form"
-              className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-            >
-              Contact Us
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

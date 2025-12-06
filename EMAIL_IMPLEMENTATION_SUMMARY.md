@@ -178,7 +178,7 @@ Form Submit → Validate → Save to Database → Send Emails → Show Success
 
 - **Free Tier**: 3,000 emails/month (usually enough for small-medium businesses)
 - **If you exceed**: ~$20/month for 50,000 emails
-- **For Fox Adventures**: Likely well within free tier
+- **For Oliotya Safaris**: Likely well within free tier
 
 Example usage:
 - 50 contact forms/month = 100 emails (to you + customer)

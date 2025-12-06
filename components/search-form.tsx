@@ -39,7 +39,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
   const fetchPackages = async () => {
     try {
-      const response = await fetch("/api/cms/packages");
+      const response = await fetch("/api/packages");
       if (!response.ok) {
         throw new Error("Failed to fetch packages");
       }

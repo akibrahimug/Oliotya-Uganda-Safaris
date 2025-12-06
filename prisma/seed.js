@@ -274,7 +274,7 @@ async function main() {
     const settings = [
       {
         key: 'site_name',
-        value: 'Nambi Uganda Safaris',
+        value: 'Oliotya Safaris',
         category: 'general',
       },
       {
@@ -284,7 +284,7 @@ async function main() {
       },
       {
         key: 'contact_email',
-        value: 'info@nambiugandasafaris.com',
+        value: 'info@oliotyasafaris.com',
         category: 'contact',
       },
       {
@@ -311,7 +311,22 @@ async function main() {
     console.log('🌍 Seeding destinations...');
     await seedDestinationsComplete();
 
-    // 5. Create email templates
+    // 5. Create team section
+    console.log('👥 Creating team section...');
+    await prisma.teamSection.upsert({
+      where: { id: 'default-team-section' },
+      update: {},
+      create: {
+        id: 'default-team-section',
+        heading: 'OUR TEAM',
+        title: 'Meet the Oliotya Safaris Family',
+        description: 'Our passionate team of travel experts and local guides are dedicated to creating your perfect Ugandan adventure',
+        status: 'PUBLISHED',
+        publishedAt: new Date(),
+      },
+    });
+
+    // 6. Create email templates
     console.log('📧 Creating email templates...');
 
     // Skip email templates for now to avoid validation issues

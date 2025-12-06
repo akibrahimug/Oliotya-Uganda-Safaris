@@ -119,7 +119,7 @@ async function sendContactEmails(inquiry: {
 
     await sendEmail({
       to: inquiry.email,
-      subject: "Thank you for contacting Fox Adventures",
+      subject: "Thank you for contacting Oliotya Safaris",
       html: customerHtml,
     });
   } catch (error) {

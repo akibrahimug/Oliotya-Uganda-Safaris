@@ -37,12 +37,11 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const response = await fetch("/api/cms/packages");
+        const response = await fetch("/api/packages?popular=true");
         if (!response.ok) throw new Error("Failed to fetch packages");
         const data = await response.json();
-        const popularPkgs = data.packages.filter((pkg: Package) => pkg.popular === true);
-        setAllPackages(popularPkgs);
-        setFilteredPlaces(popularPkgs);
+        setAllPackages(data.packages);
+        setFilteredPlaces(data.packages);
       } catch (error) {
         console.error("Error fetching packages:", error);
       } finally {

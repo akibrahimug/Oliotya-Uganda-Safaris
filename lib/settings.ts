@@ -39,11 +39,11 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
     // Transform array of settings into structured object
     const transformedSettings: SiteSettings = {
-      brand: { siteName: "Nambi Uganda Safaris", logo: "", tagline: "Experience the Pearl of Africa" },
-      contact: { phone: "+256 788048210", email: "info@nambiuganda.com", address: "Kampala, Uganda", whatsapp: "+256 788048210" },
+      brand: { siteName: "Oliotya Safaris", logo: "", tagline: "Experience the Pearl of Africa" },
+      contact: { phone: "+256 788048210", email: "info@oliotyasafaris.com", address: "Kampala, Uganda", whatsapp: "+256 788048210" },
       social: { facebook: "", instagram: "", twitter: "", linkedin: "", youtube: "" },
       newsletter: { title: "Subscribe to Our Newsletter", description: "Get exclusive travel tips, special offers, and updates on Uganda's best safari experiences" },
-      footer: { description: "Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.", copyright: "© 2025 Nambi Uganda Safaris. All rights reserved." },
+      footer: { description: "Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.", copyright: "© 2025 Oliotya Safaris. All rights reserved." },
     };
 
     settings.forEach((setting: any) => {
@@ -58,11 +58,11 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
     // Return default settings if there's an error
     return {
-      brand: { siteName: "Nambi Uganda Safaris", logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp", tagline: "Experience the Pearl of Africa" },
-      contact: { phone: "+256 788048210", email: "info@nambiuganda.com", address: "Kampala, Uganda", whatsapp: "+256 788048210" },
+      brand: { siteName: "Oliotya Safaris", logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp", tagline: "Experience the Pearl of Africa" },
+      contact: { phone: "+256 788048210", email: "info@oliotyasafaris.com", address: "Kampala, Uganda", whatsapp: "+256 788048210" },
       social: { facebook: "", instagram: "", twitter: "", linkedin: "", youtube: "" },
       newsletter: { title: "Subscribe to Our Newsletter", description: "Get exclusive travel tips, special offers, and updates on Uganda's best safari experiences" },
-      footer: { description: "Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.", copyright: "© 2025 Nambi Uganda Safaris. All rights reserved." },
+      footer: { description: "Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.", copyright: "© 2025 Oliotya Safaris. All rights reserved." },
     };
   }
 }
@@ -73,7 +73,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
  */
 export async function fetchSiteSettingsClient(): Promise<SiteSettings> {
   try {
-    const response = await fetch("/api/cms/settings/public", {
+    const response = await fetch("/api/settings", {
       cache: "no-store",
     });
 
@@ -88,11 +88,11 @@ export async function fetchSiteSettingsClient(): Promise<SiteSettings> {
 
     // Return default settings if there's an error
     return {
-      brand: { siteName: "Nambi Uganda Safaris", logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp", tagline: "Experience the Pearl of Africa" },
-      contact: { phone: "+256 788048210", email: "info@nambiuganda.com", address: "Kampala, Uganda", whatsapp: "+256 788048210" },
+      brand: { siteName: "Oliotya Safaris", logo: process.env.NEXT_PUBLIC_R2_PUBLIC_URL + "/nambi-uganda-safaris/images/fox_logo.webp", tagline: "Experience the Pearl of Africa" },
+      contact: { phone: "+256 788048210", email: "info@oliotyasafaris.com", address: "Kampala, Uganda", whatsapp: "+256 788048210" },
       social: { facebook: "", instagram: "", twitter: "", linkedin: "", youtube: "" },
       newsletter: { title: "Subscribe to Our Newsletter", description: "Get exclusive travel tips, special offers, and updates on Uganda's best safari experiences" },
-      footer: { description: "Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.", copyright: "© 2025 Nambi Uganda Safaris. All rights reserved." },
+      footer: { description: "Experience the Pearl of Africa with expert-guided safaris, cultural tours, and unforgettable adventures.", copyright: "© 2025 Oliotya Safaris. All rights reserved." },
     };
   }
 }

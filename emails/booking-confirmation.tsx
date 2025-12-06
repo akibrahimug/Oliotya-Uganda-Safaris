@@ -31,8 +31,8 @@ export default function BookingConfirmationEmail({
   travelDateFrom,
   travelDateTo,
   totalPrice,
-  companyName = 'Nambi Uganda Safaris',
-  contactEmail = 'info@nambiugandasafaris.com',
+  companyName = 'Oliotya Safaris',
+  contactEmail = 'info@oliotyasafaris.com',
   primaryColor = '#059669',
   accentColor = '#3b82f6',
 }: BookingConfirmationEmailProps) {

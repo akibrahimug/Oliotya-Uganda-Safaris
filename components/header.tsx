@@ -19,7 +19,7 @@ export function Header({ showBackButton = false, backButtonText = "Back", onBack
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logoUrl, setLogoUrl] = useState<string>("");
-  const [siteName, setSiteName] = useState<string>("Nambi Uganda Safaris");
+  const [siteName, setSiteName] = useState<string>("Oliotya Safaris");
   const [isLoading, setIsLoading] = useState(true);
 
   // Default logo URL
@@ -32,7 +32,7 @@ export function Header({ showBackButton = false, backButtonText = "Back", onBack
       .then((data) => {
         console.log("Header: Fetched settings", data);
         setLogoUrl(data?.brand?.logo || defaultLogo);
-        setSiteName(data?.brand?.siteName || "Nambi Uganda Safaris");
+        setSiteName(data?.brand?.siteName || "Oliotya Safaris");
       })
       .catch((error) => {
         console.error("Failed to fetch settings:", error);

@@ -1,4 +1,4 @@
-# Nambi Uganda Safaris CMS - Development Progress
+# Oliotya Safaris CMS - Development Progress
 
 ## ✅ Completed (Phase 1 - Foundation)
 

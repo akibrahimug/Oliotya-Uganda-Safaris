@@ -4,7 +4,7 @@
 
 All 6 email templates have been successfully fixed with:
 1. ✅ **Fixed broken inline styles** - Table-based layouts for email client compatibility
-2. ✅ **Replaced "Fox Adventures"** → "Nambi Uganda Safaris" (dynamic)
+2. ✅ **Replaced "Oliotya Safaris"** → "Oliotya Safaris" (dynamic)
 3. ✅ **Added dynamic company name** - All templates support custom branding
 4. ✅ **Email schema created** - Database model ready for CMS
 
@@ -28,12 +28,12 @@ Added `EmailTemplate` model with fields for:
 **For**: Customer booking confirmations
 
 **Changes**:
-- ✅ Dynamic `companyName` prop (default: "Nambi Uganda Safaris")
-- ✅ Dynamic `contactEmail` prop (default: "info@nambiugandasafaris.com")
+- ✅ Dynamic `companyName` prop (default: "Oliotya Safaris")
+- ✅ Dynamic `contactEmail` prop (default: "info@oliotyasafaris.com")
 - ✅ Dynamic `primaryColor` and `accentColor` for branding
 - ✅ Table-based layout instead of divs/flex
 - ✅ Proper HTML meta tags
-- ✅ All "Fox Adventures" replaced with `{companyName}`
+- ✅ All "Oliotya Safaris" replaced with `{companyName}`
 
 #### booking-notification.tsx ✅
 **For**: Admin notifications for new bookings
@@ -95,8 +95,8 @@ All templates now use:
 - ✅ Proper viewport meta tags
 
 ### Brand Consistency
-- ✅ Default company: "Nambi Uganda Safaris"
-- ✅ Default email: "info@nambiugandasafaris.com"
+- ✅ Default company: "Oliotya Safaris"
+- ✅ Default email: "info@oliotyasafaris.com"
 - ✅ Default primary color: #059669 (green)
 - ✅ Default accent varies by template type
 - ✅ All customizable via props
@@ -120,8 +120,8 @@ interface EmailTemplateProps {
   ...
 
   // Branding props (optional with defaults)
-  companyName?: string;        // Default: "Nambi Uganda Safaris"
-  contactEmail?: string;        // Default: "info@nambiugandasafaris.com"
+  companyName?: string;        // Default: "Oliotya Safaris"
+  contactEmail?: string;        // Default: "info@oliotyasafaris.com"
   primaryColor?: string;        // Default: "#059669"
   accentColor?: string;         // Varies by template
 }
@@ -138,7 +138,7 @@ interface EmailTemplateProps {
   confirmationNumber="BK-123"
   // ... other props
 />
-// Always says "Fox Adventures"
+// Always says "Oliotya Safaris"
 ```
 
 ### After (dynamic):
@@ -146,13 +146,13 @@ interface EmailTemplateProps {
 <BookingConfirmationEmail
   firstName="John"
   confirmationNumber="BK-123"
-  companyName="Nambi Uganda Safaris"
-  contactEmail="info@nambiugandasafaris.com"
+  companyName="Oliotya Safaris"
+  contactEmail="info@oliotyasafaris.com"
   primaryColor="#059669"
   accentColor="#3b82f6"
   // ... other props
 />
-// Says "Nambi Uganda Safaris"
+// Says "Oliotya Safaris"
 ```
 
 ---
@@ -298,11 +298,11 @@ await sendBookingEmails({
 ## Migration from Old Templates
 
 ### What Changed
-1. **All "Fox Adventures" → "Nambi Uganda Safaris"**
+1. **All "Oliotya Safaris" → "Oliotya Safaris"**
    - Every reference updated
    - Now uses dynamic `{companyName}` variable
 
-2. **All "info@foxadventures.com" → "info@nambiugandasafaris.com"**
+2. **All "info@foxadventures.com" → "info@oliotyasafaris.com"**
    - Every email reference updated
    - Now uses dynamic `{contactEmail}` variable
 

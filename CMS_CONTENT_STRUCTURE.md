@@ -1,15 +1,15 @@
-# Nambi Uganda Safaris CMS - Content Structure
+# Oliotya Safaris CMS - Content Structure
 
 ## Overview
 
-This document outlines all editable content in the Nambi Uganda Safaris application, organized for CMS management.
+This document outlines all editable content in the Oliotya Safaris application, organized for CMS management.
 
 ## Content Categories
 
 ### 1. SITE-WIDE CONTENT (Global Settings)
 
 #### Company Information
-- **Company Name**: "Nambi Uganda Safaris Africa"
+- **Company Name**: "Oliotya Safaris Africa"
 - **Brand Tagline**: "Experience the Pearl of Africa..."
 - **Logo**: `/fox_logo.jpg`
 
@@ -61,7 +61,7 @@ Current slides:
 
 #### Hero Section
 - **Background Image**
-- **Title**: "Your trusted partner in About Nambi Uganda Safaris"
+- **Title**: "Your trusted partner in About Oliotya Safaris"
 - **Description**
 
 #### Our Story Section

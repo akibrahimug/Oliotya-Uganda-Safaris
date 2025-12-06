@@ -3,7 +3,7 @@ import { PrismaClient } from "../prisma/app/generated/prisma-client/index.js";
 const prisma = new PrismaClient();
 
 const R2_BASE = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-const IMAGE_PATH = "nambi-uganda-safaris/images";
+const IMAGE_PATH = "oliotya-safaris-safaris/images";
 
 async function main() {
   console.log("🌱 Seeding contact page sections...");
@@ -30,7 +30,7 @@ async function main() {
   await prisma.contactInfo.create({
     data: {
       id: "contact-info-1",
-      email: "info@nambiuganda.com",
+      email: "info@oliotyasafaris.com",
       phone: "+256 788048210",
       whatsapp: "+31682754225",
       office: "Kampala, Uganda",

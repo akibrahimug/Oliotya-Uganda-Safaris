@@ -406,7 +406,7 @@ model TeamMember {
 model TeamSection {
   id          String        @id @default(cuid())
   heading     String // "OUR TEAM"
-  title       String // "Meet the Nambi Uganda Safaris Family"
+  title       String // "Meet the Oliotya Safaris Family"
   description String        @db.Text // Description paragraph
   status      ContentStatus @default(DRAFT)
   publishedAt DateTime?
@@ -640,7 +640,7 @@ model AboutHero {
   id          String        @id @default(cuid())
   image       String // Hero image URL
   title       String // "Your trusted partner in"
-  subtitle    String // "About Nambi Uganda Safaris"
+  subtitle    String // "About Oliotya Safaris"
   description String        @db.Text
   status      ContentStatus @default(DRAFT)
   publishedAt DateTime?
@@ -658,8 +658,8 @@ model AboutCTA {
   description      String        @db.Text
   button1Text      String // "Explore Our Destinations"
   button1Link      String // "/destinations"
-  button2Text      String // "Get Custom Itinerary"
-  button2Link      String // "/contact"
+  button2Text      String // "Request Custom Itinerary"
+  button2Link      String // "/build-package"
   footerText       String // "🌟 98% Customer Satisfaction..."
   status           ContentStatus @default(DRAFT)
   publishedAt      DateTime?

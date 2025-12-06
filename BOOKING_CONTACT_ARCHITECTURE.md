@@ -1,7 +1,7 @@
 # Booking & Contact System Architecture
 
 ## Overview
-This document outlines the booking and contact system architecture for Nambi Uganda Safaris.
+This document outlines the booking and contact system architecture for Oliotya Safaris.
 
 ## Booking Flow
 
@@ -91,12 +91,12 @@ This document outlines the booking and contact system architecture for Nambi Uga
 ```
 # Email Configuration
 RESEND_API_KEY=your_resend_api_key
-ADMIN_EMAIL=info@nambiuganda.com
-FROM_EMAIL=noreply@nambiuganda.com
+ADMIN_EMAIL=info@oliotyasafaris.com
+FROM_EMAIL=noreply@oliotyasafaris.com
 
 # Bank Details for Payment Instructions
 BANK_NAME=Your Bank Name
-BANK_ACCOUNT_NAME=Nambi Uganda Safaris
+BANK_ACCOUNT_NAME=Oliotya Safaris
 BANK_ACCOUNT_NUMBER=1234567890
 BANK_SWIFT_CODE=XXXXX
 ```

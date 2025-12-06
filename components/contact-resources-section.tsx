@@ -101,12 +101,6 @@ export function ContactResourcesSection({ data }: ContactResourcesSectionProps) 
               Let us help you create an unforgettable safari experience tailored to your interests and budget
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="#contact-form"
-                className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg"
-              >
-                Contact Us Today
-              </a>
               <Link
                 href="/packages"
                 className="inline-flex items-center justify-center px-8 py-3 bg-background text-foreground border-2 border-muted rounded-lg font-semibold hover:border-primary hover:text-primary transition-all"

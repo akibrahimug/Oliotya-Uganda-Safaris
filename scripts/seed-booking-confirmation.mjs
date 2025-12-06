@@ -13,7 +13,7 @@ async function main() {
       id: 'default-hero',
       badge: 'Booking Confirmed',
       title: 'Your Safari Adventure Awaits!',
-      description: 'Thank you for choosing Fox Adventures. Your booking request has been successfully received, and we\'re excited to help you create unforgettable memories!',
+      description: 'Thank you for choosing Oliotya Safaris. Your booking request has been successfully received, and we\'re excited to help you create unforgettable memories!',
       importantNotice: 'Your reservation will be confirmed once we receive and verify your payment. Please complete the payment to secure your booking at the current price.',
       paymentDeadline: '48 hours from booking',
       status: 'PUBLISHED',

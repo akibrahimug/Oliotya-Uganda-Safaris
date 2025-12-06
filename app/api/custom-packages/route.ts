@@ -200,7 +200,7 @@ async function sendCustomPackageEmails(customPackage: {
 
     await sendEmail({
       to: customPackage.email,
-      subject: "Custom Package Request Received - Fox Adventures",
+      subject: "Custom Package Request Received - Oliotya Safaris",
       html: customerHtml,
     });
   } catch (error) {

@@ -43,7 +43,7 @@ export function PackagesContent({ editable = false, onPackageClick, onPackageDel
   const fetchPackages = async () => {
     try {
       setError(null);
-      const response = await fetch('/api/cms/packages');
+      const response = await fetch('/api/packages');
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Failed to fetch packages' }));

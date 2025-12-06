@@ -1,7 +1,7 @@
 # Component Library Migration Plan - @kasoma/comp-lib
 
 ## Overview
-Migrate Fox Adventures components to use the existing `@kasoma/comp-lib` package while centralizing theme management and fixing all TypeScript errors.
+Migrate Oliotya Safaris components to use the existing `@kasoma/comp-lib` package while centralizing theme management and fixing all TypeScript errors.
 
 ## Current State
 - **Package**: `@kasoma/comp-lib` already exists and is built
@@ -114,8 +114,8 @@ import { cn } from '@kasoma/comp-lib';
 
 ### 3.4 Components to Keep Local
 
-These are Fox Adventures-specific and should NOT migrate:
-- `components/booking-form.tsx` - Business logic specific to Fox Adventures
+These are Oliotya Safaris-specific and should NOT migrate:
+- `components/booking-form.tsx` - Business logic specific to Oliotya Safaris
 - `components/contact-form-component.tsx` - App-specific form
 - `components/header.tsx` - App navigation
 - `components/footer.tsx` - App footer

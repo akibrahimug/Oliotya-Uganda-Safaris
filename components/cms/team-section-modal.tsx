@@ -42,7 +42,7 @@ export function TeamSectionModal({
 }: TeamSectionModalProps) {
   const [formData, setFormData] = useState({
     heading: "OUR TEAM",
-    title: "Meet the Nambi Uganda Safaris Family",
+    title: "Meet the Oliotya Safaris Family",
     description: "Our passionate team of travel experts and local guides are dedicated to creating your perfect Ugandan adventure",
   });
   const [saving, setSaving] = useState(false);
@@ -61,7 +61,7 @@ export function TeamSectionModal({
       // Reset to defaults for new section
       setFormData({
         heading: "OUR TEAM",
-        title: "Meet the Nambi Uganda Safaris Family",
+        title: "Meet the Oliotya Safaris Family",
         description: "Our passionate team of travel experts and local guides are dedicated to creating your perfect Ugandan adventure",
       });
       setPublish(false);
@@ -140,7 +140,7 @@ export function TeamSectionModal({
               id="title"
               value={formData.title}
               onChange={(e) => handleInputChange("title", e.target.value)}
-              placeholder="Meet the Nambi Uganda Safaris Family"
+              placeholder="Meet the Oliotya Safaris Family"
             />
           </div>
 
