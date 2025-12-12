@@ -38,6 +38,15 @@ interface SiteSettings {
     description: string;
     copyright: string;
   };
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+    ogImage: string;
+    ogType: string;
+    twitterCard: string;
+    favicon: string;
+  };
 }
 
 export default function CMSSettingsPage() {
@@ -47,10 +56,12 @@ export default function CMSSettingsPage() {
     social: { facebook: "", instagram: "", twitter: "", linkedin: "", youtube: "" },
     newsletter: { title: "", description: "" },
     footer: { description: "", copyright: "" },
+    meta: { title: "", description: "", keywords: "", ogImage: "", ogType: "website", twitterCard: "summary_large_image", favicon: "" },
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [imagePickerOpen, setImagePickerOpen] = useState(false);
+  const [imagePickerTarget, setImagePickerTarget] = useState<"logo" | "ogImage">("logo");
   const { toast } = useToast();
 
   useEffect(() => {
@@ -71,6 +82,7 @@ export default function CMSSettingsPage() {
         social: { facebook: "", instagram: "", twitter: "", linkedin: "", youtube: "" },
         newsletter: { title: "", description: "" },
         footer: { description: "", copyright: "" },
+        meta: { title: "", description: "", keywords: "", ogImage: "", ogType: "website", twitterCard: "summary_large_image", favicon: "" },
       };
 
       data.settings.forEach((setting: any) => {
@@ -155,12 +167,13 @@ export default function CMSSettingsPage() {
       </div>
 
       <Tabs defaultValue="brand" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="brand">Brand</TabsTrigger>
           <TabsTrigger value="contact">Contact</TabsTrigger>
           <TabsTrigger value="social">Social Media</TabsTrigger>
           <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
           <TabsTrigger value="footer">Footer</TabsTrigger>
+          <TabsTrigger value="meta">SEO/Meta</TabsTrigger>
         </TabsList>
 
         {/* Brand Tab */}
@@ -179,7 +192,7 @@ export default function CMSSettingsPage() {
                   id="siteName"
                   value={settings.brand.siteName}
                   onChange={(e) => updateSetting("brand", "siteName", e.target.value)}
-                  placeholder="Oliotya Safaris"
+                  placeholder="Oliotya Uganda Safaris"
                 />
               </div>
 
@@ -204,7 +217,10 @@ export default function CMSSettingsPage() {
                       type="button"
                       variant="outline"
                       size="sm"
-                      onClick={() => setImagePickerOpen(true)}
+                      onClick={() => {
+                        setImagePickerTarget("logo");
+                        setImagePickerOpen(true);
+                      }}
                       className="w-full"
                     >
                       <ImageIcon className="h-4 w-4 mr-2" />
@@ -463,7 +479,7 @@ export default function CMSSettingsPage() {
                   id="copyright"
                   value={settings.footer.copyright}
                   onChange={(e) => updateSetting("footer", "copyright", e.target.value)}
-                  placeholder="© 2025 Oliotya Safaris. All rights reserved."
+                  placeholder="© 2025 Oliotya Uganda Safaris. All rights reserved."
                 />
               </div>
 
@@ -482,6 +498,150 @@ export default function CMSSettingsPage() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        {/* SEO/Meta Tab */}
+        <TabsContent value="meta">
+          <Card>
+            <CardHeader>
+              <CardTitle>SEO & Meta Settings</CardTitle>
+              <CardDescription>
+                Manage your site's metadata for search engines and social media sharing
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="metaTitle">Page Title</Label>
+                <Input
+                  id="metaTitle"
+                  value={settings.meta.title}
+                  onChange={(e) => updateSetting("meta", "title", e.target.value)}
+                  placeholder="Oliotya Uganda Safaris - Discover Uganda"
+                />
+                <p className="text-xs text-muted-foreground">
+                  This appears in browser tabs and search results (50-60 characters recommended)
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="metaDescription">Meta Description</Label>
+                <Textarea
+                  id="metaDescription"
+                  value={settings.meta.description}
+                  onChange={(e) => updateSetting("meta", "description", e.target.value)}
+                  placeholder="Experience the Pearl of Africa with Oliotya Uganda Safaris..."
+                  rows={3}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Brief summary for search results (150-160 characters recommended)
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="metaKeywords">Keywords</Label>
+                <Input
+                  id="metaKeywords"
+                  value={settings.meta.keywords}
+                  onChange={(e) => updateSetting("meta", "keywords", e.target.value)}
+                  placeholder="Uganda safaris, Uganda tours, wildlife safaris, gorilla trekking"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Comma-separated keywords for search engines
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="ogImage">Open Graph Image (Social Media)</Label>
+                <div className="flex gap-4 items-start">
+                  {settings.meta.ogImage && (
+                    <img
+                      src={settings.meta.ogImage}
+                      alt="OG Image"
+                      className="w-40 h-24 rounded-lg object-cover border"
+                    />
+                  )}
+                  <div className="flex-1 space-y-2">
+                    <Input
+                      id="ogImage"
+                      value={settings.meta.ogImage}
+                      onChange={(e) => updateSetting("meta", "ogImage", e.target.value)}
+                      placeholder="Image URL for social media sharing"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setImagePickerTarget("ogImage");
+                        setImagePickerOpen(true);
+                      }}
+                      className="w-full"
+                    >
+                      <ImageIcon className="h-4 w-4 mr-2" />
+                      Choose from Gallery
+                    </Button>
+                    <p className="text-xs text-muted-foreground">
+                      Recommended size: 1200x630px for best social media display
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="ogType">Open Graph Type</Label>
+                  <Input
+                    id="ogType"
+                    value={settings.meta.ogType}
+                    onChange={(e) => updateSetting("meta", "ogType", e.target.value)}
+                    placeholder="website"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Usually "website" for most pages
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="twitterCard">Twitter Card Type</Label>
+                  <Input
+                    id="twitterCard"
+                    value={settings.meta.twitterCard}
+                    onChange={(e) => updateSetting("meta", "twitterCard", e.target.value)}
+                    placeholder="summary_large_image"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Usually "summary_large_image" for images
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="favicon">Favicon Path</Label>
+                <Input
+                  id="favicon"
+                  value={settings.meta.favicon}
+                  onChange={(e) => updateSetting("meta", "favicon", e.target.value)}
+                  placeholder="/fox_logo.webp"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Path to your favicon image (relative to public folder)
+                </p>
+              </div>
+
+              <Button
+                onClick={() => handleSave("meta")}
+                disabled={saving}
+                className="w-full"
+              >
+                {saving ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <Save className="h-4 w-4 mr-2" />
+                )}
+                Save SEO Settings
+              </Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
       </Tabs>
 
       {/* Image Picker Modal */}
@@ -489,7 +649,11 @@ export default function CMSSettingsPage() {
         open={imagePickerOpen}
         onClose={() => setImagePickerOpen(false)}
         onSelect={(imageUrl) => {
-          updateSetting("brand", "logo", imageUrl);
+          if (imagePickerTarget === "logo") {
+            updateSetting("brand", "logo", imageUrl);
+          } else {
+            updateSetting("meta", "ogImage", imageUrl);
+          }
           setImagePickerOpen(false);
         }}
       />

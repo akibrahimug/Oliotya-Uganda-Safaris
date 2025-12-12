@@ -13,17 +13,17 @@ interface HeaderProps {
   onBackClick?: () => void;
 }
 
-export function Header({ showBackButton = false, backButtonText = "Back", onBackClick }: HeaderProps = {}) {
+export function Header({
+  showBackButton = false,
+  backButtonText = "Back",
+  onBackClick,
+}: HeaderProps = {}) {
   const router = useRouter();
-  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logoUrl, setLogoUrl] = useState<string>("");
-  const [siteName, setSiteName] = useState<string>("Oliotya Safaris");
+  const [siteName, setSiteName] = useState<string>("Oliotya Uganda Safaris");
   const [isLoading, setIsLoading] = useState(true);
-
-  // Default logo URL
-  const defaultLogo = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev/nambi-uganda-safaris/images/fox_logo.webp";
 
   // Fetch settings on mount
   useEffect(() => {
@@ -31,12 +31,12 @@ export function Header({ showBackButton = false, backButtonText = "Back", onBack
     fetchSiteSettingsClient()
       .then((data) => {
         console.log("Header: Fetched settings", data);
-        setLogoUrl(data?.brand?.logo || defaultLogo);
-        setSiteName(data?.brand?.siteName || "Oliotya Safaris");
+        setLogoUrl(data?.brand?.logo || "");
+        setSiteName(data?.brand?.siteName || "Oliotya Uganda Safaris");
       })
       .catch((error) => {
         console.error("Failed to fetch settings:", error);
-        setLogoUrl(defaultLogo);
+        setLogoUrl("");
       })
       .finally(() => {
         setIsLoading(false);
@@ -89,15 +89,15 @@ export function Header({ showBackButton = false, backButtonText = "Back", onBack
               scrolled ? "" : "border-b-2 border-background/20"
             }`}
           >
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" className="flex items-center gap-2 group ">
               {!isLoading && logoUrl && (
                 <img
                   src={logoUrl}
                   alt={`${siteName} Logo`}
-                  className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
+                  className="h-10 w-auto object-contain transition-transform group-hover:scale-105 duration-300 rounded-xs "
                   onError={(e) => {
                     // Fallback to default logo if image fails to load
-                    e.currentTarget.src = defaultLogo;
+                    e.currentTarget.src = logoUrl || "";
                   }}
                 />
               )}
@@ -210,9 +210,9 @@ export function Header({ showBackButton = false, backButtonText = "Back", onBack
                   <img
                     src={logoUrl}
                     alt={`${siteName} Logo`}
-                    className="w-10 h-10 rounded-full object-cover transition-transform group-hover:scale-110"
+                    className="h-10 w-auto object-contain transition-transform group-hover:scale-110"
                     onError={(e) => {
-                      e.currentTarget.src = defaultLogo;
+                      e.currentTarget.src = logoUrl || "";
                     }}
                   />
                 )}

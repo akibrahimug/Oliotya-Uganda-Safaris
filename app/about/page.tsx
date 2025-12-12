@@ -14,72 +14,83 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function AboutPage() {
-  // Fetch all About page sections from database
-  const [
-    heroSection,
-    storySection,
-    communitySection,
-    statsSection,
-    valuesData,
-    teamMembers,
-    ctaSection,
-  ] = await Promise.all([
-    prisma.aboutHero.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.aboutStorySection.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.aboutCommunitySection.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.aboutStats.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.aboutValue.findMany({
-      where: { active: true },
-      orderBy: { displayOrder: "asc" },
-    }),
-    prisma.teamMember.findMany({
-      where: { active: true },
-      orderBy: { displayOrder: "asc" },
-    }),
-    prisma.aboutCTA.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-  ]);
+  try {
+    // Fetch all About page sections from database
+    const [
+      heroSection,
+      storySection,
+      communitySection,
+      statsSection,
+      valuesData,
+      teamMembers,
+      ctaSection,
+    ] = await Promise.all([
+      prisma.aboutHero.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.aboutStorySection.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.aboutCommunitySection.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.aboutStats.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.aboutValue.findMany({
+        where: { active: true },
+        orderBy: { displayOrder: "asc" },
+      }),
+      prisma.teamMember.findMany({
+        where: { active: true },
+        orderBy: { displayOrder: "asc" },
+      }),
+      prisma.aboutCTA.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+    ]);
 
-  return (
-    <main className="min-h-screen">
-      <Header />
+    return (
+      <main className="min-h-screen">
+        <Header />
 
-      {/* Hero Section */}
-      {heroSection && <AboutHeroSection data={heroSection} />}
+        {/* Hero Section */}
+        {heroSection && <AboutHeroSection data={heroSection} />}
 
-      {/* Our Story Section */}
-      {storySection && <AboutStorySection data={storySection} />}
+        {/* Our Story Section */}
+        {storySection && <AboutStorySection data={storySection} />}
 
-      {/* Community Impact Section */}
-      {communitySection && <AboutCommunitySection data={communitySection} />}
+        {/* Community Impact Section */}
+        {communitySection && <AboutCommunitySection data={communitySection} />}
 
-      {/* Stats Section */}
-      {statsSection && <AboutStatsSection data={statsSection} />}
+        {/* Stats Section */}
+        {statsSection && <AboutStatsSection data={statsSection} />}
 
-      {/* Team Section */}
-      {teamMembers.length > 0 && <AboutTeamSection members={teamMembers} />}
+        {/* Team Section */}
+        {teamMembers.length > 0 && <AboutTeamSection members={teamMembers} />}
 
-      {/* CTA Section */}
-      {ctaSection && <AboutCTASection data={ctaSection} />}
+        {/* CTA Section */}
+        {ctaSection && <AboutCTASection data={ctaSection} />}
 
-      {/* Values Section */}
-      {valuesData.length > 0 && <AboutValuesSection values={valuesData} />}
+        {/* Values Section */}
+        {valuesData.length > 0 && <AboutValuesSection values={valuesData} />}
 
-      <Footer />
-    </main>
-  );
+        <Footer />
+      </main>
+    );
+  } catch (error) {
+    console.error("Error fetching about page data:", error);
+    // Return page with empty sections if database query fails
+    return (
+      <main className="min-h-screen">
+        <Header />
+        <Footer />
+      </main>
+    );
+  }
 }

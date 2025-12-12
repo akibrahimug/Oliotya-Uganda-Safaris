@@ -26,7 +26,7 @@ export function Footer() {
   const [error, setError] = useState("");
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [logoUrl, setLogoUrl] = useState<string>("");
-  const [siteName, setSiteName] = useState<string>("Oliotya Safaris");
+  const [siteName, setSiteName] = useState<string>("Oliotya Uganda Safaris");
   const [isLoading, setIsLoading] = useState(true);
 
   // Default logo URL
@@ -39,7 +39,7 @@ export function Footer() {
       .then((data) => {
         setSettings(data);
         setLogoUrl(data?.brand?.logo || defaultLogo);
-        setSiteName(data?.brand?.siteName || "Oliotya Safaris");
+        setSiteName(data?.brand?.siteName || "Oliotya Uganda Safaris");
       })
       .catch((error) => {
         console.error("Failed to fetch settings:", error);
@@ -141,7 +141,7 @@ export function Footer() {
                 <img
                   src={logoUrl}
                   alt={`${siteName} Logo`}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="h-12 w-auto object-contain"
                   onError={(e) => {
                     e.currentTarget.src = defaultLogo;
                   }}
@@ -358,7 +358,7 @@ export function Footer() {
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              {settings?.footer?.copyright || "© 2025 Oliotya Safaris. All rights reserved."}
+              {settings?.footer?.copyright || "© 2025 Oliotya Uganda Safaris. All rights reserved."}
             </p>
             <div className="flex gap-6 text-sm text-muted-foreground items-center">
               <Link href="/about" className="hover:text-primary transition-colors">

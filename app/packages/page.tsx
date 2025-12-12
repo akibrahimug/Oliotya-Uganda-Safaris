@@ -10,16 +10,36 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 async function getHeroData() {
-  const heroSection = await prisma.packagesHero.findFirst({
-    where: { status: "PUBLISHED" },
-    orderBy: { publishedAt: "desc" },
-  });
+  try {
+    const heroSection = await prisma.packagesHero.findFirst({
+      where: { status: "PUBLISHED" },
+      orderBy: { publishedAt: "desc" },
+    });
 
-  if (!heroSection) {
-    // Fallback to default
+    if (!heroSection) {
+      // Fallback to default
+      const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+      const IMAGE_PATH = "nambi-uganda-safaris/images";
+
+      return [{
+        image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
+        title: "Discover the Pearl of Africa",
+        subtitle: "Safari Packages",
+        description: "Explore curated safari experiences across Uganda's most breathtaking destinations and national parks.",
+      }];
+    }
+
+    return [{
+      image: heroSection.image,
+      title: heroSection.title,
+      subtitle: heroSection.subtitle,
+      description: heroSection.description,
+    }];
+  } catch (error) {
+    console.error("Error fetching packages hero data:", error);
+    // Return fallback data if database query fails
     const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
     const IMAGE_PATH = "nambi-uganda-safaris/images";
-
     return [{
       image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
       title: "Discover the Pearl of Africa",
@@ -27,13 +47,6 @@ async function getHeroData() {
       description: "Explore curated safari experiences across Uganda's most breathtaking destinations and national parks.",
     }];
   }
-
-  return [{
-    image: heroSection.image,
-    title: heroSection.title,
-    subtitle: heroSection.subtitle,
-    description: heroSection.description,
-  }];
 }
 
 export default async function PackagesPage() {

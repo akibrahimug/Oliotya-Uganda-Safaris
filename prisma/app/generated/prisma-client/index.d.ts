@@ -13855,7 +13855,7 @@ export namespace Prisma {
 
   export type CustomPackageGroupByOutputType = {
     id: number
-    userId: string
+    userId: string | null
     name: string
     contactName: string
     email: string
@@ -13910,7 +13910,7 @@ export namespace Prisma {
     quoteNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | CustomPackage$userArgs<ExtArgs>
   }, ExtArgs["result"]["customPackage"]>
 
   export type CustomPackageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13931,7 +13931,7 @@ export namespace Prisma {
     quoteNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | CustomPackage$userArgs<ExtArgs>
   }, ExtArgs["result"]["customPackage"]>
 
   export type CustomPackageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13952,7 +13952,7 @@ export namespace Prisma {
     quoteNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | CustomPackage$userArgs<ExtArgs>
   }, ExtArgs["result"]["customPackage"]>
 
   export type CustomPackageSelectScalar = {
@@ -13977,23 +13977,23 @@ export namespace Prisma {
 
   export type CustomPackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "contactName" | "email" | "phone" | "destinations" | "duration" | "numberOfPeople" | "travelDate" | "specialRequests" | "budget" | "status" | "quotedPrice" | "quoteNotes" | "createdAt" | "updatedAt", ExtArgs["result"]["customPackage"]>
   export type CustomPackageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | CustomPackage$userArgs<ExtArgs>
   }
   export type CustomPackageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | CustomPackage$userArgs<ExtArgs>
   }
   export type CustomPackageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | CustomPackage$userArgs<ExtArgs>
   }
 
   export type $CustomPackagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CustomPackage"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      userId: string
+      userId: string | null
       name: string
       contactName: string
       email: string
@@ -14403,7 +14403,7 @@ export namespace Prisma {
    */
   export interface Prisma__CustomPackageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends CustomPackage$userArgs<ExtArgs> = {}>(args?: Subset<T, CustomPackage$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14846,6 +14846,25 @@ export namespace Prisma {
   }
 
   /**
+   * CustomPackage.user
+   */
+  export type CustomPackage$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
    * CustomPackage without action
    */
   export type CustomPackageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15075,7 +15094,7 @@ export namespace Prisma {
 
   export type PackageBundleGroupByOutputType = {
     id: number
-    userId: string
+    userId: string | null
     name: string | null
     numberOfPeople: number
     travelDate: Date | null
@@ -15118,7 +15137,7 @@ export namespace Prisma {
     quoteNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | PackageBundle$userArgs<ExtArgs>
     packages?: boolean | PackageBundle$packagesArgs<ExtArgs>
     _count?: boolean | PackageBundleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageBundle"]>
@@ -15135,7 +15154,7 @@ export namespace Prisma {
     quoteNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | PackageBundle$userArgs<ExtArgs>
   }, ExtArgs["result"]["packageBundle"]>
 
   export type PackageBundleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -15150,7 +15169,7 @@ export namespace Prisma {
     quoteNotes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | PackageBundle$userArgs<ExtArgs>
   }, ExtArgs["result"]["packageBundle"]>
 
   export type PackageBundleSelectScalar = {
@@ -15169,26 +15188,26 @@ export namespace Prisma {
 
   export type PackageBundleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "numberOfPeople" | "travelDate" | "specialRequests" | "status" | "quotedPrice" | "quoteNotes" | "createdAt" | "updatedAt", ExtArgs["result"]["packageBundle"]>
   export type PackageBundleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | PackageBundle$userArgs<ExtArgs>
     packages?: boolean | PackageBundle$packagesArgs<ExtArgs>
     _count?: boolean | PackageBundleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PackageBundleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | PackageBundle$userArgs<ExtArgs>
   }
   export type PackageBundleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | PackageBundle$userArgs<ExtArgs>
   }
 
   export type $PackageBundlePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PackageBundle"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs> | null
       packages: Prisma.$PackageBundleItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      userId: string
+      userId: string | null
       name: string | null
       numberOfPeople: number
       travelDate: Date | null
@@ -15592,7 +15611,7 @@ export namespace Prisma {
    */
   export interface Prisma__PackageBundleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends PackageBundle$userArgs<ExtArgs> = {}>(args?: Subset<T, PackageBundle$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     packages<T extends PackageBundle$packagesArgs<ExtArgs> = {}>(args?: Subset<T, PackageBundle$packagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageBundleItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16027,6 +16046,25 @@ export namespace Prisma {
      * Limit how many PackageBundles to delete.
      */
     limit?: number
+  }
+
+  /**
+   * PackageBundle.user
+   */
+  export type PackageBundle$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -54534,7 +54572,7 @@ export namespace Prisma {
     OR?: CustomPackageWhereInput[]
     NOT?: CustomPackageWhereInput | CustomPackageWhereInput[]
     id?: IntFilter<"CustomPackage"> | number
-    userId?: StringFilter<"CustomPackage"> | string
+    userId?: StringNullableFilter<"CustomPackage"> | string | null
     name?: StringFilter<"CustomPackage"> | string
     contactName?: StringFilter<"CustomPackage"> | string
     email?: StringFilter<"CustomPackage"> | string
@@ -54550,12 +54588,12 @@ export namespace Prisma {
     quoteNotes?: StringNullableFilter<"CustomPackage"> | string | null
     createdAt?: DateTimeFilter<"CustomPackage"> | Date | string
     updatedAt?: DateTimeFilter<"CustomPackage"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type CustomPackageOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     name?: SortOrder
     contactName?: SortOrder
     email?: SortOrder
@@ -54579,7 +54617,7 @@ export namespace Prisma {
     AND?: CustomPackageWhereInput | CustomPackageWhereInput[]
     OR?: CustomPackageWhereInput[]
     NOT?: CustomPackageWhereInput | CustomPackageWhereInput[]
-    userId?: StringFilter<"CustomPackage"> | string
+    userId?: StringNullableFilter<"CustomPackage"> | string | null
     name?: StringFilter<"CustomPackage"> | string
     contactName?: StringFilter<"CustomPackage"> | string
     email?: StringFilter<"CustomPackage"> | string
@@ -54595,12 +54633,12 @@ export namespace Prisma {
     quoteNotes?: StringNullableFilter<"CustomPackage"> | string | null
     createdAt?: DateTimeFilter<"CustomPackage"> | Date | string
     updatedAt?: DateTimeFilter<"CustomPackage"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type CustomPackageOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     name?: SortOrder
     contactName?: SortOrder
     email?: SortOrder
@@ -54628,7 +54666,7 @@ export namespace Prisma {
     OR?: CustomPackageScalarWhereWithAggregatesInput[]
     NOT?: CustomPackageScalarWhereWithAggregatesInput | CustomPackageScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"CustomPackage"> | number
-    userId?: StringWithAggregatesFilter<"CustomPackage"> | string
+    userId?: StringNullableWithAggregatesFilter<"CustomPackage"> | string | null
     name?: StringWithAggregatesFilter<"CustomPackage"> | string
     contactName?: StringWithAggregatesFilter<"CustomPackage"> | string
     email?: StringWithAggregatesFilter<"CustomPackage"> | string
@@ -54651,7 +54689,7 @@ export namespace Prisma {
     OR?: PackageBundleWhereInput[]
     NOT?: PackageBundleWhereInput | PackageBundleWhereInput[]
     id?: IntFilter<"PackageBundle"> | number
-    userId?: StringFilter<"PackageBundle"> | string
+    userId?: StringNullableFilter<"PackageBundle"> | string | null
     name?: StringNullableFilter<"PackageBundle"> | string | null
     numberOfPeople?: IntFilter<"PackageBundle"> | number
     travelDate?: DateTimeNullableFilter<"PackageBundle"> | Date | string | null
@@ -54661,13 +54699,13 @@ export namespace Prisma {
     quoteNotes?: StringNullableFilter<"PackageBundle"> | string | null
     createdAt?: DateTimeFilter<"PackageBundle"> | Date | string
     updatedAt?: DateTimeFilter<"PackageBundle"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     packages?: PackageBundleItemListRelationFilter
   }
 
   export type PackageBundleOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
     numberOfPeople?: SortOrder
     travelDate?: SortOrderInput | SortOrder
@@ -54686,7 +54724,7 @@ export namespace Prisma {
     AND?: PackageBundleWhereInput | PackageBundleWhereInput[]
     OR?: PackageBundleWhereInput[]
     NOT?: PackageBundleWhereInput | PackageBundleWhereInput[]
-    userId?: StringFilter<"PackageBundle"> | string
+    userId?: StringNullableFilter<"PackageBundle"> | string | null
     name?: StringNullableFilter<"PackageBundle"> | string | null
     numberOfPeople?: IntFilter<"PackageBundle"> | number
     travelDate?: DateTimeNullableFilter<"PackageBundle"> | Date | string | null
@@ -54696,13 +54734,13 @@ export namespace Prisma {
     quoteNotes?: StringNullableFilter<"PackageBundle"> | string | null
     createdAt?: DateTimeFilter<"PackageBundle"> | Date | string
     updatedAt?: DateTimeFilter<"PackageBundle"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     packages?: PackageBundleItemListRelationFilter
   }, "id">
 
   export type PackageBundleOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
     numberOfPeople?: SortOrder
     travelDate?: SortOrderInput | SortOrder
@@ -54724,7 +54762,7 @@ export namespace Prisma {
     OR?: PackageBundleScalarWhereWithAggregatesInput[]
     NOT?: PackageBundleScalarWhereWithAggregatesInput | PackageBundleScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PackageBundle"> | number
-    userId?: StringWithAggregatesFilter<"PackageBundle"> | string
+    userId?: StringNullableWithAggregatesFilter<"PackageBundle"> | string | null
     name?: StringNullableWithAggregatesFilter<"PackageBundle"> | string | null
     numberOfPeople?: IntWithAggregatesFilter<"PackageBundle"> | number
     travelDate?: DateTimeNullableWithAggregatesFilter<"PackageBundle"> | Date | string | null
@@ -58395,12 +58433,12 @@ export namespace Prisma {
     quoteNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutCustomPackagesInput
+    user?: UserCreateNestedOneWithoutCustomPackagesInput
   }
 
   export type CustomPackageUncheckedCreateInput = {
     id?: number
-    userId: string
+    userId?: string | null
     name: string
     contactName: string
     email: string
@@ -58434,12 +58472,12 @@ export namespace Prisma {
     quoteNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutCustomPackagesNestedInput
+    user?: UserUpdateOneWithoutCustomPackagesNestedInput
   }
 
   export type CustomPackageUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     contactName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -58459,7 +58497,7 @@ export namespace Prisma {
 
   export type CustomPackageCreateManyInput = {
     id?: number
-    userId: string
+    userId?: string | null
     name: string
     contactName: string
     email: string
@@ -58497,7 +58535,7 @@ export namespace Prisma {
 
   export type CustomPackageUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     contactName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -58525,13 +58563,13 @@ export namespace Prisma {
     quoteNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutPackageBundlesInput
+    user?: UserCreateNestedOneWithoutPackageBundlesInput
     packages?: PackageBundleItemCreateNestedManyWithoutBundleInput
   }
 
   export type PackageBundleUncheckedCreateInput = {
     id?: number
-    userId: string
+    userId?: string | null
     name?: string | null
     numberOfPeople: number
     travelDate?: Date | string | null
@@ -58554,13 +58592,13 @@ export namespace Prisma {
     quoteNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutPackageBundlesNestedInput
+    user?: UserUpdateOneWithoutPackageBundlesNestedInput
     packages?: PackageBundleItemUpdateManyWithoutBundleNestedInput
   }
 
   export type PackageBundleUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
     travelDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58575,7 +58613,7 @@ export namespace Prisma {
 
   export type PackageBundleCreateManyInput = {
     id?: number
-    userId: string
+    userId?: string | null
     name?: string | null
     numberOfPeople: number
     travelDate?: Date | string | null
@@ -58601,7 +58639,7 @@ export namespace Prisma {
 
   export type PackageBundleUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
     travelDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -62723,6 +62761,11 @@ export namespace Prisma {
     not?: NestedEnumCustomPackageStatusFilter<$PrismaModel> | $Enums.CustomPackageStatus
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
   export type CustomPackageCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -64946,10 +64989,12 @@ export namespace Prisma {
     set?: $Enums.CustomPackageStatus
   }
 
-  export type UserUpdateOneRequiredWithoutCustomPackagesNestedInput = {
+  export type UserUpdateOneWithoutCustomPackagesNestedInput = {
     create?: XOR<UserCreateWithoutCustomPackagesInput, UserUncheckedCreateWithoutCustomPackagesInput>
     connectOrCreate?: UserCreateOrConnectWithoutCustomPackagesInput
     upsert?: UserUpsertWithoutCustomPackagesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCustomPackagesInput, UserUpdateWithoutCustomPackagesInput>, UserUncheckedUpdateWithoutCustomPackagesInput>
   }
@@ -64974,10 +65019,12 @@ export namespace Prisma {
     connect?: PackageBundleItemWhereUniqueInput | PackageBundleItemWhereUniqueInput[]
   }
 
-  export type UserUpdateOneRequiredWithoutPackageBundlesNestedInput = {
+  export type UserUpdateOneWithoutPackageBundlesNestedInput = {
     create?: XOR<UserCreateWithoutPackageBundlesInput, UserUncheckedCreateWithoutPackageBundlesInput>
     connectOrCreate?: UserCreateOrConnectWithoutPackageBundlesInput
     upsert?: UserUpsertWithoutPackageBundlesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPackageBundlesInput, UserUpdateWithoutPackageBundlesInput>, UserUncheckedUpdateWithoutPackageBundlesInput>
   }
@@ -66087,7 +66134,7 @@ export namespace Prisma {
     OR?: CustomPackageScalarWhereInput[]
     NOT?: CustomPackageScalarWhereInput | CustomPackageScalarWhereInput[]
     id?: IntFilter<"CustomPackage"> | number
-    userId?: StringFilter<"CustomPackage"> | string
+    userId?: StringNullableFilter<"CustomPackage"> | string | null
     name?: StringFilter<"CustomPackage"> | string
     contactName?: StringFilter<"CustomPackage"> | string
     email?: StringFilter<"CustomPackage"> | string
@@ -66126,7 +66173,7 @@ export namespace Prisma {
     OR?: PackageBundleScalarWhereInput[]
     NOT?: PackageBundleScalarWhereInput | PackageBundleScalarWhereInput[]
     id?: IntFilter<"PackageBundle"> | number
-    userId?: StringFilter<"PackageBundle"> | string
+    userId?: StringNullableFilter<"PackageBundle"> | string | null
     name?: StringNullableFilter<"PackageBundle"> | string | null
     numberOfPeople?: IntFilter<"PackageBundle"> | number
     travelDate?: DateTimeNullableFilter<"PackageBundle"> | Date | string | null
@@ -66679,12 +66726,12 @@ export namespace Prisma {
     quoteNotes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutPackageBundlesInput
+    user?: UserCreateNestedOneWithoutPackageBundlesInput
   }
 
   export type PackageBundleUncheckedCreateWithoutPackagesInput = {
     id?: number
-    userId: string
+    userId?: string | null
     name?: string | null
     numberOfPeople: number
     travelDate?: Date | string | null
@@ -66782,12 +66829,12 @@ export namespace Prisma {
     quoteNotes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutPackageBundlesNestedInput
+    user?: UserUpdateOneWithoutPackageBundlesNestedInput
   }
 
   export type PackageBundleUncheckedUpdateWithoutPackagesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     numberOfPeople?: IntFieldUpdateOperationsInput | number
     travelDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

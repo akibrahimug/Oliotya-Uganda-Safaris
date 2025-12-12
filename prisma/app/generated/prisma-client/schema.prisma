@@ -233,7 +233,7 @@ model Package {
 
 model CustomPackage {
   id              Int                 @id @default(autoincrement())
-  userId          String
+  userId          String?
   name            String
   contactName     String // Contact person name
   email           String // Contact email
@@ -249,7 +249,7 @@ model CustomPackage {
   quoteNotes      String?             @db.Text
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  user            User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user            User?               @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([status])
@@ -259,7 +259,7 @@ model CustomPackage {
 
 model PackageBundle {
   id              Int                 @id @default(autoincrement())
-  userId          String
+  userId          String?
   name            String?
   numberOfPeople  Int
   travelDate      DateTime?
@@ -269,7 +269,7 @@ model PackageBundle {
   quoteNotes      String?             @db.Text
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  user            User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user            User?               @relation(fields: [userId], references: [id], onDelete: Cascade)
   packages        PackageBundleItem[]
 
   @@index([userId])
@@ -376,7 +376,7 @@ model SiteSettings {
   id        String   @id @default(cuid())
   key       String   @unique
   value     Json // Flexible JSON value
-  category  String? // company, contact, social, navigation
+  category  String? // company, contact, social, navigation, meta
   updatedAt DateTime @updatedAt
   updatedBy String? // User ID who made the change
 
@@ -406,7 +406,7 @@ model TeamMember {
 model TeamSection {
   id          String        @id @default(cuid())
   heading     String // "OUR TEAM"
-  title       String // "Meet the Nambi Uganda Safaris Family"
+  title       String // "Meet the Oliotya Safaris Family"
   description String        @db.Text // Description paragraph
   status      ContentStatus @default(DRAFT)
   publishedAt DateTime?
@@ -640,7 +640,7 @@ model AboutHero {
   id          String        @id @default(cuid())
   image       String // Hero image URL
   title       String // "Your trusted partner in"
-  subtitle    String // "About Nambi Uganda Safaris"
+  subtitle    String // "About Oliotya Safaris"
   description String        @db.Text
   status      ContentStatus @default(DRAFT)
   publishedAt DateTime?
@@ -658,8 +658,8 @@ model AboutCTA {
   description      String        @db.Text
   button1Text      String // "Explore Our Destinations"
   button1Link      String // "/destinations"
-  button2Text      String // "Get Custom Itinerary"
-  button2Link      String // "/contact"
+  button2Text      String // "Request Custom Itinerary"
+  button2Link      String // "/build-package"
   footerText       String // "🌟 98% Customer Satisfaction..."
   status           ContentStatus @default(DRAFT)
   publishedAt      DateTime?

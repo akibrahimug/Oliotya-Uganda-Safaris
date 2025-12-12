@@ -11,60 +11,72 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function ContactPage() {
-  // Fetch all Contact page sections from database
-  const [heroSection, infoSectionRaw, faqsRaw, resources] = await Promise.all([
-    prisma.contactHero.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.contactInfo.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.fAQ.findMany({
-      where: { active: true },
-      orderBy: { displayOrder: "asc" },
-    }),
-    prisma.contactResource.findMany({
-      where: { active: true },
-      orderBy: { displayOrder: "asc" },
-    }),
-  ]);
+  try {
+    // Fetch all Contact page sections from database
+    const [heroSection, infoSectionRaw, faqsRaw, resources] = await Promise.all([
+      prisma.contactHero.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.contactInfo.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.fAQ.findMany({
+        where: { active: true },
+        orderBy: { displayOrder: "asc" },
+      }),
+      prisma.contactResource.findMany({
+        where: { active: true },
+        orderBy: { displayOrder: "asc" },
+      }),
+    ]);
 
-  // Transform the data to match component prop types
-  const infoSection = infoSectionRaw ? {
-    email: infoSectionRaw.email,
-    phone: infoSectionRaw.phone,
-    whatsapp: infoSectionRaw.whatsapp,
-    office: infoSectionRaw.office,
-    businessHours: infoSectionRaw.businessHours as { monFri: string; sat: string; sun: string },
-    quickResponse: infoSectionRaw.quickResponse,
-  } : null;
+    // Transform the data to match component prop types
+    const infoSection = infoSectionRaw ? {
+      email: infoSectionRaw.email,
+      phone: infoSectionRaw.phone,
+      whatsapp: infoSectionRaw.whatsapp,
+      office: infoSectionRaw.office,
+      businessHours: infoSectionRaw.businessHours as { monFri: string; sat: string; sun: string },
+      quickResponse: infoSectionRaw.quickResponse,
+    } : null;
 
-  const faqs = faqsRaw.map(faq => ({
-    id: faq.id,
-    question: faq.question,
-    answer: faq.answer,
-    category: faq.category || undefined,
-  }));
+    const faqs = faqsRaw.map(faq => ({
+      id: faq.id,
+      question: faq.question,
+      answer: faq.answer,
+      category: faq.category || undefined,
+    }));
 
-  return (
-    <main className="min-h-screen">
-      <Header />
+    return (
+      <main className="min-h-screen">
+        <Header />
 
-      {/* Hero Section */}
-      {heroSection && <ContactHeroSection data={heroSection} />}
+        {/* Hero Section */}
+        {heroSection && <ContactHeroSection data={heroSection} />}
 
-      {/* Contact Form Section with Info Sidebar */}
-      <ContactFormSection infoData={infoSection} />
+        {/* Contact Form Section with Info Sidebar */}
+        <ContactFormSection infoData={infoSection} />
 
-      {/* FAQ Section */}
-      {faqs.length > 0 && <ContactFAQSection data={faqs} />}
+        {/* FAQ Section */}
+        {faqs.length > 0 && <ContactFAQSection data={faqs} />}
 
-      {/* Resources Section */}
-      {resources.length > 0 && <ContactResourcesSection data={resources} />}
+        {/* Resources Section */}
+        {resources.length > 0 && <ContactResourcesSection data={resources} />}
 
-      <Footer />
-    </main>
-  );
+        <Footer />
+      </main>
+    );
+  } catch (error) {
+    console.error("Error fetching contact page data:", error);
+    // Return page with contact form if database query fails
+    return (
+      <main className="min-h-screen">
+        <Header />
+        <ContactFormSection infoData={null} />
+        <Footer />
+      </main>
+    );
+  }
 }

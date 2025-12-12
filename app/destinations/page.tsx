@@ -10,36 +10,52 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 async function getPageData() {
-  const [heroSection, ctaSection] = await Promise.all([
-    prisma.destinationsHero.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.destinationsCTA.findFirst({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-    }),
-  ]);
+  try {
+    const [heroSection, ctaSection] = await Promise.all([
+      prisma.destinationsHero.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.destinationsCTA.findFirst({
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
+      }),
+    ]);
 
-  // Fallback hero data
-  const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-  const IMAGE_PATH = "nambi-uganda-safaris/images";
+    // Fallback hero data
+    const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+    const IMAGE_PATH = "nambi-uganda-safaris/images";
 
-  const heroSlides = heroSection
-    ? [{
-        image: heroSection.image,
-        title: heroSection.title,
-        subtitle: heroSection.subtitle,
-        description: heroSection.description,
-      }]
-    : [{
+    const heroSlides = heroSection
+      ? [{
+          image: heroSection.image,
+          title: heroSection.title,
+          subtitle: heroSection.subtitle,
+          description: heroSection.description,
+        }]
+      : [{
+          image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
+          title: "Discover the Pearl of Africa",
+          subtitle: "Explore Destinations",
+          description: "Discover Uganda's most breathtaking locations and unique experiences across diverse landscapes and ecosystems.",
+        }];
+
+    return { heroSlides, ctaSection };
+  } catch (error) {
+    console.error("Error fetching destinations page data:", error);
+    // Return fallback data if database query fails
+    const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+    const IMAGE_PATH = "nambi-uganda-safaris/images";
+    return {
+      heroSlides: [{
         image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
         title: "Discover the Pearl of Africa",
         subtitle: "Explore Destinations",
         description: "Discover Uganda's most breathtaking locations and unique experiences across diverse landscapes and ecosystems.",
-      }];
-
-  return { heroSlides, ctaSection };
+      }],
+      ctaSection: null,
+    };
+  }
 }
 
 export default async function DestinationsPage() {

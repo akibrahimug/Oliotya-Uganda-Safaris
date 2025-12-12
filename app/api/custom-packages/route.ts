@@ -19,37 +19,36 @@ export async function POST(req: Request) {
   try {
     console.log("Custom package API called");
 
-    // Authentication check
+    // Authentication is optional - get userId if available
     const { userId } = await auth();
-    if (!userId) {
-      console.log("No user ID found - unauthorized");
-      throw new APIError(401, "Unauthorized", "AUTH_REQUIRED");
-    }
 
-    // Ensure user exists in database (create if missing)
-    try {
-      const existingUser = await prisma.user.findUnique({
-        where: { id: userId },
-      });
-
-      if (!existingUser) {
-        console.log(`User ${userId} not found in database, creating...`);
-        // Create user record (we'll update with full details from webhook later)
-        await prisma.user.create({
-          data: {
-            id: userId,
-            email: "temp@example.com", // Will be updated by webhook
-          },
+    // If user is authenticated, ensure they exist in database
+    if (userId) {
+      try {
+        const existingUser = await prisma.user.findUnique({
+          where: { id: userId },
         });
-        console.log(`✅ User ${userId} created in database`);
+
+        if (!existingUser) {
+          console.log(`User ${userId} not found in database, creating...`);
+          // Create user record (we'll update with full details from webhook later)
+          await prisma.user.create({
+            data: {
+              id: userId,
+              email: "temp@example.com", // Will be updated by webhook
+            },
+          });
+          console.log(`✅ User ${userId} created in database`);
+        }
+      } catch (userError) {
+        console.error("Error ensuring user exists:", userError);
+        // Continue anyway - the user creation might succeed
       }
-    } catch (userError) {
-      console.error("Error ensuring user exists:", userError);
-      // Continue anyway - the user creation might succeed
     }
 
-    // Rate limiting
-    const { success } = await customPackageRateLimit.limit(userId);
+    // Rate limiting based on IP if no userId
+    const identifier = userId || req.headers.get("x-forwarded-for") || "anonymous";
+    const { success } = await customPackageRateLimit.limit(identifier);
     if (!success) {
       console.log("Rate limit exceeded");
       throw new APIError(
@@ -80,10 +79,10 @@ export async function POST(req: Request) {
     );
     const duration = `${totalDays} Days`;
 
-    // Create custom package
+    // Create custom package (userId is optional for anonymous users)
     const customPackage = await prisma.customPackage.create({
       data: {
-        userId,
+        userId: userId || undefined,
         name: validatedData.name,
         contactName: validatedData.contactName,
         email: validatedData.email,
