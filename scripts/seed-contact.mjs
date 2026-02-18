@@ -30,7 +30,7 @@ async function main() {
   await prisma.contactInfo.create({
     data: {
       id: "contact-info-1",
-      email: "info@oliotyasafaris.com",
+      email: "Info@oliotyaugandasafaris.com",
       phone: "+256 788048210",
       whatsapp: "+31682754225",
       office: "Kampala, Uganda",

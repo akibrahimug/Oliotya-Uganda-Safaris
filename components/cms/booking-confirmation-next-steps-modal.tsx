@@ -60,7 +60,7 @@ export function BookingConfirmationNextStepsModal({
     contactStep: {
       title: "Send Payment Confirmation",
       description: "After making the transfer, send us the payment reference number via:",
-      email: "info@nambisafaris.com",
+      email: "Info@oliotyaugandasafaris.com",
       whatsapp: "+256 123 456 789"
     },
     confirmStep: {
@@ -107,7 +107,7 @@ export function BookingConfirmationNextStepsModal({
         contactStep: {
           title: "Send Payment Confirmation",
           description: "After making the transfer, send us the payment reference number via:",
-          email: "info@nambisafaris.com",
+          email: "Info@oliotyaugandasafaris.com",
           whatsapp: "+256 123 456 789"
         },
         confirmStep: {
@@ -328,7 +328,7 @@ export function BookingConfirmationNextStepsModal({
                   <Input
                     value={formData.contactStep.email}
                     onChange={(e) => updateStepData("contactStep", "email", e.target.value)}
-                    placeholder="info@nambisafaris.com"
+                    placeholder="Info@oliotyaugandasafaris.com"
                   />
                 </div>
                 <div>

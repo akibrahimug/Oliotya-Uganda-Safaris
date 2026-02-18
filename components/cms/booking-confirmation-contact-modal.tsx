@@ -101,7 +101,7 @@ export function BookingConfirmationContactModal({
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                placeholder="support@foxadventures.com"
+                placeholder="Info@oliotyaugandasafaris.com"
               />
             </div>
 

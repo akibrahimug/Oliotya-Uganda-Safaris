@@ -25,8 +25,8 @@ export default function CustomPackageConfirmationEmail({
   name,
   numberOfPeople,
   duration,
-  companyName = 'Oliotya Safaris',
-  contactEmail = 'info@oliotyasafaris.com',
+  companyName = 'Oliotya Uganda Safaris',
+  contactEmail = 'Info@oliotyaugandasafaris.com',
   primaryColor = '#059669',
   accentColor = '#3b82f6',
 }: CustomPackageConfirmationEmailProps) {

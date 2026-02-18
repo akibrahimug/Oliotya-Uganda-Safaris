@@ -67,16 +67,30 @@ export function Footer() {
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
-    console.log("Newsletter subscription:", email);
-    setSubmitSuccess(true);
-    setEmail("");
-    setIsSubmitting(false);
+      const data = await response.json();
 
-    // Hide success message after 5 seconds
-    setTimeout(() => setSubmitSuccess(false), 5000);
+      if (!response.ok) {
+        setError(data.error || "Failed to subscribe. Please try again.");
+        return;
+      }
+
+      setSubmitSuccess(true);
+      setEmail("");
+
+      // Hide success message after 5 seconds
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

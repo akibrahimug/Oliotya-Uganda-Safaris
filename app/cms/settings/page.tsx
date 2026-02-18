@@ -295,7 +295,7 @@ export default function CMSSettingsPage() {
                   type="email"
                   value={settings.contact.email}
                   onChange={(e) => updateSetting("contact", "email", e.target.value)}
-                  placeholder="info@oliotyasafaris.com"
+                  placeholder="Info@oliotyaugandasafaris.com"
                 />
               </div>
 

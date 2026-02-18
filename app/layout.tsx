@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { getSiteSettings } from "@/lib/settings";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 // Inter - A crisp, modern font optimized for screen readability
@@ -70,6 +71,7 @@ export default function RootLayout({
       <html lang="en" className={inter.variable} suppressHydrationWarning>
         <body className="font-inter antialiased" suppressHydrationWarning>
           {children}
+          <Toaster />
           <Analytics />
         </body>
       </html>

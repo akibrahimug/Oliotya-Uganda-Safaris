@@ -264,7 +264,7 @@ function CustomPackageConfirmationContent() {
             </p>
             <div className="space-y-3">
               <a
-                href="mailto:info@nambisafaris.com"
+                href="mailto:Info@oliotyaugandasafaris.com"
                 className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
               >
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -272,7 +272,7 @@ function CustomPackageConfirmationContent() {
                 </div>
                 <div>
                   <p className="font-medium">Email Us</p>
-                  <p className="text-xs text-muted-foreground">info@nambisafaris.com</p>
+                  <p className="text-xs text-muted-foreground">Info@oliotyaugandasafaris.com</p>
                 </div>
               </a>
               <a

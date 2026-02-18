@@ -197,7 +197,7 @@ function BookingConfirmationContent() {
                 <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
                   <li>• Check your email for the booking confirmation</li>
                   <li>• Look in your spam/junk folder</li>
-                  <li>• Contact us at {cmsContact?.email || "info@foxadventures.com"}</li>
+                  <li>• Contact us at {cmsContact?.email || "Info@oliotyaugandasafaris.com"}</li>
                 </ul>
               </div>
             </div>
@@ -379,11 +379,11 @@ function BookingConfirmationContent() {
                 </p>
                 <div className="flex flex-col gap-2">
                   <a
-                    href="mailto:info@nambisafaris.com"
+                    href="mailto:Info@oliotyaugandasafaris.com"
                     className="text-sm text-primary hover:underline flex items-center gap-2"
                   >
                     <Mail className="h-4 w-4" />
-                    Email: info@nambisafaris.com
+                    Email: Info@oliotyaugandasafaris.com
                   </a>
                   <a
                     href="https://wa.me/256123456789"
@@ -481,7 +481,7 @@ function BookingConfirmationContent() {
             </p>
             <div className="space-y-3">
               <a
-                href={`mailto:${cmsContact?.email || "info@nambisafaris.com"}`}
+                href={`mailto:${cmsContact?.email || "Info@oliotyaugandasafaris.com"}`}
                 className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
               >
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -489,7 +489,7 @@ function BookingConfirmationContent() {
                 </div>
                 <div>
                   <p className="font-medium">Email Us</p>
-                  <p className="text-xs text-muted-foreground">{cmsContact?.email || "info@nambisafaris.com"}</p>
+                  <p className="text-xs text-muted-foreground">{cmsContact?.email || "Info@oliotyaugandasafaris.com"}</p>
                 </div>
               </a>
               <a

@@ -274,7 +274,7 @@ async function main() {
     const settings = [
       {
         key: 'site_name',
-        value: 'Oliotya Safaris',
+        value: 'Oliotya Uganda Safaris',
         category: 'general',
       },
       {
@@ -284,7 +284,7 @@ async function main() {
       },
       {
         key: 'contact_email',
-        value: 'info@oliotyasafaris.com',
+        value: 'Info@oliotyaugandasafaris.com',
         category: 'contact',
       },
       {
@@ -319,7 +319,7 @@ async function main() {
       create: {
         id: 'default-team-section',
         heading: 'OUR TEAM',
-        title: 'Meet the Oliotya Safaris Family',
+        title: 'Meet the Oliotya Uganda Safaris Family',
         description: 'Our passionate team of travel experts and local guides are dedicated to creating your perfect Ugandan adventure',
         status: 'PUBLISHED',
         publishedAt: new Date(),
