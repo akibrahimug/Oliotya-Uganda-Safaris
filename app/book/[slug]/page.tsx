@@ -282,11 +282,11 @@ export default function BookingPage() {
                   </p>
                   <div className="space-y-3">
                     <a
-                      href="mailto:info@nambisafaris.com"
+                      href="mailto:Info@oliotyaugandasafaris.com"
                       className="flex items-center gap-3 text-sm hover:text-primary transition-colors"
                     >
                       <Mail className="h-4 w-4 text-primary" />
-                      <span>info@nambisafaris.com</span>
+                      <span>Info@oliotyaugandasafaris.com</span>
                     </a>
                     <a
                       href="tel:+256123456789"

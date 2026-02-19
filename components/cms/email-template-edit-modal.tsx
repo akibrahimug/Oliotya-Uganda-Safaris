@@ -71,7 +71,7 @@ export function EmailTemplateEditModal({
                   id="companyName"
                   value={formData.companyName || ""}
                   onChange={(e) => updateField("companyName", e.target.value)}
-                  placeholder="Oliotya Safaris"
+                  placeholder="Oliotya Uganda Safaris"
                 />
               </div>
               <div className="space-y-2">
@@ -81,7 +81,7 @@ export function EmailTemplateEditModal({
                   type="email"
                   value={formData.contactEmail || ""}
                   onChange={(e) => updateField("contactEmail", e.target.value)}
-                  placeholder="info@nambiugandasafaris.com"
+                  placeholder="Info@oliotyaugandasafaris.com"
                 />
               </div>
             </div>

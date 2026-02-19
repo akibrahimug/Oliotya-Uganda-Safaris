@@ -77,7 +77,7 @@ export function ContactInfoModal({
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="info@oliotyasafaris.com"
+                placeholder="Info@oliotyaugandasafaris.com"
               />
             </div>
 

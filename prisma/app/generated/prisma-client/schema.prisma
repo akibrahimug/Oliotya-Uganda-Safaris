@@ -689,7 +689,7 @@ model ContactHero {
 
 model ContactInfo {
   id            String        @id @default(cuid())
-  email         String // info@nambiuganda.com
+  email         String // Info@oliotyaugandasafaris.com
   phone         String // +256 788048210
   whatsapp      String // +31 682754225
   office        String // Kampala, Uganda

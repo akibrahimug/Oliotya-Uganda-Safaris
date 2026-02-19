@@ -9,24 +9,19 @@ import {
   Hr,
 } from '@react-email/components';
 
-interface ContactConfirmationEmailProps {
-  name: string;
-  subject: string;
+interface SubscribeConfirmationEmailProps {
   companyName?: string;
   contactEmail?: string;
   primaryColor?: string;
   accentColor?: string;
 }
 
-export default function ContactConfirmationEmail({
-  name,
-  subject,
+export default function SubscribeConfirmationEmail({
   companyName = 'Oliotya Uganda Safaris',
   contactEmail = 'Info@oliotyaugandasafaris.com',
   primaryColor = '#059669',
   accentColor = '#86efac',
-}: ContactConfirmationEmailProps) {
-  // Create color-based styles
+}: SubscribeConfirmationEmailProps) {
   const h1Style = { ...h1, color: primaryColor };
   const infoBoxStyle = {
     ...infoBox,
@@ -44,46 +39,50 @@ export default function ContactConfirmationEmail({
       </Head>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1Style}>Thank You for Contacting {companyName}</Heading>
-
-          <Text style={greeting}>Dear {name},</Text>
+          <Heading style={h1Style}>You're Subscribed to {companyName}!</Heading>
 
           <Text style={paragraph}>
-            Thank you for reaching out to us regarding "<strong>{subject}</strong>".
-            We've received your message and our team will get back to you within 24 hours.
+            Thank you for subscribing to our newsletter! You'll now be the first
+            to hear about exclusive safari deals, travel tips, and updates on
+            Uganda's most breathtaking destinations.
           </Text>
 
           <Text style={paragraph}>
             At {companyName}, we're passionate about creating unforgettable safari
-            experiences. Whether you're dreaming of gorilla trekking in Bwindi,
-            witnessing the Big Five, or exploring Uganda's pristine landscapes,
-            we're here to make it happen.
+            experiences. Whether it's gorilla trekking in Bwindi, witnessing the
+            Big Five, or exploring Uganda's pristine landscapes — we're here to
+            make it happen.
           </Text>
 
           <Section style={infoBoxStyle}>
-            <Text style={infoTitleStyle}>What's Next?</Text>
+            <Text style={infoTitleStyle}>What to expect from us:</Text>
             <table width="100%" cellPadding="0" cellSpacing="0" role="presentation">
               <tr>
                 <td style={infoTextStyle}>
-                  • Our team will review your inquiry
+                  • Exclusive travel deals and early-bird offers
                 </td>
               </tr>
               <tr>
                 <td style={{ ...infoTextStyle, paddingTop: '6px' }}>
-                  • We'll respond with personalized recommendations
+                  • Safari tips and destination guides
                 </td>
               </tr>
               <tr>
                 <td style={{ ...infoTextStyle, paddingTop: '6px' }}>
-                  • You'll receive a detailed quote tailored to your needs
+                  • New tour packages and seasonal highlights
+                </td>
+              </tr>
+              <tr>
+                <td style={{ ...infoTextStyle, paddingTop: '6px' }}>
+                  • Stories from the wild — straight to your inbox
                 </td>
               </tr>
             </table>
           </Section>
 
           <Text style={paragraph}>
-            In the meantime, feel free to explore our safari packages and
-            destinations on our website, or contact us directly at {contactEmail}.
+            Have questions or want to start planning your adventure? Reach out to
+            us anytime at {contactEmail}.
           </Text>
 
           <Text style={signature}>
@@ -137,13 +136,6 @@ const h1 = {
   margin: '40px 0 24px',
   padding: '0 40px',
   textAlign: 'center' as const,
-};
-
-const greeting = {
-  color: '#1a1a1a',
-  fontSize: '16px',
-  margin: '0 0 16px 0',
-  padding: '0 40px',
 };
 
 const paragraph = {

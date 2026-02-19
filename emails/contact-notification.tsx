@@ -27,8 +27,8 @@ export default function ContactNotificationEmail({
   subject,
   message,
   inquiryId,
-  companyName = 'Oliotya Safaris',
-  contactEmail = 'info@oliotyasafaris.com',
+  companyName = 'Oliotya Uganda Safaris',
+  contactEmail = 'Info@oliotyaugandasafaris.com',
   primaryColor = '#059669',
   accentColor = '#f59e0b',
 }: ContactNotificationEmailProps) {

@@ -1,5 +1,5 @@
 /**
- * Shared type definitions for Fox Adventures
+ * Shared type definitions for Oliotya Uganda Safaris
  */
 
 export interface SearchFilters {

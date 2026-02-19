@@ -8,7 +8,7 @@ export const resend = new Resend(process.env.RESEND_API_KEY || 'build-time-place
 export const SENDER_EMAIL = process.env.EMAIL_FROM || 'onboarding@resend.dev';
 
 // Admin/company email to receive notifications
-export const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'info@foxadventures.com';
+export const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'Info@oliotyaugandasafaris.com';
 
 // Email sending helper with error handling
 export async function sendEmail({

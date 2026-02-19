@@ -43,8 +43,8 @@ export default function CustomPackageNotificationEmail({
   travelDate,
   budget,
   specialRequests,
-  companyName = 'Oliotya Safaris',
-  contactEmail = 'info@oliotyasafaris.com',
+  companyName = 'Oliotya Uganda Safaris',
+  contactEmail = 'Info@oliotyaugandasafaris.com',
   primaryColor = '#059669',
   accentColor = '#8b5cf6',
 }: CustomPackageNotificationEmailProps) {

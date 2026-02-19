@@ -1,9 +1,10 @@
 # Booking Confirmation CMS Implementation
 
 ## Overview
+
 A complete CMS system for managing the booking confirmation page content, including hero section, steps, contact information, security points, and image galleries.
 
-## Database Schema
+## Database Schema.
 
 ### 5 New Prisma Models Created:
 
@@ -34,26 +35,31 @@ A complete CMS system for managing the booking confirmation page content, includ
 ## API Routes Created
 
 ### Hero Section
+
 - `GET /api/cms/booking-confirmation-hero` - Fetch hero section
 - `PATCH /api/cms/booking-confirmation-hero` - Update hero with draft/publish
 
 ### Steps
+
 - `GET /api/cms/booking-confirmation-steps` - Fetch all steps
 - `POST /api/cms/booking-confirmation-steps` - Create new step
 - `PATCH /api/cms/booking-confirmation-steps/[id]` - Update step
 - `DELETE /api/cms/booking-confirmation-steps/[id]` - Delete step
 
 ### Contact
+
 - `GET /api/cms/booking-confirmation-contact` - Fetch contact section
 - `PATCH /api/cms/booking-confirmation-contact` - Update contact with draft/publish
 
 ### Security Points
+
 - `GET /api/cms/booking-confirmation-security` - Fetch all security points
 - `POST /api/cms/booking-confirmation-security` - Create security point
 - `PATCH /api/cms/booking-confirmation-security/[id]` - Update security point
 - `DELETE /api/cms/booking-confirmation-security/[id]` - Delete security point
 
 ### Gallery
+
 - `GET /api/cms/booking-confirmation-gallery` - Fetch all galleries
 - `POST /api/cms/booking-confirmation-gallery` - Create gallery
 - `PATCH /api/cms/booking-confirmation-gallery/[id]` - Update gallery
@@ -62,12 +68,14 @@ A complete CMS system for managing the booking confirmation page content, includ
 ## CMS Components
 
 ### Modal Components Created:
+
 1. **BookingConfirmationHeroModal** - Edit hero section with draft/publish
 2. **BookingConfirmationStepsModal** - Manage steps (add/edit/delete/reorder)
 3. **BookingConfirmationContactModal** - Edit contact information with draft/publish
 4. **BookingConfirmationGalleryModal** - Manage image galleries with R2 CDN integration
 
 ### CMS Admin Page
+
 - **Location**: `/cms/pages/booking-confirmation`
 - **Features**:
   - Live preview of all sections
@@ -78,9 +86,11 @@ A complete CMS system for managing the booking confirmation page content, includ
 ## Frontend Integration
 
 ### Booking Confirmation Page Updated
+
 **Location**: `/app/booking-confirmation/page.tsx`
 
 **Changes**:
+
 1. Fetches CMS content in parallel with booking data
 2. Hero section uses dynamic CMS text (title, description, badge, notice)
 3. Steps section renders from CMS data or falls back to hardcoded content
@@ -91,6 +101,7 @@ A complete CMS system for managing the booking confirmation page content, includ
 ## Usage
 
 ### To Populate Initial Data
+
 You'll need to create seed scripts or manually add data via the CMS:
 
 1. Navigate to `/cms/pages/booking-confirmation`
@@ -99,6 +110,7 @@ You'll need to create seed scripts or manually add data via the CMS:
 4. Use "Save & Publish" to make content live
 
 ### Editing Content
+
 1. Admin logs into CMS at `/cms`
 2. Navigate to "Booking Confirmation" page editor
 3. Click any section to open its modal
@@ -118,11 +130,13 @@ You'll need to create seed scripts or manually add data via the CMS:
 ## Next Steps
 
 1. **Run Migration**:
+
    ```bash
    npx prisma migrate dev --name add-booking-confirmation-cms
    ```
 
 2. **Generate Client** (already done):
+
    ```bash
    npx prisma generate
    ```
