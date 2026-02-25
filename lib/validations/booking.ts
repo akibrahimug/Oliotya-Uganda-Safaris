@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-export const bookingFormSchema = z.object({
-  // Personal Information
+// Base fields shared between client and server schemas
+const bookingBaseFields = {
   firstName: z.string()
     .min(2, 'First name must be at least 2 characters')
     .max(50, 'First name too long')
@@ -31,7 +31,64 @@ export const bookingFormSchema = z.object({
     .max(100, 'Country name too long')
     .trim(),
 
-  // Trip Details - either packageId or destinationId must be provided
+  numberOfTravelers: z.number()
+    .int('Number of travelers must be a whole number')
+    .min(1, 'At least 1 traveler required')
+    .max(50, 'Too many travelers'),
+
+  specialRequests: z.string()
+    .max(2000, 'Special requests too long')
+    .trim()
+    .optional(),
+
+  travelDateFrom: z.string()
+    .min(1, 'Travel start date is required'),
+
+  travelDateTo: z.string()
+    .min(1, 'Travel end date is required'),
+
+  website: z.string().optional(),
+};
+
+// Client-side schema for the booking form (user-editable fields only)
+export const bookingClientSchema = z.object(bookingBaseFields)
+  .refine((data) => {
+    if (!data.travelDateFrom) return true;
+    const [year, month, day] = data.travelDateFrom.split('-').map(Number);
+    const d = new Date(year, month - 1, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return d >= today;
+  }, {
+    message: 'Travel start date cannot be in the past',
+    path: ['travelDateFrom'],
+  })
+  .refine((data) => {
+    if (!data.travelDateFrom || !data.travelDateTo) return true;
+    const from = new Date(data.travelDateFrom);
+    const to = new Date(data.travelDateTo);
+    return to > from;
+  }, {
+    message: 'End date must be after start date',
+    path: ['travelDateTo'],
+  })
+  .refine((data) => {
+    if (!data.travelDateFrom || !data.travelDateTo) return true;
+    const from = new Date(data.travelDateFrom);
+    const to = new Date(data.travelDateTo);
+    const diffDays = (to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24);
+    return diffDays <= 365;
+  }, {
+    message: 'Trip duration cannot exceed 1 year',
+    path: ['travelDateTo'],
+  });
+
+export type BookingClientData = z.infer<typeof bookingClientSchema>;
+
+// Full server-side schema (includes bookingType, packageId, destinationId, payment)
+export const bookingFormSchema = z.object({
+  ...bookingBaseFields,
+
   bookingType: z.enum(['PACKAGE', 'DESTINATION']),
 
   packageId: z.number()
@@ -44,33 +101,9 @@ export const bookingFormSchema = z.object({
     .positive('Invalid destination')
     .optional(),
 
-  numberOfTravelers: z.number()
-    .int('Number of travelers must be a whole number')
-    .min(1, 'At least 1 traveler required')
-    .max(50, 'Too many travelers'),
-
-  specialRequests: z.string()
-    .max(2000, 'Special requests too long')
-    .trim()
-    .optional(),
-
-  // Travel Dates
-  travelDateFrom: z.string()
-    .refine((date) => {
-      const d = new Date(date);
-      return d > new Date();
-    }, 'Travel date must be in the future'),
-
-  travelDateTo: z.string(),
-
-  // Payment Info (optional for initial booking)
   paymentMethod: z.string().optional(),
   paymentReference: z.string().optional(),
-
-  // Honeypot field
-  website: z.string().optional(),
 }).refine((data) => {
-  // Validate that packageId or destinationId matches bookingType
   if (data.bookingType === 'PACKAGE' && !data.packageId) {
     return false;
   }

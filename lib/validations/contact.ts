@@ -13,8 +13,10 @@ export const contactFormSchema = z.object({
     .toLowerCase()
     .trim(),
 
+  phone: z.string().optional(),
+
   subject: z.string()
-    .min(3, 'Subject must be at least 3 characters')
+    .min(1, 'Please select a subject')
     .max(200, 'Subject must be less than 200 characters')
     .trim(),
 

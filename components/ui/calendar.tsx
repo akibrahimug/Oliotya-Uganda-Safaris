@@ -104,11 +104,11 @@ function Calendar({
           defaultClassNames.day,
         ),
         range_start: cn(
-          'rounded-l-md',
+          'rounded-l-md bg-primary/10',
           defaultClassNames.range_start,
         ),
         range_middle: cn('rounded-none bg-primary/10', defaultClassNames.range_middle),
-        range_end: cn('rounded-r-md', defaultClassNames.range_end),
+        range_end: cn('rounded-r-md bg-primary/10', defaultClassNames.range_end),
         today: cn(
           'font-semibold',
           defaultClassNames.today,
@@ -176,6 +176,7 @@ function CalendarDayButton({
   className,
   day,
   modifiers,
+  type: _type,
   ...props
 }: React.ComponentProps<typeof DayButton>) {
   const defaultClassNames = getDefaultClassNames()
@@ -206,13 +207,14 @@ function CalendarDayButton({
         'data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[selected-single=true]:font-semibold',
         'data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-start=true]:font-semibold',
         'data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-end=true]:font-semibold',
-        'data-[range-middle=true]:bg-primary/10 data-[range-middle=true]:text-foreground data-[range-middle=true]:font-medium',
+        'data-[range-middle=true]:bg-transparent data-[range-middle=true]:text-foreground data-[range-middle=true]:hover:bg-transparent',
         'group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-2 group-data-[focused=true]/day:ring-ring group-data-[focused=true]/day:ring-offset-2',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         defaultClassNames.day,
         className,
       )}
       {...props}
+      type="button"
     />
   )
 }

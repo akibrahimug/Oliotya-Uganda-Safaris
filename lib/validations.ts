@@ -53,6 +53,16 @@ export const packageBundleSchema = z.object({
 
 export type PackageBundleFormData = z.infer<typeof packageBundleSchema>;
 
+// Client-side schema for bundle form fields (packages array managed as separate state)
+export const bundleClientSchema = z.object({
+  name: z.string().max(100, "Bundle name too long").optional(),
+  numberOfPeople: z.number().int().min(1, "At least 1 person required").max(100, "Maximum 100 people allowed"),
+  travelDate: z.string().optional(),
+  specialRequests: z.string().max(1000, "Special requests too long").optional(),
+});
+
+export type BundleClientData = z.infer<typeof bundleClientSchema>;
+
 // Quote Request Validation
 export const quoteRequestSchema = z.object({
   packageName: z.string().min(1, "Package name is required"),

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,190 +12,69 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Mail, Phone, MessageSquare, User, AlertCircle } from "lucide-react";
+import { Loader2, Mail, Phone, MessageSquare, User } from "lucide-react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact";
+import { FormErrorMessage } from "@/components/ui/form-error-message";
 
 export function ContactFormComponent() {
   const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-    website: "", // Honeypot
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+      website: "",
+    },
+    mode: "onTouched",
   });
 
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const { register, control, handleSubmit, formState: { errors, isSubmitting, isValid }, watch, reset, setError } = form;
+  const messageValue = watch("message") || "";
 
-  const updateField = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[field];
-        return newErrors;
-      });
-    }
-  };
-
-  const handleBlur = (field: string) => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
-    validateField(field);
-  };
-
-  const validateField = (field: string) => {
-    const newErrors: Record<string, string> = {};
-
-    switch (field) {
-      case "name":
-        if (!formData.name.trim()) {
-          newErrors.name = "Name is required";
-        } else if (formData.name.trim().length < 2) {
-          newErrors.name = "Name must be at least 2 characters";
-        } else if (!/^[a-zA-Z\s'-]+$/.test(formData.name)) {
-          newErrors.name = "Name contains invalid characters";
-        }
-        break;
-      case "email":
-        if (!formData.email.trim()) {
-          newErrors.email = "Email is required";
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-          newErrors.email = "Invalid email address";
-        }
-        break;
-      case "subject":
-        if (!formData.subject) {
-          newErrors.subject = "Please select a subject";
-        }
-        break;
-      case "message":
-        if (!formData.message.trim()) {
-          newErrors.message = "Message is required";
-        } else if (formData.message.trim().length < 10) {
-          newErrors.message = "Message must be at least 10 characters";
-        } else if (formData.message.length > 5000) {
-          newErrors.message = "Message is too long (max 5000 characters)";
-        }
-        break;
-    }
-
-    setErrors((prev) => ({ ...prev, ...newErrors }));
-  };
-
-  // Check if form is complete and valid
-  const isFormValid = () => {
-    return (
-      formData.name.trim().length >= 2 &&
-      formData.email.trim().length > 0 &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
-      formData.subject.trim().length > 0 &&
-      formData.message.trim().length >= 10
-    );
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    // Name validation
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    } else if (formData.name.length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
-    } else if (!/^[a-zA-Z\s'-]+$/.test(formData.name)) {
-      newErrors.name = "Name contains invalid characters";
-    }
-
-    // Email validation
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Invalid email address";
-    }
-
-    // Subject validation
-    if (!formData.subject) {
-      newErrors.subject = "Please select a subject";
-    }
-
-    // Message validation
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    } else if (formData.message.length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
-    } else if (formData.message.length > 5000) {
-      newErrors.message = "Message is too long (max 5000 characters)";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: ContactFormData) => {
     // Bot detection - silently reject
-    if (formData.website) {
+    if (data.website) {
       return;
     }
-
-    // Validate form
-    if (!validateForm()) {
-      toast({
-        title: "Validation Error",
-        description: "Please correct the errors in the form",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setLoading(true);
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
       if (!response.ok) {
-        // Handle validation errors specifically
-        if (response.status === 400 && data.details) {
-          const validationErrors = data.details
+        if (response.status === 400 && result.details) {
+          const validationErrors = result.details
             .map((err: any) => err.message)
             .join(", ");
           throw new Error(`Validation failed: ${validationErrors}`);
         }
 
-        // Handle rate limiting
         if (response.status === 429) {
           throw new Error(
             "Too many contact attempts. Please wait an hour and try again."
           );
         }
 
-        throw new Error(data.error || "Failed to send message. Please try again.");
+        throw new Error(result.error || "Failed to send message. Please try again.");
       }
 
       toast({
         title: "Message Sent!",
-        description: data.message || "We'll get back to you within 24 hours.",
+        description: result.message || "We'll get back to you within 24 hours.",
       });
 
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-        website: "",
-      });
+      reset();
     } catch (error) {
       console.error("Contact form error:", error);
       toast({
@@ -205,13 +83,11 @@ export function ContactFormComponent() {
           error instanceof Error ? error.message : "Please try again later",
         variant: "destructive",
       });
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="space-y-2">
         <Label htmlFor="name" className={errors.name ? "text-destructive" : ""}>
           Your Name *
@@ -220,9 +96,7 @@ export function ContactFormComponent() {
           <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
           <Input
             id="name"
-            value={formData.name}
-            onChange={(e) => updateField("name", e.target.value)}
-            onBlur={() => handleBlur("name")}
+            {...register("name")}
             required
             placeholder="John Doe"
             className={`pl-10 ${errors.name ? "border-destructive focus-visible:ring-destructive" : ""}`}
@@ -230,12 +104,7 @@ export function ContactFormComponent() {
             aria-describedby={errors.name ? "name-error" : undefined}
           />
         </div>
-        {errors.name && (
-          <div id="name-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
-            <AlertCircle className="h-4 w-4" />
-            <span>{errors.name}</span>
-          </div>
-        )}
+        <FormErrorMessage message={errors.name?.message} id="name-error" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -248,9 +117,7 @@ export function ContactFormComponent() {
             <Input
               id="email"
               type="email"
-              value={formData.email}
-              onChange={(e) => updateField("email", e.target.value)}
-              onBlur={() => handleBlur("email")}
+              {...register("email")}
               required
               placeholder="john@example.com"
               className={`pl-10 ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
@@ -258,12 +125,7 @@ export function ContactFormComponent() {
               aria-describedby={errors.email ? "email-error" : undefined}
             />
           </div>
-          {errors.email && (
-            <div id="email-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
-              <AlertCircle className="h-4 w-4" />
-              <span>{errors.email}</span>
-            </div>
-          )}
+          <FormErrorMessage message={errors.email?.message} id="email-error" />
         </div>
 
         <div className="space-y-2">
@@ -273,8 +135,7 @@ export function ContactFormComponent() {
             <Input
               id="phone"
               type="tel"
-              value={formData.phone}
-              onChange={(e) => updateField("phone", e.target.value)}
+              {...register("phone")}
               placeholder="+1 234 567 8900"
               className="pl-10"
             />
@@ -288,37 +149,38 @@ export function ContactFormComponent() {
         </Label>
         <div className="relative">
           <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-          <Select
-            value={formData.subject}
-            onValueChange={(value) => {
-              updateField("subject", value);
-              handleBlur("subject");
-            }}
-          >
-            <SelectTrigger
-              className={`pl-10 ${errors.subject ? "border-destructive focus-visible:ring-destructive" : ""}`}
-              aria-invalid={!!errors.subject}
-              aria-describedby={errors.subject ? "subject-error" : undefined}
-            >
-              <SelectValue placeholder="Select a subject" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="general">General Inquiry</SelectItem>
-              <SelectItem value="booking">Booking Question</SelectItem>
-              <SelectItem value="package">Package Information</SelectItem>
-              <SelectItem value="destination">Destination Details</SelectItem>
-              <SelectItem value="custom">Custom Safari Request</SelectItem>
-              <SelectItem value="group">Group Booking</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
+          <Controller
+            control={control}
+            name="subject"
+            render={({ field }) => (
+              <Select
+                value={field.value}
+                onValueChange={(value) => {
+                  field.onChange(value);
+                  field.onBlur();
+                }}
+              >
+                <SelectTrigger
+                  className={`pl-10 ${errors.subject ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  aria-invalid={!!errors.subject}
+                  aria-describedby={errors.subject ? "subject-error" : undefined}
+                >
+                  <SelectValue placeholder="Select a subject" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="general">General Inquiry</SelectItem>
+                  <SelectItem value="booking">Booking Question</SelectItem>
+                  <SelectItem value="package">Package Information</SelectItem>
+                  <SelectItem value="destination">Destination Details</SelectItem>
+                  <SelectItem value="custom">Custom Safari Request</SelectItem>
+                  <SelectItem value="group">Group Booking</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
         </div>
-        {errors.subject && (
-          <div id="subject-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
-            <AlertCircle className="h-4 w-4" />
-            <span>{errors.subject}</span>
-          </div>
-        )}
+        <FormErrorMessage message={errors.subject?.message} id="subject-error" />
       </div>
 
       <div className="space-y-2">
@@ -327,9 +189,7 @@ export function ContactFormComponent() {
         </Label>
         <Textarea
           id="message"
-          value={formData.message}
-          onChange={(e) => updateField("message", e.target.value)}
-          onBlur={() => handleBlur("message")}
+          {...register("message")}
           required
           placeholder="Tell us about your inquiry..."
           rows={6}
@@ -339,18 +199,15 @@ export function ContactFormComponent() {
         />
         <div className="flex items-center justify-between">
           {errors.message ? (
-            <div id="message-error" className="flex items-center gap-1 text-sm text-destructive font-medium">
-              <AlertCircle className="h-4 w-4" />
-              <span>{errors.message}</span>
-            </div>
+            <FormErrorMessage message={errors.message.message} id="message-error" />
           ) : (
             <div className="text-xs text-muted-foreground">
-              {formData.message.length > 0 && `${formData.message.length} / 5000 characters`}
+              {messageValue.length > 0 && `${messageValue.length} / 5000 characters`}
             </div>
           )}
-          {formData.message.trim().length > 0 && formData.message.trim().length < 10 && !errors.message && (
+          {messageValue.trim().length > 0 && messageValue.trim().length < 10 && !errors.message && (
             <div className="text-xs text-muted-foreground">
-              {10 - formData.message.trim().length} more characters needed
+              {10 - messageValue.trim().length} more characters needed
             </div>
           )}
         </div>
@@ -359,30 +216,28 @@ export function ContactFormComponent() {
       {/* Honeypot field */}
       <input
         type="text"
-        name="website"
-        value={formData.website}
-        onChange={(e) => updateField("website", e.target.value)}
+        {...register("website")}
         style={{ display: "none" }}
         tabIndex={-1}
         autoComplete="off"
       />
 
-      {!isFormValid() && Object.keys(errors).length === 0 && (
+      {!isValid && Object.keys(errors).length === 0 && (
         <div className="bg-muted/50 border border-muted-foreground/20 rounded-lg p-4">
           <p className="text-sm text-muted-foreground font-medium mb-2">
             Please complete the following required fields:
           </p>
           <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            {formData.name.trim().length < 2 && <li>Your Name (at least 2 characters)</li>}
-            {!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && <li>Valid Email Address</li>}
-            {!formData.subject.trim() && <li>Subject</li>}
-            {formData.message.trim().length < 10 && <li>Message (at least 10 characters)</li>}
+            {!watch("name") || watch("name").trim().length < 2 ? <li>Your Name (at least 2 characters)</li> : null}
+            {!watch("email") || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(watch("email")) ? <li>Valid Email Address</li> : null}
+            {!watch("subject")?.trim() ? <li>Subject</li> : null}
+            {!messageValue || messageValue.trim().length < 10 ? <li>Message (at least 10 characters)</li> : null}
           </ul>
         </div>
       )}
 
-      <Button type="submit" disabled={loading || !isFormValid()} className="w-full" size="lg">
-        {loading ? (
+      <Button type="submit" disabled={isSubmitting || !isValid} className="w-full" size="lg">
+        {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Sending...
@@ -390,7 +245,7 @@ export function ContactFormComponent() {
         ) : (
           <>
             <Mail className="mr-2 h-4 w-4" />
-            {isFormValid() ? "Send Message" : "Complete Required Fields"}
+            {isValid ? "Send Message" : "Complete Required Fields"}
           </>
         )}
       </Button>

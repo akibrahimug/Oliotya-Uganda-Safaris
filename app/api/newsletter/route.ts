@@ -3,9 +3,10 @@ import { prisma } from "@/lib/db";
 import { newsletterSchema } from "@/lib/validations/newsletter";
 import { newsletterRateLimit, getClientIp } from "@/lib/rate-limit";
 import { sanitizeObject } from "@/lib/validations";
-import { sendEmail } from "@/lib/email";
+import { sendEmail, ADMIN_EMAIL } from "@/lib/email";
 import { render } from "@react-email/components";
 import SubscribeConfirmationEmail from "@/emails/subscribe-confirmation";
+import SubscribeNotificationEmail from "@/emails/subscribe-notification";
 
 export const dynamic = "force-dynamic";
 
@@ -55,9 +56,13 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Send confirmation email (fire and forget)
-    sendSubscribeEmail(validatedData.email).catch((error) =>
-      console.error("Error sending subscribe confirmation email:", error)
+    // Send admin notification + customer confirmation (fire and forget)
+    sendSubscribeEmails({
+      id: subscription.id,
+      email: subscription.email,
+      subscribedAt: subscription.subscribedAt,
+    }).catch((error) =>
+      console.error("Error sending newsletter emails:", error)
     );
 
     return NextResponse.json({
@@ -81,20 +86,47 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Helper to send subscription confirmation email
-async function sendSubscribeEmail(email: string) {
+// Helper to send newsletter emails
+async function sendSubscribeEmails(subscription: {
+  id: number;
+  email: string;
+  subscribedAt: Date;
+}) {
   try {
+    const adminHtml = await render(
+      SubscribeNotificationEmail({
+        subscriptionId: subscription.id,
+        email: subscription.email,
+        subscribedAt: subscription.subscribedAt.toISOString(),
+      })
+    );
+
+    const adminResult = await sendEmail({
+      to: ADMIN_EMAIL,
+      subject: `New Newsletter Subscriber: ${subscription.email}`,
+      html: adminHtml,
+      replyTo: subscription.email,
+    });
+
+    if (!adminResult.success) {
+      console.error("Failed to send newsletter admin notification:", adminResult.error);
+    }
+
     const customerHtml = await render(
       SubscribeConfirmationEmail({})
     );
 
-    await sendEmail({
-      to: email,
+    const customerResult = await sendEmail({
+      to: subscription.email,
       subject: "You're subscribed — welcome aboard!",
       html: customerHtml,
     });
+
+    if (!customerResult.success) {
+      console.error("Failed to send newsletter confirmation email:", customerResult.error);
+    }
   } catch (error) {
-    console.error("Failed to send subscribe confirmation email:", error);
+    console.error("Failed to send newsletter emails:", error);
     throw error;
   }
 }

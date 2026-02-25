@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { format } from 'date-fns';
 import { BookingForm } from '../booking-form';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
@@ -77,7 +78,85 @@ describe('BookingForm Validation', () => {
     expect(screen.getByPlaceholderText('john@example.com')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('+1 234 567 8900')).toBeInTheDocument();
     expect(screen.getByRole('combobox')).toBeInTheDocument(); // Country select
-    expect(screen.getByLabelText(/travel date from/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/travel date to/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/travel dates/i)).toBeInTheDocument();
+  });
+
+  it('should keep the date picker open after selecting a date', () => {
+    render(
+      <BookingForm
+        bookingType="PACKAGE"
+        itemId={1}
+        itemName="Test Package"
+        pricePerPerson={100}
+      />
+    );
+
+    fireEvent.click(screen.getByLabelText(/travel dates/i));
+
+    expect(document.querySelector('[data-slot="calendar"]')).toBeInTheDocument();
+
+    const firstSelectableDay = document.querySelector(
+      'button[data-day]:not([disabled])'
+    ) as HTMLButtonElement | null;
+
+    expect(firstSelectableDay).not.toBeNull();
+    fireEvent.click(firstSelectableDay!);
+
+    expect(document.querySelector('[data-slot="calendar"]')).toBeInTheDocument();
+  });
+
+  it('should not submit the form when clicking a calendar day', () => {
+    render(
+      <BookingForm
+        bookingType="PACKAGE"
+        itemId={1}
+        itemName="Test Package"
+        pricePerPerson={100}
+      />
+    );
+
+    fireEvent.click(screen.getByLabelText(/travel dates/i));
+
+    const firstSelectableDay = document.querySelector(
+      'button[data-day]:not([disabled])'
+    ) as HTMLButtonElement | null;
+
+    expect(firstSelectableDay).not.toBeNull();
+    fireEvent.click(firstSelectableDay!);
+
+    expect(mockToast).not.toHaveBeenCalled();
+  });
+
+  it('should start a new range with one click after a completed range exists', () => {
+    render(
+      <BookingForm
+        bookingType="PACKAGE"
+        itemId={1}
+        itemName="Test Package"
+        pricePerPerson={100}
+      />
+    );
+
+    fireEvent.click(screen.getByLabelText(/travel dates/i));
+
+    const getSelectableDays = () =>
+      Array.from(
+        document.querySelectorAll('button[data-day]:not([disabled])')
+      ) as HTMLButtonElement[];
+
+    expect(getSelectableDays().length).toBeGreaterThan(4);
+
+    fireEvent.click(getSelectableDays()[0]);
+    fireEvent.click(getSelectableDays()[3]);
+
+    const travelDatesInput = screen.getByLabelText(/travel dates/i) as HTMLInputElement;
+    expect(travelDatesInput.value).not.toContain("Select end date");
+
+    const newStartDayButton = getSelectableDays()[4];
+    fireEvent.click(newStartDayButton);
+
+    const newStartDate = new Date(newStartDayButton.dataset.day || "");
+    expect(travelDatesInput.value).toContain("Select end date");
+    expect(travelDatesInput.value.startsWith(format(newStartDate, "MMM d, yyyy"))).toBe(true);
   });
 });

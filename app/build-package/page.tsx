@@ -25,6 +25,10 @@ import {
   Phone,
   User,
 } from "lucide-react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { customPackageClientSchema, type CustomPackageClientData } from "@/lib/validations/custom-package";
+import { FormErrorMessage } from "@/components/ui/form-error-message";
 
 interface Destination {
   id: number;
@@ -59,18 +63,26 @@ export default function BuildPackagePage() {
   const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
   const [pageContent, setPageContent] = useState<any>(null);
   const [selectedDestinations, setSelectedDestinations] = useState<SelectedDestination[]>([]);
-  const [packageName, setPackageName] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState(2);
-  const [travelDate, setTravelDate] = useState("");
-  const [budget, setBudget] = useState("");
-  const [specialRequests, setSpecialRequests] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [honeypot, setHoneypot] = useState(""); // Bot detection
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [destinationError, setDestinationError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const form = useForm<CustomPackageClientData>({
+    resolver: zodResolver(customPackageClientSchema),
+    defaultValues: {
+      name: "",
+      contactName: "",
+      email: "",
+      phone: "",
+      numberOfPeople: 2,
+      travelDate: "",
+      budget: null,
+      specialRequests: "",
+      website: "",
+    },
+    mode: "onTouched",
+  });
+
+  const { register, control, handleSubmit, formState: { errors, isSubmitting, isValid }, watch } = form;
 
   // Fetch destinations on mount
   useEffect(() => {
@@ -185,6 +197,7 @@ export default function BuildPackagePage() {
           days: 2, // Default 2 days per destination
         },
       ]);
+      setDestinationError(null);
     }
   };
 
@@ -198,139 +211,36 @@ export default function BuildPackagePage() {
 
   const totalDays = selectedDestinations.reduce((sum, dest) => sum + dest.days, 0);
 
-  const updateField = (field: string, value: string | number) => {
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[field];
-        return newErrors;
-      });
-    }
+  const isFormComplete = isValid && selectedDestinations.length > 0;
 
-    // Update the appropriate state
-    switch (field) {
-      case "name":
-        setName(value as string);
-        break;
-      case "email":
-        setEmail(value as string);
-        break;
-      case "phone":
-        setPhone(value as string);
-        break;
-      case "numberOfPeople":
-        setNumberOfPeople(value as number);
-        break;
-      case "travelDate":
-        setTravelDate(value as string);
-        break;
-    }
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    // Name validation
-    if (!name.trim()) {
-      newErrors.name = "Name is required";
-    } else if (name.length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
-    } else if (!/^[a-zA-Z\s'-]+$/.test(name)) {
-      newErrors.name = "Name contains invalid characters";
-    }
-
-    // Email validation
-    if (!email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = "Invalid email address";
-    }
-
-    // Phone validation
-    if (!phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    } else if (phone.length < 10) {
-      newErrors.phone = "Phone number is too short";
-    } else if (!/^[\d\s\-\+\(\)]+$/.test(phone)) {
-      newErrors.phone = "Invalid phone number format";
-    }
-
-    // Number of people validation
-    if (numberOfPeople < 1) {
-      newErrors.numberOfPeople = "At least 1 person is required";
-    } else if (numberOfPeople > 50) {
-      newErrors.numberOfPeople = "Maximum 50 people allowed";
-    }
-
-    // Travel date validation
-    if (travelDate) {
-      const selectedDate = new Date(travelDate);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      if (selectedDate < today) {
-        newErrors.travelDate = "Travel date cannot be in the past";
-      }
-    }
-
-    // Destinations validation
-    if (selectedDestinations.length === 0) {
-      newErrors.destinations = "Please select at least one destination";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  // Check if form is complete and valid for button state
-  const isFormValid = () => {
-    return (
-      name.trim().length >= 2 &&
-      email.trim().length > 0 &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-      phone.trim().length >= 10 &&
-      selectedDestinations.length > 0 &&
-      numberOfPeople >= 1 &&
-      numberOfPeople <= 50
-    );
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: CustomPackageClientData) => {
     // Bot detection
-    if (honeypot) {
+    if (data.website) {
       return;
     }
 
-    // Validate form (temporarily disabled for debugging)
-    // if (!validateForm()) {
-    //   alert("Please correct the errors in the form before submitting.");
-    //   return;
-    // }
+    // Validate destinations (separate state)
+    if (selectedDestinations.length === 0) {
+      setDestinationError("Please select at least one destination");
+      return;
+    }
 
-    setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
       const requestData = {
-        name: packageName || "Custom Safari Package",
-        contactName: name,
-        email,
-        phone,
+        name: data.name || "Custom Safari Package",
+        contactName: data.contactName,
+        email: data.email,
+        phone: data.phone,
         destinations: selectedDestinations,
         duration: `${totalDays} Days`,
-        numberOfPeople,
-        travelDate: travelDate || null,
-        budget: budget ? parseFloat(budget) : null,
-        specialRequests,
-        website: honeypot, // Include honeypot for server-side check
+        numberOfPeople: data.numberOfPeople,
+        travelDate: data.travelDate || null,
+        budget: data.budget,
+        specialRequests: data.specialRequests,
+        website: data.website,
       };
-
-      console.log("Sending custom package data:", requestData);
-
-      // Clear any previous errors
-      setSubmitError(null);
 
       const response = await fetch("/api/custom-packages", {
         method: "POST",
@@ -338,25 +248,22 @@ export default function BuildPackagePage() {
         body: JSON.stringify(requestData),
       });
 
-      let data;
+      let result;
       try {
-        data = await response.json();
+        result = await response.json();
       } catch (parseError) {
         console.error("Failed to parse response:", parseError);
         setSubmitError("Failed to process server response. Please try again.");
         return;
       }
 
-      console.log("Custom package response:", response.status, data);
-
       if (response.ok) {
-        router.push(`/custom-package-confirmation?packageId=${data.packageId}`);
+        router.push(`/custom-package-confirmation?packageId=${result.packageId}`);
       } else {
-        // Handle specific error types
         let errorMessage = "Failed to submit custom package. Please try again.";
 
-        if (response.status === 400 && data.details) {
-          const validationErrors = data.details
+        if (response.status === 400 && result.details) {
+          const validationErrors = result.details
             .map((err: any) => err.message)
             .join(", ");
           errorMessage = `Validation failed: ${validationErrors}`;
@@ -366,8 +273,8 @@ export default function BuildPackagePage() {
           errorMessage = "You must be signed in to create a custom package.";
           router.push("/sign-in?redirect_url=/build-package");
           return;
-        } else if (data.error) {
-          errorMessage = data.error;
+        } else if (result.error) {
+          errorMessage = result.error;
         }
 
         setSubmitError(errorMessage);
@@ -379,8 +286,6 @@ export default function BuildPackagePage() {
           ? error.message
           : "An error occurred. Please try again."
       );
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -412,7 +317,7 @@ export default function BuildPackagePage() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column - Destination Selection */}
               <div className="lg:col-span-2 space-y-6">
@@ -551,37 +456,28 @@ export default function BuildPackagePage() {
                             {selectedDestinations.length}
                           </span>
                         </div>
-                        {errors.destinations && (
-                          <div className="flex items-center gap-1 text-sm text-destructive font-medium">
-                            <AlertCircle className="h-4 w-4" />
-                            <span>{errors.destinations}</span>
-                          </div>
+                        {destinationError && (
+                          <FormErrorMessage message={destinationError} />
                         )}
                       </div>
 
                       <div className="border-t pt-4 space-y-4">
                         {/* Contact Information */}
                         <div>
-                          <Label htmlFor="name" className={errors.name ? "text-destructive" : ""}>
+                          <Label htmlFor="contactName" className={errors.contactName ? "text-destructive" : ""}>
                             <User className="h-4 w-4 inline mr-2" />
                             Your Name *
                           </Label>
                           <Input
-                            id="name"
+                            id="contactName"
                             placeholder="John Doe"
-                            value={name}
-                            onChange={(e) => updateField("name", e.target.value)}
+                            {...register("contactName")}
                             required
-                            className={errors.name ? "border-destructive focus-visible:ring-destructive" : ""}
-                            aria-invalid={!!errors.name}
-                            aria-describedby={errors.name ? "name-error" : undefined}
+                            className={errors.contactName ? "border-destructive focus-visible:ring-destructive" : ""}
+                            aria-invalid={!!errors.contactName}
+                            aria-describedby={errors.contactName ? "contactName-error" : undefined}
                           />
-                          {errors.name && (
-                            <div id="name-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
-                              <AlertCircle className="h-4 w-4" />
-                              <span>{errors.name}</span>
-                            </div>
-                          )}
+                          <FormErrorMessage message={errors.contactName?.message} id="contactName-error" className="mt-1" />
                         </div>
 
                         <div>
@@ -593,19 +489,13 @@ export default function BuildPackagePage() {
                             id="email"
                             type="email"
                             placeholder="john@example.com"
-                            value={email}
-                            onChange={(e) => updateField("email", e.target.value)}
+                            {...register("email")}
                             required
                             className={errors.email ? "border-destructive focus-visible:ring-destructive" : ""}
                             aria-invalid={!!errors.email}
                             aria-describedby={errors.email ? "email-error" : undefined}
                           />
-                          {errors.email && (
-                            <div id="email-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
-                              <AlertCircle className="h-4 w-4" />
-                              <span>{errors.email}</span>
-                            </div>
-                          )}
+                          <FormErrorMessage message={errors.email?.message} id="email-error" className="mt-1" />
                         </div>
 
                         <div>
@@ -617,19 +507,13 @@ export default function BuildPackagePage() {
                             id="phone"
                             type="tel"
                             placeholder="+256 123 456 789"
-                            value={phone}
-                            onChange={(e) => updateField("phone", e.target.value)}
+                            {...register("phone")}
                             required
                             className={errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}
                             aria-invalid={!!errors.phone}
                             aria-describedby={errors.phone ? "phone-error" : undefined}
                           />
-                          {errors.phone && (
-                            <div id="phone-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
-                              <AlertCircle className="h-4 w-4" />
-                              <span>{errors.phone}</span>
-                            </div>
-                          )}
+                          <FormErrorMessage message={errors.phone?.message} id="phone-error" className="mt-1" />
                         </div>
 
                         <div className="border-t pt-4 space-y-4">
@@ -638,8 +522,7 @@ export default function BuildPackagePage() {
                             <Input
                               id="packageName"
                               placeholder="My Custom Safari"
-                              value={packageName}
-                              onChange={(e) => setPackageName(e.target.value)}
+                              {...register("name")}
                             />
                           </div>
 
@@ -648,24 +531,35 @@ export default function BuildPackagePage() {
                               <Users className="h-4 w-4 inline mr-2" />
                               Number of People *
                             </Label>
-                            <Input
-                              id="numberOfPeople"
-                              type="number"
-                              min="1"
-                              max="50"
-                              value={numberOfPeople}
-                              onChange={(e) => updateField("numberOfPeople", parseInt(e.target.value) || 1)}
-                              required
-                              className={errors.numberOfPeople ? "border-destructive focus-visible:ring-destructive" : ""}
-                              aria-invalid={!!errors.numberOfPeople}
-                              aria-describedby={errors.numberOfPeople ? "numberOfPeople-error" : undefined}
+                            <Controller
+                              control={control}
+                              name="numberOfPeople"
+                              render={({ field }) => (
+                                <Input
+                                  id="numberOfPeople"
+                                  type="number"
+                                  min="1"
+                                  max="50"
+                                  value={field.value}
+                                  onChange={(e) => {
+                                    if (e.target.value === "") {
+                                      field.onChange(0);
+                                      return;
+                                    }
+                                    const parsed = parseInt(e.target.value, 10);
+                                    if (!isNaN(parsed)) {
+                                      field.onChange(parsed);
+                                    }
+                                  }}
+                                  onBlur={field.onBlur}
+                                  required
+                                  className={errors.numberOfPeople ? "border-destructive focus-visible:ring-destructive" : ""}
+                                  aria-invalid={!!errors.numberOfPeople}
+                                  aria-describedby={errors.numberOfPeople ? "numberOfPeople-error" : undefined}
+                                />
+                              )}
                             />
-                            {errors.numberOfPeople && (
-                              <div id="numberOfPeople-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
-                                <AlertCircle className="h-4 w-4" />
-                                <span>{errors.numberOfPeople}</span>
-                              </div>
-                            )}
+                            <FormErrorMessage message={errors.numberOfPeople?.message} id="numberOfPeople-error" className="mt-1" />
                           </div>
 
                           <div>
@@ -677,18 +571,12 @@ export default function BuildPackagePage() {
                               id="travelDate"
                               type="date"
                               min={new Date().toISOString().split("T")[0]}
-                              value={travelDate}
-                              onChange={(e) => updateField("travelDate", e.target.value)}
+                              {...register("travelDate")}
                               className={errors.travelDate ? "border-destructive focus-visible:ring-destructive" : ""}
                               aria-invalid={!!errors.travelDate}
                               aria-describedby={errors.travelDate ? "travelDate-error" : undefined}
                             />
-                            {errors.travelDate && (
-                              <div id="travelDate-error" className="flex items-center gap-1 text-sm text-destructive font-medium mt-1">
-                                <AlertCircle className="h-4 w-4" />
-                                <span>{errors.travelDate}</span>
-                              </div>
-                            )}
+                            <FormErrorMessage message={errors.travelDate?.message} id="travelDate-error" className="mt-1" />
                           </div>
 
                           <div>
@@ -696,14 +584,30 @@ export default function BuildPackagePage() {
                               <DollarSign className="h-4 w-4 inline mr-2" />
                               Budget per Person (Optional)
                             </Label>
-                            <Input
-                              id="budget"
-                              type="number"
-                              min="0"
-                              step="0.01"
-                              placeholder="1000.00"
-                              value={budget}
-                              onChange={(e) => setBudget(e.target.value)}
+                            <Controller
+                              control={control}
+                              name="budget"
+                              render={({ field }) => (
+                                <Input
+                                  id="budget"
+                                  type="number"
+                                  min="0"
+                                  step="0.01"
+                                  placeholder="1000.00"
+                                  value={field.value ?? ""}
+                                  onChange={(e) => {
+                                    if (e.target.value === "") {
+                                      field.onChange(null);
+                                      return;
+                                    }
+                                    const parsed = parseFloat(e.target.value);
+                                    if (!isNaN(parsed)) {
+                                      field.onChange(parsed);
+                                    }
+                                  }}
+                                  onBlur={field.onBlur}
+                                />
+                              )}
                             />
                           </div>
 
@@ -713,17 +617,14 @@ export default function BuildPackagePage() {
                               id="specialRequests"
                               placeholder="Any special requirements or preferences..."
                               rows={4}
-                              value={specialRequests}
-                              onChange={(e) => setSpecialRequests(e.target.value)}
+                              {...register("specialRequests")}
                             />
                           </div>
 
                           {/* Honeypot field - hidden from real users */}
                           <input
                             type="text"
-                            name="website"
-                            value={honeypot}
-                            onChange={(e) => setHoneypot(e.target.value)}
+                            {...register("website")}
                             style={{ display: "none" }}
                             tabIndex={-1}
                             autoComplete="off"
@@ -742,7 +643,7 @@ export default function BuildPackagePage() {
                             <Send className="mr-2 h-4 w-4" />
                             Submitting...
                           </>
-                        ) : !isFormValid() ? (
+                        ) : !isFormComplete ? (
                           "Complete All Required Fields"
                         ) : (
                           <>

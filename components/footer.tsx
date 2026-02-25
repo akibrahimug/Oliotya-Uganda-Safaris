@@ -15,15 +15,20 @@ import {
   Linkedin,
   Youtube,
 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fetchSiteSettingsClient, type SiteSettings } from "@/lib/settings";
+import { newsletterSchema, type NewsletterFormData } from "@/lib/validations/newsletter";
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useForm<NewsletterFormData>({
+    resolver: zodResolver(newsletterSchema),
+    defaultValues: { email: "", website: "" },
+    mode: "onSubmit",
+  });
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [error, setError] = useState("");
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [logoUrl, setLogoUrl] = useState<string>("");
   const [siteName, setSiteName] = useState<string>("Oliotya Uganda Safaris");
@@ -50,46 +55,32 @@ export function Footer() {
       });
   }, []);
 
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    // Validate email
-    if (!email.trim()) {
-      setError("Email is required");
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Please enter a valid email address");
-      return;
-    }
-
-    setIsSubmitting(true);
-
+  const onSubmit = async (data: NewsletterFormData) => {
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: data.email }),
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Failed to subscribe. Please try again.");
+        form.setError("email", {
+          message: result.error || "Failed to subscribe. Please try again.",
+        });
         return;
       }
 
       setSubmitSuccess(true);
-      setEmail("");
+      form.reset();
 
       // Hide success message after 5 seconds
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+      form.setError("email", {
+        message: "Something went wrong. Please try again.",
+      });
     }
   };
 
@@ -113,32 +104,28 @@ export function Footer() {
               </div>
             )}
 
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <div className="flex-1 space-y-1">
                 <Input
                   type="email"
                   placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setError("");
-                  }}
+                  {...form.register("email")}
                   size="lg"
                   className="bg-background"
-                  aria-invalid={!!error}
+                  aria-invalid={!!form.formState.errors.email}
                 />
-                {error && (
-                  <p className="text-xs text-destructive text-left">{error}</p>
+                {form.formState.errors.email && (
+                  <p className="text-xs text-destructive text-left">{form.formState.errors.email.message}</p>
                 )}
               </div>
               <Button
                 type="submit"
                 size="lg"
                 className="h-12 gap-2 shadow-lg"
-                disabled={isSubmitting}
+                disabled={form.formState.isSubmitting}
               >
-                {isSubmitting ? "Subscribing..." : "Subscribe"}
-                {!isSubmitting && <Send className="h-4 w-4" />}
+                {form.formState.isSubmitting ? "Subscribing..." : "Subscribe"}
+                {!form.formState.isSubmitting && <Send className="h-4 w-4" />}
               </Button>
             </form>
           </div>

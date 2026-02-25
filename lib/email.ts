@@ -10,6 +10,25 @@ export const SENDER_EMAIL = process.env.EMAIL_FROM || 'onboarding@resend.dev';
 // Admin/company email to receive notifications
 export const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'Info@oliotyaugandasafaris.com';
 
+const EMAIL_SUBJECT_PREFIX = (process.env.EMAIL_SUBJECT_PREFIX || 'Oliotya').trim();
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function formatSubject(subject: string): string {
+  const trimmed = subject.trim();
+  if (!trimmed) return EMAIL_SUBJECT_PREFIX;
+
+  // If subject already starts with the desired brand, leave it as-is.
+  const brandPrefixRegex = new RegExp(`^${escapeRegExp(EMAIL_SUBJECT_PREFIX)}\\b`, 'i');
+  if (brandPrefixRegex.test(trimmed)) return trimmed;
+
+  // Replace legacy "info" prefix if present, then prepend brand.
+  const withoutInfoPrefix = trimmed.replace(/^info\b[\s|:-]*/i, '').trim();
+  return `${EMAIL_SUBJECT_PREFIX} - ${withoutInfoPrefix || trimmed}`;
+}
+
 // Email sending helper with error handling
 export async function sendEmail({
   to,
@@ -31,7 +50,7 @@ export async function sendEmail({
     const data = await resend.emails.send({
       from: SENDER_EMAIL,
       to,
-      subject,
+      subject: formatSubject(subject),
       html,
       replyTo,
     });

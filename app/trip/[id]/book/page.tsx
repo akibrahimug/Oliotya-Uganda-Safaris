@@ -30,7 +30,7 @@ interface PersonalInfo {
   lastName: string;
   email: string;
   phone: string;
-  numberOfTravelers: number;
+  numberOfTravelers: number | "";
   specialRequests: string;
 }
 
@@ -49,12 +49,19 @@ export default function BookingPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const parsedTravelersParam = travelersParam
+    ? Number.parseInt(travelersParam, 10)
+    : 1;
+  const initialTravelers =
+    Number.isNaN(parsedTravelersParam) || parsedTravelersParam < 1
+      ? 1
+      : parsedTravelersParam;
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    numberOfTravelers: travelersParam ? Number.parseInt(travelersParam) : 1,
+    numberOfTravelers: initialTravelers,
     specialRequests: "",
   });
 
@@ -86,14 +93,17 @@ export default function BookingPage() {
     );
   }
 
+  const travelerCount =
+    personalInfo.numberOfTravelers === "" ? 0 : personalInfo.numberOfTravelers;
+
   const validatePersonalInfo = () => {
     return (
       personalInfo.firstName.trim() !== "" &&
       personalInfo.lastName.trim() !== "" &&
       personalInfo.email.trim() !== "" &&
       personalInfo.phone.trim() !== "" &&
-      personalInfo.numberOfTravelers >= 1 &&
-      personalInfo.numberOfTravelers <= 32 &&
+      travelerCount >= 1 &&
+      travelerCount <= 32 &&
       !errors.numberOfTravelers
     );
   };
@@ -143,7 +153,12 @@ export default function BookingPage() {
 
     // Validate number of travelers
     if (field === "numberOfTravelers") {
-      const numTravelers = typeof value === "string" ? Number.parseInt(value) || 0 : value;
+      const numTravelers =
+        typeof value === "number"
+          ? value
+          : value === ""
+            ? 0
+            : Number.parseInt(value, 10) || 0;
 
       if (numTravelers > 32) {
         setErrors(prev => ({
@@ -178,7 +193,7 @@ export default function BookingPage() {
         lastName: personalInfo.lastName,
         email: personalInfo.email,
         phone: personalInfo.phone,
-        numberOfTravelers: personalInfo.numberOfTravelers,
+        numberOfTravelers: travelerCount,
         specialRequests: personalInfo.specialRequests,
         tripId: trip.id,
         tripName: trip.name,
@@ -208,7 +223,7 @@ export default function BookingPage() {
     }
   };
 
-  const totalPrice = trip.price * personalInfo.numberOfTravelers;
+  const totalPrice = trip.price * travelerCount;
 
   return (
     <main className="min-h-screen">
@@ -440,12 +455,24 @@ export default function BookingPage() {
                           min="1"
                           max="32"
                           value={personalInfo.numberOfTravelers}
-                          onChange={(e) =>
-                            handleInputChange(
-                              "numberOfTravelers",
-                              Number.parseInt(e.target.value) || 1
-                            )
-                          }
+                          onChange={(e) => {
+                            if (e.target.value === "") {
+                              handleInputChange("numberOfTravelers", "");
+                              return;
+                            }
+
+                            const parsedTravelers = Number.parseInt(
+                              e.target.value,
+                              10
+                            );
+
+                            if (!Number.isNaN(parsedTravelers)) {
+                              handleInputChange(
+                                "numberOfTravelers",
+                                parsedTravelers
+                              );
+                            }
+                          }}
                           required
                           size="lg"
                           inputMode="numeric"
@@ -518,7 +545,7 @@ export default function BookingPage() {
                             Travelers:
                           </span>
                           <span className="font-medium">
-                            {personalInfo.numberOfTravelers}
+                            {travelerCount || "-"}
                           </span>
                         </div>
                         {travelDates && (
@@ -645,7 +672,7 @@ export default function BookingPage() {
                         Number of travelers
                       </span>
                       <span className="font-medium">
-                        {personalInfo.numberOfTravelers}
+                        {travelerCount || "-"}
                       </span>
                     </div>
                     <div className="border-t pt-3 flex justify-between">

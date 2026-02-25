@@ -21,6 +21,9 @@ import {
   Clock,
   DollarSign,
 } from "lucide-react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { bundleClientSchema, type BundleClientData } from "@/lib/validations";
 
 interface BundledPackage {
   id: number;
@@ -36,11 +39,19 @@ export default function BundlePackagesPage() {
   const { user, isLoaded, isSignedIn } = useUser();
   const router = useRouter();
   const [bundledPackages, setBundledPackages] = useState<BundledPackage[]>([]);
-  const [bundleName, setBundleName] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState(2);
-  const [travelDate, setTravelDate] = useState("");
-  const [specialRequests, setSpecialRequests] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const form = useForm<BundleClientData>({
+    resolver: zodResolver(bundleClientSchema),
+    defaultValues: {
+      name: "",
+      numberOfPeople: 2,
+      travelDate: "",
+      specialRequests: "",
+    },
+    mode: "onSubmit",
+  });
+
+  const { register, control, handleSubmit: rhfHandleSubmit, formState: { isSubmitting } } = form;
 
   // Redirect if not signed in
   if (isLoaded && !isSignedIn) {
@@ -69,28 +80,25 @@ export default function BundlePackagesPage() {
 
   const totalPrice = bundledPackages.reduce((sum, pkg) => sum + pkg.price, 0);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: BundleClientData) => {
     if (bundledPackages.length === 0) {
       alert("Please select at least one package");
       return;
     }
-
-    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/package-bundles", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: bundleName || "Custom Package Bundle",
+          name: data.name || "Custom Package Bundle",
           packages: bundledPackages.map((p) => ({
             packageId: p.id,
             notes: p.notes,
           })),
-          numberOfPeople,
-          travelDate: travelDate ? new Date(travelDate) : null,
-          specialRequests,
+          numberOfPeople: data.numberOfPeople,
+          travelDate: data.travelDate ? new Date(data.travelDate) : null,
+          specialRequests: data.specialRequests,
         }),
       });
 
@@ -103,8 +111,6 @@ export default function BundlePackagesPage() {
     } catch (error) {
       console.error("Error submitting bundle:", error);
       alert("An error occurred. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -124,7 +130,7 @@ export default function BundlePackagesPage() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={rhfHandleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left Column - Package Selection */}
               <div className="lg:col-span-2 space-y-6">
@@ -263,8 +269,7 @@ export default function BundlePackagesPage() {
                           <Input
                             id="bundleName"
                             placeholder="My Uganda Grand Tour"
-                            value={bundleName}
-                            onChange={(e) => setBundleName(e.target.value)}
+                            {...register("name")}
                           />
                         </div>
 
@@ -273,14 +278,24 @@ export default function BundlePackagesPage() {
                             <Users className="h-4 w-4 inline mr-2" />
                             Number of People
                           </Label>
-                          <Input
-                            id="numberOfPeople"
-                            type="number"
-                            min="1"
-                            max="100"
-                            value={numberOfPeople}
-                            onChange={(e) => setNumberOfPeople(parseInt(e.target.value))}
-                            required
+                          <Controller
+                            control={control}
+                            name="numberOfPeople"
+                            render={({ field }) => (
+                              <Input
+                                id="numberOfPeople"
+                                type="number"
+                                min="1"
+                                max="100"
+                                value={field.value}
+                                onChange={(e) => {
+                                  const parsed = parseInt(e.target.value, 10);
+                                  if (!isNaN(parsed)) field.onChange(parsed);
+                                }}
+                                onBlur={field.onBlur}
+                                required
+                              />
+                            )}
                           />
                         </div>
 
@@ -292,8 +307,7 @@ export default function BundlePackagesPage() {
                           <Input
                             id="travelDate"
                             type="date"
-                            value={travelDate}
-                            onChange={(e) => setTravelDate(e.target.value)}
+                            {...register("travelDate")}
                           />
                         </div>
 
@@ -303,8 +317,7 @@ export default function BundlePackagesPage() {
                             id="specialRequests"
                             placeholder="Any special requirements..."
                             rows={4}
-                            value={specialRequests}
-                            onChange={(e) => setSpecialRequests(e.target.value)}
+                            {...register("specialRequests")}
                           />
                         </div>
                       </div>
