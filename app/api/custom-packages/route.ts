@@ -106,7 +106,11 @@ export async function POST(req: Request) {
       contactName: customPackage.contactName,
       email: customPackage.email,
       phone: customPackage.phone,
-      destinations: customPackage.destinations,
+      destinations: customPackage.destinations as Array<{
+        name: string;
+        category: string;
+        days: number;
+      }>,
       duration: duration,
       numberOfPeople: customPackage.numberOfPeople,
       travelDate: customPackage.travelDate,
@@ -155,7 +159,11 @@ async function sendCustomPackageEmails(customPackage: {
   contactName: string;
   email: string;
   phone: string;
-  destinations: any;
+  destinations: Array<{
+    name: string;
+    category: string;
+    days: number;
+  }>;
   duration: string;
   numberOfPeople: number;
   travelDate: Date | null;
@@ -190,10 +198,17 @@ async function sendCustomPackageEmails(customPackage: {
     // Send confirmation to customer
     const customerHtml = await render(
       CustomPackageConfirmationEmail({
+        packageId: customPackage.id,
         contactName: customPackage.contactName,
         name: customPackage.name,
+        email: customPackage.email,
+        phone: customPackage.phone,
+        destinations: customPackage.destinations,
         numberOfPeople: customPackage.numberOfPeople,
         duration: customPackage.duration,
+        travelDate: customPackage.travelDate?.toISOString() || null,
+        budget: customPackage.budget,
+        specialRequests: customPackage.specialRequests,
       })
     );
 

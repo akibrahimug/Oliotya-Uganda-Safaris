@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -14,7 +13,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   CheckCircle2,
-  Plus,
   Trash2,
   Calendar,
   Users,
@@ -55,8 +53,33 @@ interface HeroSlide {
   description: string;
 }
 
+const R2_BASE =
+  process.env.NEXT_PUBLIC_R2_PUBLIC_URL ||
+  "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
+const IMAGE_PATH = "nambi-uganda-safaris/images";
+
+const DEFAULT_HERO_SLIDE: HeroSlide = {
+  image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
+  title: "Create Your Perfect Adventure",
+  subtitle: "Custom Safari Packages",
+  description:
+    "Design your ideal safari experience with our expert team. Choose destinations, activities, and accommodations that match your preferences.",
+};
+
+const DEFAULT_PAGE_CONTENT = {
+  title: "Build Your Custom Safari Package",
+  subtitle: "",
+  description:
+    "Select the destinations you want to visit, customize the duration, choose your preferred accommodations, and let our expert team create your perfect safari experience.",
+};
+
+function resolveHeroImage(image: unknown): string {
+  if (typeof image !== "string") return DEFAULT_HERO_SLIDE.image;
+  const normalized = image.trim();
+  return normalized.length > 0 ? normalized : DEFAULT_HERO_SLIDE.image;
+}
+
 export default function BuildPackagePage() {
-  const { user, isLoaded, isSignedIn } = useUser();
   const router = useRouter();
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loadingDestinations, setLoadingDestinations] = useState(true);
@@ -82,7 +105,7 @@ export default function BuildPackagePage() {
     mode: "onTouched",
   });
 
-  const { register, control, handleSubmit, formState: { errors, isSubmitting, isValid }, watch } = form;
+  const { register, control, handleSubmit, formState: { errors, isSubmitting, isValid } } = form;
 
   // Fetch destinations on mount
   useEffect(() => {
@@ -98,16 +121,19 @@ export default function BuildPackagePage() {
           fetch("/api/cms/custom-package-content")
         ]);
 
+        let resolvedHeroSlide: HeroSlide | null = null;
+        let resolvedContent: typeof DEFAULT_PAGE_CONTENT | null = null;
+
         // Handle hero data
         if (heroResponse.ok) {
           const heroSection = await heroResponse.json();
           if (heroSection.section) {
-            setHeroSlides([{
-              image: heroSection.section.image,
+            resolvedHeroSlide = {
+              image: resolveHeroImage(heroSection.section.image),
               title: heroSection.section.title,
               subtitle: heroSection.section.subtitle,
               description: heroSection.section.description,
-            }]);
+            };
           }
         }
 
@@ -115,48 +141,16 @@ export default function BuildPackagePage() {
         if (contentResponse.ok) {
           const contentSection = await contentResponse.json();
           if (contentSection.section) {
-            setPageContent(contentSection.section);
+            resolvedContent = contentSection.section;
           }
         }
 
-        // Fallbacks if no data
-        if (!heroSlides.length) {
-          const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-          const IMAGE_PATH = "nambi-uganda-safaris/images";
-
-          setHeroSlides([{
-            image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
-            title: "Create Your Perfect Adventure",
-            subtitle: "Custom Safari Packages",
-            description: "Design your ideal safari experience with our expert team. Choose destinations, activities, and accommodations that match your preferences.",
-          }]);
-        }
-
-        if (!pageContent) {
-          setPageContent({
-            title: "Build Your Custom Safari Package",
-            subtitle: "",
-            description: "Select the destinations you want to visit, customize the duration, choose your preferred accommodations, and let our expert team create your perfect safari experience.",
-          });
-        }
+        setHeroSlides([resolvedHeroSlide ?? DEFAULT_HERO_SLIDE]);
+        setPageContent(resolvedContent ?? DEFAULT_PAGE_CONTENT);
       } catch (error) {
         console.error("Error fetching page data:", error);
-        // Fallback to default
-        const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-        const IMAGE_PATH = "nambi-uganda-safaris/images";
-
-        setHeroSlides([{
-          image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
-          title: "Create Your Perfect Adventure",
-          subtitle: "Custom Safari Packages",
-          description: "Design your ideal safari experience with our expert team. Choose destinations, activities, and accommodations that match your preferences.",
-        }]);
-
-        setPageContent({
-          title: "Build Your Custom Safari Package",
-          subtitle: "",
-          description: "Select the destinations you want to visit, customize the duration, choose your preferred accommodations, and let our expert team create your perfect safari experience.",
-        });
+        setHeroSlides([DEFAULT_HERO_SLIDE]);
+        setPageContent(DEFAULT_PAGE_CONTENT);
       }
     }
 
@@ -175,12 +169,6 @@ export default function BuildPackagePage() {
       setLoadingDestinations(false);
     }
   };
-
-  // Redirect if not signed in
-  if (isLoaded && !isSignedIn) {
-    router.push("/sign-in?redirect_url=/build-package");
-    return null;
-  }
 
   const toggleDestination = (dest: Destination) => {
     const exists = selectedDestinations.find((d) => d.id === dest.id);
@@ -270,9 +258,7 @@ export default function BuildPackagePage() {
         } else if (response.status === 429) {
           errorMessage = "Too many requests. Please wait an hour and try again.";
         } else if (response.status === 401) {
-          errorMessage = "You must be signed in to create a custom package.";
-          router.push("/sign-in?redirect_url=/build-package");
-          return;
+          errorMessage = "Unable to submit request right now. Please try again.";
         } else if (result.error) {
           errorMessage = result.error;
         }
@@ -298,7 +284,13 @@ export default function BuildPackagePage() {
           <div className="h-[45vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] w-full bg-muted animate-pulse" />
         }
       >
-        <PageHero slides={heroSlides} showCounter={false} showDots={false} autoPlay={false} />
+        <PageHero
+          slides={heroSlides}
+          showCounter={false}
+          showDots={false}
+          autoPlay={false}
+          fallbackImage={DEFAULT_HERO_SLIDE.image}
+        />
       </Suspense>
 
       <section className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
@@ -636,7 +628,7 @@ export default function BuildPackagePage() {
                         type="submit"
                         className="w-full"
                         size="lg"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || !isFormComplete}
                       >
                         {isSubmitting ? (
                           <>

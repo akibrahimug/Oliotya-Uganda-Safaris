@@ -26,13 +26,6 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    if (!section) {
-      return NextResponse.json(
-        { error: "Custom package content section not found" },
-        { status: 404 }
-      );
-    }
-
     return NextResponse.json({ section });
   } catch (error) {
     console.error("Error fetching custom package content section:", error);
@@ -60,10 +53,31 @@ export async function PATCH(request: NextRequest) {
     const existing = await prisma.customPackageContent.findFirst();
 
     if (!existing) {
-      return NextResponse.json(
-        { error: "Custom package content section not found" },
-        { status: 404 }
-      );
+      const created = await prisma.customPackageContent.create({
+        data: {
+          title,
+          subtitle,
+          description,
+          status: publish ? "PUBLISHED" : "DRAFT",
+          publishedAt: publish ? new Date() : null,
+        },
+      });
+
+      await prisma.cMSAuditLog.create({
+        data: {
+          action: publish ? "PUBLISH" : "CREATE",
+          entityType: "custom_package_content",
+          entityId: created.id,
+          userId,
+          userName: "Admin User",
+        },
+      });
+
+      if (publish) {
+        revalidatePath("/build-package");
+      }
+
+      return NextResponse.json({ section: created, published: publish });
     }
 
     const updateData: any = {

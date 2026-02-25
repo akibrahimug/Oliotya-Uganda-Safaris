@@ -15,7 +15,11 @@ interface PageHeroProps {
   showDots?: boolean;
   autoPlay?: boolean;
   interval?: number;
+  fallbackImage?: string;
 }
+
+const DEFAULT_FALLBACK_IMAGE =
+  "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev/nambi-uganda-safaris/images/uganda-queen-elizabeth-national-park-safari.webp";
 
 export function PageHero({
   slides,
@@ -23,9 +27,15 @@ export function PageHero({
   showDots = true,
   autoPlay = true,
   interval = 8000,
+  fallbackImage = DEFAULT_FALLBACK_IMAGE,
 }: PageHeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
+  const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    setFailedImages({});
+  }, [slides]);
 
   useEffect(() => {
     if (!isAutoPlaying || slides.length <= 1) return;
@@ -53,9 +63,14 @@ export function PageHero({
         >
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/50 to-transparent z-10" />
           <img
-            src={slide.image}
+            src={failedImages[index] ? fallbackImage : slide.image}
             alt={slide.subtitle}
             className="w-full h-full object-cover"
+            onError={
+              failedImages[index]
+                ? undefined
+                : () => setFailedImages((prev) => ({ ...prev, [index]: true }))
+            }
           />
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="container mx-auto px-4 lg:px-8">

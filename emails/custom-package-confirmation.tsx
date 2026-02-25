@@ -10,10 +10,21 @@ import {
 } from '@react-email/components';
 
 interface CustomPackageConfirmationEmailProps {
+  packageId: number;
   contactName: string;
   name: string;
+  email: string;
+  phone: string;
+  destinations: Array<{
+    name: string;
+    category: string;
+    days: number;
+  }>;
   numberOfPeople: number;
   duration: string;
+  travelDate?: string | null;
+  budget?: number | null;
+  specialRequests?: string | null;
   companyName?: string;
   contactEmail?: string;
   primaryColor?: string;
@@ -21,17 +32,34 @@ interface CustomPackageConfirmationEmailProps {
 }
 
 export default function CustomPackageConfirmationEmail({
+  packageId,
   contactName,
   name,
+  email,
+  phone,
+  destinations,
   numberOfPeople,
   duration,
+  travelDate,
+  budget,
+  specialRequests,
   companyName = 'Oliotya Uganda Safaris',
   contactEmail = 'Info@oliotyaugandasafaris.com',
   primaryColor = '#059669',
   accentColor = '#3b82f6',
 }: CustomPackageConfirmationEmailProps) {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
   // Create color-based styles
   const h1Style = { ...h1, color: primaryColor };
+  const h2Style = { ...h2, color: primaryColor };
   const summaryBoxStyle = {
     ...summaryBox,
     backgroundColor: `${primaryColor}10`,
@@ -65,6 +93,12 @@ export default function CustomPackageConfirmationEmail({
             <table width="100%" cellPadding="0" cellSpacing="0" role="presentation" style={{ marginTop: '12px' }}>
               <tr>
                 <td style={{ paddingBottom: '8px' }}>
+                  <Text style={label}>Request ID:</Text>
+                  <Text style={value}>#{packageId}</Text>
+                </td>
+              </tr>
+              <tr>
+                <td style={{ paddingBottom: '8px' }}>
                   <Text style={label}>Package:</Text>
                   <Text style={value}>{name}</Text>
                 </td>
@@ -76,13 +110,89 @@ export default function CustomPackageConfirmationEmail({
                 </td>
               </tr>
               <tr>
-                <td>
+                <td style={{ paddingBottom: travelDate || (budget && budget > 0) ? '8px' : '0' }}>
                   <Text style={label}>Duration:</Text>
                   <Text style={value}>{duration}</Text>
                 </td>
               </tr>
+              {travelDate && (
+                <tr>
+                  <td style={{ paddingBottom: budget && budget > 0 ? '8px' : '0' }}>
+                    <Text style={label}>Preferred Travel Date:</Text>
+                    <Text style={value}>{formatDate(travelDate)}</Text>
+                  </td>
+                </tr>
+              )}
+              {budget && budget > 0 && (
+                <tr>
+                  <td>
+                    <Text style={label}>Budget per Person:</Text>
+                    <Text style={value}>${budget.toLocaleString()} USD</Text>
+                  </td>
+                </tr>
+              )}
             </table>
           </Section>
+
+          <Heading style={h2Style}>Submitted Contact Information</Heading>
+          <Section style={section}>
+            <table width="100%" cellPadding="0" cellSpacing="0" role="presentation">
+              <tr>
+                <td>
+                  <Text style={label}>Name:</Text>
+                  <Text style={value}>{contactName}</Text>
+                </td>
+              </tr>
+              <tr>
+                <td style={{ paddingTop: '8px' }}>
+                  <Text style={label}>Email:</Text>
+                  <Text style={value}>
+                    <a href={`mailto:${email}`} style={link}>{email}</a>
+                  </Text>
+                </td>
+              </tr>
+              <tr>
+                <td style={{ paddingTop: '8px' }}>
+                  <Text style={label}>Phone:</Text>
+                  <Text style={value}>
+                    <a href={`tel:${phone}`} style={link}>{phone}</a>
+                  </Text>
+                </td>
+              </tr>
+            </table>
+          </Section>
+
+          <Heading style={h2Style}>Your Selected Destinations</Heading>
+          <Section style={section}>
+            <div style={itineraryBox}>
+              <table width="100%" cellPadding="0" cellSpacing="0" role="presentation">
+                {destinations.map((destination, index) => (
+                  <tr key={index}>
+                    <td style={{ paddingBottom: index < destinations.length - 1 ? '12px' : '0' }}>
+                      <Text style={destinationName}>
+                        Day {destinations.slice(0, index).reduce((sum, d) => sum + d.days, 1)}-
+                        {destinations.slice(0, index + 1).reduce((sum, d) => sum + d.days, 0)}: {destination.name}
+                      </Text>
+                      <Text style={destinationDetails}>
+                        {destination.category} • {destination.days} {destination.days === 1 ? 'day' : 'days'}
+                      </Text>
+                    </td>
+                  </tr>
+                ))}
+              </table>
+            </div>
+          </Section>
+
+          {specialRequests && (
+            <>
+              <Heading style={h2Style}>Your Special Requests</Heading>
+              <Section style={section}>
+                <div style={messageBox}>
+                  <Text style={messageText}>{specialRequests}</Text>
+                </div>
+              </Section>
+            </>
+          )}
 
           <Section style={infoBoxStyle}>
             <Text style={infoTitle}>What Happens Next?</Text>
@@ -205,6 +315,19 @@ const summaryTitle = {
   margin: '0',
 };
 
+const h2 = {
+  color: '#1a1a1a',
+  fontSize: '18px',
+  fontWeight: 'bold' as const,
+  margin: '24px 0 12px',
+  padding: '0 40px',
+};
+
+const section = {
+  padding: '0 40px',
+  marginBottom: '16px',
+};
+
 const label = {
   color: '#6b7280',
   fontSize: '12px',
@@ -217,8 +340,43 @@ const label = {
 const value = {
   color: '#1a1a1a',
   fontSize: '16px',
-  margin: '0',
+  margin: '0 0 4px 0',
   lineHeight: '22px',
+};
+
+const itineraryBox = {
+  backgroundColor: '#f9fafb',
+  padding: '16px',
+  borderRadius: '8px',
+  border: '1px solid #e5e7eb',
+};
+
+const destinationName = {
+  color: '#1a1a1a',
+  fontSize: '15px',
+  fontWeight: '600' as const,
+  margin: '0 0 4px 0',
+};
+
+const destinationDetails = {
+  color: '#6b7280',
+  fontSize: '13px',
+  margin: '0',
+};
+
+const messageBox = {
+  backgroundColor: '#f9fafb',
+  padding: '16px',
+  borderRadius: '8px',
+  border: '1px solid #e5e7eb',
+};
+
+const messageText = {
+  color: '#1a1a1a',
+  fontSize: '15px',
+  lineHeight: '24px',
+  whiteSpace: 'pre-wrap' as const,
+  margin: '0',
 };
 
 const infoBox = {
@@ -241,6 +399,12 @@ const infoText = {
   fontSize: '14px',
   lineHeight: '22px',
   margin: '0',
+};
+
+const link = {
+  color: '#2563eb',
+  textDecoration: 'underline' as const,
+  fontWeight: '500' as const,
 };
 
 const signature = {
