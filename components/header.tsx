@@ -5,32 +5,42 @@ import { Menu, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { fetchSiteSettingsClient, type SiteSettings } from "@/lib/settings";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
   showBackButton?: boolean;
   backButtonText?: string;
   onBackClick?: () => void;
+  initialSettings?: SiteSettings | null;
 }
 
 export function Header({
   showBackButton = false,
   backButtonText = "Back",
   onBackClick,
+  initialSettings = null,
 }: HeaderProps = {}) {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [logoUrl, setLogoUrl] = useState<string>("");
-  const [siteName, setSiteName] = useState<string>("Oliotya Uganda Safaris");
-  const [isLoading, setIsLoading] = useState(true);
+  const [logoUrl, setLogoUrl] = useState<string>(initialSettings?.brand?.logo || "");
+  const [siteName, setSiteName] = useState<string>(
+    initialSettings?.brand?.siteName || "Oliotya Uganda Safaris"
+  );
+  const [isLoading, setIsLoading] = useState(!initialSettings);
 
-  // Fetch settings on mount
+  // Fetch settings only when server doesn't provide them.
   useEffect(() => {
+    if (initialSettings) {
+      setLogoUrl(initialSettings.brand?.logo || "");
+      setSiteName(initialSettings.brand?.siteName || "Oliotya Uganda Safaris");
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     fetchSiteSettingsClient()
       .then((data) => {
-        console.log("Header: Fetched settings", data);
         setLogoUrl(data?.brand?.logo || "");
         setSiteName(data?.brand?.siteName || "Oliotya Uganda Safaris");
       })
@@ -41,7 +51,7 @@ export function Header({
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [initialSettings]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,6 +104,8 @@ export function Header({
                 <img
                   src={logoUrl}
                   alt={`${siteName} Logo`}
+                  width={1170}
+                  height={1013}
                   className="h-10 w-auto object-contain transition-transform group-hover:scale-105 duration-300 rounded-xs "
                   onError={(e) => {
                     // Fallback to default logo if image fails to load
@@ -178,6 +190,7 @@ export function Header({
                     : "text-background hover:text-background/70"
                 }`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
               >
                 {mobileMenuOpen ? (
                   <X className="h-6 w-6" />
@@ -210,6 +223,8 @@ export function Header({
                   <img
                     src={logoUrl}
                     alt={`${siteName} Logo`}
+                    width={1170}
+                    height={1013}
                     className="h-10 w-auto object-contain transition-transform group-hover:scale-110"
                     onError={(e) => {
                       e.currentTarget.src = logoUrl || "";
@@ -228,6 +243,7 @@ export function Header({
                 size="icon"
                 className="text-background hover:text-background/70"
                 onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close mobile menu"
               >
                 <X className="h-6 w-6" />
               </Button>

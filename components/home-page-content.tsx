@@ -1,13 +1,7 @@
-"use client";
-
-import { useState } from "react";
 import { SearchForm } from "@/components/search-form";
 import { TourGuideSection } from "@/components/tour-guide-section";
-import { VideoSection } from "@/components/video-section";
-import { PopularPlaces } from "@/components/popular-places";
-import { ExploreDestinations } from "@/components/explore-destinations";
 import { ExperienceSection } from "@/components/experience-section";
-import type { SearchFilters } from "@/lib/types";
+import { DeferredHomeSections } from "@/components/deferred-home-sections";
 
 interface HomePageContentProps {
   experienceData: {
@@ -42,17 +36,11 @@ export function HomePageContent({
   tourGuideData,
   videoData,
 }: HomePageContentProps) {
-  const [searchFilters, setSearchFilters] = useState<SearchFilters | null>(
-    null
-  );
-
   return (
     <>
-      <SearchForm onSearch={setSearchFilters} />
+      <SearchForm />
       <TourGuideSection data={tourGuideData || undefined} />
-      <VideoSection data={videoData || undefined} />
-      <PopularPlaces filters={searchFilters} />
-      <ExploreDestinations filters={searchFilters} />
+      <DeferredHomeSections videoData={videoData} />
       <ExperienceSection data={experienceData || undefined} />
     </>
   );

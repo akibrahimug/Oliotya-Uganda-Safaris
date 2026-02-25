@@ -50,7 +50,7 @@ function isDirectVideoUrl(url: string): boolean {
 export function VideoSection({ data }: VideoSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
+  const [loadEmbeddedVideo, setLoadEmbeddedVideo] = useState(false);
 
   // Default fallback data
   const sectionData = data || {
@@ -71,7 +71,10 @@ export function VideoSection({ data }: VideoSectionProps) {
 
   // YouTube embed URL with autoplay parameters
   const youtubeEmbedUrl = youtubeId
-    ? `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=1&modestbranding=1&rel=0`
+    ? `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${youtubeId}&controls=1&modestbranding=1&rel=0`
+    : null;
+  const youtubeThumbnailUrl = youtubeId
+    ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
     : null;
 
   // Intersection Observer for autoplay on scroll
@@ -81,8 +84,6 @@ export function VideoSection({ data }: VideoSectionProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-
           // Autoplay direct video when in view
           if (isDirectVideo && videoRef.current) {
             if (entry.isIntersecting) {
@@ -93,10 +94,15 @@ export function VideoSection({ data }: VideoSectionProps) {
               videoRef.current.pause();
             }
           }
+
+          // Auto-load YouTube iframe only when section is visible.
+          if (youtubeEmbedUrl && entry.isIntersecting) {
+            setLoadEmbeddedVideo(true);
+          }
         });
       },
       {
-        threshold: 0.5, // Trigger when 50% visible
+        threshold: 0.35, // Trigger when section is mostly visible
       }
     );
 
@@ -105,7 +111,7 @@ export function VideoSection({ data }: VideoSectionProps) {
     return () => {
       observer.disconnect();
     };
-  }, [isDirectVideo]);
+  }, [isDirectVideo, youtubeEmbedUrl]);
 
   return (
     <section ref={sectionRef} className="py-20 bg-muted/30">
@@ -132,15 +138,36 @@ export function VideoSection({ data }: VideoSectionProps) {
               </div>
             </div>
           ) : youtubeEmbedUrl ? (
-            // YouTube embed
-            <div className="aspect-video">
-              <iframe
-                src={youtubeEmbedUrl}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={sectionData.title}
-              />
+            // YouTube embed (deferred until in-view to balance autoplay with performance)
+            <div className="aspect-video relative">
+              {loadEmbeddedVideo ? (
+                <iframe
+                  src={youtubeEmbedUrl}
+                  className="w-full h-full"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={sectionData.title}
+                />
+              ) : (
+                <div className="relative w-full h-full">
+                  {youtubeThumbnailUrl ? (
+                    <img
+                      src={youtubeThumbnailUrl}
+                      alt={`Video preview: ${sectionData.title}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      width={1280}
+                      height={720}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-muted/50" />
+                  )}
+                  <div className="absolute inset-0 bg-foreground/25" />
+                </div>
+              )}
             </div>
           ) : isDirectVideo ? (
             // Direct video file

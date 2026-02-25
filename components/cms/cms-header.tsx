@@ -88,14 +88,14 @@ export function CMSHeader() {
         {/* Actions */}
         <div className="flex items-center gap-2 sm:gap-4">
           {/* Search button for mobile */}
-          <Button variant="ghost" size="icon" className="md:hidden">
+          <Button variant="ghost" size="icon" className="md:hidden" aria-label="Search content">
             <Search className="h-5 w-5" />
           </Button>
 
           {/* Notifications Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative">
+              <Button variant="ghost" size="icon" className="relative" aria-label="Open notifications">
                 <Bell className="h-5 w-5" />
                 {notifications.length > 0 && (
                   <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />

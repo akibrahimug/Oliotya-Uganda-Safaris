@@ -6,7 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollIndicator } from "@/components/scroll-indicator"
 import { MapPin } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import type { SearchFilters } from "@/lib/types"
+import { getImageSrc } from "@/lib/image-utils"
 
 interface ExploreDestinationsProps {
   filters: SearchFilters | null
@@ -180,11 +182,16 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
                   <Badge className="absolute top-6 left-6 z-10 bg-primary text-primary-foreground shadow-lg backdrop-blur-sm">
                     {dest.category}
                   </Badge>
-                  <img
-                    src={dest.image}
-                    alt={dest.name}
-                    className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                  <div className="relative h-96">
+                    <Image
+                      src={getImageSrc(dest.image)}
+                      alt={dest.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 85vw, 1024px"
+                      quality={75}
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-background">
                     <div className="flex items-center gap-2 mb-2 opacity-90">

@@ -64,10 +64,32 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       },
     };
 
+    const mutableSettings = transformedSettings as Record<string, any>;
+
     settings.forEach((setting: any) => {
-      if (setting.key in transformedSettings) {
-        transformedSettings[setting.key as keyof SiteSettings] = setting.value;
+      if (!(setting.key in transformedSettings)) return;
+
+      const key = setting.key as keyof SiteSettings;
+      const currentValue = transformedSettings[key];
+      const incomingValue = setting.value;
+
+      // Merge nested setting objects so partial CMS updates don't remove defaults.
+      if (
+        currentValue &&
+        typeof currentValue === "object" &&
+        !Array.isArray(currentValue) &&
+        incomingValue &&
+        typeof incomingValue === "object" &&
+        !Array.isArray(incomingValue)
+      ) {
+        mutableSettings[key] = {
+          ...(currentValue as Record<string, unknown>),
+          ...(incomingValue as Record<string, unknown>),
+        };
+        return;
       }
+
+      mutableSettings[key] = incomingValue;
     });
 
     return transformedSettings;

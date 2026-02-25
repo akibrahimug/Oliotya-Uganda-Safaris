@@ -110,14 +110,20 @@ export function PageHero({
           {slides.map((_, index) => (
             <button
               key={index}
+              type="button"
               onClick={() => goToSlide(index)}
-              className={`h-1.5 md:h-2 rounded-full transition-all ${
-                index === currentSlide
-                  ? "w-6 md:w-8 bg-primary"
-                  : "w-1.5 md:w-2 bg-muted"
-              }`}
+              className="h-11 w-11 -m-2 flex items-center justify-center rounded-full"
               aria-label={`Go to slide ${index + 1}`}
-            />
+            >
+              <span
+                className={`h-1.5 md:h-2 rounded-full transition-all ${
+                  index === currentSlide
+                    ? "w-6 md:w-8 bg-primary"
+                    : "w-1.5 md:w-2 bg-muted"
+                }`}
+                aria-hidden="true"
+              />
+            </button>
           ))}
         </div>
       )}

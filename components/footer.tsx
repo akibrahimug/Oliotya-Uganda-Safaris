@@ -22,23 +22,36 @@ import { Input } from "@/components/ui/input";
 import { fetchSiteSettingsClient, type SiteSettings } from "@/lib/settings";
 import { newsletterSchema, type NewsletterFormData } from "@/lib/validations/newsletter";
 
-export function Footer() {
+interface FooterProps {
+  initialSettings?: SiteSettings | null;
+}
+
+export function Footer({ initialSettings = null }: FooterProps = {}) {
   const form = useForm<NewsletterFormData>({
     resolver: zodResolver(newsletterSchema),
     defaultValues: { email: "", website: "" },
     mode: "onSubmit",
   });
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [settings, setSettings] = useState<SiteSettings | null>(null);
-  const [logoUrl, setLogoUrl] = useState<string>("");
-  const [siteName, setSiteName] = useState<string>("Oliotya Uganda Safaris");
-  const [isLoading, setIsLoading] = useState(true);
-
   // Default logo URL
   const defaultLogo = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev/nambi-uganda-safaris/images/fox_logo.webp";
+  const [settings, setSettings] = useState<SiteSettings | null>(initialSettings);
+  const [logoUrl, setLogoUrl] = useState<string>(initialSettings?.brand?.logo || defaultLogo);
+  const [siteName, setSiteName] = useState<string>(
+    initialSettings?.brand?.siteName || "Oliotya Uganda Safaris"
+  );
+  const [isLoading, setIsLoading] = useState(!initialSettings);
 
-  // Fetch settings on mount
+  // Fetch settings only when server doesn't provide them.
   useEffect(() => {
+    if (initialSettings) {
+      setSettings(initialSettings);
+      setLogoUrl(initialSettings.brand?.logo || defaultLogo);
+      setSiteName(initialSettings.brand?.siteName || "Oliotya Uganda Safaris");
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     fetchSiteSettingsClient()
       .then((data) => {
@@ -53,7 +66,7 @@ export function Footer() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [initialSettings]);
 
   const onSubmit = async (data: NewsletterFormData) => {
     try {
@@ -142,6 +155,8 @@ export function Footer() {
                 <img
                   src={logoUrl}
                   alt={`${siteName} Logo`}
+                  width={1170}
+                  height={1013}
                   className="h-12 w-auto object-contain"
                   onError={(e) => {
                     e.currentTarget.src = defaultLogo;
@@ -164,6 +179,7 @@ export function Footer() {
                   href={settings.social.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our Facebook page"
                   className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
                 >
                   <Facebook className="h-5 w-5" />
@@ -174,6 +190,7 @@ export function Footer() {
                   href={settings.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our Instagram page"
                   className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
                 >
                   <Instagram className="h-5 w-5" />
@@ -184,6 +201,7 @@ export function Footer() {
                   href={settings.social.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our X (Twitter) page"
                   className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
                 >
                   <Twitter className="h-5 w-5" />
@@ -194,6 +212,7 @@ export function Footer() {
                   href={settings.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our LinkedIn page"
                   className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
                 >
                   <Linkedin className="h-5 w-5" />
@@ -204,6 +223,7 @@ export function Footer() {
                   href={settings.social.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our YouTube channel"
                   className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary flex items-center justify-center text-foreground hover:text-primary-foreground transition-all group"
                 >
                   <Youtube className="h-5 w-5" />

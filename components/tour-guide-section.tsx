@@ -41,6 +41,10 @@ export function TourGuideSection({ data }: TourGuideSectionProps) {
               <img
                 src={getImageSrc(sectionData.mapImage)}
                 alt="Uganda Map"
+                width={1600}
+                height={1000}
+                loading="lazy"
+                decoding="async"
                 className="w-full "
               />
             </div>

@@ -3,15 +3,22 @@ import { HeroCarousel } from "@/components/hero-carousel";
 import { HomePageContent } from "@/components/home-page-content";
 import { Footer } from "@/components/footer";
 import { prisma } from "@/lib/db";
+import { getSiteSettings } from "@/lib/settings";
+import type { Metadata } from "next";
 
-// Force dynamic rendering - fetch data from database on each request
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const metadata: Metadata = {
+  title: "Oliotya Uganda Safaris - Discover Uganda",
+  description:
+    "Experience the Pearl of Africa with Oliotya Uganda Safaris. Explore Uganda's wildlife, mountains, and natural wonders.",
+};
+
+// Cache homepage for faster repeat loads while still refreshing CMS content regularly.
+export const revalidate = 300;
 
 export default async function Home() {
   // Fetch all section data on the server
   try {
-    const [experienceSection, tourGuideSection, videoSection] = await Promise.all([
+    const [experienceSection, tourGuideSection, videoSection, heroSlides, siteSettings] = await Promise.all([
       prisma.experienceSection.findFirst({
         where: { status: "PUBLISHED" },
         orderBy: { publishedAt: "desc" },
@@ -24,18 +31,31 @@ export default async function Home() {
         where: { status: "PUBLISHED" },
         orderBy: { publishedAt: "desc" },
       }),
+      prisma.heroSlide.findMany({
+        where: { active: true },
+        orderBy: { displayOrder: "asc" },
+        select: {
+          id: true,
+          title: true,
+          subtitle: true,
+          description: true,
+          image: true,
+          displayOrder: true,
+        },
+      }),
+      getSiteSettings(),
     ]);
 
     return (
       <main className="min-h-screen">
-        <Header />
-        <HeroCarousel />
+        <Header initialSettings={siteSettings} />
+        <HeroCarousel initialSlides={heroSlides} />
         <HomePageContent
           experienceData={experienceSection}
           tourGuideData={tourGuideSection}
           videoData={videoSection}
         />
-        <Footer />
+        <Footer initialSettings={siteSettings} />
       </main>
     );
   } catch (error) {

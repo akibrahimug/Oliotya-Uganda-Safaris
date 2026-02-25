@@ -1,4 +1,5 @@
 import { getImageSrc } from "@/lib/image-utils";
+import Image from "next/image";
 
 interface ExperienceSectionProps {
   data?: {
@@ -29,6 +30,7 @@ export function ExperienceSection({ data: propData }: ExperienceSectionProps) {
     badgeText: "1 International Travel",
     backgroundText: "UGANDA",
   };
+  const imageSrc = getImageSrc(data.image);
 
   return (
     <section className="py-20 bg-background relative overflow-hidden">
@@ -63,9 +65,14 @@ export function ExperienceSection({ data: propData }: ExperienceSectionProps) {
 
           <div className="relative animate-fade-in-right">
             <div className="relative">
-              <img
-                src={getImageSrc(data.image)}
+              <Image
+                src={imageSrc}
                 alt="Uganda Globe"
+                width={3840}
+                height={2849}
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
                 className="w-full h-auto animate-float"
               />
               <div className="absolute -right-8 bottom-1/4 bg-primary text-primary-foreground px-6 py-3 rounded-full shadow-xl font-semibold animate-pulse">

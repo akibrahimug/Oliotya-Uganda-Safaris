@@ -1,4 +1,5 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { ClerkProvider } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { CMSSidebar } from "@/components/cms/cms-sidebar";
 import { CMSHeader } from "@/components/cms/cms-header";
@@ -83,18 +84,20 @@ export default async function CMSLayout({
   }
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-background">
-      {/* Sidebar */}
-      <CMSSidebar />
+    <ClerkProvider>
+      <div className="flex flex-col lg:flex-row min-h-screen bg-background">
+        {/* Sidebar */}
+        <CMSSidebar />
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden lg:mt-0 mt-16">
-        {/* Header */}
-        <CMSHeader />
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col overflow-hidden lg:mt-0 mt-16">
+          {/* Header */}
+          <CMSHeader />
 
-        {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">{children}</main>
+          {/* Page Content */}
+          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">{children}</main>
+        </div>
       </div>
-    </div>
+    </ClerkProvider>
   );
 }
