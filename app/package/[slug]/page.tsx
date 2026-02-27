@@ -1,7 +1,6 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -10,9 +9,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { DestinationGallery } from "@/components/destination-gallery";
 import { BookingButton } from "@/components/booking-button";
 import { Clock, Users, TrendingUp, CheckCircle2, XCircle } from "lucide-react";
-import Link from "next/link";
+import { prisma } from "@/lib/db";
+import { getBaseUrl, toAbsoluteUrl } from "@/lib/seo";
 
-interface Package {
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+type ItineraryItem = {
+  day: number;
+  title: string;
+  description: string;
+};
+
+type PackagePageData = {
   id: number;
   name: string;
   slug: string;
@@ -25,85 +35,172 @@ interface Package {
   images: string[];
   gallery2Images: string[];
   highlights: string[];
-  itinerary: Array<{ day: number; title: string; description: string }>;
+  itinerary: ItineraryItem[];
   included: string[];
   excluded: string[];
   minTravelers: number;
   maxTravelers: number;
   difficulty: string;
-}
-
-// Helper function to format difficulty for display
-const formatDifficulty = (difficulty: string): string => {
-  return difficulty.charAt(0) + difficulty.slice(1).toLowerCase();
 };
 
-export default function PackagePage() {
-  const params = useParams();
-  const packageSlug = params.slug as string;
-  const [pkg, setPkg] = useState<Package | null>(null);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 300;
 
-  useEffect(() => {
-    fetchPackage();
-  }, [packageSlug]);
+function formatDifficulty(difficulty: string): string {
+  return difficulty.charAt(0) + difficulty.slice(1).toLowerCase();
+}
 
-  const fetchPackage = async () => {
-    try {
-      const response = await fetch(`/api/packages/${packageSlug}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch package");
-      }
-      const data = await response.json();
-      setPkg(data.package);
-    } catch (error) {
-      console.error("Error fetching package:", error);
-    } finally {
-      setLoading(false);
-    }
+function toTextSnippet(value: string, fallback: string): string {
+  const normalized = value.trim().replace(/\s+/g, " ");
+  if (!normalized) return fallback;
+  return normalized.length > 160 ? `${normalized.slice(0, 157)}...` : normalized;
+}
+
+function normalizeItinerary(rawItinerary: unknown): ItineraryItem[] {
+  if (!Array.isArray(rawItinerary)) return [];
+
+  return rawItinerary
+    .map((entry, index) => {
+      if (!entry || typeof entry !== "object") return null;
+      const item = entry as Record<string, unknown>;
+      const day = Number(item.day);
+      const title = typeof item.title === "string" ? item.title : "";
+      const description = typeof item.description === "string" ? item.description : "";
+      return {
+        day: Number.isFinite(day) && day > 0 ? day : index + 1,
+        title,
+        description,
+      };
+    })
+    .filter((item): item is ItineraryItem => Boolean(item && (item.title || item.description)));
+}
+
+async function getPackageBySlug(slug: string): Promise<PackagePageData | null> {
+  const pkg = await prisma.package.findUnique({
+    where: { slug },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      category: true,
+      duration: true,
+      price: true,
+      description: true,
+      shortDesc: true,
+      image: true,
+      images: true,
+      gallery2Images: true,
+      highlights: true,
+      itinerary: true,
+      included: true,
+      excluded: true,
+      minTravelers: true,
+      maxTravelers: true,
+      difficulty: true,
+    },
+  });
+
+  if (!pkg) return null;
+
+  return {
+    ...pkg,
+    price: Number(pkg.price),
+    images: Array.isArray(pkg.images) ? pkg.images : [],
+    gallery2Images: Array.isArray(pkg.gallery2Images) ? pkg.gallery2Images : [],
+    highlights: Array.isArray(pkg.highlights) ? pkg.highlights : [],
+    itinerary: normalizeItinerary(pkg.itinerary),
+    included: Array.isArray(pkg.included) ? pkg.included : [],
+    excluded: Array.isArray(pkg.excluded) ? pkg.excluded : [],
   };
+}
 
-  if (loading) {
-    return (
-      <main className="min-h-screen">
-        <Header />
-        <div className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-          </div>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const pkg = await getPackageBySlug(slug);
+  const baseUrl = getBaseUrl();
 
   if (!pkg) {
-    return (
-      <main className="min-h-screen">
-        <Header />
-        <div className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
-          <div className="text-center">
-            <h1 className="font-inter text-4xl font-bold mb-4">
-              Package Not Found
-            </h1>
-            <p className="text-muted-foreground mb-8">
-              The package you're looking for doesn't exist.
-            </p>
-            <Link href="/packages">
-              <Button size="lg">View All Packages</Button>
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </main>
-    );
+    return {
+      title: "Package Not Found | Oliotya Uganda Safaris",
+      description: "The requested safari package could not be found.",
+      alternates: {
+        canonical: `${baseUrl}/packages`,
+      },
+    };
   }
+
+  const description = toTextSnippet(pkg.shortDesc || pkg.description, "Explore Uganda safari packages.");
+  const canonical = `${baseUrl}/package/${pkg.slug}`;
+  const image = toAbsoluteUrl(pkg.image, baseUrl);
+
+  return {
+    title: `${pkg.name} | Oliotya Uganda Safaris`,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      type: "website",
+      title: `${pkg.name} | Oliotya Uganda Safaris`,
+      description,
+      url: canonical,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: pkg.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${pkg.name} | Oliotya Uganda Safaris`,
+      description,
+      images: [image],
+    },
+  };
+}
+
+export default async function PackagePage({ params }: PageProps) {
+  const { slug } = await params;
+  const pkg = await getPackageBySlug(slug);
+
+  if (!pkg) {
+    notFound();
+  }
+
+  const baseUrl = getBaseUrl();
+  const packageUrl = `${baseUrl}/package/${pkg.slug}`;
+  const packageImage = toAbsoluteUrl(pkg.image, baseUrl);
+  const packageSchema = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: pkg.name,
+    description: pkg.shortDesc || pkg.description,
+    url: packageUrl,
+    image: [packageImage, ...pkg.images.slice(0, 3).map((image) => toAbsoluteUrl(image, baseUrl))],
+    provider: {
+      "@type": "Organization",
+      name: "Oliotya Uganda Safaris",
+      url: baseUrl,
+    },
+    offers: {
+      "@type": "Offer",
+      price: pkg.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: packageUrl,
+    },
+  };
 
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(packageSchema) }}
+      />
       <Header />
 
-      {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
           src={pkg.image}
@@ -147,13 +244,10 @@ export default function PackagePage() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="py-16 container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Left Column - Main Content */}
             <div className="lg:col-span-2">
-              {/* Overview */}
               <div className="mb-12">
                 <h2 className="font-inter text-4xl font-bold mb-6">Overview</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
@@ -161,23 +255,23 @@ export default function PackagePage() {
                 </p>
               </div>
 
-              {/* Highlights */}
-              <div className="mb-12">
-                <h2 className="font-inter text-3xl font-bold mb-6">
-                  Safari Highlights
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {pkg.highlights.map((highlight, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-muted-foreground">{highlight}</span>
-                    </div>
-                  ))}
+              {pkg.highlights.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="font-inter text-3xl font-bold mb-6">
+                    Safari Highlights
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {pkg.highlights.map((highlight, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-muted-foreground">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Gallery */}
-              {pkg.images && pkg.images.length > 1 && (
+              {pkg.images.length > 1 && (
                 <div className="mb-12">
                   <h2 className="font-inter text-3xl font-bold mb-6">
                     Package Gallery
@@ -186,8 +280,7 @@ export default function PackagePage() {
                 </div>
               )}
 
-              {/* Gallery 2 */}
-              {pkg.gallery2Images && pkg.gallery2Images.length > 1 && (
+              {pkg.gallery2Images.length > 1 && (
                 <div className="mb-12">
                   <h2 className="font-inter text-3xl font-bold mb-6">
                     More Package Photos
@@ -196,38 +289,38 @@ export default function PackagePage() {
                 </div>
               )}
 
-              {/* Detailed Itinerary */}
-              <div className="mb-12">
-                <h2 className="font-inter text-3xl font-bold mb-6">
-                  Detailed Itinerary
-                </h2>
-                <div className="space-y-6">
-                  {pkg.itinerary.map((day) => (
-                    <div
-                      key={day.day}
-                      className="bg-muted/30 rounded-2xl p-6 border border-border"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                          <span className="text-primary-foreground font-bold">
-                            {day.day}
-                          </span>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-inter text-xl font-bold mb-3">
-                            Day {day.day}: {day.title}
-                          </h3>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {day.description}
-                          </p>
+              {pkg.itinerary.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="font-inter text-3xl font-bold mb-6">
+                    Detailed Itinerary
+                  </h2>
+                  <div className="space-y-6">
+                    {pkg.itinerary.map((day) => (
+                      <div
+                        key={day.day}
+                        className="bg-muted/30 rounded-2xl p-6 border border-border"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                            <span className="text-primary-foreground font-bold">
+                              {day.day}
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-inter text-xl font-bold mb-3">
+                              Day {day.day}: {day.title}
+                            </h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {day.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* What's Included/Excluded */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <Card className="border-0 shadow-lg">
                   <CardContent className="p-6">
@@ -271,7 +364,6 @@ export default function PackagePage() {
               </div>
             </div>
 
-            {/* Right Column - Booking Card */}
             <div className="lg:col-span-1">
               <div className="sticky top-24">
                 <Card className="border-2 border-primary/20 shadow-2xl">

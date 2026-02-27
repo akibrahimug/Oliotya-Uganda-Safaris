@@ -1,7 +1,6 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -19,9 +18,14 @@ import {
   Waves,
   BookOpen,
 } from "lucide-react";
-import Link from "next/link";
+import { prisma } from "@/lib/db";
+import { getBaseUrl, toAbsoluteUrl } from "@/lib/seo";
 
-interface Destination {
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+type DestinationPageData = {
   id: number;
   name: string;
   category: string;
@@ -60,74 +64,221 @@ interface Destination {
       description: string;
     };
   } | null;
+};
+
+export const revalidate = 300;
+
+function toTextSnippet(value: string, fallback: string): string {
+  const normalized = value.trim().replace(/\s+/g, " ");
+  if (!normalized) return fallback;
+  return normalized.length > 160 ? `${normalized.slice(0, 157)}...` : normalized;
 }
 
-export default function DestinationPage() {
-  const params = useParams();
-  const destinationId = Number.parseInt(params.id as string);
-  const [destination, setDestination] = useState<Destination | null>(null);
-  const [loading, setLoading] = useState(true);
+async function getDestinationById(id: number): Promise<DestinationPageData | null> {
+  const destination = await prisma.destination.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      name: true,
+      category: true,
+      country: true,
+      region: true,
+      description: true,
+      image: true,
+      images: true,
+      gallery2Images: true,
+      historyTitle: true,
+      historyContent: true,
+      geographyDescription: true,
+      geographyClimate: true,
+      wildlifeDescription: true,
+      wildlifeMammals: true,
+      wildlifeBirds: true,
+      wildlifeFlora: true,
+      cultureDescription: true,
+      cultureExperiences: true,
+      bestTimeDescription: true,
+      drySeasonTitle: true,
+      drySeasonDescription: true,
+      wetSeasonTitle: true,
+      wetSeasonDescription: true,
+    },
+  });
 
-  useEffect(() => {
-    fetchDestination();
-  }, [destinationId]);
+  if (!destination) return null;
 
-  const fetchDestination = async () => {
-    try {
-      const response = await fetch(`/api/destinations/${destinationId}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch destination");
-      }
-      const data = await response.json();
-      setDestination(data.destination);
-    } catch (error) {
-      console.error("Error fetching destination:", error);
-    } finally {
-      setLoading(false);
-    }
+  return {
+    id: destination.id,
+    name: destination.name,
+    category: destination.category,
+    country: destination.country,
+    region: destination.region,
+    description: destination.description,
+    image: destination.image,
+    images: Array.isArray(destination.images) ? destination.images : [],
+    gallery2Images: Array.isArray(destination.gallery2Images) ? destination.gallery2Images : [],
+    history: destination.historyTitle &&
+      Array.isArray(destination.historyContent) &&
+      destination.historyContent.length > 0
+      ? {
+          title: destination.historyTitle,
+          content: destination.historyContent,
+        }
+      : null,
+    geography: destination.geographyDescription || destination.geographyClimate
+      ? {
+          description: destination.geographyDescription || "",
+          climate: destination.geographyClimate || "",
+        }
+      : null,
+    wildlife: destination.wildlifeDescription ||
+      (Array.isArray(destination.wildlifeMammals) && destination.wildlifeMammals.length > 0) ||
+      (Array.isArray(destination.wildlifeBirds) && destination.wildlifeBirds.length > 0) ||
+      (Array.isArray(destination.wildlifeFlora) && destination.wildlifeFlora.length > 0)
+      ? {
+          description: destination.wildlifeDescription || "",
+          mammals: Array.isArray(destination.wildlifeMammals) ? destination.wildlifeMammals : [],
+          birds: Array.isArray(destination.wildlifeBirds) ? destination.wildlifeBirds : [],
+          flora: Array.isArray(destination.wildlifeFlora) ? destination.wildlifeFlora : [],
+        }
+      : null,
+    culture: destination.cultureDescription ||
+      (Array.isArray(destination.cultureExperiences) && destination.cultureExperiences.length > 0)
+      ? {
+          description: destination.cultureDescription || "",
+          experiences: Array.isArray(destination.cultureExperiences) ? destination.cultureExperiences : [],
+        }
+      : null,
+    bestTimeToVisit: destination.bestTimeDescription ||
+      destination.drySeasonTitle ||
+      destination.wetSeasonTitle
+      ? {
+          description: destination.bestTimeDescription || "",
+          drySeason: {
+            title: destination.drySeasonTitle || "",
+            description: destination.drySeasonDescription || "",
+          },
+          wetSeason: {
+            title: destination.wetSeasonTitle || "",
+            description: destination.wetSeasonDescription || "",
+          },
+        }
+      : null,
   };
+}
 
-  if (loading) {
-    return (
-      <main className="min-h-screen">
-        <Header />
-        <div className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-          </div>
-        </div>
-        <Footer />
-      </main>
-    );
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const destinationId = Number.parseInt(id, 10);
+  const baseUrl = getBaseUrl();
+
+  if (!Number.isFinite(destinationId)) {
+    return {
+      title: "Destination Not Found | Oliotya Uganda Safaris",
+      description: "The requested destination could not be found.",
+      alternates: {
+        canonical: `${baseUrl}/destinations`,
+      },
+    };
   }
+
+  const destination = await getDestinationById(destinationId);
 
   if (!destination) {
-    return (
-      <main className="min-h-screen">
-        <Header />
-        <div className="pt-32 pb-20 container mx-auto px-4 lg:px-8">
-          <div className="text-center">
-            <h1 className="font-inter text-4xl font-bold mb-4">
-              Destination Not Found
-            </h1>
-            <p className="text-muted-foreground mb-8">
-              The destination you're looking for doesn't exist.
-            </p>
-            <Link href="/destinations">
-              <Button size="lg">View All Destinations</Button>
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </main>
-    );
+    return {
+      title: "Destination Not Found | Oliotya Uganda Safaris",
+      description: "The requested destination could not be found.",
+      alternates: {
+        canonical: `${baseUrl}/destinations`,
+      },
+    };
   }
+
+  const description = toTextSnippet(
+    destination.description,
+    "Explore Uganda's top safari destinations with Oliotya Uganda Safaris."
+  );
+  const canonical = `${baseUrl}/destination/${destination.id}`;
+  const image = toAbsoluteUrl(destination.image, baseUrl);
+
+  return {
+    title: `${destination.name} | Destination Guide | Oliotya Uganda Safaris`,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      type: "website",
+      title: `${destination.name} | Destination Guide`,
+      description,
+      url: canonical,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: destination.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${destination.name} | Destination Guide`,
+      description,
+      images: [image],
+    },
+  };
+}
+
+export default async function DestinationPage({ params }: PageProps) {
+  const { id } = await params;
+  const destinationId = Number.parseInt(id, 10);
+
+  if (!Number.isFinite(destinationId)) {
+    notFound();
+  }
+
+  const destination = await getDestinationById(destinationId);
+
+  if (!destination) {
+    notFound();
+  }
+
+  const baseUrl = getBaseUrl();
+  const destinationUrl = `${baseUrl}/destination/${destination.id}`;
+  const destinationImage = toAbsoluteUrl(destination.image, baseUrl);
+  const destinationSchema = {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    name: destination.name,
+    description: destination.description,
+    url: destinationUrl,
+    image: [
+      destinationImage,
+      ...destination.images.slice(0, 3).map((image) => toAbsoluteUrl(image, baseUrl)),
+    ],
+    touristType: destination.category,
+    containedInPlace: destination.country
+      ? {
+          "@type": "Country",
+          name: destination.country,
+        }
+      : undefined,
+    provider: {
+      "@type": "Organization",
+      name: "Oliotya Uganda Safaris",
+      url: baseUrl,
+    },
+  };
 
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(destinationSchema) }}
+      />
       <Header />
 
-      {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
           src={destination.image}
@@ -153,10 +304,8 @@ export default function DestinationPage() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="py-16 container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          {/* Introduction */}
           <div className="mb-12">
             <h2 className="font-inter text-4xl font-bold mb-6">
               About {destination.name}
@@ -166,8 +315,7 @@ export default function DestinationPage() {
             </p>
           </div>
 
-          {/* Gallery Section 1 */}
-          {destination.images && destination.images.length > 0 && (
+          {destination.images.length > 0 && (
             <div className="mb-16">
               <h3 className="font-inter text-2xl font-bold mb-6 text-center">
                 Experience {destination.name}
@@ -176,7 +324,6 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* History & Background */}
           {destination.history && (
             <div className="mb-12 bg-muted/30 rounded-2xl p-8">
               <div className="flex items-start gap-4 mb-6">
@@ -195,7 +342,6 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* Geography & Climate */}
           {destination.geography && (
             <div className="mb-12">
               <div className="flex items-start gap-4 mb-6">
@@ -233,7 +379,6 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* Wildlife & Nature */}
           {destination.wildlife && (
             <div className="mb-12 bg-primary/5 rounded-2xl p-8 border border-primary/20">
               <div className="flex items-start gap-4 mb-6">
@@ -283,7 +428,6 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* Local Culture & Communities */}
           {destination.culture && (
             <div className="mb-12">
               <div className="flex items-start gap-4 mb-6">
@@ -311,7 +455,6 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* Best Time to Visit */}
           {destination.bestTimeToVisit && (
             <div className="mb-12 bg-muted/30 rounded-2xl p-8">
               <div className="flex items-start gap-4">
@@ -346,8 +489,7 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* Gallery Section 2 */}
-          {destination.gallery2Images && destination.gallery2Images.length > 0 && (
+          {destination.gallery2Images.length > 0 && (
             <div className="mb-16">
               <h3 className="font-inter text-2xl font-bold mb-6 text-center">
                 More of {destination.name}
@@ -356,7 +498,6 @@ export default function DestinationPage() {
             </div>
           )}
 
-          {/* Call to Action */}
           <div className="bg-linear-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20 text-center">
             <h3 className="font-inter text-2xl font-bold mb-3">
               Ready to Experience {destination.name}?
