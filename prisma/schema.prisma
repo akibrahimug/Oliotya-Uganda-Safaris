@@ -589,6 +589,7 @@ model AboutCommunitySection {
   paragraph2          String        @db.Text
   buttonText          String // "Learn More About Akaana"
   buttonLink          String // External link
+  image               String? // Community impact image
   feature1Title       String
   feature1Description String        @db.Text
   feature2Title       String

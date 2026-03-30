@@ -54,9 +54,6 @@ export async function generateMetadata(): Promise<Metadata> {
       icon,
       apple: icon,
     },
-    alternates: {
-      canonical: siteUrl,
-    },
     openGraph: {
       type: (settings.meta?.ogType as "website" | "article") || "website",
       title,

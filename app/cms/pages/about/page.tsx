@@ -50,6 +50,7 @@ interface CommunitySection {
   paragraph2: string;
   buttonText: string;
   buttonLink: string;
+  image?: string | null;
   feature1Title: string;
   feature1Description: string;
   feature2Title: string;

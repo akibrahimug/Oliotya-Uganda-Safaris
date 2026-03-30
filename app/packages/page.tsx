@@ -1,13 +1,31 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PageHero } from "@/components/page-hero";
 import { PackagesContent } from "@/components/packages-content";
 import { prisma } from "@/lib/db";
+import { getBaseUrl } from "@/lib/seo";
 
 // Force dynamic rendering
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export function generateMetadata(): Metadata {
+  const baseUrl = getBaseUrl();
+  return {
+    title: "Safari Packages - Oliotya Uganda Safaris",
+    description: "Browse our curated Uganda safari packages — gorilla trekking, wildlife safaris, mountain expeditions, and more. Find your perfect African adventure.",
+    alternates: {
+      canonical: `${baseUrl}/packages`,
+    },
+    openGraph: {
+      title: "Safari Packages - Oliotya Uganda Safaris",
+      description: "Browse our curated Uganda safari packages — gorilla trekking, wildlife safaris, mountain expeditions, and more. Find your perfect African adventure.",
+      url: `${baseUrl}/packages`,
+    },
+  };
+}
 
 async function getHeroData() {
   try {

@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 const R2_BASE = "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
 const IMAGE_PATH = "oliotya-safaris-safaris/images";
+const AKAANA_FOUNDATION_IMAGE_URL = "https://primary.jwwb.nl/public/t/h/l/temp-ujyvkhzneqwueosbcaow/foto02-high.JPG?enable-io=true&enable=upscale&crop=1366%2C768%2Cx0%2Cy68%2Csafe&width=1170&height=658";
 
 async function main() {
   console.log('Seeding about page sections...');
@@ -42,6 +43,7 @@ async function main() {
       paragraph2: 'Through this partnership, a portion of every tour helps fund education, shelter, and rehabilitation programs for vulnerable children, creating lasting change in our community.',
       buttonText: 'Learn More About Akaana',
       buttonLink: 'https://www.akaanafoundation.nl',
+      image: AKAANA_FOUNDATION_IMAGE_URL,
       feature1Title: 'Supporting Children',
       feature1Description: 'Providing education and safe environments for street children in Kampala',
       feature2Title: 'Community Development',
@@ -54,6 +56,17 @@ async function main() {
   });
 
   console.log('✅ Community section seeded');
+
+  // Backfill image for existing records without overriding CMS-managed images
+  const imageBackfill = await prisma.aboutCommunitySection.updateMany({
+    where: {
+      OR: [{ image: null }, { image: "" }],
+    },
+    data: { image: AKAANA_FOUNDATION_IMAGE_URL },
+  });
+  if (imageBackfill.count > 0) {
+    console.log(`✅ Community image backfilled for ${imageBackfill.count} record(s)`);
+  }
 
   // Seed About Stats
   const stats = await prisma.aboutStats.upsert({

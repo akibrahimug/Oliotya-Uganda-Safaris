@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
+const AKAANA_FOUNDATION_IMAGE_URL = 'https://primary.jwwb.nl/public/t/h/l/temp-ujyvkhzneqwueosbcaow/foto02-high.JPG?enable-io=true&enable=upscale&crop=1366%2C768%2Cx0%2Cy68%2Csafe&width=1170&height=658';
 
 async function seedCMSContent() {
   console.log('🌱 Seeding basic CMS content...');
@@ -50,7 +51,18 @@ async function seedCMSContent() {
       },
     });
 
+    // Backfill About Community image for CMS rendering (without overriding existing selections)
+    const communityImageBackfill = await prisma.aboutCommunitySection.updateMany({
+      where: {
+        OR: [{ image: null }, { image: '' }],
+      },
+      data: { image: AKAANA_FOUNDATION_IMAGE_URL },
+    });
+
     console.log('✅ Basic CMS content seeded successfully!');
+    if (communityImageBackfill.count > 0) {
+      console.log(`✅ Backfilled About Community image for ${communityImageBackfill.count} record(s)`);
+    }
     console.log('📝 You may need to recreate other content through the CMS admin panel.');
 
   } catch (error) {

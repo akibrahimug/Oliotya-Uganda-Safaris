@@ -1,13 +1,31 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PageHero } from "@/components/page-hero";
 import { DestinationsCTASection } from "@/components/destinations-cta-section";
 import { DestinationsGrid } from "@/components/destinations-grid";
 import { prisma } from "@/lib/db";
+import { getBaseUrl } from "@/lib/seo";
 
 // Force dynamic rendering
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export function generateMetadata(): Metadata {
+  const baseUrl = getBaseUrl();
+  return {
+    title: "Destinations - Oliotya Uganda Safaris",
+    description: "Explore Uganda's most breathtaking destinations — national parks, mountains, lakes, and wildlife reserves. Discover the Pearl of Africa.",
+    alternates: {
+      canonical: `${baseUrl}/destinations`,
+    },
+    openGraph: {
+      title: "Destinations - Oliotya Uganda Safaris",
+      description: "Explore Uganda's most breathtaking destinations — national parks, mountains, lakes, and wildlife reserves. Discover the Pearl of Africa.",
+      url: `${baseUrl}/destinations`,
+    },
+  };
+}
 
 async function getPageData() {
   try {

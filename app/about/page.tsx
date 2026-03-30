@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AboutHeroSection } from "@/components/about-hero-section";
@@ -8,10 +9,27 @@ import { AboutValuesSection } from "@/components/about-values-section";
 import { AboutTeamSection } from "@/components/about-team-section";
 import { AboutCTASection } from "@/components/about-cta-section";
 import { prisma } from "@/lib/db";
+import { getBaseUrl } from "@/lib/seo";
 
 // Force dynamic rendering - fetch data from database on each request
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export function generateMetadata(): Metadata {
+  const baseUrl = getBaseUrl();
+  return {
+    title: "About Us - Oliotya Uganda Safaris",
+    description: "Learn about Oliotya Uganda Safaris — our story, team, values, and commitment to delivering authentic African safari experiences.",
+    alternates: {
+      canonical: `${baseUrl}/about`,
+    },
+    openGraph: {
+      title: "About Us - Oliotya Uganda Safaris",
+      description: "Learn about Oliotya Uganda Safaris — our story, team, values, and commitment to delivering authentic African safari experiences.",
+      url: `${baseUrl}/about`,
+    },
+  };
+}
 
 export default async function AboutPage() {
   try {

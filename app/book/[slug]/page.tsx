@@ -21,6 +21,7 @@ import {
   Info,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { fetchSiteSettingsClient } from "@/lib/settings";
 
 interface Package {
   id: number;
@@ -42,9 +43,11 @@ export default function BookingPage() {
   const slug = params.slug as string;
   const [pkg, setPkg] = useState<Package | null>(null);
   const [loading, setLoading] = useState(true);
+  const [supportPhone, setSupportPhone] = useState("");
 
   useEffect(() => {
     fetchPackage();
+    fetchSupportPhone();
   }, [slug]);
 
   const fetchPackage = async () => {
@@ -66,6 +69,15 @@ export default function BookingPage() {
       router.push("/packages");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchSupportPhone = async () => {
+    try {
+      const settings = await fetchSiteSettingsClient();
+      setSupportPhone(settings?.contact?.phone || "");
+    } catch (error) {
+      console.error("Error fetching support phone:", error);
     }
   };
 
@@ -288,13 +300,15 @@ export default function BookingPage() {
                       <Mail className="h-4 w-4 text-primary" />
                       <span>Info@oliotyaugandasafaris.com</span>
                     </a>
-                    <a
-                      href="tel:+256123456789"
-                      className="flex items-center gap-3 text-sm hover:text-primary transition-colors"
-                    >
-                      <Phone className="h-4 w-4 text-primary" />
-                      <span>+256 123 456 789</span>
-                    </a>
+                    {supportPhone && (
+                      <a
+                        href={`tel:${supportPhone.replace(/[^\d+]/g, "")}`}
+                        className="flex items-center gap-3 text-sm hover:text-primary transition-colors"
+                      >
+                        <Phone className="h-4 w-4 text-primary" />
+                        <span>{supportPhone}</span>
+                      </a>
+                    )}
                   </div>
                   <Button variant="outline" className="w-full" asChild>
                     <a href="/contact">Contact Us</a>

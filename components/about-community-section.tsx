@@ -11,6 +11,7 @@ interface AboutCommunitySectionProps {
     paragraph2: string;
     buttonText: string;
     buttonLink: string;
+    image?: string | null;
     feature1Title: string;
     feature1Description: string;
     feature2Title: string;
@@ -21,6 +22,8 @@ interface AboutCommunitySectionProps {
 }
 
 export function AboutCommunitySection({ data }: AboutCommunitySectionProps) {
+  const foundationImageSrc = data.image?.trim() || null;
+
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
@@ -31,6 +34,20 @@ export function AboutCommunitySection({ data }: AboutCommunitySectionProps) {
               {data.title}{" "}
               <span className="text-primary">{data.titleHighlight}</span>
             </h2>
+            {foundationImageSrc ? (
+              <div className="mb-8 overflow-hidden rounded-2xl border border-primary/20 bg-background shadow-sm">
+                <img
+                  src={foundationImageSrc}
+                  alt={`${data.titleHighlight} image`}
+                  className="h-64 w-full object-cover md:h-80"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div className="mb-8 rounded-2xl border border-dashed border-primary/30 bg-background/70 p-6 text-sm text-muted-foreground">
+                Add a Community Foundation image in CMS to display it here.
+              </div>
+            )}
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               {data.paragraph1}
             </p>

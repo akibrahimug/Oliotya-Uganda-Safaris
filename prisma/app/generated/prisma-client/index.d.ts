@@ -33413,6 +33413,7 @@ export namespace Prisma {
     paragraph2: string | null
     buttonText: string | null
     buttonLink: string | null
+    image: string | null
     feature1Title: string | null
     feature1Description: string | null
     feature2Title: string | null
@@ -33434,6 +33435,7 @@ export namespace Prisma {
     paragraph2: string | null
     buttonText: string | null
     buttonLink: string | null
+    image: string | null
     feature1Title: string | null
     feature1Description: string | null
     feature2Title: string | null
@@ -33455,6 +33457,7 @@ export namespace Prisma {
     paragraph2: number
     buttonText: number
     buttonLink: number
+    image: number
     feature1Title: number
     feature1Description: number
     feature2Title: number
@@ -33478,6 +33481,7 @@ export namespace Prisma {
     paragraph2?: true
     buttonText?: true
     buttonLink?: true
+    image?: true
     feature1Title?: true
     feature1Description?: true
     feature2Title?: true
@@ -33499,6 +33503,7 @@ export namespace Prisma {
     paragraph2?: true
     buttonText?: true
     buttonLink?: true
+    image?: true
     feature1Title?: true
     feature1Description?: true
     feature2Title?: true
@@ -33520,6 +33525,7 @@ export namespace Prisma {
     paragraph2?: true
     buttonText?: true
     buttonLink?: true
+    image?: true
     feature1Title?: true
     feature1Description?: true
     feature2Title?: true
@@ -33614,6 +33620,7 @@ export namespace Prisma {
     paragraph2: string
     buttonText: string
     buttonLink: string
+    image: string | null
     feature1Title: string
     feature1Description: string
     feature2Title: string
@@ -33652,6 +33659,7 @@ export namespace Prisma {
     paragraph2?: boolean
     buttonText?: boolean
     buttonLink?: boolean
+    image?: boolean
     feature1Title?: boolean
     feature1Description?: boolean
     feature2Title?: boolean
@@ -33673,6 +33681,7 @@ export namespace Prisma {
     paragraph2?: boolean
     buttonText?: boolean
     buttonLink?: boolean
+    image?: boolean
     feature1Title?: boolean
     feature1Description?: boolean
     feature2Title?: boolean
@@ -33694,6 +33703,7 @@ export namespace Prisma {
     paragraph2?: boolean
     buttonText?: boolean
     buttonLink?: boolean
+    image?: boolean
     feature1Title?: boolean
     feature1Description?: boolean
     feature2Title?: boolean
@@ -33715,6 +33725,7 @@ export namespace Prisma {
     paragraph2?: boolean
     buttonText?: boolean
     buttonLink?: boolean
+    image?: boolean
     feature1Title?: boolean
     feature1Description?: boolean
     feature2Title?: boolean
@@ -33727,7 +33738,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type AboutCommunitySectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heading" | "title" | "titleHighlight" | "paragraph1" | "paragraph2" | "buttonText" | "buttonLink" | "feature1Title" | "feature1Description" | "feature2Title" | "feature2Description" | "feature3Title" | "feature3Description" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutCommunitySection"]>
+  export type AboutCommunitySectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heading" | "title" | "titleHighlight" | "paragraph1" | "paragraph2" | "buttonText" | "buttonLink" | "image" | "feature1Title" | "feature1Description" | "feature2Title" | "feature2Description" | "feature3Title" | "feature3Description" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["aboutCommunitySection"]>
 
   export type $AboutCommunitySectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AboutCommunitySection"
@@ -33741,6 +33752,7 @@ export namespace Prisma {
       paragraph2: string
       buttonText: string
       buttonLink: string
+      image: string | null
       feature1Title: string
       feature1Description: string
       feature2Title: string
@@ -34182,6 +34194,7 @@ export namespace Prisma {
     readonly paragraph2: FieldRef<"AboutCommunitySection", 'String'>
     readonly buttonText: FieldRef<"AboutCommunitySection", 'String'>
     readonly buttonLink: FieldRef<"AboutCommunitySection", 'String'>
+    readonly image: FieldRef<"AboutCommunitySection", 'String'>
     readonly feature1Title: FieldRef<"AboutCommunitySection", 'String'>
     readonly feature1Description: FieldRef<"AboutCommunitySection", 'String'>
     readonly feature2Title: FieldRef<"AboutCommunitySection", 'String'>
@@ -53238,6 +53251,7 @@ export namespace Prisma {
     paragraph2: 'paragraph2',
     buttonText: 'buttonText',
     buttonLink: 'buttonLink',
+    image: 'image',
     feature1Title: 'feature1Title',
     feature1Description: 'feature1Description',
     feature2Title: 'feature2Title',
@@ -56062,6 +56076,7 @@ export namespace Prisma {
     paragraph2?: StringFilter<"AboutCommunitySection"> | string
     buttonText?: StringFilter<"AboutCommunitySection"> | string
     buttonLink?: StringFilter<"AboutCommunitySection"> | string
+    image?: StringNullableFilter<"AboutCommunitySection"> | string | null
     feature1Title?: StringFilter<"AboutCommunitySection"> | string
     feature1Description?: StringFilter<"AboutCommunitySection"> | string
     feature2Title?: StringFilter<"AboutCommunitySection"> | string
@@ -56083,6 +56098,7 @@ export namespace Prisma {
     paragraph2?: SortOrder
     buttonText?: SortOrder
     buttonLink?: SortOrder
+    image?: SortOrderInput | SortOrder
     feature1Title?: SortOrder
     feature1Description?: SortOrder
     feature2Title?: SortOrder
@@ -56107,6 +56123,7 @@ export namespace Prisma {
     paragraph2?: StringFilter<"AboutCommunitySection"> | string
     buttonText?: StringFilter<"AboutCommunitySection"> | string
     buttonLink?: StringFilter<"AboutCommunitySection"> | string
+    image?: StringNullableFilter<"AboutCommunitySection"> | string | null
     feature1Title?: StringFilter<"AboutCommunitySection"> | string
     feature1Description?: StringFilter<"AboutCommunitySection"> | string
     feature2Title?: StringFilter<"AboutCommunitySection"> | string
@@ -56128,6 +56145,7 @@ export namespace Prisma {
     paragraph2?: SortOrder
     buttonText?: SortOrder
     buttonLink?: SortOrder
+    image?: SortOrderInput | SortOrder
     feature1Title?: SortOrder
     feature1Description?: SortOrder
     feature2Title?: SortOrder
@@ -56155,6 +56173,7 @@ export namespace Prisma {
     paragraph2?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
     buttonText?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
     buttonLink?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
+    image?: StringNullableWithAggregatesFilter<"AboutCommunitySection"> | string | null
     feature1Title?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
     feature1Description?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
     feature2Title?: StringWithAggregatesFilter<"AboutCommunitySection"> | string
@@ -60146,6 +60165,7 @@ export namespace Prisma {
     paragraph2: string
     buttonText: string
     buttonLink: string
+    image?: string | null
     feature1Title: string
     feature1Description: string
     feature2Title: string
@@ -60167,6 +60187,7 @@ export namespace Prisma {
     paragraph2: string
     buttonText: string
     buttonLink: string
+    image?: string | null
     feature1Title: string
     feature1Description: string
     feature2Title: string
@@ -60188,6 +60209,7 @@ export namespace Prisma {
     paragraph2?: StringFieldUpdateOperationsInput | string
     buttonText?: StringFieldUpdateOperationsInput | string
     buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     feature1Title?: StringFieldUpdateOperationsInput | string
     feature1Description?: StringFieldUpdateOperationsInput | string
     feature2Title?: StringFieldUpdateOperationsInput | string
@@ -60209,6 +60231,7 @@ export namespace Prisma {
     paragraph2?: StringFieldUpdateOperationsInput | string
     buttonText?: StringFieldUpdateOperationsInput | string
     buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     feature1Title?: StringFieldUpdateOperationsInput | string
     feature1Description?: StringFieldUpdateOperationsInput | string
     feature2Title?: StringFieldUpdateOperationsInput | string
@@ -60230,6 +60253,7 @@ export namespace Prisma {
     paragraph2: string
     buttonText: string
     buttonLink: string
+    image?: string | null
     feature1Title: string
     feature1Description: string
     feature2Title: string
@@ -60251,6 +60275,7 @@ export namespace Prisma {
     paragraph2?: StringFieldUpdateOperationsInput | string
     buttonText?: StringFieldUpdateOperationsInput | string
     buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     feature1Title?: StringFieldUpdateOperationsInput | string
     feature1Description?: StringFieldUpdateOperationsInput | string
     feature2Title?: StringFieldUpdateOperationsInput | string
@@ -60272,6 +60297,7 @@ export namespace Prisma {
     paragraph2?: StringFieldUpdateOperationsInput | string
     buttonText?: StringFieldUpdateOperationsInput | string
     buttonLink?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     feature1Title?: StringFieldUpdateOperationsInput | string
     feature1Description?: StringFieldUpdateOperationsInput | string
     feature2Title?: StringFieldUpdateOperationsInput | string
@@ -63687,6 +63713,7 @@ export namespace Prisma {
     paragraph2?: SortOrder
     buttonText?: SortOrder
     buttonLink?: SortOrder
+    image?: SortOrder
     feature1Title?: SortOrder
     feature1Description?: SortOrder
     feature2Title?: SortOrder
@@ -63708,6 +63735,7 @@ export namespace Prisma {
     paragraph2?: SortOrder
     buttonText?: SortOrder
     buttonLink?: SortOrder
+    image?: SortOrder
     feature1Title?: SortOrder
     feature1Description?: SortOrder
     feature2Title?: SortOrder
@@ -63729,6 +63757,7 @@ export namespace Prisma {
     paragraph2?: SortOrder
     buttonText?: SortOrder
     buttonLink?: SortOrder
+    image?: SortOrder
     feature1Title?: SortOrder
     feature1Description?: SortOrder
     feature2Title?: SortOrder

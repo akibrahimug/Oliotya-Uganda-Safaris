@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ContactHeroSection } from "@/components/contact-hero-section";
@@ -5,10 +6,27 @@ import { ContactFormSection } from "@/components/contact-form-section";
 import { ContactFAQSection } from "@/components/contact-faq-section";
 import { ContactResourcesSection } from "@/components/contact-resources-section";
 import { prisma } from "@/lib/db";
+import { getBaseUrl } from "@/lib/seo";
 
 // Force dynamic rendering - fetch data from database on each request
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export function generateMetadata(): Metadata {
+  const baseUrl = getBaseUrl();
+  return {
+    title: "Contact Us - Oliotya Uganda Safaris",
+    description: "Get in touch with Oliotya Uganda Safaris to plan your dream safari. Contact us by email, phone, or WhatsApp — we're here to help.",
+    alternates: {
+      canonical: `${baseUrl}/contact`,
+    },
+    openGraph: {
+      title: "Contact Us - Oliotya Uganda Safaris",
+      description: "Get in touch with Oliotya Uganda Safaris to plan your dream safari. Contact us by email, phone, or WhatsApp — we're here to help.",
+      url: `${baseUrl}/contact`,
+    },
+  };
+}
 
 export default async function ContactPage() {
   try {

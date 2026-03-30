@@ -41,6 +41,8 @@ function BookingConfirmationContent() {
   const [cmsSteps, setCmsSteps] = useState<any[]>([]);
   const [cmsContact, setCmsContact] = useState<any>(null);
   const [cmsGalleries, setCmsGalleries] = useState<any[]>([]);
+  const supportPhone = cmsContact?.phone || "";
+  const supportWhatsapp = cmsContact?.whatsapp || cmsContact?.phone || "";
 
   useEffect(() => {
     // Check for confirmation number with fallback logic
@@ -385,15 +387,17 @@ function BookingConfirmationContent() {
                     <Mail className="h-4 w-4" />
                     Email: Info@oliotyaugandasafaris.com
                   </a>
-                  <a
-                    href="https://wa.me/256123456789"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-primary hover:underline flex items-center gap-2"
-                  >
-                    <Phone className="h-4 w-4" />
-                    WhatsApp: +256 123 456 789
-                  </a>
+                  {supportWhatsapp && (
+                    <a
+                      href={`https://wa.me/${supportWhatsapp.replace(/[^0-9]/g, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:underline flex items-center gap-2"
+                    >
+                      <Phone className="h-4 w-4" />
+                      WhatsApp: {supportWhatsapp}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -492,18 +496,20 @@ function BookingConfirmationContent() {
                   <p className="text-xs text-muted-foreground">{cmsContact?.email || "Info@oliotyaugandasafaris.com"}</p>
                 </div>
               </a>
-              <a
-                href={`tel:${cmsContact?.phone || "+256123456789"}`}
-                className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
-              >
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Phone className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium">Call Us</p>
-                  <p className="text-xs text-muted-foreground">{cmsContact?.phone || "+256 123 456 789"}</p>
-                </div>
-              </a>
+              {supportPhone && (
+                <a
+                  href={`tel:${supportPhone.replace(/[^\d+]/g, "")}`}
+                  className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
+                >
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Call Us</p>
+                    <p className="text-xs text-muted-foreground">{supportPhone}</p>
+                  </div>
+                </a>
+              )}
               {cmsContact?.whatsapp && (
                 <a
                   href={`https://wa.me/${cmsContact.whatsapp.replace(/[^0-9]/g, '')}`}

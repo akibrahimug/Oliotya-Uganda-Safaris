@@ -507,6 +507,7 @@ exports.Prisma.AboutCommunitySectionScalarFieldEnum = {
   paragraph2: 'paragraph2',
   buttonText: 'buttonText',
   buttonLink: 'buttonLink',
+  image: 'image',
   feature1Title: 'feature1Title',
   feature1Description: 'feature1Description',
   feature2Title: 'feature2Title',

@@ -4,13 +4,20 @@ import { HomePageContent } from "@/components/home-page-content";
 import { Footer } from "@/components/footer";
 import { prisma } from "@/lib/db";
 import { getSiteSettings } from "@/lib/settings";
+import { getBaseUrl } from "@/lib/seo";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Oliotya Uganda Safaris - Discover Uganda",
-  description:
-    "Experience the Pearl of Africa with Oliotya Uganda Safaris. Explore Uganda's wildlife, mountains, and natural wonders.",
-};
+export function generateMetadata(): Metadata {
+  const baseUrl = getBaseUrl();
+  return {
+    title: "Oliotya Uganda Safaris - Discover Uganda",
+    description:
+      "Experience the Pearl of Africa with Oliotya Uganda Safaris. Explore Uganda's wildlife, mountains, and natural wonders.",
+    alternates: {
+      canonical: baseUrl,
+    },
+  };
+}
 
 // Cache homepage for faster repeat loads while still refreshing CMS content regularly.
 export const revalidate = 300;

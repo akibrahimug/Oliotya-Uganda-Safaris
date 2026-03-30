@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { fetchSiteSettingsClient } from "@/lib/settings";
 import {
   CheckCircle2,
   Home,
@@ -30,6 +31,7 @@ function CustomPackageConfirmationContent() {
   const [packageDetails, setPackageDetails] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [supportWhatsapp, setSupportWhatsapp] = useState("");
 
   useEffect(() => {
     if (!packageId) {
@@ -47,6 +49,19 @@ function CustomPackageConfirmationContent() {
     });
     setLoading(false);
   }, [packageId]);
+
+  useEffect(() => {
+    const fetchSupportContact = async () => {
+      try {
+        const settings = await fetchSiteSettingsClient();
+        setSupportWhatsapp(settings?.contact?.whatsapp || settings?.contact?.phone || "");
+      } catch (error) {
+        console.error("Error fetching support contact:", error);
+      }
+    };
+
+    fetchSupportContact();
+  }, []);
 
   if (loading) {
     return (
@@ -275,20 +290,22 @@ function CustomPackageConfirmationContent() {
                   <p className="text-xs text-muted-foreground">Info@oliotyaugandasafaris.com</p>
                 </div>
               </a>
-              <a
-                href="https://wa.me/256123456789"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
-              >
-                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Phone className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium">WhatsApp</p>
-                  <p className="text-xs text-muted-foreground">+256 123 456 789</p>
-                </div>
-              </a>
+              {supportWhatsapp && (
+                <a
+                  href={`https://wa.me/${supportWhatsapp.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm hover:text-primary transition-colors group"
+                >
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">WhatsApp</p>
+                    <p className="text-xs text-muted-foreground">{supportWhatsapp}</p>
+                  </div>
+                </a>
+              )}
             </div>
             <Separator />
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
