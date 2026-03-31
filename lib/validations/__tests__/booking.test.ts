@@ -1,4 +1,4 @@
-import { bookingFormSchema } from '../booking';
+import { bookingFormSchema, bookingClientSchema } from '../booking';
 
 describe('bookingFormSchema', () => {
   const validBookingData = {
@@ -215,25 +215,28 @@ describe('bookingFormSchema', () => {
   });
 
   describe('date validation', () => {
-    it('should accept valid future dates', () => {
+    it('should accept valid dates (to > from)', () => {
       const result = bookingFormSchema.safeParse(validBookingData);
       expect(result.success).toBe(true);
     });
 
-    it('should reject past travel from date', () => {
+    // bookingFormSchema is the server-side schema and intentionally does NOT
+    // reject past dates — that check is the client's responsibility
+    // (bookingClientSchema). Past-date validation is tested separately below.
+    it('should not reject past dates (no past-date check in server schema)', () => {
       const result = bookingFormSchema.safeParse({
         ...validBookingData,
         travelDateFrom: '2020-01-01',
         travelDateTo: '2020-01-10',
       });
-      expect(result.success).toBe(false);
+      expect(result.success).toBe(true);
     });
 
     it('should reject when to date is before from date', () => {
       const result = bookingFormSchema.safeParse({
         ...validBookingData,
-        travelDateFrom: '2025-12-10',
-        travelDateTo: '2025-12-01',
+        travelDateFrom: '2027-12-10',
+        travelDateTo: '2027-12-01',
       });
       expect(result.success).toBe(false);
     });
@@ -241,8 +244,50 @@ describe('bookingFormSchema', () => {
     it('should reject when from and to dates are the same', () => {
       const result = bookingFormSchema.safeParse({
         ...validBookingData,
-        travelDateFrom: '2025-12-01',
-        travelDateTo: '2025-12-01',
+        travelDateFrom: '2027-12-01',
+        travelDateTo: '2027-12-01',
+      });
+      expect(result.success).toBe(false);
+    });
+  });
+
+  describe('bookingClientSchema — past date validation', () => {
+    const futureFrom = '2027-06-01';
+    const futureTo = '2027-06-10';
+
+    const validClientData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com',
+      phone: '+1-555-555-5555',
+      country: 'United States',
+      numberOfTravelers: 2,
+      travelDateFrom: futureFrom,
+      travelDateTo: futureTo,
+    };
+
+    it('should accept future dates', () => {
+      expect(bookingClientSchema.safeParse(validClientData).success).toBe(true);
+    });
+
+    it('should reject past travel from date', () => {
+      const result = bookingClientSchema.safeParse({
+        ...validClientData,
+        travelDateFrom: '2020-01-01',
+        travelDateTo: '2020-01-10',
+      });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        const messages = result.error.errors.map((e) => e.message);
+        expect(messages).toContain('Travel start date cannot be in the past');
+      }
+    });
+
+    it('should reject when to date is before from date', () => {
+      const result = bookingClientSchema.safeParse({
+        ...validClientData,
+        travelDateFrom: '2027-12-10',
+        travelDateTo: '2027-12-01',
       });
       expect(result.success).toBe(false);
     });

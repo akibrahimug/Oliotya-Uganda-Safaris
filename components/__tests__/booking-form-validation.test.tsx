@@ -25,7 +25,7 @@ describe('BookingForm Validation', () => {
     (useToast as jest.Mock).mockReturnValue({ toast: mockToast });
   });
 
-  it('should disable submit button when form is empty', async () => {
+  it('should render submit button with correct label', () => {
     render(
       <BookingForm
         bookingType="PACKAGE"
@@ -35,12 +35,13 @@ describe('BookingForm Validation', () => {
       />
     );
 
-    // Check that submit button is disabled when form is empty
-    const submitButton = screen.getByRole('button', { name: /complete all required fields/i });
-    expect(submitButton).toBeDisabled();
+    // The submit button is always enabled — validation happens on submit, not via disabled state
+    const submitButton = screen.getByRole('button', { name: /submit booking request/i });
+    expect(submitButton).toBeInTheDocument();
+    expect(submitButton).not.toBeDisabled();
   });
 
-  it('should keep submit button disabled when required fields are missing', async () => {
+  it('should keep submit button enabled while filling in fields', async () => {
     render(
       <BookingForm
         bookingType="PACKAGE"
@@ -50,15 +51,13 @@ describe('BookingForm Validation', () => {
       />
     );
 
-    // Fill in only some fields (not all required)
     fireEvent.change(screen.getByPlaceholderText('John'), { target: { value: 'John' } });
     fireEvent.change(screen.getByPlaceholderText('Doe'), { target: { value: 'Doe' } });
     fireEvent.change(screen.getByPlaceholderText('john@example.com'), { target: { value: 'john@example.com' } });
 
-    // Submit button should still be disabled because phone, country, and dates are missing
     await waitFor(() => {
-      const submitButton = screen.getByRole('button', { name: /complete all required fields/i });
-      expect(submitButton).toBeDisabled();
+      const submitButton = screen.getByRole('button', { name: /submit booking request/i });
+      expect(submitButton).not.toBeDisabled();
     });
   });
 

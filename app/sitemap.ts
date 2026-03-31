@@ -28,40 +28,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route.priority,
   }));
 
-  try {
-    const [packages, destinations] = await Promise.all([
-      prisma.package.findMany({
-        where: { active: true },
-        select: {
-          slug: true,
-          updatedAt: true,
-        },
-      }),
-      prisma.destination.findMany({
-        select: {
-          id: true,
-          updatedAt: true,
-        },
-      }),
-    ]);
+  const [packagesResult, destinationsResult] = await Promise.allSettled([
+    prisma.package.findMany({
+      where: { active: true },
+      select: {
+        slug: true,
+      },
+    }),
+    prisma.destination.findMany({
+      select: {
+        id: true,
+      },
+    }),
+  ]);
 
-    const packageEntries: MetadataRoute.Sitemap = packages.map((pkg) => ({
-      url: `${baseUrl}/package/${pkg.slug}`,
-      lastModified: pkg.updatedAt,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    }));
-
-    const destinationEntries: MetadataRoute.Sitemap = destinations.map((destination) => ({
-      url: `${baseUrl}/destination/${destination.id}`,
-      lastModified: destination.updatedAt,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    }));
-
-    return [...staticEntries, ...packageEntries, ...destinationEntries];
-  } catch (error) {
-    console.error("Error generating sitemap:", error);
-    return staticEntries;
+  if (packagesResult.status === "rejected") {
+    console.error("Error generating package sitemap entries:", packagesResult.reason);
   }
+
+  if (destinationsResult.status === "rejected") {
+    console.error("Error generating destination sitemap entries:", destinationsResult.reason);
+  }
+
+  const packageEntries: MetadataRoute.Sitemap =
+    packagesResult.status === "fulfilled"
+      ? packagesResult.value.map((pkg) => ({
+          url: `${baseUrl}/package/${pkg.slug}`,
+          lastModified: now,
+          changeFrequency: "weekly",
+          priority: 0.8,
+        }))
+      : [];
+
+  const destinationEntries: MetadataRoute.Sitemap =
+    destinationsResult.status === "fulfilled"
+      ? destinationsResult.value.map((destination) => ({
+          url: `${baseUrl}/destination/${destination.id}`,
+          lastModified: now,
+          changeFrequency: "weekly",
+          priority: 0.8,
+        }))
+      : [];
+
+  return [...staticEntries, ...packageEntries, ...destinationEntries];
 }

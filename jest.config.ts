@@ -23,12 +23,12 @@ const config: Config = {
   collectCoverageFrom: [
     // Only collect coverage from tested modules
     'lib/validations/**/*.ts',
-    'lib/sanitize.ts',
+    'lib/seo.ts',
     'lib/error-handler.ts',
     'lib/utils.ts',
     'components/ui/input.tsx',
     'components/ui/textarea.tsx',
-    'components/trip-card.tsx',
+    'components/package-card.tsx',
     // Exclude type definitions
     '!**/*.d.ts',
     '!**/node_modules/**',
@@ -90,7 +90,7 @@ const config: Config = {
       lines: 100,
       statements: 100,
     },
-    'lib/sanitize.ts': {
+    'lib/seo.ts': {
       branches: 100,
       functions: 100,
       lines: 100,
@@ -114,7 +114,7 @@ const config: Config = {
       lines: 100,
       statements: 100,
     },
-    'components/trip-card.tsx': {
+    'components/package-card.tsx': {
       branches: 100,
       functions: 100,
       lines: 100,

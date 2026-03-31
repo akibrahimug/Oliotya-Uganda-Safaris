@@ -365,14 +365,20 @@ describe('Database CRUD Operations', () => {
     });
 
     it('should prevent duplicate favorites', async () => {
-      await expect(
-        prisma.userFavorite.create({
-          data: {
-            userId,
-            destinationId,
-          },
-        })
-      ).rejects.toThrow();
+      // Prisma logs the constraint violation via console.log internally — suppress it
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+      try {
+        await expect(
+          prisma.userFavorite.create({
+            data: {
+              userId,
+              destinationId,
+            },
+          })
+        ).rejects.toThrow();
+      } finally {
+        consoleSpy.mockRestore();
+      }
     });
 
     it('should delete a user favorite', async () => {

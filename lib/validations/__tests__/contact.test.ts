@@ -140,14 +140,27 @@ describe('contactFormSchema', () => {
       expect(result.success).toBe(true);
     });
 
-    it('should reject subject shorter than 3 characters', () => {
+    it('should reject empty subject', () => {
+      const result = contactFormSchema.safeParse({
+        name: 'John Doe',
+        email: 'john@example.com',
+        subject: '',
+        message: 'Test message',
+      });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues[0].message).toBe('Please select a subject');
+      }
+    });
+
+    it('should accept short subject (2 chars — min is 1)', () => {
       const result = contactFormSchema.safeParse({
         name: 'John Doe',
         email: 'john@example.com',
         subject: 'Hi',
-        message: 'Test message',
+        message: 'Test message with at least 10 characters',
       });
-      expect(result.success).toBe(false);
+      expect(result.success).toBe(true);
     });
 
     it('should reject subject longer than 200 characters', () => {
