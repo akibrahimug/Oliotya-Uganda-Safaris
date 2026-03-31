@@ -33,6 +33,8 @@ interface BookingFormProps {
   itemName: string;
   pricePerPerson: number;
   initialTravelers?: number;
+  minTravelers?: number;
+  maxTravelers?: number;
   onSuccess?: (confirmationNumber: string) => void;
 }
 
@@ -41,13 +43,21 @@ export function BookingForm({
   itemId,
   itemName,
   pricePerPerson,
-  initialTravelers = 2,
+  initialTravelers,
+  minTravelers = 1,
+  maxTravelers = 50,
   onSuccess,
 }: BookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const minimumTravelers = Math.max(1, minTravelers);
+  const maximumTravelers = Math.max(minimumTravelers, maxTravelers);
+  const effectiveInitialTravelers = Math.min(
+    Math.max(initialTravelers ?? minimumTravelers, minimumTravelers),
+    maximumTravelers
+  );
 
   const form = useForm<BookingClientData>({
     resolver: zodResolver(bookingClientSchema),
@@ -57,7 +67,7 @@ export function BookingForm({
       email: "",
       phone: "",
       country: "",
-      numberOfTravelers: initialTravelers,
+      numberOfTravelers: effectiveInitialTravelers,
       travelDateFrom: "",
       travelDateTo: "",
       specialRequests: "",
@@ -66,7 +76,7 @@ export function BookingForm({
     mode: "onTouched",
   });
 
-  const { register, control, handleSubmit, formState: { errors }, watch, setValue } = form;
+  const { register, control, handleSubmit, formState: { errors }, watch, setValue, setError, clearErrors } = form;
 
   const watchedValues = watch();
   const travelerCount = watchedValues.numberOfTravelers || 0;
@@ -131,6 +141,24 @@ export function BookingForm({
     if (data.website) {
       return;
     }
+
+    if (data.numberOfTravelers < minimumTravelers) {
+      setError("numberOfTravelers", {
+        type: "manual",
+        message: `Minimum ${minimumTravelers} travelers required.`,
+      });
+      return;
+    }
+
+    if (data.numberOfTravelers > maximumTravelers) {
+      setError("numberOfTravelers", {
+        type: "manual",
+        message: `Maximum ${maximumTravelers} travelers allowed for this booking.`,
+      });
+      return;
+    }
+
+    clearErrors("numberOfTravelers");
 
     setLoading(true);
 
@@ -203,7 +231,7 @@ export function BookingForm({
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="firstName" className={errors.firstName ? "text-destructive" : ""}>
                 First Name *
               </Label>
@@ -218,7 +246,7 @@ export function BookingForm({
               <FormErrorMessage message={errors.firstName?.message} id="firstName-error" />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="lastName" className={errors.lastName ? "text-destructive" : ""}>
                 Last Name *
               </Label>
@@ -234,7 +262,7 @@ export function BookingForm({
             </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label htmlFor="email" className={errors.email ? "text-destructive" : ""}>
               Email Address *
             </Label>
@@ -254,7 +282,7 @@ export function BookingForm({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="phone" className={errors.phone ? "text-destructive" : ""}>
                 Phone Number *
               </Label>
@@ -273,7 +301,7 @@ export function BookingForm({
               <FormErrorMessage message={errors.phone?.message} id="phone-error" />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="country" className={errors.country ? "text-destructive" : ""}>
                 Country *
               </Label>
@@ -331,7 +359,7 @@ export function BookingForm({
           <CardDescription>When do you plan to travel?</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label htmlFor="travelDates" className={travelDateError ? "text-destructive" : ""}>
               Travel Dates *
             </Label>
@@ -379,7 +407,7 @@ export function BookingForm({
             )}
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label htmlFor="specialRequests">
               Special Requests or Dietary Requirements
             </Label>
@@ -403,7 +431,7 @@ export function BookingForm({
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Number of Travelers Input */}
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label htmlFor="numberOfTravelers" className={errors.numberOfTravelers ? "text-destructive" : ""}>
               Number of Travelers *
             </Label>
@@ -416,17 +444,34 @@ export function BookingForm({
                   <Input
                     id="numberOfTravelers"
                     type="number"
-                    min="1"
-                    max="50"
+                    min={minimumTravelers}
+                    max={maximumTravelers}
                     value={field.value}
                     onChange={(e) => {
                       if (e.target.value === "") {
                         field.onChange(0);
+                        setError("numberOfTravelers", {
+                          type: "manual",
+                          message: `Minimum ${minimumTravelers} travelers required.`,
+                        });
                         return;
                       }
                       const parsed = parseInt(e.target.value, 10);
                       if (!isNaN(parsed)) {
                         field.onChange(parsed);
+                        if (parsed < minimumTravelers) {
+                          setError("numberOfTravelers", {
+                            type: "manual",
+                            message: `Minimum ${minimumTravelers} travelers required.`,
+                          });
+                        } else if (parsed > maximumTravelers) {
+                          setError("numberOfTravelers", {
+                            type: "manual",
+                            message: `Maximum ${maximumTravelers} travelers allowed for this booking.`,
+                          });
+                        } else {
+                          clearErrors("numberOfTravelers");
+                        }
                       }
                     }}
                     onBlur={field.onBlur}
@@ -441,7 +486,7 @@ export function BookingForm({
               <FormErrorMessage message={errors.numberOfTravelers.message} id="numberOfTravelers-error" />
             ) : (
               <p className="text-xs text-muted-foreground">
-                Large groups (10+ travelers) may receive discounted rates
+                Minimum {minimumTravelers}, maximum {maximumTravelers} travelers per booking.
               </p>
             )}
           </div>

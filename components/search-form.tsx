@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MapPin, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,10 +13,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-interface SearchFormProps {
-  onSearch?: () => void;
-}
-
 interface Package {
   id: number;
   name: string;
@@ -26,38 +22,19 @@ interface Package {
   price: number;
 }
 
-export function SearchForm({ onSearch }: SearchFormProps) {
+interface SearchFormProps {
+  packages?: Package[];
+  onSearch?: () => void;
+}
+
+export function SearchForm({ packages = [], onSearch }: SearchFormProps) {
   const router = useRouter();
   const [selectedPackage, setSelectedPackage] = useState<string>("");
-  const [packages, setPackages] = useState<Package[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch packages on mount
-  useEffect(() => {
-    fetchPackages();
-  }, []);
-
-  const fetchPackages = async () => {
-    try {
-      const response = await fetch("/api/packages");
-      if (!response.ok) {
-        throw new Error("Failed to fetch packages");
-      }
-      const data = await response.json();
-      setPackages(data.packages || []);
-    } catch (error) {
-      console.error("Error fetching packages:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSearch = () => {
     if (selectedPackage) {
-      // Navigate to the selected package page
       router.push(`/package/${selectedPackage}`);
     } else if (onSearch) {
-      // Trigger callback if provided
       onSearch();
     }
   };
@@ -74,18 +51,12 @@ export function SearchForm({ onSearch }: SearchFormProps) {
               <MapPin className="h-4 w-4 text-primary" />
               Safari Packages
             </Label>
-            <Select
-              value={selectedPackage}
-              onValueChange={setSelectedPackage}
-              disabled={loading}
-            >
+            <Select value={selectedPackage} onValueChange={setSelectedPackage}>
               <SelectTrigger
                 id="package-select"
                 className="w-full h-12 bg-transparent font-semibold text-base"
               >
-                <SelectValue
-                  placeholder={loading ? "Loading packages..." : "Select a safari package"}
-                />
+                <SelectValue placeholder="Select a safari package" />
               </SelectTrigger>
               <SelectContent className="max-h-[300px]">
                 {packages.map((pkg) => (
@@ -99,7 +70,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
           <Button
             onClick={handleSearch}
-            disabled={!selectedPackage || loading}
+            disabled={!selectedPackage}
             size="default"
             className="px-8 bg-primary hover:bg-primary/90 font-semibold text-base whitespace-nowrap sm:w-auto w-full"
           >

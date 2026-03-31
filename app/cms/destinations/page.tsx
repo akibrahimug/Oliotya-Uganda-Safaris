@@ -39,6 +39,7 @@ export default function CMSDestinationsPage() {
   // Section data
   const [heroSection, setHeroSection] = useState<DestinationsHeroData | null>(null);
   const [ctaSection, setCTASection] = useState<DestinationsCTAData | null>(null);
+  const [destinations, setDestinations] = useState<any[]>([]);
 
   // Modal states
   const [heroModalOpen, setHeroModalOpen] = useState(false);
@@ -53,9 +54,10 @@ export default function CMSDestinationsPage() {
     try {
       setLoading(true);
 
-      const [heroRes, ctaRes] = await Promise.all([
+      const [heroRes, ctaRes, destRes] = await Promise.all([
         fetch("/api/cms/destinations-hero?mode=cms"),
         fetch("/api/cms/destinations-cta?mode=cms"),
+        fetch("/api/destinations"),
       ]);
 
       if (heroRes.ok) {
@@ -66,6 +68,11 @@ export default function CMSDestinationsPage() {
       if (ctaRes.ok) {
         const ctaData = await ctaRes.json();
         setCTASection(ctaData.section);
+      }
+
+      if (destRes.ok) {
+        const destData = await destRes.json();
+        setDestinations(destData.destinations || []);
       }
     } catch (error) {
       console.error("Error fetching sections:", error);
@@ -206,7 +213,7 @@ export default function CMSDestinationsPage() {
       setCreateDestinationModalOpen(false);
       setEditDestinationId(null);
       setEditDestinationData(null);
-      router.refresh();
+      fetchSections();
     } catch (error) {
       console.error("Error saving:", error);
       toast({
@@ -234,7 +241,7 @@ export default function CMSDestinationsPage() {
         description: "Destination deleted successfully",
       });
 
-      router.refresh();
+      fetchSections();
     } catch (error) {
       console.error("Error deleting:", error);
       toast({
@@ -310,6 +317,7 @@ export default function CMSDestinationsPage() {
             hideEditButton
           >
             <DestinationsGrid
+              destinations={destinations}
               editable
               onDestinationClick={handleDestinationClick}
               onDestinationDelete={handleDeleteDestination}

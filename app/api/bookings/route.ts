@@ -46,11 +46,19 @@ export async function POST(request: NextRequest) {
     // Fetch package or destination to get pricing
     let pricePerPerson: number;
     let itemName: string;
+    let minTravelersAllowed = 1;
+    let maxTravelersAllowed = 50;
 
     if (validatedData.bookingType === "PACKAGE" && validatedData.packageId) {
       const pkg = await prisma.package.findUnique({
         where: { id: validatedData.packageId },
-        select: { price: true, name: true, active: true },
+        select: {
+          price: true,
+          name: true,
+          active: true,
+          minTravelers: true,
+          maxTravelers: true,
+        },
       });
 
       if (!pkg || !pkg.active) {
@@ -62,13 +70,15 @@ export async function POST(request: NextRequest) {
 
       pricePerPerson = Number(pkg.price);
       itemName = pkg.name;
+      minTravelersAllowed = pkg.minTravelers;
+      maxTravelersAllowed = pkg.maxTravelers;
     } else if (
         validatedData.bookingType === "DESTINATION" &&
         validatedData.destinationId
     ) {
       const destination = await prisma.destination.findUnique({
         where: { id: validatedData.destinationId },
-        select: { price: true, name: true },
+        select: { price: true, name: true, minTravelers: true, maxTravelers: true },
       });
 
       if (!destination) {
@@ -80,9 +90,29 @@ export async function POST(request: NextRequest) {
 
       pricePerPerson = Number(destination.price);
       itemName = destination.name;
+      minTravelersAllowed = destination.minTravelers ?? 1;
+      maxTravelersAllowed = destination.maxTravelers ?? 50;
     } else {
       return NextResponse.json(
           { error: "Invalid booking type or missing package/destination ID" },
+          { status: 400 }
+      );
+    }
+
+    if (maxTravelersAllowed < minTravelersAllowed) {
+      maxTravelersAllowed = minTravelersAllowed;
+    }
+
+    if (validatedData.numberOfTravelers < minTravelersAllowed) {
+      return NextResponse.json(
+          { error: `Minimum travelers required is ${minTravelersAllowed}.` },
+          { status: 400 }
+      );
+    }
+
+    if (validatedData.numberOfTravelers > maxTravelersAllowed) {
+      return NextResponse.json(
+          { error: `Maximum travelers allowed is ${maxTravelersAllowed}.` },
           { status: 400 }
       );
     }

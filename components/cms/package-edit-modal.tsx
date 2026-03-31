@@ -72,7 +72,7 @@ export function PackageEditModal({
     itinerary: [],
     included: [],
     excluded: [],
-    minTravelers: 1,
+    minTravelers: 4,
     maxTravelers: 10,
     difficulty: "MODERATE",
     featured: false,
@@ -105,7 +105,7 @@ export function PackageEditModal({
           itinerary: Array.isArray(initialData.itinerary) ? initialData.itinerary : [],
           included: Array.isArray(initialData.included) ? initialData.included : [],
           excluded: Array.isArray(initialData.excluded) ? initialData.excluded : [],
-          minTravelers: initialData.minTravelers || 1,
+          minTravelers: initialData.minTravelers || 4,
           maxTravelers: initialData.maxTravelers || 10,
           difficulty: initialData.difficulty || "MODERATE",
           featured: initialData.featured || false,
@@ -129,7 +129,7 @@ export function PackageEditModal({
           itinerary: [],
           included: [],
           excluded: [],
-          minTravelers: 1,
+          minTravelers: 4,
           maxTravelers: 10,
           difficulty: "MODERATE",
           featured: false,
@@ -393,7 +393,7 @@ export function PackageEditModal({
                     id="minTravelers"
                     type="number"
                     value={formData.minTravelers}
-                    onChange={(e) => setFormData({ ...formData, minTravelers: parseInt(e.target.value) || 1 })}
+                    onChange={(e) => setFormData({ ...formData, minTravelers: parseInt(e.target.value) || 4 })}
                   />
                 </div>
 

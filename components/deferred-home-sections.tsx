@@ -1,7 +1,31 @@
-"use client";
+import { VideoSection } from "@/components/video-section";
+import { PopularPlaces } from "@/components/popular-places";
+import { ExploreDestinations } from "@/components/explore-destinations";
 
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+interface Package {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  duration: string;
+  price: number;
+  image: string;
+  minTravelers: number;
+  maxTravelers: number;
+  difficulty: string;
+  popular: boolean;
+}
+
+interface Destination {
+  id: number;
+  name: string;
+  category: string;
+  country: string;
+  image: string;
+  description: string;
+  minTravelers: number | null;
+  maxTravelers: number | null;
+}
 
 interface DeferredHomeSectionsProps {
   videoData: {
@@ -10,56 +34,16 @@ interface DeferredHomeSectionsProps {
     videoUrl: string;
     thumbnailUrl: string | null;
   } | null;
+  packages: Package[];
+  destinations: Destination[];
 }
 
-const VideoSection = dynamic(
-  () => import("@/components/video-section").then((mod) => mod.VideoSection),
-  { ssr: false }
-);
-
-const PopularPlaces = dynamic(
-  () => import("@/components/popular-places").then((mod) => mod.PopularPlaces),
-  { ssr: false }
-);
-
-const ExploreDestinations = dynamic(
-  () => import("@/components/explore-destinations").then((mod) => mod.ExploreDestinations),
-  { ssr: false }
-);
-
-export function DeferredHomeSections({ videoData }: DeferredHomeSectionsProps) {
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    const w = window as Window & {
-      requestIdleCallback?: (callback: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-
-    if (w.requestIdleCallback) {
-      const id = w.requestIdleCallback(() => setIsReady(true), { timeout: 2000 });
-      return () => w.cancelIdleCallback?.(id);
-    }
-
-    const timer = window.setTimeout(() => setIsReady(true), 700);
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  if (!isReady) {
-    return (
-      <>
-        <section className="py-20 bg-muted/30" />
-        <section className="py-20 bg-background" />
-        <section className="py-20 bg-muted/30" />
-      </>
-    );
-  }
-
+export function DeferredHomeSections({ videoData, packages, destinations }: DeferredHomeSectionsProps) {
   return (
     <>
       <VideoSection data={videoData || undefined} />
-      <PopularPlaces filters={null} />
-      <ExploreDestinations filters={null} />
+      <PopularPlaces filters={null} initialPackages={packages} />
+      <ExploreDestinations filters={null} initialDestinations={destinations} />
     </>
   );
 }

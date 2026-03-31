@@ -1,16 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MapPin, Edit, Trash2 } from "lucide-react";
-
-interface DestinationsGridProps {
-  editable?: boolean;
-  onDestinationClick?: (id: string | number) => void;
-  onDestinationDelete?: (id: string | number) => void;
-}
 
 interface Destination {
   id: number;
@@ -19,57 +13,27 @@ interface Destination {
   image: string;
   description: string;
   country: string;
-  region?: string;
+  region?: string | null;
 }
 
-export function DestinationsGrid({ editable = false, onDestinationClick, onDestinationDelete }: DestinationsGridProps = {}) {
-  const [destinations, setDestinations] = useState<Destination[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+interface DestinationsGridProps {
+  destinations: Destination[];
+  editable?: boolean;
+  onDestinationClick?: (id: string | number) => void;
+  onDestinationDelete?: (id: string | number) => void;
+}
 
-  // Fetch destinations from database
-  useEffect(() => {
-    fetchDestinations();
-  }, []);
-
-  const fetchDestinations = async () => {
-    try {
-      setError(null);
-      const response = await fetch('/api/destinations');
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: 'Failed to fetch destinations' }));
-        throw new Error(errorData.error || `HTTP ${response.status}`);
-      }
-
-      const data = await response.json();
-      setDestinations(data.destinations || []);
-    } catch (error) {
-      console.error('Error fetching destinations:', error);
-      setError(error instanceof Error ? error.message : 'Failed to load destinations');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
+export function DestinationsGrid({
+  destinations,
+  editable = false,
+  onDestinationClick,
+  onDestinationDelete,
+}: DestinationsGridProps) {
+  if (destinations.length === 0) {
     return (
       <section className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
-          <p className="text-destructive mb-4">{error}</p>
-          <Button onClick={fetchDestinations} variant="outline">
-            Retry
-          </Button>
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">No destinations found.</p>
         </div>
       </section>
     );
@@ -77,20 +41,13 @@ export function DestinationsGrid({ editable = false, onDestinationClick, onDesti
 
   return (
     <section className="container mx-auto px-4 lg:px-8 py-16">
-      {destinations.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">No destinations found.</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {destinations.map((dest, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {destinations.map((dest, index) => (
           <div key={dest.id} className="relative group">
             <Link
               href={editable ? "#" : `/destination/${dest.id}`}
               onClick={(e) => {
-                if (editable) {
-                  e.preventDefault();
-                }
+                if (editable) e.preventDefault();
               }}
               className="block animate-fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
@@ -101,12 +58,14 @@ export function DestinationsGrid({ editable = false, onDestinationClick, onDesti
                 </Badge>
 
                 <div className="relative h-80 overflow-hidden">
-                  <img
+                  <Image
                     src={dest.image}
                     alt={dest.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/40 to-transparent" />
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-background">
@@ -121,10 +80,7 @@ export function DestinationsGrid({ editable = false, onDestinationClick, onDesti
                     {dest.description}
                   </p>
                   {!editable && (
-                    <Button
-                      size="sm"
-                      className="bg-background text-foreground hover:bg-background/90"
-                    >
+                    <Button size="sm" className="bg-background text-foreground hover:bg-background/90">
                       Explore
                     </Button>
                   )}
@@ -148,9 +104,7 @@ export function DestinationsGrid({ editable = false, onDestinationClick, onDesti
                     variant="destructive"
                     className="shadow-lg"
                     onClick={() => {
-                      if (window.confirm(
-                        `Are you sure you want to delete "${dest.name}"?\n\nThis action cannot be undone.`
-                      )) {
+                      if (window.confirm(`Are you sure you want to delete "${dest.name}"?\n\nThis action cannot be undone.`)) {
                         onDestinationDelete(dest.id);
                       }
                     }}
@@ -163,7 +117,6 @@ export function DestinationsGrid({ editable = false, onDestinationClick, onDesti
           </div>
         ))}
       </div>
-    )}
     </section>
   );
 }

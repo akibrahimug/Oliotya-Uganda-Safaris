@@ -191,7 +191,7 @@ async function main() {
         featured: true,
         popular: true,
         active: true,
-        minTravelers: 2,
+        minTravelers: 4,
         maxTravelers: 8,
         difficulty: 'MODERATE',
         itinerary: [
@@ -226,7 +226,7 @@ async function main() {
         featured: true,
         popular: true,
         active: true,
-        minTravelers: 1,
+        minTravelers: 4,
         maxTravelers: 8,
         difficulty: 'MODERATE',
         itinerary: [

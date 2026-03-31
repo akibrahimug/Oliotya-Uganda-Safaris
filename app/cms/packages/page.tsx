@@ -27,6 +27,7 @@ export default function CMSPackagesPage() {
 
   // Section data
   const [heroSection, setHeroSection] = useState<PackagesHeroData | null>(null);
+  const [packages, setPackages] = useState<any[]>([]);
 
   // Modal states
   const [heroModalOpen, setHeroModalOpen] = useState(false);
@@ -39,11 +40,19 @@ export default function CMSPackagesPage() {
   const fetchSections = async () => {
     try {
       setLoading(true);
-      const heroRes = await fetch("/api/cms/packages-hero?mode=cms");
+      const [heroRes, pkgRes] = await Promise.all([
+        fetch("/api/cms/packages-hero?mode=cms"),
+        fetch("/api/packages"),
+      ]);
 
       if (heroRes.ok) {
         const heroData = await heroRes.json();
         setHeroSection(heroData.section);
+      }
+
+      if (pkgRes.ok) {
+        const pkgData = await pkgRes.json();
+        setPackages(pkgData.packages || []);
       }
     } catch (error) {
       console.error("Error fetching sections:", error);
@@ -165,7 +174,7 @@ export default function CMSPackagesPage() {
       setCreatePackageModalOpen(false);
       setEditPackageId(null);
       setEditPackageData(null);
-      router.refresh();
+      fetchSections();
     } catch (error) {
       console.error("Error saving:", error);
       toast({
@@ -193,7 +202,7 @@ export default function CMSPackagesPage() {
         description: "Package deleted successfully",
       });
 
-      router.refresh();
+      fetchSections();
     } catch (error) {
       console.error("Error deleting:", error);
       toast({
@@ -269,6 +278,8 @@ export default function CMSPackagesPage() {
             hideEditButton
           >
             <PackagesContent
+              packages={packages}
+              categories={Array.from(new Set(packages.map((p: any) => p.category)))}
               editable
               onPackageClick={handlePackageClick}
               onPackageDelete={handleDeletePackage}

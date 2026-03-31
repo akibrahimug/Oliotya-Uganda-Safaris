@@ -1,10 +1,12 @@
-"use client";
-
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BookingForm } from "@/components/booking-form";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,101 +16,53 @@ import {
   CreditCard,
   Mail,
   Phone,
-  ArrowLeft,
   Shield,
-  Calendar,
   Users,
   Info,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { fetchSiteSettingsClient } from "@/lib/settings";
+import { prisma } from "@/lib/db";
+import { getSiteSettings } from "@/lib/settings";
 
-interface Package {
-  id: number;
-  name: string;
-  slug: string;
-  category: string;
-  duration: string;
-  price: number;
-  description: string;
-  image: string;
-  minTravelers: number;
-  maxTravelers: number;
-  difficulty: string;
-}
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
 
-export default function BookingPage() {
-  const params = useParams();
-  const router = useRouter();
-  const slug = params.slug as string;
-  const [pkg, setPkg] = useState<Package | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [supportPhone, setSupportPhone] = useState("");
+export default async function BookingPage({ params }: PageProps) {
+  const { slug } = await params;
 
-  useEffect(() => {
-    fetchPackage();
-    fetchSupportPhone();
-  }, [slug]);
-
-  const fetchPackage = async () => {
-    try {
-      const response = await fetch("/api/packages");
-      if (!response.ok) throw new Error("Failed to fetch packages");
-
-      const data = await response.json();
-      const foundPkg = data.packages.find((p: Package) => p.slug === slug);
-
-      if (!foundPkg) {
-        router.push("/packages");
-        return;
-      }
-
-      setPkg(foundPkg);
-    } catch (error) {
-      console.error("Error fetching package:", error);
-      router.push("/packages");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchSupportPhone = async () => {
-    try {
-      const settings = await fetchSiteSettingsClient();
-      setSupportPhone(settings?.contact?.phone || "");
-    } catch (error) {
-      console.error("Error fetching support phone:", error);
-    }
-  };
-
-  const handleBookingSuccess = (confirmationNumber: string) => {
-    router.push(`/booking-confirmation?confirmation=${confirmationNumber}`);
-  };
-
-  if (loading) {
-    return (
-      <main className="min-h-screen">
-        <Header />
-        <div className="container mx-auto px-4 lg:px-8 py-32">
-          <div className="flex items-center justify-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-          </div>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
+  const [pkg, siteSettings] = await Promise.all([
+    prisma.package.findUnique({
+      where: { slug },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        category: true,
+        duration: true,
+        price: true,
+        description: true,
+        image: true,
+        minTravelers: true,
+        maxTravelers: true,
+        difficulty: true,
+      },
+    }),
+    getSiteSettings(),
+  ]);
 
   if (!pkg) {
-    return null;
+    notFound();
   }
+
+  const price = Number(pkg.price);
+  const supportPhone = siteSettings?.contact?.phone || "";
 
   return (
     <main className="min-h-screen bg-muted/30">
       <Header showBackButton backButtonText="Back to Package" />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary to-primary/80 text-primary-foreground py-16">
+      <section className="relative bg-linear-to-br from-primary to-primary/80 text-primary-foreground pt-26 pb-16">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl">
             <Badge className="bg-background/20 text-primary-foreground border-primary-foreground/20 mb-4">
@@ -132,7 +86,7 @@ export default function BookingPage() {
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold">${pkg.price}</span>
+                <span className="text-2xl font-bold">${price}</span>
                 <span>/ person</span>
               </div>
             </div>
@@ -140,18 +94,18 @@ export default function BookingPage() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left Column - Booking Form */}
             <div className="lg:col-span-2">
               <Card className="shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Complete Your Booking</CardTitle>
+                  <CardTitle className="text-2xl">
+                    Complete Your Booking
+                  </CardTitle>
                   <p className="text-muted-foreground">
-                    Fill out the form below to reserve your safari adventure. We'll send you
-                    payment instructions via email.
+                    Fill out the form below to reserve your safari adventure.
+                    We'll send you payment instructions via email.
                   </p>
                 </CardHeader>
                 <CardContent>
@@ -159,16 +113,16 @@ export default function BookingPage() {
                     bookingType="PACKAGE"
                     itemId={pkg.id}
                     itemName={pkg.name}
-                    pricePerPerson={pkg.price}
-                    onSuccess={handleBookingSuccess}
+                    pricePerPerson={price}
+                    initialTravelers={pkg.minTravelers}
+                    minTravelers={pkg.minTravelers}
+                    maxTravelers={pkg.maxTravelers}
                   />
                 </CardContent>
               </Card>
             </div>
 
-            {/* Right Column - Information Cards */}
             <div className="lg:col-span-1 space-y-6">
-              {/* What Happens Next */}
               <Card className="shadow-lg border-primary/20">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
@@ -177,57 +131,43 @@ export default function BookingPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold text-sm">1</span>
+                  {[
+                    {
+                      step: 1,
+                      title: "Instant Confirmation",
+                      desc: "Receive your booking confirmation number immediately",
+                    },
+                    {
+                      step: 2,
+                      title: "Email Instructions",
+                      desc: "Get bank transfer details sent to your email",
+                    },
+                    {
+                      step: 3,
+                      title: "Make Payment",
+                      desc: "Complete bank transfer at your convenience",
+                    },
+                    {
+                      step: 4,
+                      title: "Final Confirmation",
+                      desc: "We verify payment and send your final booking details",
+                    },
+                  ].map(({ step, title, desc }) => (
+                    <div key={step} className="flex gap-3">
+                      <div className="shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        <span className="text-primary font-bold text-sm">
+                          {step}
+                        </span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-1">{title}</h4>
+                        <p className="text-sm text-muted-foreground">{desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Instant Confirmation</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Receive your booking confirmation number immediately
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold text-sm">2</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Email Instructions</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Get bank transfer details sent to your email
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold text-sm">3</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Make Payment</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Complete bank transfer at your convenience
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-primary font-bold text-sm">4</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Final Confirmation</h4>
-                      <p className="text-sm text-muted-foreground">
-                        We verify payment and send your final booking details
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </CardContent>
               </Card>
 
-              {/* Payment Information */}
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
@@ -236,34 +176,20 @@ export default function BookingPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">
-                      Bank transfer details will be sent to your email
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">
-                      Payment due within 48 hours to secure your booking
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">
-                      Booking confirmed once payment is received and verified
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground">
-                      Full refund available up to 30 days before departure
-                    </p>
-                  </div>
+                  {[
+                    "Bank transfer details will be sent to your email",
+                    "Payment due within 48 hours to secure your booking",
+                    "Booking confirmed once payment is received and verified",
+                    "Full refund available up to 30 days before departure",
+                  ].map((text) => (
+                    <div key={text} className="flex items-start gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                      <p className="text-muted-foreground">{text}</p>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
 
-              {/* Security & Trust */}
               <Card className="shadow-lg bg-primary/5 border-primary/20">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
@@ -273,17 +199,17 @@ export default function BookingPage() {
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm">
                   <p className="text-muted-foreground">
-                    Your personal information is encrypted and securely stored. We never
-                    share your details with third parties.
+                    Your personal information is encrypted and securely stored.
+                    We never share your details with third parties.
                   </p>
                   <Separator />
                   <p className="text-muted-foreground">
-                    Licensed Tour Operator • Registered with Uganda Tourism Board
+                    Licensed Tour Operator • Registered with Uganda Tourism
+                    Board
                   </p>
                 </CardContent>
               </Card>
 
-              {/* Need Help */}
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-lg">Need Help?</CardTitle>

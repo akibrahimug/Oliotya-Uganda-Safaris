@@ -41,9 +41,8 @@ export async function generateMetadata(): Promise<Metadata> {
     settings.meta?.ogImage?.trim() ||
     getDefaultOgImageUrl(siteUrl);
   const ogImage = toAbsoluteUrl(ogImageRaw, siteUrl);
-  const icon = settings.meta?.favicon?.trim()
-    ? toAbsoluteUrl(settings.meta.favicon.trim(), siteUrl)
-    : getDefaultLogoUrl(siteUrl);
+  const logoRaw = settings.brand?.logo?.trim() || settings.meta?.favicon?.trim();
+  const icon = logoRaw ? toAbsoluteUrl(logoRaw, siteUrl) : getDefaultLogoUrl(siteUrl);
   const siteName = settings.brand?.siteName?.trim() || "Oliotya Uganda Safaris";
 
   return {
@@ -51,8 +50,9 @@ export async function generateMetadata(): Promise<Metadata> {
     description,
     keywords,
     icons: {
-      icon,
-      apple: icon,
+      icon: [{ url: icon }, { url: icon, sizes: "32x32" }, { url: icon, sizes: "16x16" }],
+      apple: [{ url: icon, sizes: "180x180" }],
+      shortcut: icon,
     },
     openGraph: {
       type: (settings.meta?.ogType as "website" | "article") || "website",

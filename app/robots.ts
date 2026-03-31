@@ -14,7 +14,6 @@ export default function robots(): MetadataRoute.Robots {
           "/cms",
           "/sign-in",
           "/sign-up",
-          "/trip",
           "/book",
           "/booking-confirmation",
           "/custom-package-confirmation",

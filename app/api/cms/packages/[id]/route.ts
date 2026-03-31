@@ -3,6 +3,8 @@ import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { packageSchema } from "@/lib/validations/package";
 
+const PACKAGE_MIN_TRAVELERS = 4;
+
 /**
  * GET /api/cms/packages/[id]
  * Get a single package
@@ -108,12 +110,14 @@ export async function PATCH(
       }
     }
 
-    // Validate travelers count if provided
-    if (
-      (data.maxTravelers || data.minTravelers) &&
-      (data.maxTravelers || existingPackage.maxTravelers) <
-        (data.minTravelers || existingPackage.minTravelers)
-    ) {
+    const normalizedMinTravelers =
+      data.minTravelers !== undefined
+        ? Math.max(data.minTravelers, PACKAGE_MIN_TRAVELERS)
+        : Math.max(existingPackage.minTravelers, PACKAGE_MIN_TRAVELERS);
+    const normalizedMaxTravelers = data.maxTravelers ?? existingPackage.maxTravelers;
+
+    // Validate travelers count
+    if (normalizedMaxTravelers < normalizedMinTravelers) {
       return NextResponse.json(
         { error: "Maximum travelers must be greater than minimum travelers" },
         { status: 400 }
@@ -135,7 +139,11 @@ export async function PATCH(
     if (data.itinerary !== undefined) updateData.itinerary = data.itinerary;
     if (data.included !== undefined) updateData.included = data.included;
     if (data.excluded !== undefined) updateData.excluded = data.excluded;
-    if (data.minTravelers !== undefined) updateData.minTravelers = data.minTravelers;
+    if (data.minTravelers !== undefined) {
+      updateData.minTravelers = normalizedMinTravelers;
+    } else if (existingPackage.minTravelers < PACKAGE_MIN_TRAVELERS) {
+      updateData.minTravelers = PACKAGE_MIN_TRAVELERS;
+    }
     if (data.maxTravelers !== undefined) updateData.maxTravelers = data.maxTravelers;
     if (data.difficulty !== undefined) updateData.difficulty = data.difficulty;
     if (data.featured !== undefined) updateData.featured = data.featured;

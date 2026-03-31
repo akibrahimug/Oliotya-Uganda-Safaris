@@ -8,10 +8,6 @@ import Link from "next/link";
 import { format } from "date-fns";
 import type { SearchFilters } from "@/lib/types";
 
-interface PopularPlacesProps {
-  filters: SearchFilters | null;
-}
-
 interface Package {
   id: number;
   name: string;
@@ -26,47 +22,27 @@ interface Package {
   popular: boolean;
 }
 
-export function PopularPlaces({ filters }: PopularPlacesProps) {
+interface PopularPlacesProps {
+  initialPackages: Package[];
+  filters: SearchFilters | null;
+}
+
+export function PopularPlaces({ initialPackages, filters }: PopularPlacesProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [allPackages, setAllPackages] = useState<Package[]>([]);
-  const [filteredPlaces, setFilteredPlaces] = useState<Package[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [filteredPlaces, setFilteredPlaces] = useState<Package[]>(initialPackages);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Fetch packages from the database
   useEffect(() => {
-    const fetchPackages = async () => {
-      try {
-        const response = await fetch("/api/packages?popular=true");
-        if (!response.ok) throw new Error("Failed to fetch packages");
-        const data = await response.json();
-        setAllPackages(data.packages);
-        setFilteredPlaces(data.packages);
-      } catch (error) {
-        console.error("Error fetching packages:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPackages();
-  }, []);
-
-  useEffect(() => {
-    if (!filters || allPackages.length === 0) {
-      setFilteredPlaces(allPackages);
+    if (!filters || initialPackages.length === 0) {
+      setFilteredPlaces(initialPackages);
       return;
     }
 
-    const filtered = allPackages.filter((pkg) => {
-      // Filter by package name or category (case-insensitive partial match)
+    const filtered = initialPackages.filter((pkg) => {
       const matchesDestination =
-        pkg.name.toLowerCase().includes(filters.destination?.toLowerCase() || '') ||
-        pkg.category
-          .toLowerCase()
-          .includes(filters.destination?.toLowerCase() || '');
+        pkg.name.toLowerCase().includes(filters.destination?.toLowerCase() || "") ||
+        pkg.category.toLowerCase().includes(filters.destination?.toLowerCase() || "");
 
-      // Filter by number of travelers
       const matchesTravelers =
         (filters.travelers || 1) >= pkg.minTravelers &&
         (filters.travelers || 1) <= pkg.maxTravelers;
@@ -75,7 +51,7 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
     });
 
     setFilteredPlaces(filtered);
-  }, [filters, allPackages]);
+  }, [filters, initialPackages]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -92,16 +68,8 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [filteredPlaces]);
 
-  if (loading) {
-    return (
-      <section id="search-results" className="py-20 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-          </div>
-        </div>
-      </section>
-    );
+  if (initialPackages.length === 0) {
+    return null;
   }
 
   return (
@@ -120,7 +88,7 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
                 Showing packages for {filters.travelers || 1} traveler
                 {(filters.travelers || 1) > 1 ? "s" : ""} to{" "}
                 <span className="font-semibold text-foreground">
-                  {filters.destination || ''}
+                  {filters.destination || ""}
                 </span>
                 {filters.dateRange?.from && (
                   <>
@@ -157,49 +125,42 @@ export function PopularPlaces({ filters }: PopularPlacesProps) {
                 scrollSnapType: "x mandatory",
               }}
             >
-              {filteredPlaces.map((pkg, index) => {
-                return (
-                  <div
-                    key={pkg.id}
-                    className="shrink-0 w-[360px] h-[580px]"
-                    style={{ scrollSnapAlign: "center" }}
-                  >
-                    <PackageCard
-                      id={pkg.id}
-                      slug={pkg.slug}
-                      name={pkg.name}
-                      category={pkg.category}
-                      price={pkg.price}
-                      duration={pkg.duration}
-                      maxTravelers={pkg.maxTravelers}
-                      image={pkg.image}
-                      difficulty={pkg.difficulty as import("@/lib/types").DifficultyLevel}
-                      animationDelay={index * 100}
-                    />
-                  </div>
-                );
-              })}
+              {filteredPlaces.map((pkg, index) => (
+                <div
+                  key={pkg.id}
+                  className="shrink-0 w-[360px] h-[580px]"
+                  style={{ scrollSnapAlign: "center" }}
+                >
+                  <PackageCard
+                    id={pkg.id}
+                    slug={pkg.slug}
+                    name={pkg.name}
+                    category={pkg.category}
+                    price={pkg.price}
+                    duration={pkg.duration}
+                    maxTravelers={pkg.maxTravelers}
+                    image={pkg.image}
+                    difficulty={pkg.difficulty as import("@/lib/types").DifficultyLevel}
+                    animationDelay={index * 100}
+                  />
+                </div>
+              ))}
             </div>
 
-            {/* Scroll Progress Indicator */}
             <div className="flex items-center justify-center gap-2 mt-8 mb-12">
-              {Array.from({ length: Math.min(filteredPlaces.length, 5) }).map(
-                (_, index) => {
-                  const isActive =
-                    scrollProgress >= index * (100 / Math.min(filteredPlaces.length, 5)) &&
-                    scrollProgress < (index + 1) * (100 / Math.min(filteredPlaces.length, 5));
-                  return (
-                    <div
-                      key={index}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        isActive
-                          ? "w-8 bg-primary"
-                          : "w-1.5 bg-muted-foreground/30"
-                      }`}
-                    />
-                  );
-                }
-              )}
+              {Array.from({ length: Math.min(filteredPlaces.length, 5) }).map((_, index) => {
+                const isActive =
+                  scrollProgress >= index * (100 / Math.min(filteredPlaces.length, 5)) &&
+                  scrollProgress < (index + 1) * (100 / Math.min(filteredPlaces.length, 5));
+                return (
+                  <div
+                    key={index}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      isActive ? "w-8 bg-primary" : "w-1.5 bg-muted-foreground/30"
+                    }`}
+                  />
+                );
+              })}
             </div>
 
             <div className="mt-16 bg-linear-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20">

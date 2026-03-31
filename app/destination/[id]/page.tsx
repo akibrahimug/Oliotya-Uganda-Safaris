@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -67,6 +68,13 @@ type DestinationPageData = {
 };
 
 export const revalidate = 300;
+
+export async function generateStaticParams() {
+  const destinations = await prisma.destination.findMany({
+    select: { id: true },
+  });
+  return destinations.map((d) => ({ id: String(d.id) }));
+}
 
 function toTextSnippet(value: string, fallback: string): string {
   const normalized = value.trim().replace(/\s+/g, " ");
@@ -271,19 +279,36 @@ export default async function DestinationPage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+      { "@type": "ListItem", "position": 2, "name": "Destinations", "item": `${baseUrl}/destinations` },
+      { "@type": "ListItem", "position": 3, "name": destination.name, "item": destinationUrl },
+    ],
+  };
+
   return (
     <main className="min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(destinationSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header />
 
       <section className="relative h-[70vh] overflow-hidden">
-        <img
+        <Image
           src={destination.image}
           alt={destination.name}
-          className="w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/50 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8">

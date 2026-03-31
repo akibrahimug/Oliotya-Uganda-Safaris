@@ -10,10 +10,6 @@ import Image from "next/image"
 import type { SearchFilters } from "@/lib/types"
 import { getImageSrc } from "@/lib/image-utils"
 
-interface ExploreDestinationsProps {
-  filters: SearchFilters | null
-}
-
 interface Destination {
   id: number
   name: string
@@ -25,45 +21,31 @@ interface Destination {
   maxTravelers: number | null
 }
 
-export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
-  const [currentIndex, setCurrentIndex] = useState(0) // Start at first card
-  const [allDestinations, setAllDestinations] = useState<Destination[]>([])
-  const [filteredDestinations, setFilteredDestinations] = useState<Destination[]>([])
-  const [loading, setLoading] = useState(true)
+interface ExploreDestinationsProps {
+  initialDestinations: Destination[]
+  filters: SearchFilters | null
+}
+
+export function ExploreDestinations({ initialDestinations, filters }: ExploreDestinationsProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [filteredDestinations, setFilteredDestinations] = useState<Destination[]>(
+    initialDestinations.slice(0, 3)
+  )
   const containerRef = useRef<HTMLDivElement>(null)
   const [isInitialized, setIsInitialized] = useState(false)
 
-  // Fetch featured destinations from database
   useEffect(() => {
-    const fetchDestinations = async () => {
-      try {
-        const response = await fetch("/api/destinations?featured=true")
-        if (!response.ok) throw new Error("Failed to fetch destinations")
-        const data = await response.json()
-        setAllDestinations(data.destinations)
-        setFilteredDestinations(data.destinations.slice(0, 3))
-      } catch (error) {
-        console.error("Error fetching destinations:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchDestinations()
-  }, [])
-
-  useEffect(() => {
-    if (!filters || allDestinations.length === 0) {
-      setFilteredDestinations(allDestinations.slice(0, 3))
-      setCurrentIndex(0) // Reset to first card
+    if (!filters || initialDestinations.length === 0) {
+      setFilteredDestinations(initialDestinations.slice(0, 3))
+      setCurrentIndex(0)
       setIsInitialized(false)
       return
     }
 
-    const filtered = allDestinations.filter((dest) => {
+    const filtered = initialDestinations.filter((dest) => {
       const matchesDestination =
-        dest.name.toLowerCase().includes(filters.destination?.toLowerCase() || '') ||
-        dest.category.toLowerCase().includes(filters.destination?.toLowerCase() || '')
+        dest.name.toLowerCase().includes(filters.destination?.toLowerCase() || "") ||
+        dest.category.toLowerCase().includes(filters.destination?.toLowerCase() || "")
 
       const matchesTravelers =
         (!dest.minTravelers || (filters.travelers || 1) >= dest.minTravelers) &&
@@ -72,22 +54,20 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
       return matchesDestination && matchesTravelers
     })
 
-    const limitedFiltered = (filtered.length > 0 ? filtered : allDestinations).slice(0, 3)
+    const limitedFiltered = (filtered.length > 0 ? filtered : initialDestinations).slice(0, 3)
     setFilteredDestinations(limitedFiltered)
     setCurrentIndex(Math.floor(limitedFiltered.length / 2))
     setIsInitialized(false)
-  }, [filters, allDestinations])
+  }, [filters, initialDestinations])
 
-  // Initialize scroll to middle card on mount
   useEffect(() => {
     if (!isInitialized && filteredDestinations.length > 0) {
       const container = containerRef.current
       if (!container) return
 
-      // Wait for the DOM to settle
       setTimeout(() => {
         const middleIndex = Math.floor(filteredDestinations.length / 2)
-        const cardWidth = container.offsetWidth + 24 // full width + gap
+        const cardWidth = container.offsetWidth + 24
         container.scrollLeft = cardWidth * middleIndex
         setIsInitialized(true)
       }, 100)
@@ -100,7 +80,7 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
 
     const handleScroll = () => {
       const scrollLeft = container.scrollLeft
-      const cardWidth = container.offsetWidth + 24 // full width + gap
+      const cardWidth = container.offsetWidth + 24
       const newIndex = Math.round(scrollLeft / cardWidth)
       setCurrentIndex(newIndex)
     }
@@ -120,18 +100,8 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
     })
   }
 
-  if (loading) {
-    return (
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">Explore Destinations</h2>
-            <div className="w-20 h-1 bg-accent mx-auto mb-6" />
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Loading destinations...</p>
-          </div>
-        </div>
-      </section>
-    )
+  if (filteredDestinations.length === 0) {
+    return null
   }
 
   return (
@@ -147,20 +117,13 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          {/* Left fade overlay */}
           <div
             className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-            style={{
-              background: "linear-gradient(to right, hsl(var(--muted) / 0.3) 0%, transparent 100%)",
-            }}
+            style={{ background: "linear-gradient(to right, hsl(var(--muted) / 0.3) 0%, transparent 100%)" }}
           />
-
-          {/* Right fade overlay */}
           <div
             className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-            style={{
-              background: "linear-gradient(to left, hsl(var(--muted) / 0.3) 0%, transparent 100%)",
-            }}
+            style={{ background: "linear-gradient(to left, hsl(var(--muted) / 0.3) 0%, transparent 100%)" }}
           />
 
           <div
@@ -173,11 +136,8 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
               paddingRight: "calc((100% - 100%) / 2 + 15%)",
             }}
           >
-            {filteredDestinations.map((dest, index) => (
-              <div
-                key={dest.id}
-                className="shrink-0 w-full snap-center"
-              >
+            {filteredDestinations.map((dest) => (
+              <div key={dest.id} className="shrink-0 w-full snap-center">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer">
                   <Badge className="absolute top-6 left-6 z-10 bg-primary text-primary-foreground shadow-lg backdrop-blur-sm">
                     {dest.category}
@@ -192,7 +152,7 @@ export function ExploreDestinations({ filters }: ExploreDestinationsProps) {
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-foreground/80 via-foreground/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-background">
                     <div className="flex items-center gap-2 mb-2 opacity-90">
                       <MapPin className="h-4 w-4" />

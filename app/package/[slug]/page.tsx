@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -44,6 +45,14 @@ type PackagePageData = {
 };
 
 export const revalidate = 300;
+
+export async function generateStaticParams() {
+  const packages = await prisma.package.findMany({
+    where: { active: true },
+    select: { slug: true },
+  });
+  return packages.map((p) => ({ slug: p.slug }));
+}
 
 function formatDifficulty(difficulty: string): string {
   return difficulty.charAt(0) + difficulty.slice(1).toLowerCase();
@@ -193,19 +202,36 @@ export default async function PackagePage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+      { "@type": "ListItem", "position": 2, "name": "Packages", "item": `${baseUrl}/packages` },
+      { "@type": "ListItem", "position": 3, "name": pkg.name, "item": packageUrl },
+    ],
+  };
+
   return (
     <main className="min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(packageSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header />
 
       <section className="relative h-[70vh] overflow-hidden">
-        <img
+        <Image
           src={pkg.image}
           alt={pkg.name}
-          className="w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/50 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8">

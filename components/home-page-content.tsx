@@ -3,6 +3,31 @@ import { TourGuideSection } from "@/components/tour-guide-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { DeferredHomeSections } from "@/components/deferred-home-sections";
 
+interface Package {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  duration: string;
+  price: number;
+  image: string;
+  minTravelers: number;
+  maxTravelers: number;
+  difficulty: string;
+  popular: boolean;
+}
+
+interface Destination {
+  id: number;
+  name: string;
+  category: string;
+  country: string;
+  image: string;
+  description: string;
+  minTravelers: number | null;
+  maxTravelers: number | null;
+}
+
 interface HomePageContentProps {
   experienceData: {
     heading: string;
@@ -29,18 +54,26 @@ interface HomePageContentProps {
     videoUrl: string;
     thumbnailUrl: string | null;
   } | null;
+  packages: Package[];
+  destinations: Destination[];
 }
 
 export function HomePageContent({
   experienceData,
   tourGuideData,
   videoData,
+  packages,
+  destinations,
 }: HomePageContentProps) {
   return (
     <>
-      <SearchForm />
+      <SearchForm packages={packages} />
       <TourGuideSection data={tourGuideData || undefined} />
-      <DeferredHomeSections videoData={videoData} />
+      <DeferredHomeSections
+        videoData={videoData}
+        packages={packages.filter((pkg) => pkg.popular)}
+        destinations={destinations}
+      />
       <ExperienceSection data={experienceData || undefined} />
     </>
   );

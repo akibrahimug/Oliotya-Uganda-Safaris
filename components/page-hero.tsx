@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export interface HeroSlide {
   image: string;
@@ -29,23 +29,41 @@ export function PageHero({
   interval = 8000,
   fallbackImage = DEFAULT_FALLBACK_IMAGE,
 }: PageHeroProps) {
+  const safeSlides = useMemo<HeroSlide[]>(() => {
+    if (slides.length > 0) return slides;
+    return [
+      {
+        image: fallbackImage,
+        title: "",
+        subtitle: "",
+        description: "",
+      },
+    ];
+  }, [slides, fallbackImage]);
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
   const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     setFailedImages({});
-  }, [slides]);
+  }, [safeSlides]);
 
   useEffect(() => {
-    if (!isAutoPlaying || slides.length <= 1) return;
+    if (currentSlide >= safeSlides.length) {
+      setCurrentSlide(0);
+    }
+  }, [currentSlide, safeSlides.length]);
+
+  useEffect(() => {
+    if (!isAutoPlaying || safeSlides.length <= 1) return;
 
     const intervalId = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % safeSlides.length);
     }, interval);
 
     return () => clearInterval(intervalId);
-  }, [isAutoPlaying, slides.length, interval]);
+  }, [isAutoPlaying, safeSlides.length, interval]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -54,7 +72,7 @@ export function PageHero({
 
   return (
     <div className="relative h-[45vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] w-full overflow-hidden">
-      {slides.map((slide, index) => (
+      {safeSlides.map((slide, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -63,8 +81,8 @@ export function PageHero({
         >
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/50 to-transparent z-10" />
           <img
-            src={failedImages[index] ? fallbackImage : slide.image}
-            alt={slide.subtitle}
+            src={failedImages[index] ? fallbackImage : slide.image || fallbackImage}
+            alt={slide.subtitle || "Hero image"}
             className="w-full h-full object-cover"
             onError={
               failedImages[index]
@@ -91,23 +109,23 @@ export function PageHero({
       ))}
 
       {/* Counter - only show if multiple slides and showCounter is true */}
-      {showCounter && slides.length > 1 && (
+      {showCounter && safeSlides.length > 1 && (
         <div className="absolute bottom-28 sm:bottom-32 md:bottom-36 lg:bottom-40 left-4 lg:left-8 z-30 hidden md:block">
           <div className="flex items-baseline gap-0.5 md:gap-1">
             <span className="text-background font-bold text-2xl md:text-3xl lg:text-4xl font-inter tabular-nums">
               {String(currentSlide + 1).padStart(2, "0")}
             </span>
             <span className="text-background/60 text-sm md:text-base lg:text-lg font-inter tabular-nums">
-              /{String(slides.length).padStart(2, "0")}
+              /{String(safeSlides.length).padStart(2, "0")}
             </span>
           </div>
         </div>
       )}
 
       {/* Dots - only show if multiple slides and showDots is true */}
-      {showDots && slides.length > 1 && (
+      {showDots && safeSlides.length > 1 && (
         <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-          {slides.map((_, index) => (
+          {safeSlides.map((_, index) => (
             <button
               key={index}
               type="button"

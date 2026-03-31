@@ -48,7 +48,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
     // Transform array of settings into structured object
     const transformedSettings: SiteSettings = {
-      brand: { siteName: "Oliotya Uganda Safaris", logo: "", tagline: "Experience the Pearl of Africa" },
+      brand: { siteName: "Oliotya Uganda Safaris", logo: (process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "") + "/nambi-uganda-safaris/images/fox_logo.webp", tagline: "Experience the Pearl of Africa" },
       contact: { phone: "+256 788048210", email: "Info@oliotyaugandasafaris.com", address: "Kampala, Uganda", whatsapp: "+256 788048210" },
       social: { facebook: "", instagram: "", twitter: "", linkedin: "", youtube: "" },
       newsletter: { title: "Subscribe to Our Newsletter", description: "Get exclusive travel tips, special offers, and updates on Uganda's best safari experiences" },

@@ -5,90 +5,121 @@ import { PageHero } from "@/components/page-hero";
 import { DestinationsCTASection } from "@/components/destinations-cta-section";
 import { DestinationsGrid } from "@/components/destinations-grid";
 import { prisma } from "@/lib/db";
-import { getBaseUrl } from "@/lib/seo";
+import { getBaseUrl, toAbsoluteUrl } from "@/lib/seo";
 
-// Force dynamic rendering
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = getBaseUrl();
+  const title = "Destinations - Oliotya Uganda Safaris";
+  const description =
+    "Explore Uganda's most breathtaking destinations — national parks, mountains, lakes, and wildlife reserves. Discover the Pearl of Africa.";
+
+  const hero = await prisma.destinationsHero.findFirst({
+    where: { status: "PUBLISHED" },
+    orderBy: { publishedAt: "desc" },
+    select: { image: true },
+  });
+
+  const ogImage = hero?.image ? toAbsoluteUrl(hero.image, baseUrl) : `${baseUrl}/opengraph-image`;
+
   return {
-    title: "Destinations - Oliotya Uganda Safaris",
-    description: "Explore Uganda's most breathtaking destinations — national parks, mountains, lakes, and wildlife reserves. Discover the Pearl of Africa.",
-    alternates: {
-      canonical: `${baseUrl}/destinations`,
-    },
+    title,
+    description,
+    alternates: { canonical: `${baseUrl}/destinations` },
     openGraph: {
-      title: "Destinations - Oliotya Uganda Safaris",
-      description: "Explore Uganda's most breathtaking destinations — national parks, mountains, lakes, and wildlife reserves. Discover the Pearl of Africa.",
+      type: "website",
+      title,
+      description,
       url: `${baseUrl}/destinations`,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }
 
-async function getPageData() {
-  try {
-    const [heroSection, ctaSection] = await Promise.all([
-      prisma.destinationsHero.findFirst({
-        where: { status: "PUBLISHED" },
-        orderBy: { publishedAt: "desc" },
-      }),
-      prisma.destinationsCTA.findFirst({
-        where: { status: "PUBLISHED" },
-        orderBy: { publishedAt: "desc" },
-      }),
-    ]);
+export default async function DestinationsPage() {
+  const R2_BASE =
+    process.env.NEXT_PUBLIC_R2_PUBLIC_URL ||
+    "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
 
-    // Fallback hero data
-    const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-    const IMAGE_PATH = "nambi-uganda-safaris/images";
+  const [heroSection, ctaSection, destinations] = await Promise.all([
+    prisma.destinationsHero.findFirst({
+      where: { status: "PUBLISHED" },
+      orderBy: { publishedAt: "desc" },
+    }),
+    prisma.destinationsCTA.findFirst({
+      where: { status: "PUBLISHED" },
+      orderBy: { publishedAt: "desc" },
+    }),
+    prisma.destination.findMany({
+      orderBy: { id: "asc" },
+      select: {
+        id: true,
+        name: true,
+        category: true,
+        image: true,
+        description: true,
+        country: true,
+        region: true,
+      },
+    }),
+  ]);
 
-    const heroSlides = heroSection
-      ? [{
+  const heroSlides = heroSection
+    ? [
+        {
           image: heroSection.image,
           title: heroSection.title,
           subtitle: heroSection.subtitle,
           description: heroSection.description,
-        }]
-      : [{
-          image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
+        },
+      ]
+    : [
+        {
+          image: `${R2_BASE}/nambi-uganda-safaris/images/uganda-queen-elizabeth-national-park-safari.webp`,
           title: "Discover the Pearl of Africa",
           subtitle: "Explore Destinations",
-          description: "Discover Uganda's most breathtaking locations and unique experiences across diverse landscapes and ecosystems.",
-        }];
+          description:
+            "Discover Uganda's most breathtaking locations and unique experiences across diverse landscapes and ecosystems.",
+        },
+      ];
 
-    return { heroSlides, ctaSection };
-  } catch (error) {
-    console.error("Error fetching destinations page data:", error);
-    // Return fallback data if database query fails
-    const R2_BASE = process.env.NEXT_PUBLIC_R2_PUBLIC_URL || "https://pub-831b020047ea41fca8b3ec274b97d789.r2.dev";
-    const IMAGE_PATH = "nambi-uganda-safaris/images";
-    return {
-      heroSlides: [{
-        image: `${R2_BASE}/${IMAGE_PATH}/uganda-queen-elizabeth-national-park-safari.webp`,
-        title: "Discover the Pearl of Africa",
-        subtitle: "Explore Destinations",
-        description: "Discover Uganda's most breathtaking locations and unique experiences across diverse landscapes and ecosystems.",
-      }],
-      ctaSection: null,
-    };
-  }
-}
+  const baseUrl = getBaseUrl();
 
-export default async function DestinationsPage() {
-  const { heroSlides, ctaSection } = await getPageData();
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Uganda Safari Destinations",
+    description: "Uganda's most breathtaking destinations — national parks, mountains, lakes, and wildlife reserves",
+    url: `${baseUrl}/destinations`,
+    numberOfItems: destinations.length,
+    itemListElement: destinations.map((dest, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: dest.name,
+      url: `${baseUrl}/destination/${dest.id}`,
+      image: dest.image,
+    })),
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <Header />
-
       <main className="flex-1">
         <PageHero slides={heroSlides} showCounter={false} showDots={false} autoPlay={false} />
-        <DestinationsGrid />
+        <DestinationsGrid destinations={destinations} />
         {ctaSection && <DestinationsCTASection data={ctaSection} />}
       </main>
-
       <Footer />
     </div>
   );

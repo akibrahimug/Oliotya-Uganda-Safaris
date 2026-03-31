@@ -9,24 +9,39 @@ import { AboutValuesSection } from "@/components/about-values-section";
 import { AboutTeamSection } from "@/components/about-team-section";
 import { AboutCTASection } from "@/components/about-cta-section";
 import { prisma } from "@/lib/db";
-import { getBaseUrl } from "@/lib/seo";
+import { getBaseUrl, toAbsoluteUrl } from "@/lib/seo";
 
-// Force dynamic rendering - fetch data from database on each request
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = getBaseUrl();
+  const title = "About Us - Oliotya Uganda Safaris";
+  const description = "Learn about Oliotya Uganda Safaris — our story, team, values, and commitment to delivering authentic African safari experiences.";
+
+  const hero = await prisma.aboutHero.findFirst({
+    where: { status: "PUBLISHED" },
+    orderBy: { publishedAt: "desc" },
+    select: { image: true },
+  });
+
+  const ogImage = hero?.image ? toAbsoluteUrl(hero.image, baseUrl) : `${baseUrl}/opengraph-image`;
+
   return {
-    title: "About Us - Oliotya Uganda Safaris",
-    description: "Learn about Oliotya Uganda Safaris — our story, team, values, and commitment to delivering authentic African safari experiences.",
-    alternates: {
-      canonical: `${baseUrl}/about`,
-    },
+    title,
+    description,
+    alternates: { canonical: `${baseUrl}/about` },
     openGraph: {
-      title: "About Us - Oliotya Uganda Safaris",
-      description: "Learn about Oliotya Uganda Safaris — our story, team, values, and commitment to delivering authentic African safari experiences.",
+      type: "website",
+      title,
+      description,
       url: `${baseUrl}/about`,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -73,8 +88,37 @@ export default async function AboutPage() {
       }),
     ]);
 
+    const baseUrl = getBaseUrl();
+
+    const aboutPageSchema = {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: "About Oliotya Uganda Safaris",
+      description: storySection?.description || "Oliotya Uganda Safaris — expert-guided safaris, cultural tours, and unforgettable adventures across Uganda.",
+      url: `${baseUrl}/about`,
+      ...(heroSection?.image ? { image: toAbsoluteUrl(heroSection.image, baseUrl) } : {}),
+      mainEntity: {
+        "@type": "Organization",
+        name: "Oliotya Uganda Safaris",
+        url: baseUrl,
+        description: storySection?.description || "Experience the Pearl of Africa with Oliotya Uganda Safaris.",
+        ...(heroSection?.image ? { image: toAbsoluteUrl(heroSection.image, baseUrl) } : {}),
+        numberOfEmployees: teamMembers.length > 0 ? { "@type": "QuantitativeValue", value: teamMembers.length } : undefined,
+        member: teamMembers.map((m) => ({
+          "@type": "Person",
+          name: m.name,
+          jobTitle: m.role,
+          ...(m.image ? { image: toAbsoluteUrl(m.image, baseUrl) } : {}),
+        })),
+      },
+    };
+
     return (
       <main className="min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+        />
         <Header />
 
         {/* Hero Section */}

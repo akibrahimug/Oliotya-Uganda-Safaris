@@ -3,6 +3,8 @@ import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { packageSchema } from "@/lib/validations/package";
 
+const PACKAGE_MIN_TRAVELERS = 4;
+
 /**
  * GET /api/cms/packages
  * Get all packages with optional filtering
@@ -118,8 +120,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const normalizedMinTravelers = Math.max(data.minTravelers, PACKAGE_MIN_TRAVELERS);
+
     // Validate travelers count
-    if (data.maxTravelers < data.minTravelers) {
+    if (data.maxTravelers < normalizedMinTravelers) {
       return NextResponse.json(
         { error: "Maximum travelers must be greater than minimum travelers" },
         { status: 400 }
@@ -142,7 +146,7 @@ export async function POST(request: NextRequest) {
         itinerary: data.itinerary as any,
         included: data.included || [],
         excluded: data.excluded || [],
-        minTravelers: data.minTravelers,
+        minTravelers: normalizedMinTravelers,
         maxTravelers: data.maxTravelers,
         difficulty: data.difficulty,
         featured: data.featured ?? false,
