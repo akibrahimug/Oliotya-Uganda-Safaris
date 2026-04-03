@@ -1,11 +1,13 @@
-const DEFAULT_SITE_URL = "https://www.oliotyaugandasafaris.com";
+const DEFAULT_SITE_URL = "https://oliotyaugandasafaris.com";
 const DEFAULT_R2_LOGO_PATH = "/nambi-uganda-safaris/images/fox_logo.webp";
 
 function stripTrailingSlash(value: string): string {
   return value.replace(/\/+$/, "");
 }
 
-export function getBaseUrl(rawValue: string | undefined = process.env.NEXT_PUBLIC_SITE_URL): string {
+export function getBaseUrl(
+  rawValue: string | undefined = process.env.NEXT_PUBLIC_SITE_URL,
+): string {
   const value = rawValue?.trim();
   if (!value) return DEFAULT_SITE_URL;
 
@@ -17,9 +19,14 @@ export function getBaseUrl(rawValue: string | undefined = process.env.NEXT_PUBLI
   }
 }
 
-export function toAbsoluteUrl(pathOrUrl: string, baseUrl: string = getBaseUrl()): string {
+export function toAbsoluteUrl(
+  pathOrUrl: string,
+  baseUrl: string = getBaseUrl(),
+): string {
   if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
-  const normalizedPath = pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`;
+  const normalizedPath = pathOrUrl.startsWith("/")
+    ? pathOrUrl
+    : `/${pathOrUrl}`;
   return new URL(normalizedPath, baseUrl).toString();
 }
 
