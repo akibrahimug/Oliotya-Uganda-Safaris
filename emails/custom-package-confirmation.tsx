@@ -146,17 +146,13 @@ export default function CustomPackageConfirmationEmail({
               <tr>
                 <td style={{ paddingTop: '8px' }}>
                   <Text style={label}>Email:</Text>
-                  <Text style={value}>
-                    <a href={`mailto:${email}`} style={link}>{email}</a>
-                  </Text>
+                  <Text style={value}>{email}</Text>
                 </td>
               </tr>
               <tr>
                 <td style={{ paddingTop: '8px' }}>
                   <Text style={label}>Phone:</Text>
-                  <Text style={value}>
-                    <a href={`tel:${phone}`} style={link}>{phone}</a>
-                  </Text>
+                  <Text style={value}>{phone}</Text>
                 </td>
               </tr>
             </table>
@@ -399,12 +395,6 @@ const infoText = {
   fontSize: '14px',
   lineHeight: '22px',
   margin: '0',
-};
-
-const link = {
-  color: '#2563eb',
-  textDecoration: 'underline' as const,
-  fontWeight: '500' as const,
 };
 
 const signature = {

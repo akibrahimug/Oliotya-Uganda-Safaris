@@ -66,11 +66,7 @@ export default function SubscribeNotificationEmail({
               <tr>
                 <td>
                   <Text style={label}>Email</Text>
-                  <Text style={value}>
-                    <a href={`mailto:${email}`} style={link}>
-                      {email}
-                    </a>
-                  </Text>
+                  <Text style={value}>{email}</Text>
                 </td>
               </tr>
               <tr>
@@ -168,12 +164,6 @@ const value = {
   fontSize: "16px",
   margin: "0 0 4px 0",
   lineHeight: "22px",
-};
-
-const link = {
-  color: "#2563eb",
-  textDecoration: "underline" as const,
-  fontWeight: "500" as const,
 };
 
 const divider = {

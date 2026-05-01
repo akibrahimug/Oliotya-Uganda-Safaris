@@ -68,9 +68,7 @@ export default function ContactNotificationEmail({
               <tr>
                 <td style={{ paddingTop: '8px' }}>
                   <Text style={label}>Email:</Text>
-                  <Text style={value}>
-                    <a href={`mailto:${email}`} style={link}>{email}</a>
-                  </Text>
+                  <Text style={value}>{email}</Text>
                 </td>
               </tr>
               <tr>
@@ -94,7 +92,7 @@ export default function ContactNotificationEmail({
           <Section style={footer}>
             <Text style={footerText}>
               <strong>Action Required:</strong> Please respond to this inquiry at{' '}
-              <a href={`mailto:${email}`} style={link}>{email}</a>
+              {email}
             </Text>
             <Text style={footerText}>
               This notification was sent from {companyName} contact form.
@@ -194,12 +192,6 @@ const messageText = {
   lineHeight: '24px',
   whiteSpace: 'pre-wrap' as const,
   margin: '0',
-};
-
-const link = {
-  color: '#2563eb',
-  textDecoration: 'underline' as const,
-  fontWeight: '500' as const,
 };
 
 const divider = {

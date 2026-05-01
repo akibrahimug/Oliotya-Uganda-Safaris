@@ -93,17 +93,13 @@ export default function CustomPackageNotificationEmail({
               <tr>
                 <td style={{ paddingTop: '8px' }}>
                   <Text style={label}>Email:</Text>
-                  <Text style={value}>
-                    <a href={`mailto:${email}`} style={link}>{email}</a>
-                  </Text>
+                  <Text style={value}>{email}</Text>
                 </td>
               </tr>
               <tr>
                 <td style={{ paddingTop: '8px' }}>
                   <Text style={label}>Phone:</Text>
-                  <Text style={value}>
-                    <a href={`tel:${phone}`} style={link}>{phone}</a>
-                  </Text>
+                  <Text style={value}>{phone}</Text>
                 </td>
               </tr>
             </table>
@@ -186,8 +182,7 @@ export default function CustomPackageNotificationEmail({
           <Section style={footer}>
             <Text style={footerText}>
               <strong>Action Required:</strong> Please respond to the customer at{' '}
-              <a href={`mailto:${email}`} style={link}>{email}</a> or{' '}
-              <a href={`tel:${phone}`} style={link}>{phone}</a>
+              {email} or {phone}
             </Text>
             <Text style={footerText}>
               This notification was sent from {companyName} custom package builder.
@@ -307,12 +302,6 @@ const messageText = {
   lineHeight: '24px',
   whiteSpace: 'pre-wrap' as const,
   margin: '0',
-};
-
-const link = {
-  color: '#2563eb',
-  textDecoration: 'underline' as const,
-  fontWeight: '500' as const,
 };
 
 const divider = {
