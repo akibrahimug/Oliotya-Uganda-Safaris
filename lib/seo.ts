@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://oliotyaugandasafaris.com";
+const DEFAULT_SITE_URL = "https://www.oliotyaugandasafaris.com";
 const DEFAULT_R2_LOGO_PATH = "/nambi-uganda-safaris/images/fox_logo.webp";
 
 function stripTrailingSlash(value: string): string {

@@ -2,7 +2,11 @@ import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/db";
 import { getBaseUrl } from "@/lib/seo";
 
-export const revalidate = 3600;
+// Generate at request time so newly added packages/destinations always appear.
+// (A build-time/ISR sitemap can get cached with an empty DB result, which is
+// what previously left all /package/* and /destination/* URLs out of the sitemap.)
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const STATIC_ROUTES: Array<{
   path: string;
