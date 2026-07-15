@@ -27,6 +27,18 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // Cache for 1 year
   },
+  async redirects() {
+    return [
+      // The vercel.app production alias serves the same content as the real
+      // domain; redirect it so search engines only ever see the www host.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "fox-adventures.vercel.app" }],
+        destination: "https://www.oliotyaugandasafaris.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   reactStrictMode: false, // Disable strict mode to reduce hydration warnings
   // Suppress hydration warnings in development
   onDemandEntries: {
