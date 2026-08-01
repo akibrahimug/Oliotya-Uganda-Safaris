@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getYouTubeVideoId, isDirectVideoUrl } from "@/lib/video";
 
 interface VideoSectionProps {
   data?: {
@@ -8,43 +9,6 @@ interface VideoSectionProps {
     description: string;
     videoUrl: string;
   };
-}
-
-/**
- * Extract YouTube video ID from various YouTube URL formats
- */
-function getYouTubeVideoId(url: string): string | null {
-  if (!url) return null;
-
-  // Remove whitespace
-  url = url.trim();
-
-  // Handle different YouTube URL formats
-  const patterns = [
-    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
-    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i,
-    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/v\/([^?]+)/i,
-    /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
-    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([^?]+)/i,
-  ];
-
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match && match[1]) {
-      return match[1];
-    }
-  }
-
-  return null;
-}
-
-/**
- * Check if URL is a direct video file (mp4, webm, etc.)
- */
-function isDirectVideoUrl(url: string): boolean {
-  if (!url) return false;
-  const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov'];
-  return videoExtensions.some(ext => url.toLowerCase().includes(ext));
 }
 
 export function VideoSection({ data }: VideoSectionProps) {

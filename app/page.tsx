@@ -4,7 +4,8 @@ import { HomePageContent } from "@/components/home-page-content";
 import { Footer } from "@/components/footer";
 import { prisma } from "@/lib/db";
 import { getSiteSettings } from "@/lib/settings";
-import { getBaseUrl, toAbsoluteUrl } from "@/lib/seo";
+import { getBaseUrl, toAbsoluteUrl, getDefaultOgImageUrl } from "@/lib/seo";
+import { getYouTubeVideoId, isDirectVideoUrl } from "@/lib/video";
 import type { Metadata } from "next";
 
 export const revalidate = 300;
@@ -146,12 +147,48 @@ export default async function Home() {
       })),
     };
 
+    const videoYoutubeId = videoSection ? getYouTubeVideoId(videoSection.videoUrl) : null;
+    const videoIsDirect = videoSection ? isDirectVideoUrl(videoSection.videoUrl) : false;
+    const videoThumbnail = videoSection?.thumbnailUrl
+      ? toAbsoluteUrl(videoSection.thumbnailUrl, siteUrl)
+      : videoYoutubeId
+        ? `https://i.ytimg.com/vi/${videoYoutubeId}/hqdefault.jpg`
+        : getDefaultOgImageUrl(siteUrl);
+
+    // VideoObject tells Google this page is the video's watch page (rather than
+    // treating the embed as belonging to youtube.com) — required for video indexing.
+    const videoSchema =
+      videoSection && (videoYoutubeId || videoIsDirect)
+        ? {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: videoSection.title,
+            description: videoSection.description,
+            thumbnailUrl: [videoThumbnail],
+            uploadDate: (videoSection.publishedAt ?? videoSection.createdAt).toISOString(),
+            ...(videoYoutubeId
+              ? { embedUrl: `https://www.youtube-nocookie.com/embed/${videoYoutubeId}` }
+              : { contentUrl: videoSection!.videoUrl }),
+            publisher: {
+              "@type": "Organization",
+              name: "Oliotya Uganda Safaris",
+              url: siteUrl,
+            },
+          }
+        : null;
+
     return (
       <main className="min-h-screen">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(offerCatalogSchema) }}
         />
+        {videoSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+          />
+        )}
         <Header initialSettings={siteSettings} />
         <HeroCarousel initialSlides={heroSlides} />
         <HomePageContent
