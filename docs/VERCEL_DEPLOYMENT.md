@@ -25,9 +25,9 @@ You need to add the following environment variables to your Vercel project:
 
 #### Email Configuration (Resend)
 ```env
-RESEND_API_KEY=re_QCtm6KZQ_LBAsv89pQSGe5emRjAgkba1X
+RESEND_API_KEY=re_your_api_key_here
 EMAIL_FROM=onboarding@resend.dev
-ADMIN_EMAIL=kasomaibrahim@gmail.com
+ADMIN_EMAIL=your-admin-email@example.com
 ```
 
 #### Database (Neon PostgreSQL)
