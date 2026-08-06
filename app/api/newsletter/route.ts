@@ -3,7 +3,7 @@ import { prisma } from "@/lib/db";
 import { newsletterSchema } from "@/lib/validations/newsletter";
 import { newsletterRateLimit, getClientIp } from "@/lib/rate-limit";
 import { sanitizeObject } from "@/lib/validations";
-import { sendEmail, resend, ADMIN_EMAIL, AUDIENCE_ID } from "@/lib/email";
+import { sendEmail, resend, ADMIN_EMAIL, SEGMENT_ID } from "@/lib/email";
 import { render } from "@react-email/components";
 import SubscribeConfirmationEmail from "@/emails/subscribe-confirmation";
 import SubscribeNotificationEmail from "@/emails/subscribe-notification";
@@ -130,19 +130,19 @@ async function sendSubscribeEmails(subscription: {
     throw error;
   }
 
-  if (AUDIENCE_ID) {
+  if (SEGMENT_ID) {
     try {
       const { error } = await resend.contacts.create({
         email: subscription.email,
-        audienceId: AUDIENCE_ID,
+        audienceId: SEGMENT_ID,
         unsubscribed: false,
       });
 
       if (error) {
-        console.error("Failed to sync subscriber to Resend audience:", error);
+        console.error("Failed to sync subscriber to Resend segment:", error);
       }
     } catch (error) {
-      console.error("Failed to sync subscriber to Resend audience:", error);
+      console.error("Failed to sync subscriber to Resend segment:", error);
     }
   }
 }

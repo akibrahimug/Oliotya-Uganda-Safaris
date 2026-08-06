@@ -1,8 +1,8 @@
 #!/usr/bin/env ts-node
 /**
- * Backfill existing newsletter subscribers into a Resend Audience.
- * Run once after creating the Audience in the Resend dashboard and setting
- * RESEND_AUDIENCE_ID. New subscribers are synced automatically going forward
+ * Backfill existing newsletter subscribers into a Resend Segment.
+ * Run once after creating the Segment in the Resend dashboard and setting
+ * RESEND_SEGMENT_ID. New subscribers are synced automatically going forward
  * by app/api/newsletter/route.ts, so this only needs to catch up existing rows.
  */
 import * as dotenv from "dotenv";
@@ -10,14 +10,14 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: ".env.local" });
 
 import { prisma } from "../lib/db";
-import { resend, AUDIENCE_ID } from "../lib/email";
+import { resend, SEGMENT_ID } from "../lib/email";
 
 async function syncSubscribersToResend(): Promise<void> {
-  if (!AUDIENCE_ID) {
-    throw new Error("RESEND_AUDIENCE_ID is not set. Add it to .env.local before running this script.");
+  if (!SEGMENT_ID) {
+    throw new Error("RESEND_SEGMENT_ID is not set. Add it to .env.local before running this script.");
   }
 
-  console.log("\n🔄 Syncing active newsletter subscribers to Resend audience...\n");
+  console.log("\n🔄 Syncing active newsletter subscribers to Resend segment...\n");
 
   const subscribers = await prisma.newsletterSubscription.findMany({
     where: { status: "ACTIVE" },
@@ -33,7 +33,7 @@ async function syncSubscribersToResend(): Promise<void> {
     try {
       const { error } = await resend.contacts.create({
         email,
-        audienceId: AUDIENCE_ID,
+        audienceId: SEGMENT_ID,
         unsubscribed: false,
       });
 
