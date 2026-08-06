@@ -10,6 +10,9 @@ export const SENDER_EMAIL = process.env.EMAIL_FROM || 'onboarding@resend.dev';
 // Admin/company email to receive notifications
 export const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'Info@oliotyaugandasafaris.com';
 
+// Resend Audience that newsletter subscribers are synced into, for broadcasts
+export const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
+
 const EMAIL_SUBJECT_PREFIX = (process.env.EMAIL_SUBJECT_PREFIX || 'Oliotya').trim();
 
 function escapeRegExp(value: string): string {

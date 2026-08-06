@@ -12,6 +12,7 @@
     "test:coverage": "jest --coverage",
     "migrate:images": "ts-node --project tsconfig.script.json scripts/upload-images-to-r2.ts",
     "sync:r2-to-cms": "ts-node --project tsconfig.script.json scripts/sync-r2-to-cms.ts",
+    "sync:subscribers-to-resend": "ts-node --project tsconfig.script.json scripts/sync-subscribers-to-resend.ts",
     "seed:hero": "node scripts/seed-hero-slides.mjs"
   },
   "engines": {
